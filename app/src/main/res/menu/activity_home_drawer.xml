@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/dash_board"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="Home" />
+        <item
+            android:id="@+id/chart"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="Chart" />
+        <item
+            android:id="@+id/today_summary"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Today's Summary" />
+        <item
+            android:id="@+id/today_history"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Today's History" />
+        <item
+            android:id="@+id/cancel_bet"
+            android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="Cancel Bet" />
+        <item
+            android:id="@+id/limit"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Limit" />
+
+        <item
+            android:id="@+id/multiple_bet"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Multiple Bet" />
+        <item
+            android:id="@+id/profile"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Profile" />
+        <item
+            android:id="@+id/terms"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Term and Condition" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Logout" />
+    </group>
+
+    <!--<item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@android:drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>-->
+
+</menu>

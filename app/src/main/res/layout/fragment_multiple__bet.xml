@@ -1,0 +1,1081 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="bidding.example.com.bidding.Lottery_Game.Multiple_Bet">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        tools:ignore="NewApi"
+        android:layout_alignParentTop="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <TextView
+                android:id="@+id/time_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:text="04:00"
+                android:textColor="@color/textColor"
+                android:gravity="center"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/current_seesion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Current Session:03:30 pm"
+                android:textColor="@color/textColor"
+                android:paddingLeft="5dp"
+                android:gravity="left"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Last Result:"
+                android:textColor="@color/textColor"
+                android:paddingLeft="5dp"
+                android:gravity="right"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/current_result"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:text=""
+                android:gravity="center"
+                android:textColor="@color/textColor"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/final_result_tile_holder"
+        android:layout_below="@+id/card_view1"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <!--first digit single-->
+    <LinearLayout
+        android:id="@+id/single_tile_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/abc_action_bar_default_height_material"
+        android:layout_marginRight="@dimen/abc_action_bar_default_height_material"
+        android:layout_marginTop="@dimen/abc_button_padding_horizontal_material">
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_first_digit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            tools:ignore="NewApi"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/first_digit"
+                android:gravity="center"
+                android:textColor="@color/textColor"
+                android:layout_gravity="center"/>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/single_digit_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/single_tile_holder"
+        android:orientation="vertical"
+
+        >
+
+
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/first_digit_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            tools:ignore="NewApi"
+            android:padding="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/containar_first"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Number"
+                        android:gravity="center"
+                        android:textColor="@color/textColor"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Amount"
+                        android:gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:textColor="@color/textColor"/>
+                </LinearLayout>
+            <HorizontalScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal"
+                android:scrollbarFadeDuration="0"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:fadeScrollbars="false">
+
+            <TableLayout
+                android:id="@+id/tableLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TableRow
+                    android:id="@+id/tableRow11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:showDividers="beginning|end"
+                    android:divider="@android:color/darker_gray">
+
+
+                    <TextView
+                        android:id="@+id/firsttextview0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/firsttextview1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/firsttextview2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/firsttextview3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3"
+
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/firsttextview4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4"
+
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/firsttextview5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/firsttextview6"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="6"
+
+                        android:gravity="center"/>
+
+
+                    <TextView
+                        android:id="@+id/firsttextview7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7"
+
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/firsttextview8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8"
+
+                        android:gravity="center"/>
+
+
+                    <TextView
+                        android:id="@+id/firsttextview9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/firsttextview10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9"
+                        android:gravity="center"
+                        android:visibility="invisible"/>
+
+                </TableRow>
+
+<!--<View android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/textColor"/>-->
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+
+
+                    <EditText
+                        android:id="@+id/firsteditText0"
+                        android:layout_width="50dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:inputType="number"
+                        />
+
+                    <EditText
+                        android:id="@+id/firsteditText1"
+                        android:layout_width="50dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:inputType="number"/>
+
+
+                    <EditText
+                        android:id="@+id/firsteditText2"
+                        android:layout_width="50dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:inputType="number"/>
+
+                    <EditText
+                        android:id="@+id/firsteditText3"
+                        android:layout_width="50dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:inputType="number"/>
+
+                    <EditText
+                        android:id="@+id/firsteditText4"
+                        android:layout_width="50dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:inputType="number"/>
+
+                    <EditText
+                        android:id="@+id/firsteditText5"
+                        android:layout_width="50dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:inputType="number"/>
+
+                    <EditText
+                        android:id="@+id/firsteditText6"
+                        android:layout_width="50dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:inputType="number"/>
+
+
+                    <EditText
+                        android:id="@+id/firsteditText7"
+                        android:layout_width="50dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:inputType="number"/>
+
+                    <EditText
+                        android:id="@+id/firsteditText8"
+                        android:layout_width="50dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:inputType="number"/>
+
+                    <EditText
+                        android:id="@+id/firsteditText9"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:inputType="number"/>
+
+                    <EditText
+                        android:id="@+id/firsteditText10"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:visibility="invisible"/>
+
+                    </TableRow>
+
+            </TableLayout>
+        </HorizontalScrollView>
+
+      </LinearLayout>
+                <Button
+                    android:id="@+id/btnFirstBet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Place Bet"
+                    android:layout_gravity="center"/>
+    </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--second digit single-->
+        <LinearLayout
+            android:id="@+id/second_tile_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_view_first_digit"
+
+            >
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_second_digit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                tools:ignore="NewApi"
+                android:layout_marginLeft="@dimen/abc_action_bar_default_height_material"
+                android:layout_marginRight="@dimen/abc_action_bar_default_height_material"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/second_digit"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:layout_gravity="center"/>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/second_digit_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            tools:ignore="NewApi"
+            android:padding="5dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Number"
+                        android:gravity="center"
+                        android:textColor="@color/textColor"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Amount"
+                        android:gravity="center"
+                        android:textColor="@color/textColor"
+                        android:layout_marginTop="20dp"/>
+                </LinearLayout>
+            <HorizontalScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="horizontal"
+                android:scrollbarFadeDuration="0"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:fadeScrollbars="false">
+
+                <TableLayout
+                    android:id="@+id/tableLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TableRow
+                        android:id="@+id/tableRow12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:showDividers="beginning|end"
+                        android:divider="@android:color/darker_gray">
+
+
+                        <TextView
+                            android:id="@+id/secondtextview0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/secondtextview1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/secondtextview2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2"
+
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/secondtextview3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3"
+
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/secondtextview4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4"
+
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/secondtextview5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5"
+
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/secondtextview6"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="6"
+
+                            android:gravity="center"/>
+
+
+                        <TextView
+                            android:id="@+id/secondtextview7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="7"
+
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/secondtextview8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8"
+
+                            android:gravity="center"/>
+
+
+                        <TextView
+                            android:id="@+id/secondtextview9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="9"
+                            android:gravity="center"/>
+
+                        <TextView
+                            android:id="@+id/secondtextview10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="9"
+                            android:gravity="center"
+                            android:visibility="invisible"/>
+
+
+
+                    </TableRow>
+
+                    <!--<View android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/textColor"/>-->
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+
+
+                        <EditText
+                            android:id="@+id/secondeditText0"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:inputType="number"/>
+
+                        <EditText
+                            android:id="@+id/secondeditText1"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:inputType="number"/>
+
+
+                        <EditText
+                            android:id="@+id/secondeditText2"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:inputType="number"/>
+
+                        <EditText
+                            android:id="@+id/secondeditText3"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:inputType="number"/>
+
+                        <EditText
+                            android:id="@+id/secondeditText4"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:inputType="number"/>
+
+                        <EditText
+                            android:id="@+id/secondeditText5"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:inputType="number"/>
+
+                        <EditText
+                            android:id="@+id/secondeditText6"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:inputType="number"/>
+
+
+                        <EditText
+                            android:id="@+id/secondeditText7"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:inputType="number"/>
+
+                        <EditText
+                            android:id="@+id/secondeditText8"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:inputType="number"/>
+
+                        <EditText
+                            android:id="@+id/secondeditText9"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:inputType="number"
+                            />
+
+                        <EditText
+                            android:id="@+id/editTextscond10"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:hint="0"
+                            android:gravity="center"
+                            android:inputType="number"
+                            android:visibility="invisible"/>
+
+
+                    </TableRow>
+
+                </TableLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+                <Button
+                    android:id="@+id/btnSecondBet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Place Bet"
+                    android:layout_gravity="center"/>
+      </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--jodi double digit-->
+        <LinearLayout
+            android:id="@+id/jodi_tile_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_view_first_digit"
+            android:layout_marginLeft="@dimen/abc_action_bar_default_height_material"
+            android:layout_marginRight="@dimen/abc_action_bar_default_height_material"
+            android:layout_marginTop="@dimen/abc_action_bar_default_padding_material"
+            >
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view_jodi_digit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                tools:ignore="NewApi"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/jodi_digit"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:layout_gravity="center"/>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/jodi_digit_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            tools:ignore="NewApi">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Number"
+                            android:gravity="center"
+                            android:textColor="@color/textColor"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="Amount"
+                            android:gravity="center"
+                            android:textColor="@color/textColor"
+                            android:layout_marginTop="20dp"/>
+                    </LinearLayout>
+                    <HorizontalScrollView
+                        android:id="@+id/scrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="horizontal"
+                        android:scrollbarFadeDuration="0"
+                        android:scrollbarAlwaysDrawHorizontalTrack="true"
+                        android:fadeScrollbars="false">
+
+                        <TableLayout
+                            android:id="@+id/tableLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TableRow
+                                android:id="@+id/tableRow13"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:showDividers="beginning|end"
+                                android:divider="@android:color/darker_gray">
+
+
+                                <EditText
+                                    android:id="@+id/jodiNumberEditText0"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:maxLength="2"
+                                    />
+
+                                <EditText
+                                    android:id="@+id/jodiNumberEditText1"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:maxLength="2"/>
+
+
+                                <EditText
+                                    android:id="@+id/jodiNumberEditText2"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:maxLength="2"/>
+
+                                <EditText
+                                    android:id="@+id/jodiNumberEditText3"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:maxLength="2"
+                                    android:gravity="center"
+                                    android:inputType="number"/>
+
+                                <EditText
+                                    android:id="@+id/jodiNumberEditText4"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:maxLength="2"/>
+
+                                <EditText
+                                    android:id="@+id/jodiNumberEditText5"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:maxLength="2"/>
+
+                                <EditText
+                                    android:id="@+id/jodiNumberEditText6"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:maxLength="2"/>
+
+
+                                <EditText
+                                    android:id="@+id/jodiNumberEditText7"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:maxLength="2"/>
+
+                                <EditText
+                                    android:id="@+id/jodiNumberEditText8"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:maxLength="2"/>
+
+                                <EditText
+                                    android:id="@+id/jodiNumberEditText9"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:maxLength="2"/>
+
+                                <EditText
+                                    android:id="@+id/jodiNumberEditText10"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:visibility="gone"
+                                    />
+
+                            </TableRow>
+
+                            <!--<View android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/textColor"/>-->
+                            <TableRow
+                                android:id="@+id/tableRow132"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" >
+
+
+
+                                <EditText
+                                    android:id="@+id/jodiAmountEditText0"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"/>
+
+                                <EditText
+                                    android:id="@+id/jodiAmountEditText1"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"/>
+
+
+                                <EditText
+                                    android:id="@+id/jodiAmountEditText2"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"/>
+
+                                <EditText
+                                    android:id="@+id/jodiAmountEditText3"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"/>
+
+                                <EditText
+                                    android:id="@+id/jodiAmountEditText4"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"/>
+
+                                <EditText
+                                    android:id="@+id/jodiAmountEditText5"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"/>
+
+                                <EditText
+                                    android:id="@+id/jodiAmountEditText6"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"/>
+
+
+                                <EditText
+                                    android:id="@+id/jodiAmountEditText7"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"/>
+
+                                <EditText
+                                    android:id="@+id/jodiAmountEditText8"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"/>
+
+                                <EditText
+                                    android:id="@+id/jodiAmountEditText9"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    />
+
+                                <EditText
+                                    android:id="@+id/jodiAmountEditText10"
+                                    android:layout_width="50dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:visibility="gone"/>
+
+
+                            </TableRow>
+
+                        </TableLayout>
+                    </HorizontalScrollView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    >
+                    <Button
+                        android:id="@+id/btnautofill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="AutoFill"
+                        android:gravity="center"
+                        android:textColor="@color/textColor"
+                        android:layout_gravity="center"/>
+                    <Button
+                        android:id="@+id/btnJodiBet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/place_bet"
+                        android:gravity="center"
+                        android:textColor="@color/textColor"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+  </RelativeLayout>
+
+ </ScrollView>
+
+    <!--final Result Holder textview-->
+    <LinearLayout
+        android:id="@+id/final_result_tile_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_final_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            tools:ignore="NewApi"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""
+                    android:gravity="center"
+                    android:textColor="@color/textColor"
+                    android:layout_gravity="center"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    >
+                    <ProgressBar
+                        android:id="@+id/ProgressBar02"
+                        style="@style/CustomProgressBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dip"
+                        android:layout_weight="0.8" />
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
+</RelativeLayout>

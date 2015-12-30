@@ -1,0 +1,97 @@
+<resources>
+    <string name="app_name">Bidding</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_home">Home</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_single__bet">Single_Bet</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="login_res_2">2</string>
+    <string name="login_res_0">0</string>
+    <string name="Lottery">Game 1</string>
+    <string name="Cricket">Game 2</string>
+    <!--button string-->
+    <string name="place_bet">Place Bet</string>
+    <string name="first_digit">Single Digit 1st</string>
+    <string name="second_digit">Single Digit 2nd</string>
+    <string name="jodi_digit">Jodi</string>
+
+    <string name="internet_err">Internet connection not present!!!</string>
+    <string name="invalid_user">You are not valid user</string>
+    <string name="invalid_username_pass">Invalid username or password</string>
+    <string name="title_activity_match_details">Match_details</string>
+    <string name="prefrence">UserPrefrence</string>
+    <string name="title_activity_table_main">TableMain</string>
+    <string name="title_activity_landing_screen">LandingScreen</string>
+    <string name="title_activity_result_chart">result_chart</string>
+
+ <!--Api Urls-->
+   <!--login api
+    <string name="login">http://lottery.pixmadness.in/api/players/login</string>
+    &lt;!&ndash;pacebetseconde url&ndash;&gt;
+    <string name="PlaceBetFirst"> http://lottery.pixmadness.in/api/bets/PlaceBetFirst</string>
+
+  &lt;!&ndash;pacebetseconde url&ndash;&gt;
+    <string name="PlaceBetSecond"> http://lottery.pixmadness.in/api/bets/PlaceBetSecond</string>
+
+  &lt;!&ndash;pacebetseconde url&ndash;&gt;
+    <string name="PlaceBetJodi">http://lottery.pixmadness.in/api/bets/PlaceBetJodi</string>
+&lt;!&ndash;cancel bet&ndash;&gt;
+    <string name="cancel_bet">http://lottery.pixmadness.in/api/bets/cancelbet</string>
+ &lt;!&ndash;get profile&ndash;&gt;
+    <string name="get_profile">http://lottery.pixmadness.in/api/players/player/</string>
+ &lt;!&ndash;get result   &ndash;&gt;
+    <string name="get_result">http://lottery.pixmadness.in/api/bets/LuckyNumber</string>
+
+  <string name="get_today_history">http://lottery.pixmadness.in/api/players/playerhistory?player_id=</string>
+
+&lt;!&ndash;get chart&ndash;&gt;
+    <string name="get_chart">http://lottery.pixmadness.in/api/bets/luckyNumberchart?month=</string>
+
+&lt;!&ndash;current result    &ndash;&gt;
+    <string name="get_current_result">http://lottery.pixmadness.in/api/bets/getServerTimings</string>-->
+
+
+ <!--Live URL's   -->
+
+    <!--login api-->
+    <string name="login">http://46.101.6.171/moneygame/api/players/login</string>
+    <!--pacebetseconde url-->
+    <string name="PlaceBetFirst">http://46.101.6.171/moneygame/api/bets/PlaceBetFirst</string>
+
+    <!--pacebetseconde url-->
+    <string name="PlaceBetSecond">http://46.101.6.171/moneygame/api/bets/PlaceBetSecond</string>
+
+    <!--pacebetseconde url-->
+    <string name="PlaceBetJodi">http://46.101.6.171/moneygame/api/bets/PlaceBetJodi</string>
+    <!--cancel bet-->
+    <string name="cancel_bet">http://46.101.6.171/moneygame/api/bets/cancelbet</string>
+    <!--get profile-->
+    <string name="get_profile">http://46.101.6.171/moneygame/api/players/player/</string>
+    <!--get result   -->
+    <string name="get_result">http://46.101.6.171/moneygame/api/bets/LuckyNumber</string>
+
+    <string name="get_today_history">http://46.101.6.171/moneygame/api/players/playerhistory?player_id=</string>
+
+    <!--get chart-->
+    <string name="get_chart">http://46.101.6.171/moneygame/api/bets/luckyNumberchart?month=</string>
+
+    <!--current result    -->
+    <string name="get_current_result">http://46.101.6.171/moneygame/api/bets/getServerTimings</string>
+
+   <!--get account detail by date-->
+    <string name="get_acc_by_date">http://46.101.6.171/moneygame/api/players/accountsPlayerByDate?player_id=</string>
+
+   <!--get transaction -->
+    <string name="get_transaction">http://46.101.6.171/moneygame/api/players/accountsPlayerByDrawTime?player_id=</string>
+<!--get specific transaction-->
+   <string name="get_specific_transaction">http://46.101.6.171/moneygame/api/players/accountsPlayerByTransactionId?transaction_id=</string>
+
+    <string name="title_activity_tansaction_wise_history">Tansaction History</string>
+    <string name="title_activity_transaction_indetail">Transaction Details</string>
+    <!--http://46.101.6.171/moneygame/-->
+</resources>
