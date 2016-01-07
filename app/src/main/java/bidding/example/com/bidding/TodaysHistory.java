@@ -148,26 +148,32 @@ public class TodaysHistory extends Fragment {
 
                                     rowItem.setResult(item.getString("result"));
 
+                                    if(item.getString("result").equals("1")) {
                                     if(item.getString("game_type").equals("1"))
                                     {
-                                        double amount = Integer.parseInt(item.getString("bet_amount")) * 8.5;
+                                        double amount = Double.parseDouble(item.getString("bet_amount")) * 8.5;
 
                                         rowItem.setCharge(""+amount);
                                     }
                                     else if(item.getString("game_type").equals("2"))
                                     {
-                                        double amount = Integer.parseInt(item.getString("bet_amount")) * 8.5;
+                                        double amount = Double.parseDouble(item.getString("bet_amount")) * 8.5;
 
                                         rowItem.setCharge(""+amount);
                                     }
                                     else if(item.getString("game_type").equals("3"))
                                     {
-                                        int amount = Integer.parseInt(item.getString("bet_amount")) * 85;
+                                        double amount = Double.parseDouble(item.getString("bet_amount")) * 85;
 
-                                        rowItem.setCharge(""+amount);
+                                            rowItem.setCharge("" + amount);
+                                        }
+                                    }
+                                    else{
+                                        rowItem.setCharge("-");
                                     }
 
-                                    historyList.add(rowItem);
+                                        historyList.add(rowItem);
+
                                 }
                                 HistoryAdapter adapter = new HistoryAdapter(getActivity(),historyList);
                                 listView.setAdapter(adapter);

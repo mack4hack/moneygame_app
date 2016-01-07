@@ -238,7 +238,16 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         TextUtils.isEmpty(FirstEditText6.getText().toString().trim()) && TextUtils.isEmpty(FirstEditText7.getText().toString().trim()) &&
                         TextUtils.isEmpty(FirstEditText8.getText().toString().trim()) && TextUtils.isEmpty(FirstEditText9.getText().toString().trim())) {
                     Toast.makeText(getActivity(), "please enter amount!!!", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+
+             /*   else if(Integer.parseInt(FirstEditText0.getText().toString())%20 ==0  && Integer.parseInt(FirstEditText1.getText().toString())%20 ==0 &&
+                        Integer.parseInt(FirstEditText2.getText().toString())%20 ==0 && Integer.parseInt(FirstEditText3.getText().toString())%20 ==0 &&
+                        Integer.parseInt(FirstEditText4.getText().toString())%20 ==0 && Integer.parseInt(FirstEditText5.getText().toString())%20 ==0 &&
+                        Integer.parseInt(FirstEditText6.getText().toString())%20 ==0 && Integer.parseInt(FirstEditText7.getText().toString())%20 ==0 &&
+                        Integer.parseInt(FirstEditText8.getText().toString())%20 ==0 && Integer.parseInt(FirstEditText9.getText().toString())%20 ==0){
+                    Toast.makeText(getActivity(), "please enter amount!!!", Toast.LENGTH_SHORT).show();
+                }*/
+                else {
                     number = new String[10];
                     amount = new String[10];
                     String msg = "please enter valid amount at position ";
@@ -315,7 +324,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                 }
                                 else
                                 {
-                                    break;
+//                                    break;
                                 }
                             }
                         }
@@ -517,7 +526,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                 }
                                 else
                                 {
-                                    break;
+//                                    break;
                                 }
                             }
                         }
@@ -640,7 +649,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                             TextUtils.isEmpty(jodiAmountEditText6.getText().toString().trim()) && TextUtils.isEmpty(jodiAmountEditText7.getText().toString().trim()) &&
                             TextUtils.isEmpty(jodiAmountEditText8.getText().toString().trim()) && TextUtils.isEmpty(jodiAmountEditText9.getText().toString().trim()))
                     {
-                        Toast.makeText(getActivity(),"please enter number!!!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"please enter amount!!!",Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -648,8 +657,10 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         amount3 = new String[10];
 
                         if (!TextUtils.isEmpty(jodiNumberEditText0.getText().toString().trim()) && !TextUtils.isEmpty(jodiAmountEditText0.getText().toString().trim())) {
-                            number3[0] = jodiNumberEditText0.getText().toString().trim();
-                            amount3[0] = jodiAmountEditText0.getText().toString().trim();
+
+                                number3[0] = jodiNumberEditText0.getText().toString().trim();
+                                amount3[0] = jodiAmountEditText0.getText().toString().trim();
+
                         }
 
                         if (!TextUtils.isEmpty(jodiNumberEditText1.getText().toString().trim()) && !TextUtils.isEmpty(jodiAmountEditText1.getText().toString().trim())) {
@@ -697,6 +708,15 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                             amount3[9] = jodiAmountEditText9.getText().toString().trim();
                         }
 
+                        for(int j = 0; j<number3.length; j++){
+                            if(number3[j] != null) {
+                                if (number3[j].length() != 2) {
+                                    Toast.makeText(getActivity(), "please enter valid number", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            }
+                        }
+
                         for(int i=0;i<amount3.length;i++)
                         {
                             if(amount3[i] != null)
@@ -708,7 +728,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                 }
                                 else
                                 {
-                                    break;
+//                                    break;
                                 }
                             }
                         }
@@ -814,9 +834,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 // Adding request to request queue
                         AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
                     }
-                }
-                else
-                {
+                } else {
                     Toast.makeText(getActivity(), "please check internet connection!!!", Toast.LENGTH_SHORT).show();
                 }
                 break;
