@@ -206,6 +206,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 editor.putInt("min", Mins);
                                 editor.putLong("sec", Secs);
 
+                                String default_amnt= innerObject.getString("default_amount");
+
                                 editor.putString("default_amt",innerObject.getString("default_amount"));
                                 editor.putString("present_amount",innerObject.getString("present_amount"));
                                 editor.putString("total_game", innerObject.getString("lottery_game_played"));

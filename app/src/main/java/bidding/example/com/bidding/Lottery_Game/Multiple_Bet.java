@@ -192,7 +192,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 
         balanceStatus = (ProgressBar) v.findViewById(R.id.ProgressBar02);
         try {
-            balanceStatus.setMax(Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("default_amt", "")));
+            balanceStatus.setMax((int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("default_amt", ""))));
             if (Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", ""))) < 0) {
                 balanceStatus.setProgress(0);
             } else {

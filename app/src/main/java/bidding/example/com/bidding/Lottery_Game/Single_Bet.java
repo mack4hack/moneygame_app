@@ -107,8 +107,8 @@ public class Single_Bet extends Fragment implements View.OnClickListener
         connectionDetector=new ConnectionDetector(getActivity());
 
         balanceStatus = (ProgressBar) view.findViewById(R.id.ProgressBar01);
-
-        balanceStatus.setMax(Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("default_amt", "")));
+        int default_amnt= (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("default_amt", "")));
+        balanceStatus.setMax(default_amnt);
         if(Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getString("present_amount",""))) < 0)
         {
             balanceStatus.setProgress(0);
