@@ -230,9 +230,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             try {
                 final AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
                 infoDialog.setTitle("Account Information");
-                infoDialog.setMessage("Default Amount : Rs." + getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", "") + "\n" +
-                        "Present Amount : Rs." + getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("present_amount", "") + "\n" +
-                        "Profit/Loss(%) : " + (Integer.parseInt(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("present_amount", "")) / Integer.parseInt(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", "")))+"%");
+                infoDialog.setMessage("Default Amount : Rs." + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "\n" +
+                        "Present Amount : Rs." + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("present_amount", ""))) + "\n" +
+                        "Profit/Loss(%) : " + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("present_amount", ""))) / (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "%");
                 infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
