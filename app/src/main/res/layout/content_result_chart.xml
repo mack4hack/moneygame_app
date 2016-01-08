@@ -45,7 +45,7 @@
         android:layout_below="@+id/view1">
         <TextView
             android:id="@+id/text_view1"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="Time"
@@ -56,9 +56,28 @@
             android:layout_width="0.1dp"
             android:layout_height="match_parent"
             android:background="@color/textColor"/>
+        <HorizontalScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:scrollbars="horizontal"
+            android:scrollbarFadeDuration="0"
+            android:scrollbarAlwaysDrawHorizontalTrack="true"
+            android:fadeScrollbars="false">
+         <!--   <TableLayout
+                android:id="@+id/tableLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+            <TableRow
+                android:id="@+id/tableRow11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:showDividers="beginning|end"
+                android:divider="@android:color/darker_gray">
         <TextView
             android:id="@+id/text_view2"
-            android:layout_width="0dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:text="1"
@@ -70,7 +89,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view3"
-            android:layout_width="0dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:text="2"
@@ -82,7 +101,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view4"
-            android:layout_width="0dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:text="3"
@@ -106,7 +125,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view6"
-            android:layout_width="0dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:text="5"
@@ -118,7 +137,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view7"
-            android:layout_width="0dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:text="6"
@@ -130,7 +149,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view8"
-            android:layout_width="0dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:text="7"
@@ -142,7 +161,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view9"
-            android:layout_width="0dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:text="8"
             android:gravity="center"
@@ -154,7 +173,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view10"
-            android:layout_width="0dp"
+            android:layout_width="10dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:text="9"
@@ -166,7 +185,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view11"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="10"
@@ -178,7 +197,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view12"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="11"
@@ -190,7 +209,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view13"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="12"
@@ -202,7 +221,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view14"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="13"
@@ -214,7 +233,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view15"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="14"
@@ -226,7 +245,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view16"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="15"
@@ -238,7 +257,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view17"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="16"
@@ -250,7 +269,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view18"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="17"
@@ -262,7 +281,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view19"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="18"
@@ -274,7 +293,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view20"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="19"
@@ -286,7 +305,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view21"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="20"
@@ -298,7 +317,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view22"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="21"
@@ -310,7 +329,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view23"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="22"
@@ -322,7 +341,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view24"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="23"
@@ -334,7 +353,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view25"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="24"
@@ -346,7 +365,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view26"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="25"
@@ -358,7 +377,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view27"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="26"
@@ -370,7 +389,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view28"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="27"
@@ -382,7 +401,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view29"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="28"
@@ -394,7 +413,7 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view30"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="29"
@@ -406,12 +425,382 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view31"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="30"
             android:gravity="center"
             android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view32"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="1"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view33"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="2"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view34"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="3"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view35"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="4"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view36"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="5"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view37"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="6"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view38"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="7"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view39"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="8"
+                    android:gravity="center"
+                    android:layout_weight="0.9"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view40"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:text="9"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view41"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="10"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view42"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="11"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view43"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="12"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view44"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="13"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view45"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="14"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view46"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="15"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view47"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="16"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view48"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="17"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view49"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="18"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view50"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="19"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view51"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view52"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="21"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view53"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="22"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view54"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="23"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view55"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="24"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view56"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="25"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view57"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="26"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view58"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="27"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view59"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="28"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view60"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="29"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
+                <TextView
+                    android:id="@+id/text_view61"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="30"
+                    android:gravity="center"
+                    android:textColor="@color/textColor"/>
+            </TableRow>
+            </TableLayout>
+       -->
+            <bidding.example.com.bidding.ResultChart.HorizontalListView
+                android:id="@+id/horizontallistview"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:background="#ddd"
+                />
+        </HorizontalScrollView>
 
     </LinearLayout>
     <View

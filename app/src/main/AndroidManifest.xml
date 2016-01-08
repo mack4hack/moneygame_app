@@ -53,7 +53,6 @@
         <activity
             android:name=".ResultChart.result_chart"
             android:label="@string/title_activity_result_chart"
-            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity

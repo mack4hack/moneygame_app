@@ -2,14 +2,19 @@ package bidding.example.com.bidding.ResultChart;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -23,7 +28,10 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,6 +49,7 @@ public class result_chart extends AppCompatActivity {
     private String[] monthName = {"select Month","January","February","March","April","May","June","July","August","October","November","December"};
     private Spinner mMonth;
     chartAdapter adapter;
+    private TextView t1,t2,t3,t4,t5,t6,t7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +60,9 @@ public class result_chart extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.resultList);
         mMonth = (Spinner) findViewById(R.id.monthSpinner);
+
+        HorizontalListView horizontalListView = (HorizontalListView) findViewById(R.id.horizontallistview);
+        horizontalListView.setAdapter(mAdapter);
 
         month.put("January","1");
         month.put("February","2");
@@ -83,6 +95,51 @@ public class result_chart extends AppCompatActivity {
             }
         });
 
+        for(int i=0; i<60; i++){
+           String date=  getCalculatedDate("dd-MM-yyyy", -i);
+            Log.i("date",""+date);
+        }
+
+    }
+    private static String[] dataObjects = new String[]{ "Text #1",
+            "Text #2",
+            "Text #3","Text #4","Text #5","Text #6","Text #7","Text #8","Text #9","Text #10" };
+
+    private BaseAdapter mAdapter = new BaseAdapter() {
+
+
+        @Override
+        public int getCount() {
+            return dataObjects.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View retval = LayoutInflater.from(parent.getContext()).inflate(R.layout.child_horizontalview, null);
+            TextView title = (TextView) retval.findViewById(R.id.htext);
+
+            title.setText(dataObjects[position]);
+
+            return retval;
+        }
+
+    };
+
+    public static String getCalculatedDate(String dateFormat, int days) {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat s = new SimpleDateFormat(dateFormat);
+        cal.add(Calendar.DAY_OF_YEAR, days);
+        return s.format(new Date(cal.getTimeInMillis()));
     }
 
     private void getChart(String month)
