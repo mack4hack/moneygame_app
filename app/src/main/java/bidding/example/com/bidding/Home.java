@@ -24,9 +24,21 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import bidding.example.com.bidding.APICALL.ApiCall;
+import bidding.example.com.bidding.Adapter.HistoryAdapter;
+import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
+import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
 import bidding.example.com.bidding.Lottery_Game.Multiple_Bet;
 import bidding.example.com.bidding.ResultChart.result_chart;
 
@@ -36,6 +48,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     ProgressDialog pDialog;
     private static int count = -1;
     private boolean exit=false;
+    String presnt_amount, result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -242,24 +255,26 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
         else if (id == R.id.limit)
         {
-            try {
-                final AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
-                infoDialog.setTitle("Account Information");
-                infoDialog.setMessage("Default Amount : Rs." + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "\n" +
-                        "Present Amount : Rs." + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("present_amount", ""))) + "\n" +
-                        "Profit/Loss(%) : " + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("present_amount", ""))) / (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "%");
-                infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                     dialogInterface.dismiss();
-                    }
-                });
-                infoDialog.create();
-                infoDialog.show();
+           presnt_amount= getPresentAmount();
+            if(presnt_amount!=null) {
+                try {
+                    final AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
+                    infoDialog.setTitle("Account Information");
+                    infoDialog.setMessage("Default Amount : Rs." + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "\n" +
+                            "Present Amount : Rs." + (int) Math.round(Double.parseDouble(presnt_amount)) + "\n" +
+                            "Profit/Loss(%) : " + (int) Math.round(Double.parseDouble(presnt_amount)) / (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "%");
+                    infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    infoDialog.create();
+                    infoDialog.show();
 
-            }catch (Exception e)
-            {
-                e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
         else if (id == R.id.multiple_bet)
@@ -297,6 +312,67 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private String getPresentAmount()
+    {
+        ConnectionDetector connectionDetector = new ConnectionDetector(this);
+        if(connectionDetector.isConnectingToInternet()) {
+            String tag_string_req = "string_req";
+            String url = getString(R.string.url_amount) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "");
+
+            final ProgressDialog pDialog = new ProgressDialog(this);
+            pDialog.setMessage("Loading...");
+            pDialog.show();
+            final String TAG = "login";
+            StringRequest strReq = new StringRequest(Request.Method.GET,
+                    url, new Response.Listener<String>() {
+
+                @Override
+                public void onResponse(String response) {
+                    pDialog.hide();
+                    try {
+                        Log.i("response", "" + response);
+                        if(response != null)
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
+                            result = jsonObject.getString("present_amount");
+
+                        }
+
+                    } catch (Exception e) {
+                        pDialog.hide();
+                        Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    pDialog.hide();
+                    if (error instanceof TimeoutError) {
+                        Toast.makeText(getApplicationContext(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Present Amount Not Present!!!", Toast.LENGTH_SHORT).show();
+                    }
+                    error.printStackTrace();
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                }
+            });
+            strReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+// Adding request to request queue
+            AppControler.getInstance().addToRequestQueue(strReq, tag_string_req);
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),"please check internet connection!!!",Toast.LENGTH_SHORT).show();
+        }
+        return result;
     }
 
     class AsynCancelBet extends AsyncTask<String,Void,String>

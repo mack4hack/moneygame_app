@@ -60,6 +60,10 @@
 
     <!--login api-->
     <string name="login">http://46.101.6.171/moneygame/api/players/login</string>
+
+    <!-- Get Present Amount-->
+    <string name="url_amount">http://46.101.6.171/moneygame/api/players/player/</string>
+
     <!--pacebetseconde url-->
     <string name="PlaceBetFirst">http://46.101.6.171/moneygame/api/bets/PlaceBetFirst</string>
 
