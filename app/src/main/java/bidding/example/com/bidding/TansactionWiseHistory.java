@@ -42,6 +42,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
     private List<HistoryGetSet> list = new ArrayList<>();
     private TimeSlotAdapter adapter;
     List<TransactionDetailsGetSet> transList;
+    String transaction_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
         mList= (ListView) findViewById(R.id.transactionHistory);
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = df.format(cal.getTime());
+        final String formattedDate = df.format(cal.getTime());
 
         getTransactionDetails(getString(R.string.get_transaction) +getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date="+formattedDate+"&draw_time=" + getIntent().getStringExtra("timeslot"));
 
@@ -61,7 +62,8 @@ public class TansactionWiseHistory extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 HistoryGetSet item = list.get(i);
-                getDetails(getString(R.string.get_specific_transaction)+item.getTransactionNo());
+                transaction_id = item.getTransactionNo();
+                getDetails(getString(R.string.get_specific_transaction)+item.getTransactionNo()+ "&date="+formattedDate+"&draw_time=" + getIntent().getStringExtra("timeslot"));
             }
         });
     }
@@ -127,7 +129,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
         }
         else
         {
-            mWin.setText(mTotal.getText().toString());
+            mWin.setText(payout);
             mLoss.setText("0");
         }
 
@@ -256,6 +258,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
                 public void onResponse(String response) {
                     pDialog.hide();
                     String payout="",digit,bAmt,wamt,whichBet="",transactionNo = null;
+                    String dTime = "", tTime = "", result ="";
                     transList = new ArrayList<>();
                     try
                     {
@@ -264,7 +267,8 @@ public class TansactionWiseHistory extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(response);
                         if(jsonObject.getString("status").equals("true")) {
                             JSONObject object = jsonObject.getJSONObject("data");
-                            JSONArray jsonArray = object.getJSONArray("data_weekly");
+                            JSONObject jsonObject1 = object.getJSONObject("data_weekly");
+                            JSONArray jsonArray = jsonObject1.getJSONArray(transaction_id);
                             if (jsonArray.length() != 0) {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     /*{
@@ -285,36 +289,45 @@ public class TansactionWiseHistory extends AppCompatActivity {
                                     JSONObject trnsaction = jsonArray.getJSONObject(i);
 
                                     TransactionDetailsGetSet item = new TransactionDetailsGetSet();
-                                    if (trnsaction.getString("first_digit").equals("")) {
+                                    if (trnsaction.getString("first_digit").equals("999")&&trnsaction.getString("second_digit").equals("999")) {
                                         /*digit = trnsaction.getString("second_digit");
                                         bAmt =  trnsaction.getString("bet_amount_second");
                                         wamt =  trnsaction.getString("win_amount_second");*/
-                                        item.setDigit(trnsaction.getString("second_digit"));
-                                        item.setChip(trnsaction.getString("bet_amount_second"));
-                                        whichBet = "Single Digit Second";
-                                    } else {
+                                        item.setDigit(trnsaction.getString("jodi_digit"));
+                                        item.setChip(trnsaction.getString("chips"));
+                                        whichBet = "Jodi Digit";
+
+                                    } else if(trnsaction.getString("first_digit").equals("999")&&trnsaction.getString("jodi_digit").equals("999")){
                                         /*digit = trnsaction.getString("first_digit");
                                         bAmt =  trnsaction.getString("bet_amount_first");
                                         wamt =  trnsaction.getString("win_amount_first");*/
+                                        item.setDigit(trnsaction.getString("second_digit"));
+                                        item.setChip(trnsaction.getString("chips"));
+                                        whichBet = "Single Digit Second";
+                                    }
+                                    else{
                                         item.setDigit(trnsaction.getString("first_digit"));
-                                        item.setChip(trnsaction.getString("bet_amount_first"));
+                                        item.setChip(trnsaction.getString("chips"));
                                         whichBet = "Single Digit First";
                                     }
 
                                     transList.add(item);
 
-                                    transactionNo = trnsaction.getString("transaction_id");
-                                    if (trnsaction.getString("payout").equals("null")) {
+//                                    transactionNo = trnsaction.getString("transaction_id");
+                                    if (trnsaction.getString("total_wins").equals("0")) {
                                         payout = "0";
                                     } else {
-                                        payout = trnsaction.getString("payout");
+                                        payout = trnsaction.getString("total_wins");
                                     }
+                                    dTime = trnsaction.getString("drawtime");
+                                    tTime = trnsaction.getString("trans_time");
+                                    result = trnsaction.getString("lucky_number");
                                     //String digit,String chip,String tno,String dTime,String tTime,String result
 
 
 
                                 }
-                                showDetails(transList,transactionNo,"","","",whichBet,payout);
+                                showDetails(transList,transaction_id,dTime,tTime,result,whichBet,payout);
                             }
                         }
                         else

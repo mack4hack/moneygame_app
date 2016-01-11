@@ -143,7 +143,7 @@ public class DashBoard extends Fragment implements View.OnClickListener{
                 startActivity(new Intent(getActivity(), result_chart.class));
                 break;
             case R.id.todays_history_card:
-                Home.toolbar.setTitle("Today History");
+                Home.toolbar.setTitle("History");
                 android.support.v4.app.FragmentManager TodayManager = getActivity().getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction TodayTransaction = TodayManager.beginTransaction();
                 TodaysHistory Today = new TodaysHistory();

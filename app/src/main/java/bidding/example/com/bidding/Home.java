@@ -57,9 +57,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -172,7 +169,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
         else if (id == R.id.today_history)
         {
-            Home.toolbar.setTitle("Today History");
+            Home.toolbar.setTitle("History");
             android.support.v4.app.FragmentManager TodayManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction TodayTransaction = TodayManager.beginTransaction();
             TodaysHistory Today = new TodaysHistory();
@@ -222,7 +219,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                                     } else {
 
                                         if (getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_password", "").equals(mPassword.getText().toString().trim())) {
-                                            String res = "player_id=" + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&game_type=" + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("game_type", "") + "&digit=" + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("digit", "");
+                                            String res = "player_id=" + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "");
                                             dialogInterface.cancel();
                                             new AsynCancelBet().execute(getString(R.string.cancel_bet), res);
 
@@ -255,27 +252,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
         else if (id == R.id.limit)
         {
-           presnt_amount= getPresentAmount();
-            if(presnt_amount!=null) {
-                try {
-                    final AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
-                    infoDialog.setTitle("Account Information");
-                    infoDialog.setMessage("Default Amount : Rs." + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "\n" +
-                            "Present Amount : Rs." + (int) Math.round(Double.parseDouble(presnt_amount)) + "\n" +
-                            "Profit/Loss(%) : " + (int) Math.round(Double.parseDouble(presnt_amount)) / (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "%");
-                    infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    });
-                    infoDialog.create();
-                    infoDialog.show();
+           getPresentAmount();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
         }
         else if (id == R.id.multiple_bet)
         {
@@ -337,7 +315,19 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         {
                             JSONObject jsonObject = new JSONObject(response);
                             result = jsonObject.getString("present_amount");
-
+                            final AlertDialog.Builder infoDialog = new AlertDialog.Builder(Home.this);
+                            infoDialog.setTitle("Account Information");
+                            infoDialog.setMessage("Default Amount : Rs." + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "\n" +
+                                    "Present Amount : Rs." + (int) Math.round(Double.parseDouble(result)) + "\n" +
+                                    "Profit/Loss(%) : " + (int) Math.round(Double.parseDouble(result)) / (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "%");
+                            infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            });
+                            infoDialog.create();
+                            infoDialog.show();
                         }
 
                     } catch (Exception e) {
