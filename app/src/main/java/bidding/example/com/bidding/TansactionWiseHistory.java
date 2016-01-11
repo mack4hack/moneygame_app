@@ -41,7 +41,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
     private ListView mList;
     private List<HistoryGetSet> list = new ArrayList<>();
     private TimeSlotAdapter adapter;
-    List<TransactionDetailsGetSet> transList = new ArrayList<>();
+    List<TransactionDetailsGetSet> transList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +92,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
         mListView = (ListView) dialog.findViewById(R.id.list);
 
         TransacionDetailsAdapter adapter = new TransacionDetailsAdapter(getApplicationContext(),List);
+        adapter.notifyDataSetChanged();
         mListView.setAdapter(adapter);
         /*mDigit.setText(digit);
         mChip.setText(chip);*/
@@ -103,7 +104,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
         int chip=0;
         for(TransactionDetailsGetSet item:transList)
         {
-            chip+=Integer.parseInt(item.getChip());
+            chip+=(int) Math.round(Double.parseDouble(item.getChip()));
         }
         mTotal.setText(""+chip);
 
@@ -255,6 +256,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
                 public void onResponse(String response) {
                     pDialog.hide();
                     String payout="",digit,bAmt,wamt,whichBet="",transactionNo = null;
+                    transList = new ArrayList<>();
                     try
                     {
                         Log.i("res",""+response);

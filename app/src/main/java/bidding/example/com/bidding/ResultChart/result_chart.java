@@ -44,6 +44,7 @@ import bidding.example.com.bidding.R;
 public class result_chart extends AppCompatActivity {
 
     private ListView listView;
+    HorizontalListView horizontalListView;
     private List<chartGetSet> chartList = new ArrayList<>();
     private HashMap<String,String> month = new HashMap<>();
     private String[] monthName = {"select Month","January","February","March","April","May","June","July","August","October","November","December"};
@@ -61,7 +62,7 @@ public class result_chart extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.resultList);
         mMonth = (Spinner) findViewById(R.id.monthSpinner);
 
-        HorizontalListView horizontalListView = (HorizontalListView) findViewById(R.id.horizontallistview);
+        horizontalListView = (HorizontalListView) findViewById(R.id.horizontallistview);
         horizontalListView.setAdapter(mAdapter);
 
         month.put("January","1");
