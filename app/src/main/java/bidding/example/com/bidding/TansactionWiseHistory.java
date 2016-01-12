@@ -43,6 +43,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
     private TimeSlotAdapter adapter;
     List<TransactionDetailsGetSet> transList;
     String transaction_id;
+    private static int flag=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,10 +123,10 @@ public class TansactionWiseHistory extends AppCompatActivity {
         //    mTotal.setText(mChip.getText().toString());
         }
 
-        if(payout.equals("0"))
+        if(flag==0)
         {
-            mWin.setText(payout);
-            mLoss.setText(mTotal.getText().toString());
+            mWin.setText("0");
+            mLoss.setText(payout);
         }
         else
         {
@@ -314,9 +315,11 @@ public class TansactionWiseHistory extends AppCompatActivity {
                                     transList.add(item);
 
 //                                    transactionNo = trnsaction.getString("transaction_id");
-                                    if (trnsaction.getString("total_wins").equals("0")) {
-                                        payout = "0";
+                                    if (trnsaction.getString("total_wins").equals("0.00")) {
+                                        flag=0;
+                                        payout = trnsaction.getString("total_bet");
                                     } else {
+                                        flag=1;
                                         payout = trnsaction.getString("total_wins");
                                     }
                                     dTime = trnsaction.getString("drawtime");
