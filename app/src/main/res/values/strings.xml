@@ -82,7 +82,7 @@
     <string name="get_today_history">http://46.101.6.171/moneygame/api/players/playerhistory?player_id=</string>
 
     <!--get chart-->
-    <string name="get_chart">http://46.101.6.171/moneygame/api/bets/luckyNumberchart?month=</string>
+    <string name="get_chart">http://46.101.6.171/moneygame/api/bets/LuckyNumberChart?month=</string>
 
     <!--current result    -->
     <string name="get_current_result">http://46.101.6.171/moneygame/api/bets/getServerTimings</string>

@@ -49,6 +49,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private static int count = -1;
     private boolean exit=false;
     String presnt_amount, result;
+    double default_amnt, prsnt_amnt, percentage, prcnt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -303,6 +304,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             pDialog.setMessage("Loading...");
             pDialog.show();
             final String TAG = "login";
+
             StringRequest strReq = new StringRequest(Request.Method.GET,
                     url, new Response.Listener<String>() {
 
@@ -315,11 +317,26 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         {
                             JSONObject jsonObject = new JSONObject(response);
                             result = jsonObject.getString("present_amount");
+                            default_amnt = Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""));
+                            prsnt_amnt = (Double.parseDouble(result));
+                            if(default_amnt>prsnt_amnt){
+                                percentage = default_amnt-prsnt_amnt;
+                                Log.i("percentag",""+percentage);
+                                prcnt = (percentage/default_amnt)*100;
+                                Log.i("percentag",""+default_amnt);
+                                Log.i("percentag",""+(default_amnt/percentage));
+                                presnt_amount = "Loss";
+                            }
+                            else {
+                                percentage = prsnt_amnt-default_amnt;
+                                prcnt = (percentage/default_amnt)*100;
+                                presnt_amount = "Profit";
+                            }
                             final AlertDialog.Builder infoDialog = new AlertDialog.Builder(Home.this);
                             infoDialog.setTitle("Account Information");
                             infoDialog.setMessage("Default Amount : Rs." + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "\n" +
                                     "Present Amount : Rs." + (int) Math.round(Double.parseDouble(result)) + "\n" +
-                                    "Profit/Loss(%) : " + (int) Math.round(Double.parseDouble(result)) / (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "%");
+                                    presnt_amount +" :" + prcnt+"%");
                             infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {

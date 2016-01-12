@@ -8,34 +8,12 @@
     tools:context="bidding.example.com.bidding.ResultChart.result_chart">
     <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:id="@+id/spinnerHolder"
-        android:orientation="horizontal"
-        android:layout_marginLeft="@dimen/abc_action_bar_progress_bar_size"
-        android:layout_marginRight="@dimen/abc_action_bar_progress_bar_size"
-        android:layout_centerHorizontal="true">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Select Month:"
-            android:layout_weight="0.6"
-            android:gravity="right"
-            android:textColor="@color/textColor"/>
-        <Spinner
-            android:id="@+id/monthSpinner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.6"
-            />
-    </LinearLayout>
     <View
         android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:background="@color/textColor"
-        android:layout_below="@+id/spinnerHolder"/>
+        android:layout_marginTop="5dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +42,7 @@
             android:scrollbarFadeDuration="0"
             android:scrollbarAlwaysDrawHorizontalTrack="true"
             android:fadeScrollbars="false">
-         <!--   <TableLayout
+            <TableLayout
                 android:id="@+id/tableLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
@@ -793,13 +771,12 @@
                     android:textColor="@color/textColor"/>
             </TableRow>
             </TableLayout>
-       -->
-            <bidding.example.com.bidding.ResultChart.HorizontalListView
+           <!-- <bidding.example.com.bidding.ResultChart.HorizontalListView
                 android:id="@+id/horizontallistview"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:background="#ddd"
-                />
+                />-->
         </HorizontalScrollView>
 
     </LinearLayout>

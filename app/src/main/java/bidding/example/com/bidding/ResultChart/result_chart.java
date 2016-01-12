@@ -50,7 +50,7 @@ public class result_chart extends AppCompatActivity {
     private String[] monthName = {"select Month","January","February","March","April","May","June","July","August","October","November","December"};
     private Spinner mMonth;
     chartAdapter adapter;
-    private TextView t1,t2,t3,t4,t5,t6,t7;
+    private TextView t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,t22,t23,t24,t25,t26,t27,t28,t29,t30,t31,t32,t33,t34,t35,t36,t37,t38,t39,t40,t41,t42,t43,t44,t45,t46,t47,t48,t49,t50,t51,t52,t53,t54,t55,t56,t57,t58,t59,t60;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,81 +60,304 @@ public class result_chart extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         listView = (ListView) findViewById(R.id.resultList);
-        mMonth = (Spinner) findViewById(R.id.monthSpinner);
 
-        horizontalListView = (HorizontalListView) findViewById(R.id.horizontallistview);
-        horizontalListView.setAdapter(mAdapter);
+        t1 = (TextView) findViewById(R.id.text_view2);
+        t2 = (TextView) findViewById(R.id.text_view3);
+        t3 = (TextView) findViewById(R.id.text_view4);
+        t4 = (TextView) findViewById(R.id.text_view5);
+        t5 = (TextView) findViewById(R.id.text_view6);
+        t6 = (TextView) findViewById(R.id.text_view7);
+        t7 = (TextView) findViewById(R.id.text_view8);
+        t8 = (TextView) findViewById(R.id.text_view9);
+        t9 = (TextView) findViewById(R.id.text_view10);
+        t10 = (TextView) findViewById(R.id.text_view11);
+        t11 = (TextView) findViewById(R.id.text_view12);
+        t12 = (TextView) findViewById(R.id.text_view13);
+        t13 = (TextView) findViewById(R.id.text_view14);
+        t14 = (TextView) findViewById(R.id.text_view15);
+        t15 = (TextView) findViewById(R.id.text_view16);
+        t16 = (TextView) findViewById(R.id.text_view17);
+        t17 = (TextView) findViewById(R.id.text_view18);
+        t18 = (TextView) findViewById(R.id.text_view19);
+        t19 = (TextView) findViewById(R.id.text_view20);
+        t20 = (TextView) findViewById(R.id.text_view21);
+        t21 = (TextView) findViewById(R.id.text_view22);
+        t22 = (TextView) findViewById(R.id.text_view23);
+        t23 = (TextView) findViewById(R.id.text_view24);
+        t24 = (TextView) findViewById(R.id.text_view25);
+        t25 = (TextView) findViewById(R.id.text_view26);
+        t26 = (TextView) findViewById(R.id.text_view27);
+        t27 = (TextView) findViewById(R.id.text_view28);
+        t28 = (TextView) findViewById(R.id.text_view29);
+        t29 = (TextView) findViewById(R.id.text_view30);
+        t30 = (TextView) findViewById(R.id.text_view31);
+        t31 = (TextView) findViewById(R.id.text_view32);
+        t32 = (TextView) findViewById(R.id.text_view33);
+        t33 = (TextView) findViewById(R.id.text_view34);
+        t34 = (TextView) findViewById(R.id.text_view35);
+        t35 = (TextView) findViewById(R.id.text_view36);
+        t36 = (TextView) findViewById(R.id.text_view37);
+        t37 = (TextView) findViewById(R.id.text_view38);
+        t38 = (TextView) findViewById(R.id.text_view39);
+        t39 = (TextView) findViewById(R.id.text_view40);
+        t40 = (TextView) findViewById(R.id.text_view41);
+        t41 = (TextView) findViewById(R.id.text_view42);
+        t42 = (TextView) findViewById(R.id.text_view43);
+        t43 = (TextView) findViewById(R.id.text_view44);
+        t44 = (TextView) findViewById(R.id.text_view45);
+        t45 = (TextView) findViewById(R.id.text_view46);
+        t46 = (TextView) findViewById(R.id.text_view47);
+        t47 = (TextView) findViewById(R.id.text_view48);
+        t48 = (TextView) findViewById(R.id.text_view49);
+        t49 = (TextView) findViewById(R.id.text_view50);
+        t50 = (TextView) findViewById(R.id.text_view51);
+        t51 = (TextView) findViewById(R.id.text_view52);
+        t52 = (TextView) findViewById(R.id.text_view53);
+        t53 = (TextView) findViewById(R.id.text_view54);
+        t54 = (TextView) findViewById(R.id.text_view55);
+        t55 = (TextView) findViewById(R.id.text_view56);
+        t56 = (TextView) findViewById(R.id.text_view57);
+        t57 = (TextView) findViewById(R.id.text_view58);
+        t58 = (TextView) findViewById(R.id.text_view59);
+        t59 = (TextView) findViewById(R.id.text_view60);
+        t60 = (TextView) findViewById(R.id.text_view61);
 
-        month.put("January","1");
-        month.put("February","2");
-        month.put("March","3");
-        month.put("April","4");
-        month.put("May","5");
-        month.put("June","6");
-        month.put("July","7");
-        month.put("August","8");
-        month.put("September","9");
-        month.put("October","10");
-        month.put("November","11");
-        month.put("December", "12");
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,monthName);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mMonth.setAdapter(adapter);
-
-        mMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if (position != 0) {
-                    getChart(month.get(monthName[position]));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        Calendar c = Calendar.getInstance();
+        int mnth =c.get(Calendar.MONTH);
+        int yr= c.get(Calendar.YEAR);
+        String month = String.valueOf(yr)+"-"+String.valueOf(mnth);
+        getChart(month);
 
         for(int i=0; i<60; i++){
-           String date=  getCalculatedDate("dd-MM-yyyy", -i);
+           String date=  getCalculatedDate("dd/MM", -i);
             Log.i("date",""+date);
+            if(i==0){
+                t1.setText(date);
+            }
+            if(i==1){
+                t2.setText(date);
+            }
+            if(i==2){
+                t3.setText(date);
+            }
+            if(i==3){
+                t4.setText(date);
+            }
+            if(i==4){
+                t5.setText(date);
+            }
+            if(i==5){
+                t6.setText(date);
+            }
+            if(i==6){
+                t7.setText(date);
+            }
+            if(i==7){
+                t8.setText(date);
+            }
+            if(i==8){
+                t9.setText(date);
+            }
+            if(i==9){
+                t10.setText(date);
+            }
+            if(i==10){
+                t11.setText(date);
+            }if(i==11){
+                t12.setText(date);
+            }
+            if(i==12){
+                t13.setText(date);
+            }
+            if(i==13){
+                t14.setText(date);
+            }
+            if(i==14){
+                t15.setText(date);
+            }
+            if(i==0){
+                t1.setText(date);
+            }
+            if(i==1){
+                t2.setText(date);
+            }
+            if(i==2){
+                t3.setText(date);
+            }
+            if(i==3){
+                t4.setText(date);
+            }
+            if(i==4){
+                t5.setText(date);
+            }
+            if(i==5){
+                t6.setText(date);
+            }
+            if(i==6){
+                t7.setText(date);
+            }
+            if(i==7){
+                t8.setText(date);
+            }
+            if(i==8){
+                t9.setText(date);
+            }
+            if(i==9){
+                t10.setText(date);
+            }
+            if(i==10){
+                t11.setText(date);
+            }if(i==11){
+                t12.setText(date);
+            }
+            if(i==12){
+                t13.setText(date);
+            }
+            if(i==13){
+                t14.setText(date);
+            }
+            if(i==14){
+                t15.setText(date);
+            }
+            if(i==15){
+                t16.setText(date);
+            }
+            if(i==16){
+                t17.setText(date);
+            }
+            if(i==17){
+                t18.setText(date);
+            }
+            if(i==18){
+                t19.setText(date);
+            }
+            if(i==19){
+                t20.setText(date);
+            }
+            if(i==20){
+                t21.setText(date);
+            }
+            if(i==21){
+                t22.setText(date);
+            }
+            if(i==22){
+                t23.setText(date);
+            }
+            if(i==23){
+                t24.setText(date);
+            }
+            if(i==24){
+                t25.setText(date);
+            }
+            if(i==25){
+                t26.setText(date);
+            }if(i==26){
+                t27.setText(date);
+            }
+            if(i==27){
+                t28.setText(date);
+            }
+            if(i==28){
+                t29.setText(date);
+            }
+            if(i==29){
+                t30.setText(date);
+            }
+            if(i==30){
+                t31.setText(date);
+            }
+            if(i==31){
+                t32.setText(date);
+            }
+            if(i==32){
+                t33.setText(date);
+            }
+            if(i==33){
+                t34.setText(date);
+            }
+            if(i==34){
+                t35.setText(date);
+            }
+            if(i==35){
+                t36.setText(date);
+            }
+            if(i==36){
+                t37.setText(date);
+            }
+            if(i==37){
+                t38.setText(date);
+            }
+            if(i==38){
+                t39.setText(date);
+            }
+            if(i==39){
+                t40.setText(date);
+            }
+            if(i==40){
+                t41.setText(date);
+            }if(i==41){
+                t42.setText(date);
+            }
+            if(i==42){
+                t43.setText(date);
+            }
+            if(i==43){
+                t44.setText(date);
+            }
+            if(i==44){
+                t45.setText(date);
+            }
+            if(i==45){
+                t46.setText(date);
+            }
+            if(i==46){
+                t47.setText(date);
+            }
+            if(i==47){
+                t48.setText(date);
+            }
+            if(i==48){
+                t49.setText(date);
+            }
+            if(i==49){
+                t50.setText(date);
+            }
+            if(i==50){
+                t51.setText(date);
+            }
+            if(i==51){
+                t52.setText(date);
+            }
+            if(i==52){
+                t53.setText(date);
+            }
+            if(i==53){
+                t54.setText(date);
+            }
+            if(i==54){
+                t55.setText(date);
+            }
+            if(i==55){
+                t56.setText(date);
+            }if(i==56){
+                t57.setText(date);
+            }
+            if(i==57){
+                t58.setText(date);
+            }
+            if(i==58){
+                t59.setText(date);
+            }
+            if(i==59){
+                t60.setText(date);
+            }
+
+
+
         }
 
     }
-    private static String[] dataObjects = new String[]{ "Text #1",
-            "Text #2",
-            "Text #3","Text #4","Text #5","Text #6","Text #7","Text #8","Text #9","Text #10" };
-
-    private BaseAdapter mAdapter = new BaseAdapter() {
-
-
-        @Override
-        public int getCount() {
-            return dataObjects.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View retval = LayoutInflater.from(parent.getContext()).inflate(R.layout.child_horizontalview, null);
-            TextView title = (TextView) retval.findViewById(R.id.htext);
-
-            title.setText(dataObjects[position]);
-
-            return retval;
-        }
-
-    };
 
     public static String getCalculatedDate(String dateFormat, int days) {
         Calendar cal = Calendar.getInstance();
