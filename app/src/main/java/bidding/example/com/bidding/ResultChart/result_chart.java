@@ -124,14 +124,15 @@ public class result_chart extends AppCompatActivity {
 
 
         Calendar c = Calendar.getInstance();
-        int mnth =c.get(Calendar.MONTH);
         int yr= c.get(Calendar.YEAR);
+        int mnth =c.get(Calendar.MONTH);
+        mnth=mnth+1;
         String month = String.valueOf(yr)+"-"+String.valueOf(mnth);
         Log.i("month",""+month);
         getChart(month);
 
         for(int i=0; i<60; i++){
-           String date=  getCalculatedDate("dd/MM", -i);
+           String date=  getCalculatedDate("dd-MM", -i);
             Log.i("date",""+date);
             if(i==0){
                 t1.setText(date);
@@ -372,7 +373,7 @@ public class result_chart extends AppCompatActivity {
         ConnectionDetector connectionDetector = new ConnectionDetector(getApplicationContext());
         if(connectionDetector.isConnectingToInternet()) {
             String tag_string_req = "string_req";
-            String url = getString(R.string.get_chart)+"2016-1";
+            String url = getString(R.string.get_chart)+month;
             Log.i("chart url",""+url);
 
             final ProgressDialog pDialog = new ProgressDialog(result_chart.this);
@@ -388,306 +389,315 @@ public class result_chart extends AppCompatActivity {
                     try {
                         Log.i("response", "" + response);
                         JSONObject outerObject = new JSONObject(response);
-                        if(outerObject.getString("status").equals("true"))
-                        {
-                            if(!chartList.isEmpty())
-                            {
+                        if(outerObject.getString("status").equals("true")) {
+                            if (!chartList.isEmpty()) {
                                 chartList.clear();
                                 adapter.notifyDataSetChanged();
                             }
+//                            try {
+                            JSONObject jsonobj = outerObject.getJSONObject("data");
+                                JSONArray jArray = jsonobj.names();
+                            if(jsonobj.length()!=0) {
+                                for (int j = 0; j < jsonobj.length(); j++) {
+//                                    JSONObject jobj = outerObject.getJSONObject(jArray.getString(j));
+                                    JSONArray jsonArray= jsonobj.getJSONArray(jArray.getString(j));
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject object = jsonArray.getJSONObject(i);
+                                        chartGetSet item = new chartGetSet();
+                                        String dt = object.getString("date");
+                                        String[] split = dt.split("-");
+                                        Log.i("date1", split[1]);
+                                        Log.i("date2", split[2]);
+                                        String date = split[2] + "-" + split[1];
+                                        if (date.equals(t1.getText().toString())) {
+                                            item.setTime("00.15");
+                                            item.setDate1(object.getString("lucky_number"));
+                                            Log.i("date3", date);
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate1("-");
+                                        }
 
-                            JSONArray jsonArray = outerObject.getJSONArray("data");
-                            if(jsonArray.length()!=0) {
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject object = jsonArray.getJSONObject(i);
-                                    chartGetSet item = new chartGetSet();
-                                    if (object.getString("date").equals("01")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate1(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate1("-");
-                                    }
+                                        if (date.equals(t2.getText().toString())) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate2(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate2("-");
+                                        }
 
-                                    if (object.getString("date").equals("02")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate2(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate2("-");
-                                    }
+                                        if (date.equals(t3.getText().toString())) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate3(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate3("-");
+                                        }
 
-                                    if (object.getString("date").equals("03")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate3(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate3("-");
-                                    }
+                                        if (date.equals(t4.getText().toString())) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate4(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate4("-");
+                                        }
 
-                                    if (object.getString("date").equals("04")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate4(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate4("-");
-                                    }
+                                        if (date.equals(t5.getText().toString())) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate5(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate5("-");
+                                        }
 
-                                    if (object.getString("date").equals("05")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate5(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate5("-");
-                                    }
+                                        if (date.equals(t6.getText().toString())) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate6(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate6("-");
+                                        }
 
-                                    if (object.getString("date").equals("06")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate6(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate6("-");
-                                    }
+                                        if (date.equals(t7.getText().toString())) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate7(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate7("-");
+                                        }
 
-                                    if (object.getString("date").equals("07")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate7(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate7("-");
-                                    }
+                                        if (object.getString("date").equals("08")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate8(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate8("-");
+                                        }
 
-                                    if (object.getString("date").equals("08")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate8(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate8("-");
-                                    }
+                                        if (object.getString("date").equals("09")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate9(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate9("-");
+                                        }
 
-                                    if (object.getString("date").equals("09")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate9(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate9("-");
-                                    }
+                                        if (object.getString("date").equals("10")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate10(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate10("-");
+                                        }
 
-                                    if (object.getString("date").equals("10")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate10(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate10("-");
-                                    }
+                                        if (object.getString("date").equals("11")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate11(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate11("-");
+                                        }
 
-                                    if (object.getString("date").equals("11")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate11(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate11("-");
-                                    }
+                                        if (object.getString("date").equals("12")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate12(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate12("-");
+                                        }
 
-                                    if (object.getString("date").equals("12")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate12(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate12("-");
-                                    }
+                                        if (object.getString("date").equals("13")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate13(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate13("-");
+                                        }
 
-                                    if (object.getString("date").equals("13")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate13(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate13("-");
-                                    }
+                                        if (object.getString("date").equals("14")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate14(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate14("-");
+                                        }
 
-                                    if (object.getString("date").equals("14")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate14(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate14("-");
-                                    }
+                                        if (object.getString("date").equals("15")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate15(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate15("-");
+                                        }
 
-                                    if (object.getString("date").equals("15")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate15(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate15("-");
-                                    }
+                                        if (object.getString("date").equals("16")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate16(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate16("-");
+                                        }
+                                        if (object.getString("date").equals("17")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate17(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate17("-");
+                                        }
 
-                                    if (object.getString("date").equals("16")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate16(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate16("-");
-                                    }
-                                    if (object.getString("date").equals("17")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate17(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate17("-");
-                                    }
+                                        if (object.getString("date").equals("18")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate18(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate18("-");
+                                        }
 
-                                    if (object.getString("date").equals("18")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate18(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate18("-");
-                                    }
+                                        if (object.getString("date").equals("19")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate19(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate19("-");
+                                        }
 
-                                    if (object.getString("date").equals("19")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate19(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate19("-");
-                                    }
+                                        if (object.getString("date").equals("20")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate20(object.getString("lucky_number"));
+                                            //item.setTim(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate20("-");
+                                        }
 
-                                    if (object.getString("date").equals("20")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate20(object.getString("lucky_number"));
-                                        //item.setTim(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate20("-");
-                                    }
+                                        if (object.getString("date").equals("21")) {
+                                            //Log.i("Time Slot",""+object.getString("timeslot_id")+" "+object.getString("lucky_number"));
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate21(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate21("-");
+                                        }
 
-                                    if (object.getString("date").equals("21")) {
-                                        //Log.i("Time Slot",""+object.getString("timeslot_id")+" "+object.getString("lucky_number"));
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate21(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate21("-");
-                                    }
+                                        if (object.getString("date").equals("22")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate22(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate22("-");
+                                        }
 
-                                    if (object.getString("date").equals("22")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate22(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate22("-");
-                                    }
+                                        if (object.getString("date").equals("23")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate23(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate23("-");
+                                        }
 
-                                    if (object.getString("date").equals("23")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate23(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate23("-");
-                                    }
+                                        if (object.getString("date").equals("24")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate24(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate24("-");
+                                        }
 
-                                    if (object.getString("date").equals("24")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate24(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate24("-");
-                                    }
+                                        if (object.getString("date").equals("25")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate25(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate25("-");
+                                        }
 
-                                    if (object.getString("date").equals("25")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate25(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate25("-");
-                                    }
+                                        if (object.getString("date").equals("26")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate26(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate26("-");
+                                        }
 
-                                    if (object.getString("date").equals("26")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate26(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate26("-");
-                                    }
+                                        if (object.getString("date").equals("27")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate27(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate27("-");
+                                        }
+                                        if (object.getString("date").equals("28")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate28(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate28("-");
+                                        }
 
-                                    if (object.getString("date").equals("27")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate27(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate27("-");
-                                    }
-                                    if (object.getString("date").equals("28")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate28(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate28("-");
-                                    }
+                                        if (object.getString("date").equals("29")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate29(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate29("-");
+                                        }
 
-                                    if (object.getString("date").equals("29")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate29(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate29("-");
-                                    }
-
-                                    if (object.getString("date").equals("30")) {
-                                        item.setTime(object.getString("timeslot_id"));
-                                        item.setDate30(object.getString("lucky_number"));
-                                        //item.setTime(object.getString("timeslot_id"));
-                                    } else {
-                                        //item.setTime("-");
-                                        item.setDate30("-");
-                                    }/*else if(object.getString("date").equals(1))
+                                        if (object.getString("date").equals("30")) {
+                                            item.setTime(object.getString("timeslot_id"));
+                                            item.setDate30(object.getString("lucky_number"));
+                                            //item.setTime(object.getString("timeslot_id"));
+                                        } else {
+                                            //item.setTime("-");
+                                            item.setDate30("-");
+                                        }/*else if(object.getString("date").equals(1))
                                 {
                                     item.setTime(object.getString("timeslot_id"));
                                     item.setDate1(object.getString("lucky_number"));
                                     //item.setTime(object.getString("timeslot_id"));
                                 }*/
 
-                                    chartList.add(item);
+                                        chartList.add(item);
+                                    }
                                 }
-
-                                 adapter = new chartAdapter(getApplicationContext(), chartList);
+                                adapter = new chartAdapter(getApplicationContext(), chartList);
                                 listView.setAdapter(adapter);
 
 
-                            }
+                        }
                             else
                             {
                                 Toast.makeText(getApplicationContext(),"No Data Present To Display!!!",Toast.LENGTH_SHORT).show();
                             }
                         }
+
                         else
                         {
                             Toast.makeText(getApplicationContext(),"something went wrong please try again!!!",Toast.LENGTH_SHORT).show();

@@ -1,8 +1,10 @@
 package bidding.example.com.bidding.Lottery_Game;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -61,10 +63,12 @@ public class Single_Bet extends Fragment implements View.OnClickListener
     ProgressDialog pDialog;
     private View view=null;
     private boolean cancel=false;
-    private String playerId,postString;
+    private String playerId,postString, result;
     private ConnectionDetector connectionDetector;
     private int currentMinute,currentHoure;
     CounterClass counterClass;
+    Double default_amnt, prsnt_amnt, diff, percent;
+
     public Single_Bet()
     {
         // Required empty public constructor
@@ -109,16 +113,8 @@ public class Single_Bet extends Fragment implements View.OnClickListener
         balanceStatus = (ProgressBar) view.findViewById(R.id.ProgressBar01);
         int default_amnt= (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("default_amt", "")));
         balanceStatus.setMax(default_amnt);
-        if(Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getString("present_amount",""))) < 0)
-        {
-            balanceStatus.setProgress(0);
-        }
-        else
-        {
-            int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
-            balanceStatus.setProgress(bal);
+        getPresentAmount();
 
-        }
         //Edit text for digit
         mEditFirstSingleDigit= (EditText) view.findViewById(R.id.edit_first_digit);
         mEditSecondSingleDigit= (EditText) view.findViewById(R.id.edit_second_digit);
@@ -236,6 +232,94 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 
     }
 
+    private String getPresentAmount()
+    {
+        ConnectionDetector connectionDetector = new ConnectionDetector(getActivity());
+        if(connectionDetector.isConnectingToInternet()) {
+            String tag_string_req = "string_req";
+            String url = getString(R.string.url_amount) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "");
+
+            final ProgressDialog pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Loading...");
+            pDialog.show();
+            final String TAG = "login";
+
+            StringRequest strReq = new StringRequest(Request.Method.GET,
+                    url, new Response.Listener<String>() {
+
+                @Override
+                public void onResponse(String response) {
+                    pDialog.hide();
+                    try {
+                        Log.i("response", "" + response);
+                        if(response != null)
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
+                            result = jsonObject.getString("present_amount");
+                            default_amnt = Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), getActivity().MODE_PRIVATE).getString("default_amt", ""));
+                            prsnt_amnt = (Double.parseDouble(result));
+
+                            if(prsnt_amnt<0)
+                            {
+                                balanceStatus.setProgress(0);
+                            }
+                            else
+                            {
+                                int bal = (int) Math.round(prsnt_amnt);
+                                balanceStatus.setProgress(bal);
+
+                            }
+
+                            if(default_amnt>prsnt_amnt){
+                                diff = default_amnt-prsnt_amnt;
+                                Log.i("percentag",""+diff);
+                                percent = (diff/default_amnt)*100;
+                                Log.i("percentag",""+default_amnt);
+                                Log.i("percentag",""+(default_amnt/diff));
+
+                            }
+                            else {
+                                diff = prsnt_amnt-default_amnt;
+                                percent = (diff/default_amnt)*100;
+
+                            }
+                        }
+
+                    } catch (Exception e) {
+                        pDialog.hide();
+                        Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    pDialog.hide();
+                    if (error instanceof TimeoutError) {
+                        Toast.makeText(getActivity(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), "Present Amount Not Present!!!", Toast.LENGTH_SHORT).show();
+                    }
+                    error.printStackTrace();
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                }
+            });
+            strReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+// Adding request to request queue
+            AppControler.getInstance().addToRequestQueue(strReq, tag_string_req);
+        }
+        else
+        {
+            Toast.makeText(getActivity(),"please check internet connection!!!",Toast.LENGTH_SHORT).show();
+        }
+        return result;
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -349,13 +433,13 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 
                                                     int res = (int) (Integer.parseInt(mEditFirstSingleDigit.getText().toString().trim()) * 8.5);
 
-                                                    int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
-                                                    int amt = bal - res;
-                                                    editor.putString("present_amount", ""+amt);
+//                                                    int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
+//                                                    int amt = bal - res;
+//                                                    editor.putString("present_amount", "" + amt);
                                                     editor.commit();
 
-                                                    balanceStatus.setProgress(amt);
-
+//                                                    balanceStatus.setProgress(amt);
+                                                    getPresentAmount();
                                                     mEditFirstSingleAmout.getText().clear();
                                                     mEditFirstSingleDigit.getText().clear();
                                                     mFirstSingleDigitReturn.setHint("00");
@@ -497,17 +581,16 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 
 
                                                 flag = 2;
-                                                int res = (int) (Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim()) * 8.5);
-
-                                                int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
-                                                int amt = bal - res;
-                                                editor.putString("present_amount", ""+amt);
+//                                                int res = (int) (Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim()) * 8.5);
+//
+//                                                int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
+//                                                int amt = bal - res;
+//                                                editor.putString("present_amount", ""+amt);
 
                                                 editor.commit();
 
 
-                                                balanceStatus.setProgress(amt);
-
+                                                getPresentAmount();
                                                 mEditSecondSingleDigit.getText().clear();
                                                 mEditFirstSingleAmout.getText().clear();
                                                 mSecondSingleDigitReturn.setHint("00");
@@ -650,17 +733,17 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                                                 flag = 3;
                                                 JodiNo = Integer.parseInt(mEditJodi.getText().toString().trim());
 
-                                                int res = (int) (Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim()) * 85);
-
-
-                                                int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
-                                                int amt = bal - res;
-                                                editor.putString("present_amount", ""+amt);
+//                                                int res = (int) (Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim()) * 85);
+//
+//
+//                                                int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
+//                                                int amt = bal - res;
+//                                                editor.putString("present_amount", ""+amt);
 
                                                 editor.commit();
+                                                getPresentAmount();
 
-
-                                                balanceStatus.setProgress(amt);
+//                                                balanceStatus.setProgress(amt);
 
                                                 mEditJodi.getText().clear();
                                                 mEditJodiAmout.getText().clear();
