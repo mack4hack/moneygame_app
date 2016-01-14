@@ -21,23 +21,11 @@
         android:weightSum="31"
         android:id="@+id/top"
         android:layout_below="@+id/view1">
-        <TextView
-            android:id="@+id/text_view1"
-            android:layout_width="20dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Time"
-            android:textColor="@color/textColor"
-            android:singleLine="true"
-            android:gravity="center"/>
-        <View
-            android:layout_width="0.1dp"
-            android:layout_height="match_parent"
-            android:background="@color/textColor"/>
+
         <HorizontalScrollView
             android:id="@+id/scrollView1"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:scrollbars="horizontal"
             android:scrollbarFadeDuration="0"
             android:scrollbarAlwaysDrawHorizontalTrack="true"
@@ -53,6 +41,19 @@
                 android:layout_height="wrap_content"
                 android:showDividers="beginning|end"
                 android:divider="@android:color/darker_gray">
+                <TextView
+                    android:id="@+id/text_view1"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Time"
+                    android:textColor="@color/textColor"
+                    android:singleLine="true"
+                    android:gravity="center"/>
+                <View
+                    android:layout_width="0.1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view2"
             android:layout_width="10dp"
@@ -770,27 +771,42 @@
                     android:gravity="center"
                     android:textColor="@color/textColor"/>
             </TableRow>
-            </TableLayout>
+
            <!-- <bidding.example.com.bidding.ResultChart.HorizontalListView
                 android:id="@+id/horizontallistview"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:background="#ddd"
                 />-->
+<TableRow  android:id="@+id/tableRow12"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:showDividers="beginning|end"
+    android:divider="@android:color/darker_gray">
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/textColor"
+                android:layout_span="61"
+                android:layout_below="@+id/top"/>
+</TableRow>
+                <TableRow android:id="@+id/tableRow13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:showDividers="beginning|end"
+                    android:divider="@android:color/darker_gray">
+            <ListView
+                android:id="@+id/resultList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/view"
+                android:layout_span="61" />
+                </TableRow>
+            </TableLayout>
         </HorizontalScrollView>
 
     </LinearLayout>
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:background="@color/textColor"
-        android:layout_below="@+id/top"/>
 
-    <ListView
-        android:id="@+id/resultList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/view"/>
 
 </RelativeLayout>

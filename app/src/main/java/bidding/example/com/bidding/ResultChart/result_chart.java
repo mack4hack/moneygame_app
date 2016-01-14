@@ -127,6 +127,7 @@ public class result_chart extends AppCompatActivity {
         int mnth =c.get(Calendar.MONTH);
         int yr= c.get(Calendar.YEAR);
         String month = String.valueOf(yr)+"-"+String.valueOf(mnth);
+        Log.i("month",""+month);
         getChart(month);
 
         for(int i=0; i<60; i++){
@@ -371,7 +372,8 @@ public class result_chart extends AppCompatActivity {
         ConnectionDetector connectionDetector = new ConnectionDetector(getApplicationContext());
         if(connectionDetector.isConnectingToInternet()) {
             String tag_string_req = "string_req";
-            String url = getString(R.string.get_chart) +"2015-"+month;
+            String url = getString(R.string.get_chart)+"2016-1";
+            Log.i("chart url",""+url);
 
             final ProgressDialog pDialog = new ProgressDialog(result_chart.this);
             pDialog.setMessage("Loading...");
