@@ -1,11 +1,293 @@
 package bidding.example.com.bidding.GetterSetter;
 
+import java.util.ArrayList;
+
 /**
  * Created by Sandesh on 04-Dec-15.
  */
 public class chartGetSet
 {
     String time,date1,date2,date3,date4,date5,date6,date7,date8,date9,date10,date11,date12,date13,date14,date15,date16,date17,date18,date19,date20,date21,date22,date23,date24,date25,date26,date27,date28,date29,date30;
+    String date31;
+    String date32;
+    String date33;
+    String date34;
+    String date35;
+    String date36;
+    String date37;
+    String date38;
+    String date39;
+    String date40;
+    String date41;
+    String date42;
+    String date43;
+    String date44;
+    String date45;
+    String date46;
+    String date47;
+    String date48;
+    String date49;
+    String date50;
+    String date51;
+    String date52;
+    String date53;
+    String date54;
+    String date55;
+    String date56;
+    String date57;
+    String date58;
+    String date59;
+    String date60;
+    ArrayList<chartGetSet> data;
+
+    public ArrayList<chartGetSet> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<chartGetSet> data) {
+        this.data = data;
+    }
+
+    public String getDate42() {
+        return date42;
+    }
+
+    public void setDate42(String date42) {
+        this.date42 = date42;
+    }
+
+    public String getDate31() {
+        return date31;
+    }
+
+    public void setDate31(String date31) {
+        this.date31 = date31;
+    }
+
+    public String getDate32() {
+        return date32;
+    }
+
+    public void setDate32(String date32) {
+        this.date32 = date32;
+    }
+
+    public String getDate33() {
+        return date33;
+    }
+
+    public void setDate33(String date33) {
+        this.date33 = date33;
+    }
+
+    public String getDate34() {
+        return date34;
+    }
+
+    public void setDate34(String date34) {
+        this.date34 = date34;
+    }
+
+    public String getDate35() {
+        return date35;
+    }
+
+    public void setDate35(String date35) {
+        this.date35 = date35;
+    }
+
+    public String getDate36() {
+        return date36;
+    }
+
+    public void setDate36(String date36) {
+        this.date36 = date36;
+    }
+
+    public String getDate37() {
+        return date37;
+    }
+
+    public void setDate37(String date37) {
+        this.date37 = date37;
+    }
+
+    public String getDate38() {
+        return date38;
+    }
+
+    public void setDate38(String date38) {
+        this.date38 = date38;
+    }
+
+    public String getDate39() {
+        return date39;
+    }
+
+    public void setDate39(String date39) {
+        this.date39 = date39;
+    }
+
+    public String getDate40() {
+        return date40;
+    }
+
+    public void setDate40(String date40) {
+        this.date40 = date40;
+    }
+
+    public String getDate41() {
+        return date41;
+    }
+
+    public void setDate41(String date41) {
+        this.date41 = date41;
+    }
+
+    public String getDate43() {
+        return date43;
+    }
+
+    public void setDate43(String date43) {
+        this.date43 = date43;
+    }
+
+    public String getDate44() {
+        return date44;
+    }
+
+    public void setDate44(String date44) {
+        this.date44 = date44;
+    }
+
+    public String getDate45() {
+        return date45;
+    }
+
+    public void setDate45(String date45) {
+        this.date45 = date45;
+    }
+
+    public String getDate46() {
+        return date46;
+    }
+
+    public void setDate46(String date46) {
+        this.date46 = date46;
+    }
+
+    public String getDate47() {
+        return date47;
+    }
+
+    public void setDate47(String date47) {
+        this.date47 = date47;
+    }
+
+    public String getDate48() {
+        return date48;
+    }
+
+    public void setDate48(String date48) {
+        this.date48 = date48;
+    }
+
+    public String getDate49() {
+        return date49;
+    }
+
+    public void setDate49(String date49) {
+        this.date49 = date49;
+    }
+
+    public String getDate50() {
+        return date50;
+    }
+
+    public void setDate50(String date50) {
+        this.date50 = date50;
+    }
+
+    public String getDate51() {
+        return date51;
+    }
+
+    public void setDate51(String date51) {
+        this.date51 = date51;
+    }
+
+    public String getDate52() {
+        return date52;
+    }
+
+    public void setDate52(String date52) {
+        this.date52 = date52;
+    }
+
+    public String getDate53() {
+        return date53;
+    }
+
+    public void setDate53(String date53) {
+        this.date53 = date53;
+    }
+
+    public String getDate54() {
+        return date54;
+    }
+
+    public void setDate54(String date54) {
+        this.date54 = date54;
+    }
+
+    public String getDate55() {
+        return date55;
+    }
+
+    public void setDate55(String date55) {
+        this.date55 = date55;
+    }
+
+    public String getDate56() {
+        return date56;
+    }
+
+    public void setDate56(String date56) {
+        this.date56 = date56;
+    }
+
+    public String getDate57() {
+        return date57;
+    }
+
+    public void setDate57(String date57) {
+        this.date57 = date57;
+    }
+
+    public String getDate58() {
+        return date58;
+    }
+
+    public void setDate58(String date58) {
+        this.date58 = date58;
+    }
+
+    public String getDate59() {
+        return date59;
+    }
+
+    public void setDate59(String date59) {
+        this.date59 = date59;
+    }
+
+    public String getDate60() {
+        return date60;
+    }
+
+    public void setDate60(String date60) {
+        this.date60 = date60;
+    }
+
 
     public String getDate10() {
         return date10;

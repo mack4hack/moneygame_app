@@ -43,7 +43,7 @@
                 android:divider="@android:color/darker_gray">
                 <TextView
                     android:id="@+id/text_view1"
-                    android:layout_width="20dp"
+                    android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:text="Time"
@@ -56,9 +56,9 @@
                     android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view2"
-            android:layout_width="10dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:text="1"
             android:gravity="center"
             android:textColor="@color/textColor"/>
@@ -68,9 +68,9 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view3"
-            android:layout_width="10dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:text="2"
             android:gravity="center"
             android:textColor="@color/textColor"/>
@@ -80,9 +80,9 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view4"
-            android:layout_width="10dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:text="3"
             android:gravity="center"
             android:textColor="@color/textColor"/>
@@ -92,9 +92,9 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view5"
-            android:layout_width="0dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:text="4"
             android:gravity="center"
             android:textColor="@color/textColor"/>
@@ -104,9 +104,9 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view6"
-            android:layout_width="10dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:text="5"
             android:gravity="center"
             android:textColor="@color/textColor"/>
@@ -116,9 +116,9 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view7"
-            android:layout_width="10dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:text="6"
             android:gravity="center"
             android:textColor="@color/textColor"/>
@@ -128,9 +128,9 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view8"
-            android:layout_width="10dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:text="7"
             android:gravity="center"
             android:textColor="@color/textColor"/>
@@ -140,11 +140,11 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view9"
-            android:layout_width="10dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:text="8"
             android:gravity="center"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:textColor="@color/textColor"/>
         <View
             android:layout_width="0.1dp"
@@ -152,9 +152,9 @@
             android:background="@color/textColor"/>
         <TextView
             android:id="@+id/text_view10"
-            android:layout_width="10dp"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="1"
             android:text="9"
             android:gravity="center"
             android:textColor="@color/textColor"/>
@@ -416,9 +416,9 @@
                     android:background="@color/textColor"/>
                 <TextView
                     android:id="@+id/text_view32"
-                    android:layout_width="10dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
+                    android:layout_weight="1"
                     android:text="1"
                     android:gravity="center"
                     android:textColor="@color/textColor"/>
@@ -428,9 +428,9 @@
                     android:background="@color/textColor"/>
                 <TextView
                     android:id="@+id/text_view33"
-                    android:layout_width="10dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
+                    android:layout_weight="1"
                     android:text="2"
                     android:gravity="center"
                     android:textColor="@color/textColor"/>
@@ -440,9 +440,9 @@
                     android:background="@color/textColor"/>
                 <TextView
                     android:id="@+id/text_view34"
-                    android:layout_width="10dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
+                    android:layout_weight="1"
                     android:text="3"
                     android:gravity="center"
                     android:textColor="@color/textColor"/>
@@ -452,9 +452,9 @@
                     android:background="@color/textColor"/>
                 <TextView
                     android:id="@+id/text_view35"
-                    android:layout_width="0dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
+                    android:layout_weight="1"
                     android:text="4"
                     android:gravity="center"
                     android:textColor="@color/textColor"/>
@@ -464,9 +464,9 @@
                     android:background="@color/textColor"/>
                 <TextView
                     android:id="@+id/text_view36"
-                    android:layout_width="10dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
+                    android:layout_weight="1"
                     android:text="5"
                     android:gravity="center"
                     android:textColor="@color/textColor"/>
@@ -476,9 +476,9 @@
                     android:background="@color/textColor"/>
                 <TextView
                     android:id="@+id/text_view37"
-                    android:layout_width="10dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
+                    android:layout_weight="1"
                     android:text="6"
                     android:gravity="center"
                     android:textColor="@color/textColor"/>
@@ -488,9 +488,9 @@
                     android:background="@color/textColor"/>
                 <TextView
                     android:id="@+id/text_view38"
-                    android:layout_width="10dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
+                    android:layout_weight="1"
                     android:text="7"
                     android:gravity="center"
                     android:textColor="@color/textColor"/>
@@ -500,11 +500,11 @@
                     android:background="@color/textColor"/>
                 <TextView
                     android:id="@+id/text_view39"
-                    android:layout_width="10dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
                     android:text="8"
                     android:gravity="center"
-                    android:layout_weight="0.9"
+                    android:layout_weight="1"
                     android:textColor="@color/textColor"/>
                 <View
                     android:layout_width="0.1dp"
@@ -512,9 +512,9 @@
                     android:background="@color/textColor"/>
                 <TextView
                     android:id="@+id/text_view40"
-                    android:layout_width="10dp"
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.9"
+                    android:layout_weight="1"
                     android:text="9"
                     android:gravity="center"
                     android:textColor="@color/textColor"/>
