@@ -46,11 +46,13 @@ public class result_chart extends AppCompatActivity {
     private ListView listView;
     HorizontalListView horizontalListView;
     private List<chartGetSet> chartList = new ArrayList<>();
-    private HashMap<String,String> month = new HashMap<>();
+    private HashMap<String,String> time = new HashMap<>();
     private String[] monthName = {"select Month","January","February","March","April","May","June","July","August","October","November","December"};
     private Spinner mMonth;
     chartAdapter adapter;
-    ArrayList<chartGetSet> list;
+    ArrayList<chartGetSet> list = new ArrayList<chartGetSet>();
+   public static List<HashMap<String, String>> timeslot = new ArrayList<HashMap<String, String>>();
+        String[] times = {"00.15","00.30","00.45","1.00","1.15","1.30","1.45","2.00","2.15","2.30","2.45","3.00","3.15","3.30","3.45","4.00","4.15","4.30","4.45","5.00","5.15","5.30","5.45","6.00","6.15","6.30","6.45","7.00","7.15","7.30","7.45","8.00","8.15","8.30","8.45","9.00","9.15","9.30","9.45","10.00","10.15","10.30","10.45","11.00","11.15","11.30","11.45","12.00","12.15","12.30","12.45","13.00","13.15","13.30","13.45","14.00","14.15","14.30","14.45","15.00","15.15","15.30","15.45","16.00","16.15","16.30","16.45","17.00","17.15","17.30","17.45","18.00","18.15","18.30","18.45","19.00","19.15","19.30","19.45","20.00","20.15","20.30","20.45","21.00","21.15","21.30","21.45","22.00","22.15","22.30","22.45","23.00","23.15","23.30","23.45","00.00"};
     private TextView t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,t22,t23,t24,t25,t26,t27,t28,t29,t30,t31,t32,t33,t34,t35,t36,t37,t38,t39,t40,t41,t42,t43,t44,t45,t46,t47,t48,t49,t50,t51,t52,t53,t54,t55,t56,t57,t58,t59,t60;
 
     @Override
@@ -354,35 +356,44 @@ public class result_chart extends AppCompatActivity {
                                 adapter.notifyDataSetChanged();
                             }
 //                            try {
+
                             JSONObject jsonobj = outerObject.getJSONObject("data");
                             JSONArray jArray = jsonobj.names();
                             list = new ArrayList<chartGetSet>();
                             if(jsonobj.length()!=0) {
-                                for (int j = 0; j < jsonobj.length(); j++) {
-
+                                for(int j = 0; j < jsonobj.length(); j++) {
+                                    chartGetSet item = new chartGetSet();
 //                                    JSONObject jobj = outerObject.getJSONObject(jArray.getString(j));
                                     JSONArray jsonArray= jsonobj.getJSONArray(jArray.getString(j));
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject object = jsonArray.getJSONObject(i);
-                                        chartGetSet item = new chartGetSet();
+
+                                          for(int t=0; t<96; t++){
+
+//                                              time.put(object.getString("timeslot_id"),times[i]);
+//                                                  timeslot.add(time);
+                                          }
+
                                         String dt = object.getString("date");
                                         String split = dt.substring(5);
 //                                        Log.i("date1", split[1]);
 //                                        Log.i("date2", split[2]);
                                         String date = dt.substring(5);
                                         Log.i("date1", date);
-                                        if (date.equals(t1.getText().toString()) && object.getString("timeslot_id").equals("1")) {
-                                            item.setTime("00.15");
-                                            item.setDate1(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                        for(int k=1; k<=96; k++) {
+                                            if (date.equals(t1.getText().toString())&& object.getString("timeslot_id").equals(String.valueOf(k))) {
+                                                item.setTime("00.15");
+                                                item.setDate1(object.getString("lucky_number"));
+                                                Log.i("date3", date);
 
-                                            //item.setTime(object.getString("timeslot_id"));
-                                        } else {
-                                            //item.setTime("-");
-                                            item.setDate1("-");
+                                                //item.setTime(object.getString("timeslot_id"));
+                                            } else {
+                                                //item.setTime("-");
+                                                item.setDate1("-");
+                                            }
+                                            list.add(item);
                                         }
-
-                                        if (date.equals(t2.getText().toString())&& object.getString("timeslot_id").equals("1")) {
+                                        if (date.equals(t2.getText().toString())) {
                                             item.setTime(object.getString("timeslot_id"));
                                             item.setDate2(object.getString("lucky_number"));
                                             Log.i("date3", date);
@@ -392,7 +403,7 @@ public class result_chart extends AppCompatActivity {
                                             item.setDate2("-");
                                         }
 
-                                        if (date.equals(t3.getText().toString())&& object.getString("timeslot_id").equals("1")) {
+                                        if (date.equals(t3.getText().toString())) {
                                             item.setTime(object.getString("timeslot_id"));
                                             item.setDate3(object.getString("lucky_number"));
                                             Log.i("date3", date);
@@ -934,8 +945,9 @@ public class result_chart extends AppCompatActivity {
                                     //item.setTime(object.getString("timeslot_id"));
                                 }*/
 
-                                        chartList.add(item);
+
                                     }
+                                    chartList.add(item);
                                 }
                                 adapter = new chartAdapter(getApplicationContext(), chartList);
                                 listView.setAdapter(adapter);

@@ -788,7 +788,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:background="@color/textColor"
-                android:layout_span="61"
+                android:layout_span="121"
                 android:layout_below="@+id/top"/>
 </TableRow>
                 <TableRow android:id="@+id/tableRow13"
@@ -801,7 +801,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/view"
-                android:layout_span="61" />
+                android:layout_span="121" />
                 </TableRow>
             </TableLayout>
         </HorizontalScrollView>

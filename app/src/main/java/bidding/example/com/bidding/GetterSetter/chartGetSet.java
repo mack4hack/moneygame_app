@@ -38,13 +38,13 @@ public class chartGetSet
     String date58;
     String date59;
     String date60;
-    ArrayList<chartGetSet> data;
+    ArrayList<String> data;
 
-    public ArrayList<chartGetSet> getData() {
+    public ArrayList<String> getData() {
         return data;
     }
 
-    public void setData(ArrayList<chartGetSet> data) {
+    public void setData(ArrayList<String> data) {
         this.data = data;
     }
 
