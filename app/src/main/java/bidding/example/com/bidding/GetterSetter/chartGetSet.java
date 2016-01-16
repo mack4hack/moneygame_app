@@ -1,6 +1,7 @@
 package bidding.example.com.bidding.GetterSetter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Sandesh on 04-Dec-15.
@@ -38,13 +39,13 @@ public class chartGetSet
     String date58;
     String date59;
     String date60;
-    ArrayList<String> data;
+    HashMap<String, String> data;
 
-    public ArrayList<String> getData() {
+    public  HashMap<String, String> getData() {
         return data;
     }
 
-    public void setData(ArrayList<String> data) {
+    public void setData(HashMap<String, String> data) {
         this.data = data;
     }
 

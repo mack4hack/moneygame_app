@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import java.util.HashMap;
 import java.util.List;
 
 import bidding.example.com.bidding.GetterSetter.chartGetSet;
 import bidding.example.com.bidding.R;
+import bidding.example.com.bidding.ResultChart.result_chart;
 
 /**
  * Created by Sandesh on 04-Dec-15.
@@ -18,8 +21,8 @@ import bidding.example.com.bidding.R;
 public class chartAdapter extends BaseAdapter
 {
     Context context;
-    List<chartGetSet> chartList;
-    public chartAdapter(Context context,List<chartGetSet> chartList)
+    List<HashMap<String, String>> chartList;
+    public chartAdapter(Context context,List<HashMap<String, String>> chartList)
     {
         this.context = context;
         this.chartList = chartList;
@@ -125,12 +128,23 @@ public class chartAdapter extends BaseAdapter
             viewHolder = (Holder) convertView.getTag();
         }
 
-        chartGetSet rowItem = chartList.get(position);
-//        fo
+        HashMap<String, String> rowItem = chartList.get(position);
+
+        viewHolder.mNumber51.setText(rowItem.get(result_chart.TIMESLOT10));
+        viewHolder.mNumber52.setText(rowItem.get(result_chart.TIMESLOT9));
+        viewHolder.mNumber53.setText(rowItem.get(result_chart.TIMESLOT8));
+        viewHolder.mNumber54.setText(rowItem.get(result_chart.TIMESLOT7));
+        viewHolder.mNumber55.setText(rowItem.get(result_chart.TIMESLOT6));
+        viewHolder.mNumber56.setText(rowItem.get(result_chart.TIMESLOT5));
+        viewHolder.mNumber57.setText(rowItem.get(result_chart.TIMESLOT4));
+        viewHolder.mNumber58.setText(rowItem.get(result_chart.TIMESLOT3));
+        viewHolder.mNumber59.setText(rowItem.get(result_chart.TIMESLOT2));
+        viewHolder.mNumber60.setText(rowItem.get(result_chart.TIMESLOT1));
+      /*  for(int k=0; k<96; k++){
+            viewHolder.mTime.setText(rowItem.getTime());
+        }
 
         for(int i = 0; i<chartList.size(); i++) {
-
-            viewHolder.mTime.setText(rowItem.getTime());
 
             viewHolder.mNumber1.setText(rowItem.getDate1());
             viewHolder.mNumber2.setText(rowItem.getDate2());
@@ -191,8 +205,8 @@ public class chartAdapter extends BaseAdapter
             viewHolder.mNumber57.setText(rowItem.getDate57());
             viewHolder.mNumber58.setText(rowItem.getDate58());
             viewHolder.mNumber59.setText(rowItem.getDate59());
-            viewHolder.mNumber60.setText(rowItem.getDate60());
-        }
+            viewHolder.mNumber60.setText(rowItem.getDate60());*/
+//        }
 
         return convertView;
     }
