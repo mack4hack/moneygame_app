@@ -1,6 +1,7 @@
 package bidding.example.com.bidding.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -129,83 +130,76 @@ public class chartAdapter extends BaseAdapter
         }
 
         HashMap<String, String> rowItem = chartList.get(position);
+        Log.i("rowitwm", "" + rowItem);
+        viewHolder.mTime.setText(rowItem.get(result_chart.TIMESLOT));
 
-        viewHolder.mNumber51.setText(rowItem.get(result_chart.TIMESLOT10));
-        viewHolder.mNumber52.setText(rowItem.get(result_chart.TIMESLOT9));
-        viewHolder.mNumber53.setText(rowItem.get(result_chart.TIMESLOT8));
-        viewHolder.mNumber54.setText(rowItem.get(result_chart.TIMESLOT7));
-        viewHolder.mNumber55.setText(rowItem.get(result_chart.TIMESLOT6));
-        viewHolder.mNumber56.setText(rowItem.get(result_chart.TIMESLOT5));
-        viewHolder.mNumber57.setText(rowItem.get(result_chart.TIMESLOT4));
-        viewHolder.mNumber58.setText(rowItem.get(result_chart.TIMESLOT3));
-        viewHolder.mNumber59.setText(rowItem.get(result_chart.TIMESLOT2));
-        viewHolder.mNumber60.setText(rowItem.get(result_chart.TIMESLOT1));
-      /*  for(int k=0; k<96; k++){
-            viewHolder.mTime.setText(rowItem.getTime());
-        }
+//       for(int k=0; k<96; k++){
+//            viewHolder.mTime.setText(rowItem.getTime());
+//        }
 
-        for(int i = 0; i<chartList.size(); i++) {
+//        for(int i = 0; i<chartList.size(); i++) {
 
-            viewHolder.mNumber1.setText(rowItem.getDate1());
-            viewHolder.mNumber2.setText(rowItem.getDate2());
-            viewHolder.mNumber3.setText(rowItem.getDate3());
-            viewHolder.mNumber4.setText(rowItem.getDate4());
-            viewHolder.mNumber5.setText(rowItem.getDate5());
-            viewHolder.mNumber6.setText(rowItem.getDate6());
-            viewHolder.mNumber7.setText(rowItem.getDate7());
-            viewHolder.mNumber8.setText(rowItem.getDate8());
-            viewHolder.mNumber9.setText(rowItem.getDate9());
-            viewHolder.mNumber10.setText(rowItem.getDate10());
-            viewHolder.mNumber11.setText(rowItem.getDate11());
-            viewHolder.mNumber12.setText(rowItem.getDate12());
-            viewHolder.mNumber13.setText(rowItem.getDate13());
-            viewHolder.mNumber14.setText(rowItem.getDate14());
-            viewHolder.mNumber15.setText(rowItem.getDate15());
-            viewHolder.mNumber16.setText(rowItem.getDate16());
-            viewHolder.mNumber17.setText(rowItem.getDate17());
-            viewHolder.mNumber18.setText(rowItem.getDate18());
-            viewHolder.mNumber19.setText(rowItem.getDate19());
-            viewHolder.mNumber20.setText(rowItem.getDate20());
-            viewHolder.mNumber21.setText(rowItem.getDate21());
-            viewHolder.mNumber22.setText(rowItem.getDate22());
-            viewHolder.mNumber23.setText(rowItem.getDate23());
-            viewHolder.mNumber24.setText(rowItem.getDate24());
-            viewHolder.mNumber25.setText(rowItem.getDate25());
-            viewHolder.mNumber26.setText(rowItem.getDate26());
-            viewHolder.mNumber27.setText(rowItem.getDate27());
-            viewHolder.mNumber28.setText(rowItem.getDate28());
-            viewHolder.mNumber29.setText(rowItem.getDate29());
-            viewHolder.mNumber30.setText(rowItem.getDate30());
-            viewHolder.mNumber31.setText(rowItem.getDate31());
-            viewHolder.mNumber32.setText(rowItem.getDate32());
-            viewHolder.mNumber33.setText(rowItem.getDate33());
-            viewHolder.mNumber34.setText(rowItem.getDate34());
-            viewHolder.mNumber35.setText(rowItem.getDate35());
-            viewHolder.mNumber36.setText(rowItem.getDate36());
-            viewHolder.mNumber37.setText(rowItem.getDate37());
-            viewHolder.mNumber38.setText(rowItem.getDate38());
-            viewHolder.mNumber39.setText(rowItem.getDate39());
-            viewHolder.mNumber40.setText(rowItem.getDate40());
-            viewHolder.mNumber41.setText(rowItem.getDate41());
-            viewHolder.mNumber42.setText(rowItem.getDate42());
-            viewHolder.mNumber43.setText(rowItem.getDate43());
-            viewHolder.mNumber44.setText(rowItem.getDate44());
-            viewHolder.mNumber45.setText(rowItem.getDate45());
-            viewHolder.mNumber46.setText(rowItem.getDate46());
-            viewHolder.mNumber47.setText(rowItem.getDate47());
-            viewHolder.mNumber48.setText(rowItem.getDate48());
-            viewHolder.mNumber49.setText(rowItem.getDate49());
-            viewHolder.mNumber50.setText(rowItem.getDate50());
-            viewHolder.mNumber51.setText(rowItem.getDate51());
-            viewHolder.mNumber52.setText(rowItem.getDate52());
-            viewHolder.mNumber53.setText(rowItem.getDate53());
-            viewHolder.mNumber54.setText(rowItem.getDate54());
-            viewHolder.mNumber55.setText(rowItem.getDate55());
-            viewHolder.mNumber56.setText(rowItem.getDate56());
-            viewHolder.mNumber57.setText(rowItem.getDate57());
-            viewHolder.mNumber58.setText(rowItem.getDate58());
-            viewHolder.mNumber59.setText(rowItem.getDate59());
-            viewHolder.mNumber60.setText(rowItem.getDate60());*/
+            viewHolder.mNumber1.setText(rowItem.get(result_chart.TIMESLOT1));
+            viewHolder.mNumber2.setText(rowItem.get(result_chart.TIMESLOT2));
+            viewHolder.mNumber3.setText(rowItem.get(result_chart.TIMESLOT3));
+            viewHolder.mNumber4.setText(rowItem.get(result_chart.TIMESLOT4));
+            viewHolder.mNumber5.setText(rowItem.get(result_chart.TIMESLOT5));
+            viewHolder.mNumber6.setText(rowItem.get(result_chart.TIMESLOT6));
+            viewHolder.mNumber7.setText(rowItem.get(result_chart.TIMESLOT7));
+            viewHolder.mNumber8.setText(rowItem.get(result_chart.TIMESLOT8));
+            viewHolder.mNumber9.setText(rowItem.get(result_chart.TIMESLOT9));
+            viewHolder.mNumber10.setText(rowItem.get(result_chart.TIMESLOT10));
+            viewHolder.mNumber11.setText(rowItem.get(result_chart.TIMESLOT11));
+            viewHolder.mNumber12.setText(rowItem.get(result_chart.TIMESLOT12));
+            viewHolder.mNumber13.setText(rowItem.get(result_chart.TIMESLOT13));
+            viewHolder.mNumber14.setText(rowItem.get(result_chart.TIMESLOT14));
+            viewHolder.mNumber15.setText(rowItem.get(result_chart.TIMESLOT15));
+            viewHolder.mNumber16.setText(rowItem.get(result_chart.TIMESLOT16));
+            viewHolder.mNumber17.setText(rowItem.get(result_chart.TIMESLOT17));
+            viewHolder.mNumber18.setText(rowItem.get(result_chart.TIMESLOT18));
+            viewHolder.mNumber19.setText(rowItem.get(result_chart.TIMESLOT19));
+            viewHolder.mNumber20.setText(rowItem.get(result_chart.TIMESLOT20));
+            viewHolder.mNumber21.setText(rowItem.get(result_chart.TIMESLOT21));
+            viewHolder.mNumber22.setText(rowItem.get(result_chart.TIMESLOT22));
+            viewHolder.mNumber23.setText(rowItem.get(result_chart.TIMESLOT23));
+            viewHolder.mNumber24.setText(rowItem.get(result_chart.TIMESLOT24));
+            viewHolder.mNumber25.setText(rowItem.get(result_chart.TIMESLOT25));
+            viewHolder.mNumber26.setText(rowItem.get(result_chart.TIMESLOT26));
+            viewHolder.mNumber27.setText(rowItem.get(result_chart.TIMESLOT27));
+            viewHolder.mNumber28.setText(rowItem.get(result_chart.TIMESLOT28));
+            viewHolder.mNumber29.setText(rowItem.get(result_chart.TIMESLOT29));
+            viewHolder.mNumber30.setText(rowItem.get(result_chart.TIMESLOT30));
+            viewHolder.mNumber31.setText(rowItem.get(result_chart.TIMESLOT31));
+            viewHolder.mNumber32.setText(rowItem.get(result_chart.TIMESLOT32));
+            viewHolder.mNumber33.setText(rowItem.get(result_chart.TIMESLOT33));
+            viewHolder.mNumber34.setText(rowItem.get(result_chart.TIMESLOT34));
+            viewHolder.mNumber35.setText(rowItem.get(result_chart.TIMESLOT35));
+            viewHolder.mNumber36.setText(rowItem.get(result_chart.TIMESLOT36));
+            viewHolder.mNumber37.setText(rowItem.get(result_chart.TIMESLOT37));
+            viewHolder.mNumber38.setText(rowItem.get(result_chart.TIMESLOT38));
+            viewHolder.mNumber39.setText(rowItem.get(result_chart.TIMESLOT39));
+            viewHolder.mNumber40.setText(rowItem.get(result_chart.TIMESLOT40));
+            viewHolder.mNumber41.setText(rowItem.get(result_chart.TIMESLOT41));
+            viewHolder.mNumber42.setText(rowItem.get(result_chart.TIMESLOT42));
+            viewHolder.mNumber43.setText(rowItem.get(result_chart.TIMESLOT43));
+            viewHolder.mNumber44.setText(rowItem.get(result_chart.TIMESLOT44));
+            viewHolder.mNumber45.setText(rowItem.get(result_chart.TIMESLOT45));
+            viewHolder.mNumber46.setText(rowItem.get(result_chart.TIMESLOT46));
+            viewHolder.mNumber47.setText(rowItem.get(result_chart.TIMESLOT47));
+            viewHolder.mNumber48.setText(rowItem.get(result_chart.TIMESLOT48));
+            viewHolder.mNumber49.setText(rowItem.get(result_chart.TIMESLOT49));
+            viewHolder.mNumber50.setText(rowItem.get(result_chart.TIMESLOT50));
+
+        viewHolder.mNumber51.setText(rowItem.get(result_chart.TIMESLOT51));
+        viewHolder.mNumber52.setText(rowItem.get(result_chart.TIMESLOT52));
+        viewHolder.mNumber53.setText(rowItem.get(result_chart.TIMESLOT53));
+        viewHolder.mNumber54.setText(rowItem.get(result_chart.TIMESLOT54));
+        viewHolder.mNumber55.setText(rowItem.get(result_chart.TIMESLOT55));
+        viewHolder.mNumber56.setText(rowItem.get(result_chart.TIMESLOT56));
+        viewHolder.mNumber57.setText(rowItem.get(result_chart.TIMESLOT57));
+        viewHolder.mNumber58.setText(rowItem.get(result_chart.TIMESLOT58));
+        viewHolder.mNumber59.setText(rowItem.get(result_chart.TIMESLOT59));
+        viewHolder.mNumber60.setText(rowItem.get(result_chart.TIMESLOT60));
 //        }
 
         return convertView;

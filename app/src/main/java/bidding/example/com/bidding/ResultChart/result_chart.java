@@ -43,6 +43,8 @@ import bidding.example.com.bidding.R;
 
 public class result_chart extends AppCompatActivity {
 
+
+    public static String TIMESLOT="timeslot";
     public static String TIMESLOT1="timeslot_id1";
     public static String TIMESLOT2="timeslot_id2";
     public static String TIMESLOT3="timeslot_id3";
@@ -53,71 +55,62 @@ public class result_chart extends AppCompatActivity {
     public static String TIMESLOT8="timeslot_id8";
     public static String TIMESLOT9="timeslot_id9";
     public static String TIMESLOT10="timeslot_id10";
+    public static String TIMESLOT11="timeslot_id11";
+    public static String TIMESLOT12="timeslot_id12";
+    public static String TIMESLOT13="timeslot_id13";
+    public static String TIMESLOT14="timeslot_id14";
+    public static String TIMESLOT15="timeslot_id15";
+    public static String TIMESLOT16="timeslot_id16";
+    public static String TIMESLOT17="timeslot_id17";
+    public static String TIMESLOT18="timeslot_id18";
+    public static String TIMESLOT19="timeslot_id19";
+    public static String TIMESLOT20="timeslot_id20";
+    public static String TIMESLOT21="timeslot_id21";
+    public static String TIMESLOT22="timeslot_id22";
+    public static String TIMESLOT23="timeslot_id23";
+    public static String TIMESLOT24="timeslot_id24";
+    public static String TIMESLOT25="timeslot_id25";
+    public static String TIMESLOT26="timeslot_id26";
+    public static String TIMESLOT27="timeslot_id27";
+    public static String TIMESLOT28="timeslot_id28";
+    public static String TIMESLOT29="timeslot_id29";
+    public static String TIMESLOT30="timeslot_id30";
+    public static String TIMESLOT31="timeslot_id31";
+    public static String TIMESLOT32="timeslot_id32";
+    public static String TIMESLOT33="timeslot_id33";
+    public static String TIMESLOT34="timeslot_id34";
+    public static String TIMESLOT35="timeslot_id35";
+    public static String TIMESLOT36="timeslot_id36";
+    public static String TIMESLOT37="timeslot_id37";
+    public static String TIMESLOT38="timeslot_id38";
+    public static String TIMESLOT39="timeslot_id39";
+    public static String TIMESLOT40="timeslot_id40";
+    public static String TIMESLOT41="timeslot_id41";
+    public static String TIMESLOT42="timeslot_id42";
+    public static String TIMESLOT43="timeslot_id43";
+    public static String TIMESLOT44="timeslot_id44";
+    public static String TIMESLOT45="timeslot_id45";
+    public static String TIMESLOT46="timeslot_id46";
+    public static String TIMESLOT47="timeslot_id47";
+    public static String TIMESLOT48="timeslot_id48";
+    public static String TIMESLOT49="timeslot_id49";
+    public static String TIMESLOT50="timeslot_id50";
+    public static String TIMESLOT51="timeslot_id51";
+    public static String TIMESLOT52="timeslot_id52";
+    public static String TIMESLOT53="timeslot_id53";
+    public static String TIMESLOT54="timeslot_id54";
+    public static String TIMESLOT55="timeslot_id55";
+    public static String TIMESLOT56="timeslot_id56";
+    public static String TIMESLOT57="timeslot_id57";
+    public static String TIMESLOT58="timeslot_id58";
+    public static String TIMESLOT59="timeslot_id59";
+    public static String TIMESLOT60="timeslot_id60";
 
 
     private ListView listView;
     HorizontalListView horizontalListView;
     private List<chartGetSet> chartList = new ArrayList<>();
-    private HashMap<String,String> time;
-    private HashMap<String,String> time1;
-    private HashMap<String,String> time2;
-    private HashMap<String,String> time3;
-    private HashMap<String,String> time4;
-    private HashMap<String,String> time5;
-    private HashMap<String,String> time6;
-    private HashMap<String,String> time7;
-    private HashMap<String,String> time8;
-    private HashMap<String,String> time9;
-    private HashMap<String,String> time10;
-    private HashMap<String,String> time11;
-    private HashMap<String,String> time12;
-    private HashMap<String,String> time13;
-    private HashMap<String,String> time14;
-    private HashMap<String,String> time15;
-    private HashMap<String,String> time16;
-    private HashMap<String,String> time17;
-    private HashMap<String,String> time18;
-    private HashMap<String,String> time19;
-    private HashMap<String,String> time20;
-    private HashMap<String,String> time21;
-    private HashMap<String,String> time22;
-    private HashMap<String,String> time23;
-    private HashMap<String,String> time24;
-    private HashMap<String,String> time25;
-    private HashMap<String,String> time26;
-    private HashMap<String,String> time27;
-    private HashMap<String,String> time28;
-    private HashMap<String,String> time29;
-    private HashMap<String,String> time30;
-    private HashMap<String,String> time31;
-    private HashMap<String,String> time32;
-    private HashMap<String,String> time33;
-    private HashMap<String,String> time34;
-    private HashMap<String,String> time35;
-    private HashMap<String,String> time36;
-    private HashMap<String,String> time37;
-    private HashMap<String,String> time38;
-    private HashMap<String,String> time39;
-    private HashMap<String,String> time40;
-    private HashMap<String,String> time41;
-    private HashMap<String,String> time42;
-    private HashMap<String,String> time43;
-    private HashMap<String,String> time44;
-    private HashMap<String,String> time45;
-    private HashMap<String,String> time46;
-    private HashMap<String,String> time47;
-    private HashMap<String,String> time48;
-    private HashMap<String,String> time49;
-    private HashMap<String,String> time50;
-    private HashMap<String,String> time51;
-    private HashMap<String,String> time52;
-    private HashMap<String,String> time53;
-    private HashMap<String,String> time54;
-    private HashMap<String,String> time55;
-    private HashMap<String,String> time56;
-    private HashMap<String,String> time57;
-    private HashMap<String,String> time58;
-    private HashMap<String,String> time59;
+
     private HashMap<String,String> time60;
 
 
@@ -431,22 +424,13 @@ public class result_chart extends AppCompatActivity {
                                 adapter.notifyDataSetChanged();
                             }
 //                            try {
-                            for(int t=0; t<96; t++){
-                                item = new chartGetSet();
-                                    item.setTime(String.valueOf(t));
-                                list.add(item);
-                            }
 
-                            JSONObject jsonobj = outerObject.getJSONObject("data");
-                            JSONArray jArray = jsonobj.names();
-//                            list = new ArrayList<String>();
-                            if(jsonobj.length()!=0) {
-                                for(int j = 0; j < jsonobj.length(); j++) {
+                            JSONArray jsonArray =  outerObject.getJSONArray("data");
 
-//                                    JSONObject jobj = outerObject.getJSONObject(jArray.getString(j));
-                                    JSONArray jsonArray= jsonobj.getJSONArray(jArray.getString(j));
                                     Log.i("date1", ""+jsonArray.length());
 
+                            for(int k=1; k<=96; k++) {
+                                time60 = new HashMap<String, String>();
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         item = new chartGetSet();
                                         JSONObject object = jsonArray.getJSONObject(i);
@@ -456,588 +440,728 @@ public class result_chart extends AppCompatActivity {
 //                                        Log.i("date1", split[1]);
 //                                        Log.i("date2", split[2]);
                                         String date = dt.substring(5);
-                                        for(int k=1; k<=96; k++) {
 
-                                            if (date.equals(t1.getText().toString()) && object.getString("timeslot_id").equals(String.valueOf(k))) {
+                                        if (object.getString("timeslot_id").equals(String.valueOf(k))) {
+
+                                            time60.put("timeslot", object.getString("timeslot_id"));
+
+                                            if (date.equals(t1.getText().toString())) {
 //                                                item.setTime(object.getString("timeslot_id"));
                                                 item.setDate1(object.getString("lucky_number"));
-                                                Log.i("loop", "" + object.getString("lucky_number"));
+                                                time60.put("timeslot_id1", object.getString("lucky_number"));
                                                 //item.setTime(object.getString("timeslot_id"));
                                             } else {
                                                 //item.setTime("-");
-                                                item.setDate1("-");
+//                                                time60.put("timeslot_id1", "-");
                                             }
-                                            break;
-                                        }
+
                                         if (date.equals(t2.getText().toString())) {
 //                                            item.setTime("00.30");
                                             item.setDate2(object.getString("lucky_number"));
+                                            time60.put("timeslot_id2", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate2("-");
+//                                            time60.put("timeslot_id2", "-");
                                         }
 
                                         if (date.equals(t3.getText().toString())) {
 //                                            item.setTime("00.45");
                                             item.setDate3(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id3", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate3("-");
+//                                            time60.put("timeslot_id3", "-");
                                         }
 
                                         if (date.equals(t4.getText().toString())) {
 //                                            item.setTime("1.00");
                                             item.setDate4(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id4", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate4("-");
+//                                            time60.put("timeslot_id4", "-");
                                         }
 
                                         if (date.equals(t5.getText().toString())) {
 //                                            item.setTime("1.15");
                                             item.setDate5(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id5", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate5("-");
+//                                            time60.put("timeslot_id5", "-");
                                         }
 
                                         if (date.equals(t6.getText().toString())) {
 //                                            item.setTime("1.30");
                                             item.setDate6(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id6", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate6("-");
+//                                            time60.put("timeslot_id6", "-");
                                         }
 
                                         if (date.equals(t7.getText().toString())) {
 //                                            item.setTime("1.45");
                                             item.setDate7(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id7", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate7("-");
+//                                            time60.put("timeslot_id7", "-");
                                         }
 
                                         if (date.equals(t8.getText().toString())) {
 //                                            item.setTime("2.00");
                                             item.setDate8(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id8", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate8("-");
+//                                            time60.put("timeslot_id8", "-");
                                         }
 
                                         if (date.equals(t9.getText().toString())) {
 //                                            item.setTime("2.15");
                                             item.setDate9(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id9", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate9("-");
+//                                            time60.put("timeslot_id9", "-");
                                         }
 
                                         if (date.equals(t10.getText().toString())) {
 //                                            item.setTime("2.30");
                                             item.setDate10(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id10", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate10("-");
+//                                            time60.put("timeslot_id10", "-");
                                         }
 
                                         if (date.equals(t11.getText().toString())) {
 //                                            item.setTime("2.45");
                                             item.setDate11(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id11", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate11("-");
+//                                            time60.put("timeslot_id11", "-");
                                         }
 
                                         if (date.equals(t12.getText().toString())) {
 //                                            item.setTime("3.00");
                                             item.setDate12(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id12", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate12("-");
+//                                            time60.put("timeslot_id12", "-");
                                         }
 
                                         if (date.equals(t13.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate13(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id13", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate13("-");
+//                                            time60.put("timeslot_id13", "-");
                                         }
 
                                         if (date.equals(t14.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate14(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id14", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate14("-");
+//                                            time60.put("timeslot_id14", "-");
                                         }
 
                                         if (date.equals(t15.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate15(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id15", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate15("-");
+//                                            time60.put("timeslot_id15", "-");
                                         }
 
                                         if (date.equals(t16.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate16(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id16", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate16("-");
+//                                            time60.put("timeslot_id16", "-");
                                         }
                                         if (date.equals(t17.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate17(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id17", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate17("-");
+//                                            time60.put("timeslot_id17", "-");
                                         }
 
                                         if (date.equals(t18.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate18(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id18", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate18("-");
+//                                            time60.put("timeslot_id18", "-");
                                         }
 
                                         if (date.equals(t19.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate19(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id19", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate19("-");
+//                                            time60.put("timeslot_id19", "-");
                                         }
 
                                         if (date.equals(t20.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate20(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id20", object.getString("lucky_number"));
                                             //item.setTim(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate20("-");
+//                                            time60.put("timeslot_id20", "-");
                                         }
 
                                         if (date.equals(t21.getText().toString())) {
                                             //Log.i("Time Slot",""+object.getString("timeslot_id")+" "+object.getString("lucky_number"));
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate21(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id21", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate21("-");
+//                                            time60.put("timeslot_id21", "-");
                                         }
 
                                         if (date.equals(t22.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate22(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id22", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate22("-");
+//                                            time60.put("timeslot_id22", "-");
                                         }
 
                                         if (date.equals(t23.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate23(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id23", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate23("-");
+//                                            time60.put("timeslot_id23", "-");
                                         }
 
                                         if (date.equals(t24.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate24(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id24", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate24("-");
+//                                            time60.put("timeslot_id24", "-");
                                         }
 
                                         if (date.equals(t25.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate25(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id25", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate25("-");
+//                                            time60.put("timeslot_id25", "-");
                                         }
 
                                         if (date.equals(t26.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate26(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id26", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate26("-");
+//                                            time60.put("timeslot_id26", "-");
                                         }
 
                                         if (date.equals(t27.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate27(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id27", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate27("-");
+//                                            time60.put("timeslot_id27", "-");
                                         }
                                         if (date.equals(t28.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate28(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id28", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate28("-");
+//                                            time60.put("timeslot_id28", "-");
                                         }
 
                                         if (date.equals(t29.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate29(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id29", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate29("-");
+//                                            time60.put("timeslot_id29", "-");
                                         }
 
                                         if (date.equals(t30.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate30(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id30", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate30("-");
+//                                            time60.put("timeslot_id30", "-");
                                         }
 
                                         if (date.equals(t31.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate31(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id31", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate31("-");
+//                                            time60.put("timeslot_id31", "-");
                                         }
                                         if (date.equals(t32.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate32(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id32", object.getString("lucky_number"));
+
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate32("-");
+//                                            time60.put("timeslot_id32", "-");
                                         }
                                         if (date.equals(t33.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate33(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id33", object.getString("lucky_number"));
+
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate33("-");
+//                                            time60.put("timeslot_id33", "-");
                                         }
                                         if (date.equals(t34.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate34(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id34", object.getString("lucky_number"));
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate34("-");
+//                                            time60.put("timeslot_id34", "-");
                                         }
                                         if (date.equals(t35.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate35(object.getString("lucky_number"));
+                                            time60.put("timeslot_id35", object.getString("lucky_number"));
                                             Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate35("-");
+//                                            time60.put("timeslot_id35", "-");
                                         }
                                         if (date.equals(t36.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate36(object.getString("lucky_number"));
+                                            time60.put("timeslot_id36", object.getString("lucky_number"));
                                             Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate36("-");
+//                                            time60.put("timeslot_id36", "-");
                                         }
                                         if (date.equals(t37.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate37(object.getString("lucky_number"));
+                                            time60.put("timeslot_id37", object.getString("lucky_number"));
                                             Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate37("-");
+//                                            time60.put("timeslot_id37", "-");
                                         }
                                         if (date.equals(t38.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate38(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id38", object.getString("lucky_number"));
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate38("-");
+//                                            time60.put("timeslot_id38", "-");
                                         }
                                         if (date.equals(t39.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate39(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id39", object.getString("lucky_number"));
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate39("-");
+//                                            time60.put("timeslot_id39", "-");
                                         }
                                         if (date.equals(t40.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate40(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id40", object.getString("lucky_number"));
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate40("-");
+//                                            time60.put("timeslot_id40", "-");
                                         }
                                         if (date.equals(t41.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate41(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id41", object.getString("lucky_number"));
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate41("-");
+//                                            time60.put("timeslot_id41", "-");
                                         }
                                         if (date.equals(t42.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate42(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id42", object.getString("lucky_number"));
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate42("-");
+//                                            time60.put("timeslot_id42", "-");
                                         }
                                         if (date.equals(t43.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate43(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id43", object.getString("lucky_number"));
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate43("-");
+//                                            time60.put("timeslot_id43", "-");
                                         }
                                         if (date.equals(t44.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate44(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id44", object.getString("lucky_number"));
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate44("-");
+//                                            time60.put("timeslot_id44", "-");
                                         }
                                         if (date.equals(t45.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate45(object.getString("lucky_number"));
-                                            Log.i("date3", date);
+                                            time60.put("timeslot_id45", object.getString("lucky_number"));
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate45("-");
+//                                            time60.put("timeslot_id45", "-");
                                         }
                                         if (date.equals(t46.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate46(object.getString("lucky_number"));
+                                            time60.put("timeslot_id46", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate46("-");
+//                                            time60.put("timeslot_id46", "-");
                                         }
                                         if (date.equals(t47.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate47(object.getString("lucky_number"));
+                                            time60.put("timeslot_id47", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate47("-");
+//                                            time60.put("timeslot_id47", "-");
                                         }
                                         if (date.equals(t48.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate48(object.getString("lucky_number"));
+                                            time60.put("timeslot_id48", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate48("-");
+//                                            time60.put("timeslot_id48", "-");
                                         }
                                         if (date.equals(t49.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate49(object.getString("lucky_number"));
+                                            time60.put("timeslot_id49", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate49("-");
+//                                            time60.put("timeslot_id49", "-");
                                         }
                                         if (date.equals(t50.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate50(object.getString("lucky_number"));
+                                            time60.put("timeslot_id50", object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
-                                            item.setDate50("-");
-                                        }
-                                        if (date.equals(t51.getText().toString())) {
-                                            time51 = new HashMap<String, String>();
-                                            item.setDate51(object.getString("lucky_number"));
-                                            time51.put("timeslot_id10", object.getString("lucky_number"));
-                                            timeslot.add(time51);
-                                        } else {
-                                            //item.setTime("-");
-                                            item.setDate51("-");
-                                        }
-                                        if (date.equals(t52.getText().toString())) {
-                                            time52 = new HashMap<String, String>();
-                                            item.setDate52(object.getString("lucky_number"));
-                                            time52.put("timeslot_id9", object.getString("lucky_number"));
-                                            timeslot.add(time52);
-                                        } else {
-                                            //item.setTime("-");
-                                            item.setDate52("-");
-                                        }
-                                        if (date.equals(t53.getText().toString())) {
-                                            time53 = new HashMap<String, String>();
-                                            item.setDate53(object.getString("lucky_number"));
-                                            time53.put("timeslot_id8", object.getString("lucky_number"));
-                                            timeslot.add(time53);
-                                        } else {
-                                            //item.setTime("-");
-                                            item.setDate53("-");
-                                        }
-                                        if (date.equals(t54.getText().toString())) {
-                                            time54 = new HashMap<String, String>();
-                                            item.setDate54(object.getString("lucky_number"));
-                                            time54.put("timeslot_id7", object.getString("lucky_number"));
-                                            timeslot.add(time54);
-                                        } else {
-                                            //item.setTime("-");
-                                            item.setDate54("-");
-                                        }
-                                        if (date.equals(t55.getText().toString())) {
-                                            time55 = new HashMap<String, String>();
-                                            item.setDate55(object.getString("lucky_number"));
-                                            time55.put("timeslot_id6", object.getString("lucky_number"));
-                                            timeslot.add(time55);
-                                        } else {
-                                            //item.setTime("-");
-                                            item.setDate55("-");
-                                        }
-                                        if (date.equals(t56.getText().toString())) {
-                                            time56 = new HashMap<String, String>();
-                                            item.setDate56(object.getString("lucky_number"));
-                                            time56.put("timeslot_id5", object.getString("lucky_number"));
-                                            timeslot.add(time56);
-                                            //item.setTime(object.getString("timeslot_id"));
-                                        } else {
-                                            //item.setTime("-");
-                                            item.setDate56("-");
+//                                            time60.put("timeslot_id50", "-");
                                         }
 
-                                        if (date.equals(t57.getText().toString())) {
-                                            time57 = new HashMap<String, String>();
-                                            item.setDate57(object.getString("lucky_number"));
-                                            time57.put("timeslot_id4", object.getString("lucky_number"));
-                                            timeslot.add(time57);
-                                        } else {
-                                            //item.setTime("-");
-                                            item.setDate57("-");
-                                        }
-
-                                        if (date.equals(t58.getText().toString())) {
-                                            time58 = new HashMap<String, String>();
-                                            item.setDate58(object.getString("lucky_number"));
-                                            time58.put("timeslot_id3", object.getString("lucky_number"));
-                                            //item.setTime(object.getString("timeslot_id"));
-                                            timeslot.add(time58);
-                                        } else {
-                                            //item.setTime("-");
-                                            item.setDate58("-");
-                                        }
-                                        time60 = new HashMap<String, String>();
-                                        if (date.equals(t59.getText().toString())) {
-
-                                            item.setDate59(object.getString("lucky_number"));
-                                            time60.put("timeslot_id2", object.getString("lucky_number"));
-                                            //item.setTime(object.getString("timeslot_id"));
-//                                                timeslot.add(time60);
-                                        } else {
-                                            //item.setTime("-");
-                                            item.setDate59("-");
-                                        }
-
-
-                                        if (date.equals(t60.getText().toString())) {
-//                                            item.setTime(object.getString("timeslot_id"));
+                                                if (date.equals(t51.getText().toString())) {
+//                                                time51 = new HashMap<String, String>();
+                                                    item.setDate51(object.getString("lucky_number"));
+                                                    time60.put("timeslot_id51", object.getString("lucky_number"));
+//                                                timeslot.add(time51);
+                                                } else {
+                                                    //item.setTime("-");
+//                                                    time60.put("timeslot_id51", "-");
+                                                }
+                                                if (date.equals(t52.getText().toString())) {
+//                                                time52 = new HashMap<String, String>();
+                                                    item.setDate52(object.getString("lucky_number"));
+                                                    time60.put("timeslot_id52", object.getString("lucky_number"));
+//                                                timeslot.add(time52);
+                                                } else {
+                                                    //item.setTime("-");
+//                                                    time60.put("timeslot_id52", "-");
+                                                }
+                                                if (date.equals(t53.getText().toString())) {
+//                                                time53 = new HashMap<String, String>();
+                                                    item.setDate53(object.getString("lucky_number"));
+                                                    time60.put("timeslot_id53", object.getString("lucky_number"));
+//                                                timeslot.add(time53);
+                                                } else {
+                                                    //item.setTime("-");
+//                                                    time60.put("timeslot_id53", "-");
+                                                }
+                                                if (date.equals(t54.getText().toString())) {
 //                                                time60 = new HashMap<String, String>();
-                                            item.setDate60(object.getString("lucky_number"));
-                                            time60.put("timeslot_id1", object.getString("lucky_number"));
+                                                    item.setDate54(object.getString("lucky_number"));
+                                                    time60.put("timeslot_id54", object.getString("lucky_number"));
+//                                                timeslot.add(time54);
+                                                } else {
+                                                    //item.setTime("-");
+//                                                    time60.put("timeslot_id54", "-");
+                                                }
+                                                if (date.equals(t55.getText().toString())) {
+//                                                time55 = new HashMap<String, String>();
+                                                    item.setDate55(object.getString("lucky_number"));
+                                                    time60.put("timeslot_id55", object.getString("lucky_number"));
+//                                                timeslot.add(time55);
+                                                } else {
+                                                    //item.setTime("-");
+//                                                    time60.put("timeslot_id55", "-");
+                                                }
+                                                if (date.equals(t56.getText().toString())) {
+//                                                time56 = new HashMap<String, String>();
+                                                    item.setDate56(object.getString("lucky_number"));
+                                                    time60.put("timeslot_id56", object.getString("lucky_number"));
+//                                                timeslot.add(time56);
+                                                    //item.setTime(object.getString("timeslot_id"));
+                                                } else {
+                                                    //item.setTime("-");
+//                                                    time60.put("timeslot_id56", "-");
+                                                }
+
+                                                if (date.equals(t57.getText().toString())) {
+//                                                time57 = new HashMap<String, String>();
+                                                    item.setDate57(object.getString("lucky_number"));
+                                                    time60.put("timeslot_id57", object.getString("lucky_number"));
+//                                                timeslot.add(time57);
+                                                } else {
+                                                    //item.setTime("-");
+//                                                    time60.put("timeslot_id57", "-");
+                                                }
+
+                                                if (date.equals(t58.getText().toString())) {
+//                                                time58 = new HashMap<String, String>();
+                                                    item.setDate58(object.getString("lucky_number"));
+                                                    time60.put("timeslot_id58", object.getString("lucky_number"));
+                                                    //item.setTime(object.getString("timeslot_id"));
+//                                                timeslot.add(time58);
+                                                } else {
+                                                    //item.setTime("-");
+//                                                    time60.put("timeslot_id58", "-");
+                                                }
+
+                                                if (date.equals(t59.getText().toString())) {
+//                                                time59 = new HashMap<String, String>();
+                                                    item.setDate59(object.getString("lucky_number"));
+                                                    time60.put("timeslot_id59", object.getString("lucky_number"));
+                                                    //item.setTime(object.getString("timeslot_id"));
+//                                                timeslot.add(time59);
+                                                } else {
+                                                    //item.setTime("-");
+//                                                    time60.put("timeslot_id59", "-");
+                                                }
+
+
+                                                if (date.equals(t60.getText().toString())) {
+//                                            item.setTime(object.getString("timeslot_id"));
+
+                                                    item.setDate60(object.getString("lucky_number"));
+                                                    time60.put("timeslot_id60", object.getString("lucky_number"));
 //
-                                            item.setData(time);
+//                                                    item.setData(time);
 
 
-                                            Log.i("list length", "" + timeslot);
-                                            //item.setTime(object.getString("timeslot_id"));
-                                        } else {
-                                            //item.setTime("-");
-                                            item.setDate60("-");
+                                                    Log.i("list length", "" + timeslot);
+                                                    //item.setTime(object.getString("timeslot_id"));
+                                                } else {
+                                                    //item.setTime("-");
+//                                                    time60.put("timeslot_id60", "-");
+                                                }
+
+                                            }
+                                        else{
+
                                         }
 
-                                        timeslot.add(time60);
+                                        }
+
+                                timeslot.add(time60);
+//                                        if(object.getString("timeslot_id").equals("2")){
+//
+//                                            if (date.equals(t51.getText().toString())) {
+////                                                time51 = new HashMap<String, String>();
+//                                                item.setDate51(object.getString("lucky_number"));
+//                                                time59.put("timeslot_id10", object.getString("lucky_number"));
+////                                                timeslot.add(time51);
+//                                            } else {
+//                                                //item.setTime("-");
+//                                                item.setDate51("-");
+//                                            }
+//                                            if (date.equals(t52.getText().toString())) {
+////                                                time52 = new HashMap<String, String>();
+//                                                item.setDate52(object.getString("lucky_number"));
+//                                                time59.put("timeslot_id9", object.getString("lucky_number"));
+////                                                timeslot.add(time52);
+//                                            } else {
+//                                                //item.setTime("-");
+//                                                item.setDate52("-");
+//                                            }
+//                                            if (date.equals(t53.getText().toString())) {
+////                                                time53 = new HashMap<String, String>();
+//                                                item.setDate53(object.getString("lucky_number"));
+//                                                time59.put("timeslot_id8", object.getString("lucky_number"));
+////                                                timeslot.add(time53);
+//                                            } else {
+//                                                //item.setTime("-");
+//                                                item.setDate53("-");
+//                                            }
+//                                            if (date.equals(t54.getText().toString())) {
+////                                                time60 = new HashMap<String, String>();
+//                                                item.setDate54(object.getString("lucky_number"));
+//                                                time59.put("timeslot_id7", object.getString("lucky_number"));
+////                                                timeslot.add(time54);
+//                                            } else {
+//                                                //item.setTime("-");
+//                                                item.setDate54("-");
+//                                            }
+//                                            if (date.equals(t55.getText().toString())) {
+////                                                time55 = new HashMap<String, String>();
+//                                                item.setDate55(object.getString("lucky_number"));
+//                                                time59.put("timeslot_id6", object.getString("lucky_number"));
+////                                                timeslot.add(time55);
+//                                            } else {
+//                                                //item.setTime("-");
+//                                                item.setDate55("-");
+//                                            }
+//                                            if (date.equals(t56.getText().toString())) {
+////                                                time56 = new HashMap<String, String>();
+//                                                item.setDate56(object.getString("lucky_number"));
+//                                                time59.put("timeslot_id5", object.getString("lucky_number"));
+////                                                timeslot.add(time56);
+//                                                //item.setTime(object.getString("timeslot_id"));
+//                                            } else {
+//                                                //item.setTime("-");
+//                                                item.setDate56("-");
+//                                            }
+//
+//                                            if (date.equals(t57.getText().toString())) {
+////                                                time57 = new HashMap<String, String>();
+//                                                item.setDate57(object.getString("lucky_number"));
+//                                                time59.put("timeslot_id4", object.getString("lucky_number"));
+////                                                timeslot.add(time57);
+//                                            } else {
+//                                                //item.setTime("-");
+//                                                item.setDate57("-");
+//                                            }
+//
+//                                            if (date.equals(t58.getText().toString())) {
+////                                                time58 = new HashMap<String, String>();
+//                                                item.setDate58(object.getString("lucky_number"));
+//                                                time59.put("timeslot_id3", object.getString("lucky_number"));
+//                                                //item.setTime(object.getString("timeslot_id"));
+////                                                timeslot.add(time58);
+//                                            } else {
+//                                                //item.setTime("-");
+//                                                item.setDate58("-");
+//                                            }
+//
+//                                            if (date.equals(t59.getText().toString())) {
+////                                                time59 = new HashMap<String, String>();
+//                                                item.setDate59(object.getString("lucky_number"));
+//                                                time59.put("timeslot_id2", object.getString("lucky_number"));
+//                                                //item.setTime(object.getString("timeslot_id"));
+////                                                timeslot.add(time59);
+//                                            } else {
+//                                                //item.setTime("-");
+//                                                item.setDate59("-");
+//                                            }
+//
+//
+//                                            if (date.equals(t60.getText().toString())) {
+////                                            item.setTime(object.getString("timeslot_id"));
+//
+//                                                item.setDate60(object.getString("lucky_number"));
+//                                                time59.put("timeslot_id1", object.getString("lucky_number"));
+////
+//                                                item.setData(time);
+//
+//
+//                                                Log.i("list length", "" + timeslot);
+//                                                //item.setTime(object.getString("timeslot_id"));
+//                                            } else {
+//                                                //item.setTime("-");
+//                                                item.setDate60("-");
+//                                            }
+//                                            timeslot.add(time59);
+//                                        }
+
+
 
                                         /*else if(object.getString("date").equals(1))
                                 {
@@ -1050,19 +1174,19 @@ public class result_chart extends AppCompatActivity {
                                     chartList.add(item);
                                     adapter = new chartAdapter(getApplicationContext(), timeslot);
                                     listView.setAdapter(adapter);
-                                }
+//                                }
 
                             }
                             else
                             {
                                 Toast.makeText(getApplicationContext(),"No Data Present To Display!!!",Toast.LENGTH_SHORT).show();
                             }
-                        }
+//                        }
 
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(),"something went wrong please try again!!!",Toast.LENGTH_SHORT).show();
-                        }
+//                        else
+//                        {
+//                            Toast.makeText(getApplicationContext(),"something went wrong please try again!!!",Toast.LENGTH_SHORT).show();
+//                        }
 
                     } catch (Exception e) {
                         pDialog.hide();
