@@ -41,7 +41,7 @@ public class LandingScreen extends AppCompatActivity implements View.OnClickList
                     startActivity(new Intent(getApplicationContext(),Home.class));
                 break;
             case R.id.card_view2:
-                Toast.makeText(getApplicationContext(),"Game-2",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainPage.class));
                 break;
         }
     }

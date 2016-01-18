@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/dash_board"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="Home" />
+        <item
+            android:id="@+id/bet"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="Bet" />
+        <item
+            android:id="@+id/today_history"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Today's History" />
+        <item
+            android:id="@+id/my_accounts"
+            android:icon="@android:drawable/ic_menu_gallery"
+            android:title="My Accounts" />
+        <item
+            android:id="@+id/previous_result"
+            android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="Previous Game Results" />
+        <item
+            android:id="@+id/upcoming_matches"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Upcoming Matches" />
+
+        <item
+            android:id="@+id/cancel_bet"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Cancel Bet" />
+        <item
+            android:id="@+id/cancelled_bets"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Cancelled Bets" />
+        <item
+            android:id="@+id/score_card"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Score Card" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Logout" />
+    </group>
+
+
+
+</menu>

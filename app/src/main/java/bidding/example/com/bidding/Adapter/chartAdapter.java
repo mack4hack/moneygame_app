@@ -130,7 +130,7 @@ public class chartAdapter extends BaseAdapter
         }
 
         HashMap<String, String> rowItem = chartList.get(position);
-        Log.i("rowitwm", "" + rowItem);
+//        Log.i("rowitwm", "" + rowItem);
 //        viewHolder.mTime.setText(rowItem.get(result_chart.TIMESLOT));
 
 //       for(int k=0; k<96; k++){

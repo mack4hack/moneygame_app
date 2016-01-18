@@ -427,7 +427,7 @@ public class result_chart extends AppCompatActivity {
 
                             JSONArray jsonArray =  outerObject.getJSONArray("data");
 
-                                    Log.i("date1", ""+jsonArray.length());
+//                                    Log.i("date1", ""+jsonArray.length());
 
                             for(int k=1; k<=96; k++) {
                                 time60 = new HashMap<String, String>();
@@ -787,7 +787,7 @@ public class result_chart extends AppCompatActivity {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate35(object.getString("lucky_number"));
                                             time60.put("timeslot_id35", object.getString("lucky_number"));
-                                            Log.i("date3", date);
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
@@ -797,7 +797,7 @@ public class result_chart extends AppCompatActivity {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate36(object.getString("lucky_number"));
                                             time60.put("timeslot_id36", object.getString("lucky_number"));
-                                            Log.i("date3", date);
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
@@ -807,7 +807,7 @@ public class result_chart extends AppCompatActivity {
 //                                            item.setTime(object.getString("timeslot_id"));
                                             item.setDate37(object.getString("lucky_number"));
                                             time60.put("timeslot_id37", object.getString("lucky_number"));
-                                            Log.i("date3", date);
+//                                            Log.i("date3", date);
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");
@@ -1037,7 +1037,7 @@ public class result_chart extends AppCompatActivity {
 //                                                    item.setData(time);
 
 
-                                                    Log.i("list length", "" + timeslot);
+//                                                    Log.i("list length", "" + timeslot);
                                                     //item.setTime(object.getString("timeslot_id"));
                                                 } else {
                                                     //item.setTime("-");

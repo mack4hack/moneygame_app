@@ -1,0 +1,199 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="bidding.example.com.bidding.Cricket_Home"
+    android:padding="@dimen/abc_action_bar_content_inset_material">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/abc_action_bar_content_inset_material"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/bet"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bet"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/textColorWhite"
+                    />
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/history"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Today's History"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/accounts"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="My Accounts"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/previous_game_rslt"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Previous Game Results"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/upcoming"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Upcoming Matches"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/cancel_bet"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel Bet"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cnclld_bets"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1"
+
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cancelled Bets"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/textColorWhite"/>
+
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/score_crd"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Score Card"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
+
+

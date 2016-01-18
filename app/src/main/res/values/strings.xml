@@ -12,8 +12,8 @@
 
     <string name="login_res_2">2</string>
     <string name="login_res_0">0</string>
-    <string name="Lottery">Game 1</string>
-    <string name="Cricket">Game 2</string>
+    <string name="Lottery">Lottery</string>
+    <string name="Cricket">Cricket</string>
     <!--button string-->
     <string name="place_bet">Place Bet</string>
     <string name="first_digit">Single Digit 1st</string>
@@ -98,5 +98,6 @@
     <string name="title_activity_tansaction_wise_history">Tansaction History</string>
     <string name="title_activity_transaction_indetail">Transaction Details</string>
     <string name="title_activity_notification_">Notification_Activity</string>
+    <string name="title_activity_main_page">MainPage</string>
     <!--http://46.101.6.171/moneygame/-->
 </resources>

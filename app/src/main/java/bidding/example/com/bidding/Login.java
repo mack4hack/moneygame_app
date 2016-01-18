@@ -90,7 +90,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         preferences=getSharedPreferences(getString(R.string.prefrence),MODE_PRIVATE);
         if(preferences.getString("logged","").equals("logged")){
             finish();
-            Intent intent = new Intent(Login.this, Home.class);
+            Intent intent = new Intent(Login.this, LandingScreen.class);
             startActivity(intent);
         }
 
@@ -240,7 +240,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
                             startService();
 
-                            startActivity(new Intent(getApplicationContext(), Home.class));
+                            startActivity(new Intent(getApplicationContext(), LandingScreen.class));
                             finish();
                             Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
                         } else if (object.getString("status").equals("false")) {
@@ -297,26 +297,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         }
 
     }
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public void createNotification(View view) {
-        // Prepare intent which is triggered if the
-        // notification is selected
-        Intent intent = new Intent(this, Notification_Activity.class);
-        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
 
-        // Build notification
-        // Actions are just fake
-        Notification noti = new Notification.Builder(this)
-                .setContentTitle("New mail from " + "test@gmail.com")
-                .setContentText("Subject").setSmallIcon(R.mipmap.ic_launcher)
-                .setContentIntent(pIntent).build();
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        // hide the notification after its selected
-        noti.flags |= Notification.FLAG_AUTO_CANCEL;
-
-        notificationManager.notify(0, noti);
-
-    }
 
     public void doWork(final String time)
     {
@@ -470,10 +451,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         //startService(new Intent(getBaseContext(), tim.class));
 
         startService(new Intent(getBaseContext(),timeService.class));
+        startService(new Intent(getBaseContext(), UpdateService.class));
     }
 
     // Method to stop the service
     public void stopService() {
         stopService(new Intent(getBaseContext(), timeService.class));
+        stopService(new Intent(getBaseContext(), UpdateService.class));
     }
 }

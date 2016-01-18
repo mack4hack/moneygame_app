@@ -1,14 +1,20 @@
 package bidding.example.com.bidding;
 
+import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -59,7 +65,7 @@ public class UpdateService extends Service {
                             connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                             connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED)
                     {
-                        jodiLuckyNo();
+                        LuckyNo();
 
                     }
 
@@ -136,7 +142,7 @@ public class UpdateService extends Service {
     }
 
     //get lucky no if Jodi bet is placed
-    private void jodiLuckyNo()
+    private void LuckyNo()
     {
 
 //                            Toast.makeText(getActivity(),"Api Call For Third",Toast.LENGTH_SHORT).show();
@@ -159,6 +165,7 @@ public class UpdateService extends Service {
                 StringRequest jsonObjReq = new StringRequest(Request.Method.GET,
                         url, new Response.Listener<String>() {
 
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onResponse(String response) {
                         Log.d(TAG, response.toString());
@@ -168,27 +175,28 @@ public class UpdateService extends Service {
                             int status = 0;
                             if(object.getString("status").equals("true"))
                             {
-                                /*for(int i=0;i<number3.length;i++)
-                                {
-                                    if(number3[i]!=null)
-                                    {
-                                        if(Integer.parseInt(number3[i]) == Integer.parseInt(object.getString("lucky_number")))
-                                        {
-//                                            status = 1;
-                                            Toast.makeText(getActivity(), "Congratulation, You Win The Bet.", Toast.LENGTH_SHORT).show();
-                                            try {
-//                                                double result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (Integer.parseInt(number3[i]) * 85);
-//                                                balanceStatus.setProgress((int) result);
-                                            }catch (Exception e)
-                                            {
-                                                e.printStackTrace();
-                                            }
 
-                                            break;
-                                        }
+                                // Prepare intent which is triggered if the
+                                // notification is selected
+                                JSONObject jsonObject = object.getJSONObject("data");
+                                Intent intent = new Intent(getApplicationContext(), Notification_Activity.class);
+                                intent.putExtra("lucky_number",jsonObject.getString("lucky_number"));
+                                intent.putExtra("timeslot",jsonObject.getString("end"));
+                                PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int) System.currentTimeMillis(), intent, 0);
 
-                                    }
-                                }*/
+                                // Build notification
+                                // Actions are just fake
+                                Notification noti = new Notification.Builder(getApplicationContext())
+                                        .setContentTitle("Lucky Number" + jsonObject.getString("lucky_number"))
+                                        .setContentText("").setSmallIcon(R.mipmap.ic_launcher)
+                                        .setContentIntent(pIntent).build();
+                                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                                // hide the notification after its selected
+                                noti.flags |= Notification.FLAG_AUTO_CANCEL;
+
+                                notificationManager.notify(0, noti);
+
+
                                 if(status == 0)
                                 {
 
