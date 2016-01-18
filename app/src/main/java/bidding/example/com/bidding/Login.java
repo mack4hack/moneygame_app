@@ -1,8 +1,13 @@
 package bidding.example.com.bidding;
 
+import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -83,6 +88,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             e.printStackTrace();
         }
         preferences=getSharedPreferences(getString(R.string.prefrence),MODE_PRIVATE);
+        if(preferences.getString("logged","").equals("logged")){
+            finish();
+            Intent intent = new Intent(Login.this, Home.class);
+            startActivity(intent);
+        }
 
         SharedPreferences.Editor editor=preferences.edit();
         editor.putString("latest_bet","not_placed");
@@ -215,7 +225,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 editor.putString("player_id", innerObject.getString("player_id"));
                                 editor.putString("player_password", mPassword.getText().toString().trim());
 
-
+                                editor.putString("logged","logged");
                                 editor.commit();
 
                                 /*Thread myThread = null;
@@ -285,6 +295,26 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 // Adding request to request queue
             AppControler.getInstance().addToRequestQueue(strReq, tag_string_req);
         }
+
+    }
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void createNotification(View view) {
+        // Prepare intent which is triggered if the
+        // notification is selected
+        Intent intent = new Intent(this, Notification_Activity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+
+        // Build notification
+        // Actions are just fake
+        Notification noti = new Notification.Builder(this)
+                .setContentTitle("New mail from " + "test@gmail.com")
+                .setContentText("Subject").setSmallIcon(R.mipmap.ic_launcher)
+                .setContentIntent(pIntent).build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // hide the notification after its selected
+        noti.flags |= Notification.FLAG_AUTO_CANCEL;
+
+        notificationManager.notify(0, noti);
 
     }
 

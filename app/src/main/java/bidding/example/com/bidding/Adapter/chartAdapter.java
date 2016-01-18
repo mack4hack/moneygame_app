@@ -60,7 +60,7 @@ public class chartAdapter extends BaseAdapter
             convertView = inflater.inflate(R.layout.child_chart_result,null);
             viewHolder = new Holder();
 
-            viewHolder.mTime = (TextView) convertView.findViewById(R.id.text_view1);
+//            viewHolder.mTime = (TextView) convertView.findViewById(R.id.text_view1);
             viewHolder.mNumber1 = (TextView) convertView.findViewById(R.id.text_view2);
             viewHolder.mNumber2 = (TextView) convertView.findViewById(R.id.text_view3);
             viewHolder.mNumber3 = (TextView) convertView.findViewById(R.id.text_view4);
@@ -131,7 +131,7 @@ public class chartAdapter extends BaseAdapter
 
         HashMap<String, String> rowItem = chartList.get(position);
         Log.i("rowitwm", "" + rowItem);
-        viewHolder.mTime.setText(rowItem.get(result_chart.TIMESLOT));
+//        viewHolder.mTime.setText(rowItem.get(result_chart.TIMESLOT));
 
 //       for(int k=0; k<96; k++){
 //            viewHolder.mTime.setText(rowItem.getTime());

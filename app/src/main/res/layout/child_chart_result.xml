@@ -9,7 +9,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="31">
-                <TextView
+             <!--   <TextView
                     android:id="@+id/text_view1"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
             <View
                 android:layout_width="0.1dp"
                 android:layout_height="match_parent"
-                android:background="@color/textColor"/>
+                android:background="@color/textColor"/>-->
             <TextView
                 android:id="@+id/text_view2"
                 android:layout_width="20dp"

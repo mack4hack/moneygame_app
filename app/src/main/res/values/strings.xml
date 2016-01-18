@@ -7,7 +7,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_single__bet">Single_Bet</string>
 
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="login_res_2">2</string>
@@ -29,8 +29,8 @@
     <string name="title_activity_landing_screen">LandingScreen</string>
     <string name="title_activity_result_chart">result_chart</string>
 
- <!--Api Urls-->
-   <!--login api
+    <!--Api Urls-->
+    <!--login api
     <string name="login">http://lottery.pixmadness.in/api/players/login</string>
     &lt;!&ndash;pacebetseconde url&ndash;&gt;
     <string name="PlaceBetFirst"> http://lottery.pixmadness.in/api/bets/PlaceBetFirst</string>
@@ -56,7 +56,7 @@
     <string name="get_current_result">http://lottery.pixmadness.in/api/bets/getServerTimings</string>-->
 
 
- <!--Live URL's   -->
+    <!--Live URL's   -->
 
     <!--login api-->
     <string name="login">http://46.101.6.171/moneygame/api/players/login</string>
@@ -87,15 +87,16 @@
     <!--current result    -->
     <string name="get_current_result">http://46.101.6.171/moneygame/api/bets/getServerTimings</string>
 
-   <!--get account detail by date-->
+    <!--get account detail by date-->
     <string name="get_acc_by_date">http://46.101.6.171/moneygame/api/players/accountsPlayerByDate?player_id=</string>
 
-   <!--get transaction -->
+    <!--get transaction -->
     <string name="get_transaction">http://46.101.6.171/moneygame/api/players/accountsPlayerByDrawTime?player_id=</string>
-<!--get specific transaction-->
-   <string name="get_specific_transaction">http://46.101.6.171/moneygame/api/players/accountsPlayerByTransactionId?transaction_id=</string>
+    <!--get specific transaction-->
+    <string name="get_specific_transaction">http://46.101.6.171/moneygame/api/players/accountsPlayerByTransactionId?transaction_id=</string>
 
     <string name="title_activity_tansaction_wise_history">Tansaction History</string>
     <string name="title_activity_transaction_indetail">Transaction Details</string>
+    <string name="title_activity_notification_">Notification_Activity</string>
     <!--http://46.101.6.171/moneygame/-->
 </resources>

@@ -443,7 +443,7 @@ public class result_chart extends AppCompatActivity {
 
                                         if (object.getString("timeslot_id").equals(String.valueOf(k))) {
 
-                                            time60.put("timeslot", object.getString("timeslot_id"));
+//                                            time60.put("timeslot", object.getString("timeslot_id"));
 
                                             if (date.equals(t1.getText().toString())) {
 //                                                item.setTime(object.getString("timeslot_id"));
@@ -1052,123 +1052,6 @@ public class result_chart extends AppCompatActivity {
                                         }
 
                                 timeslot.add(time60);
-//                                        if(object.getString("timeslot_id").equals("2")){
-//
-//                                            if (date.equals(t51.getText().toString())) {
-////                                                time51 = new HashMap<String, String>();
-//                                                item.setDate51(object.getString("lucky_number"));
-//                                                time59.put("timeslot_id10", object.getString("lucky_number"));
-////                                                timeslot.add(time51);
-//                                            } else {
-//                                                //item.setTime("-");
-//                                                item.setDate51("-");
-//                                            }
-//                                            if (date.equals(t52.getText().toString())) {
-////                                                time52 = new HashMap<String, String>();
-//                                                item.setDate52(object.getString("lucky_number"));
-//                                                time59.put("timeslot_id9", object.getString("lucky_number"));
-////                                                timeslot.add(time52);
-//                                            } else {
-//                                                //item.setTime("-");
-//                                                item.setDate52("-");
-//                                            }
-//                                            if (date.equals(t53.getText().toString())) {
-////                                                time53 = new HashMap<String, String>();
-//                                                item.setDate53(object.getString("lucky_number"));
-//                                                time59.put("timeslot_id8", object.getString("lucky_number"));
-////                                                timeslot.add(time53);
-//                                            } else {
-//                                                //item.setTime("-");
-//                                                item.setDate53("-");
-//                                            }
-//                                            if (date.equals(t54.getText().toString())) {
-////                                                time60 = new HashMap<String, String>();
-//                                                item.setDate54(object.getString("lucky_number"));
-//                                                time59.put("timeslot_id7", object.getString("lucky_number"));
-////                                                timeslot.add(time54);
-//                                            } else {
-//                                                //item.setTime("-");
-//                                                item.setDate54("-");
-//                                            }
-//                                            if (date.equals(t55.getText().toString())) {
-////                                                time55 = new HashMap<String, String>();
-//                                                item.setDate55(object.getString("lucky_number"));
-//                                                time59.put("timeslot_id6", object.getString("lucky_number"));
-////                                                timeslot.add(time55);
-//                                            } else {
-//                                                //item.setTime("-");
-//                                                item.setDate55("-");
-//                                            }
-//                                            if (date.equals(t56.getText().toString())) {
-////                                                time56 = new HashMap<String, String>();
-//                                                item.setDate56(object.getString("lucky_number"));
-//                                                time59.put("timeslot_id5", object.getString("lucky_number"));
-////                                                timeslot.add(time56);
-//                                                //item.setTime(object.getString("timeslot_id"));
-//                                            } else {
-//                                                //item.setTime("-");
-//                                                item.setDate56("-");
-//                                            }
-//
-//                                            if (date.equals(t57.getText().toString())) {
-////                                                time57 = new HashMap<String, String>();
-//                                                item.setDate57(object.getString("lucky_number"));
-//                                                time59.put("timeslot_id4", object.getString("lucky_number"));
-////                                                timeslot.add(time57);
-//                                            } else {
-//                                                //item.setTime("-");
-//                                                item.setDate57("-");
-//                                            }
-//
-//                                            if (date.equals(t58.getText().toString())) {
-////                                                time58 = new HashMap<String, String>();
-//                                                item.setDate58(object.getString("lucky_number"));
-//                                                time59.put("timeslot_id3", object.getString("lucky_number"));
-//                                                //item.setTime(object.getString("timeslot_id"));
-////                                                timeslot.add(time58);
-//                                            } else {
-//                                                //item.setTime("-");
-//                                                item.setDate58("-");
-//                                            }
-//
-//                                            if (date.equals(t59.getText().toString())) {
-////                                                time59 = new HashMap<String, String>();
-//                                                item.setDate59(object.getString("lucky_number"));
-//                                                time59.put("timeslot_id2", object.getString("lucky_number"));
-//                                                //item.setTime(object.getString("timeslot_id"));
-////                                                timeslot.add(time59);
-//                                            } else {
-//                                                //item.setTime("-");
-//                                                item.setDate59("-");
-//                                            }
-//
-//
-//                                            if (date.equals(t60.getText().toString())) {
-////                                            item.setTime(object.getString("timeslot_id"));
-//
-//                                                item.setDate60(object.getString("lucky_number"));
-//                                                time59.put("timeslot_id1", object.getString("lucky_number"));
-////
-//                                                item.setData(time);
-//
-//
-//                                                Log.i("list length", "" + timeslot);
-//                                                //item.setTime(object.getString("timeslot_id"));
-//                                            } else {
-//                                                //item.setTime("-");
-//                                                item.setDate60("-");
-//                                            }
-//                                            timeslot.add(time59);
-//                                        }
-
-
-
-                                        /*else if(object.getString("date").equals(1))
-                                {
-                                    item.setTime(object.getString("timeslot_id"));
-                                    item.setDate1(object.getString("lucky_number"));
-                                    //item.setTime(object.getString("timeslot_id"));
-                                }*/
 
                                     }
                                     chartList.add(item);
@@ -1181,12 +1064,6 @@ public class result_chart extends AppCompatActivity {
                             {
                                 Toast.makeText(getApplicationContext(),"No Data Present To Display!!!",Toast.LENGTH_SHORT).show();
                             }
-//                        }
-
-//                        else
-//                        {
-//                            Toast.makeText(getApplicationContext(),"something went wrong please try again!!!",Toast.LENGTH_SHORT).show();
-//                        }
 
                     } catch (Exception e) {
                         pDialog.hide();

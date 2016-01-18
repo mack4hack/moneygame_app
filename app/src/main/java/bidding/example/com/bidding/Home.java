@@ -127,6 +127,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            SharedPreferences settings = getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.remove("logged");
+            editor.commit();
             stopService();
                 startActivity(new Intent(getApplicationContext(),Login.class));
                 finish();
@@ -284,8 +288,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             fragmentTransaction.commit();
         }
         else if (id == R.id.logout) {
-            startActivity(new Intent(getApplicationContext(),Login.class));
+            SharedPreferences settings = getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.remove("logged");
+            editor.commit();
+            stopService();
             finish();
+            startActivity(new Intent(getApplicationContext(), Login.class));
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -13,7 +13,6 @@
 
     >
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -59,5 +58,14 @@
                 android:layout_marginRight="@dimen/abc_action_bar_content_inset_material"
                 android:background="@color/colorPrimary"
                 android:textColor="#fff"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:id="@+id/button"
+            android:layout_gravity="center"
+            android:onClick="createNotification"/>
     </LinearLayout>
+
+
 </FrameLayout>
