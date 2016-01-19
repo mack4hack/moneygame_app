@@ -2,6 +2,7 @@ package bidding.example.com.bidding;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,11 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bidding.example.com.bidding.Chart.SampleObject;
+import bidding.example.com.bidding.Lottery_Game.Multiple_Bet;
+import bidding.example.com.bidding.Lottery_Game.Single_Bet;
+import bidding.example.com.bidding.ResultChart.result_chart;
 
 /**
  * Created by Gaurav on 18/01/16.
  */
-public class Cricket_Home extends Fragment {
+public class Cricket_Home extends Fragment implements View.OnClickListener{
 
 
 
@@ -65,5 +69,47 @@ public class Cricket_Home extends Fragment {
         ccnclbet.setCardBackgroundColor(Color.parseColor("#7986CB"));
         ccnclldbet.setCardBackgroundColor(Color.parseColor("#7986CB"));
         cscrcrd.setCardBackgroundColor(Color.parseColor("#FFAB00"));
+
+        cbet.setOnClickListener(this);
+        chistory.setOnClickListener(this);
+        caccnt.setOnClickListener(this);
+        cprvsgame.setOnClickListener(this);
+        cupcmngmtch.setOnClickListener(this);
+        ccnclbet.setOnClickListener(this);
+        ccnclldbet.setOnClickListener(this);
+        cscrcrd.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+
+            case R.id.bet:
+                break;
+
+            case R.id.history:
+
+
+                break;
+            case R.id.accounts:
+
+                break;
+            case R.id.previous_game_rslt:
+                MainPage.toolbar.setTitle("Previous Game Result");
+                android.support.v4.app.FragmentManager previousManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction previousTransaction = previousManager.beginTransaction();
+                PreviousGameREsult previousGameREsult = new PreviousGameREsult();
+                previousTransaction.replace(R.id.containar1, previousGameREsult);
+                previousTransaction.commit();
+                break;
+            case R.id.upcoming:
+                MainPage.toolbar.setTitle("Upcoming Matches");
+                android.support.v4.app.FragmentManager upcomingManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction upcomingTransaction = upcomingManager.beginTransaction();
+                UpcomingMatches upcomingMatches = new UpcomingMatches();
+                upcomingTransaction.replace(R.id.containar1, upcomingMatches);
+                upcomingTransaction.commit();
+                break;
+        }
     }
 }

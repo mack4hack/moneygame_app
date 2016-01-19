@@ -131,7 +131,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             editor.remove("logged");
             editor.commit();
             stopService();
-            startActivity(new Intent(getApplicationContext(),Login.class));
+            startActivity(new Intent(getApplicationContext(),Login.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
             finish();
             return true;
         }
@@ -171,88 +171,22 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
 //            fragmentTransaction.replace(R.id.containar1, fragment);
 //            fragmentTransaction.commit();
         }
-        else if (id == R.id.today_history)
+        else if (id == R.id.previous_result)
         {
-//            Home.toolbar.setTitle("History");
-//            android.support.v4.app.FragmentManager TodayManager = getSupportFragmentManager();
-//            android.support.v4.app.FragmentTransaction TodayTransaction = TodayManager.beginTransaction();
-//            TodaysHistory Today = new TodaysHistory();
-//            TodayTransaction.replace(R.id.containar1, Today);
-//            TodayTransaction.commit();
-        } else if (id == R.id.cancel_bet)
+            MainPage.toolbar.setTitle("Previous Game Result");
+            android.support.v4.app.FragmentManager previousManager = this.getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction previousTransaction = previousManager.beginTransaction();
+            PreviousGameREsult previousGameREsult = new PreviousGameREsult();
+            previousTransaction.replace(R.id.containar1, previousGameREsult);
+            previousTransaction.commit();
+        } else if (id == R.id.upcoming_matches)
         {
-//            try
-//            {
-//                String betStatus = getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("latest_bet", "");
-//                if(betStatus.equals("not_placed"))
-//                {
-//                    Toast.makeText(getApplicationContext(), "You dont have any bet to cancel!!!", Toast.LENGTH_SHORT).show();
-//                }
-//                else
-//                {
-//                    final AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
-//                    infoDialog.setTitle("Bet Information");
-//                    infoDialog.setMessage("You are about to cancel bet of amount RS." + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("bet_amount", ""));
-//
-//                    infoDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            dialogInterface.dismiss();
-//                        }
-//                    });
-//
-//                    infoDialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//                            dialogInterface.dismiss();
-//                            // custom dialog
-//                            final AlertDialog.Builder dialog = new AlertDialog.Builder(Home.this);
-//                            dialog.setTitle("Confirmation");
-//                            dialog.setCancelable(true);
-//                            // ...Irrelevant code for customizing the buttons and title
-//                            LayoutInflater inflater = getLayoutInflater();
-//                            View dialogView = inflater.inflate(R.layout.custom_layout, null);
-//                            dialog.setView(dialogView);
-//
-//                            final EditText mPassword = (EditText) dialogView.findViewById(R.id.editConfPassword);
-//                            dialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialogInterface, int i) {
-//                                    if (TextUtils.isEmpty(mPassword.getText().toString().trim())) {
-//                                        Toast.makeText(getApplicationContext(), "please enter pasword!!!", Toast.LENGTH_SHORT).show();
-//                                    } else {
-//
-//                                        if (getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_password", "").equals(mPassword.getText().toString().trim())) {
-//                                            String res = "player_id=" + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "");
-//                                            dialogInterface.cancel();
-//                                            new AsynCancelBet().execute(getString(R.string.cancel_bet), res);
-//
-//                                        } else {
-//                                            Toast.makeText(getApplicationContext(), "Invalid password!!!", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                    }
-//                                }
-//                            });
-//
-//                            dialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-//                                @Override
-//                                public void onClick(DialogInterface dialogInterface, int i) {
-//                                    dialogInterface.cancel();
-//                                }
-//                            });
-//                            dialog.create();
-//                            dialog.show();
-//                        }
-//                    });
-//
-//                    infoDialog.create();
-//                    infoDialog.show();
-//                }
-//            }
-//            catch (Exception e)
-//            {
-//                e.printStackTrace();
-//            }
+            MainPage.toolbar.setTitle("Upcoming Matches");
+            android.support.v4.app.FragmentManager upcomingManager = this.getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction upcomingTransaction = upcomingManager.beginTransaction();
+            UpcomingMatches upcomingMatches = new UpcomingMatches();
+            upcomingTransaction.replace(R.id.containar1, upcomingMatches);
+            upcomingTransaction.commit();
         }
         else if (id == R.id.limit)
         {
@@ -293,7 +227,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             editor.commit();
             stopService();
             finish();
-            startActivity(new Intent(getApplicationContext(), Login.class));
+            startActivity(new Intent(getApplicationContext(), Login.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
 
         }
 
