@@ -73,6 +73,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 
     private int currentMinute,currentHoure;
     private static int flag;
+    static String no1, no2, no3;
     String result;
     Double default_amnt, prsnt_amnt, diff, percent;
 
@@ -457,7 +458,9 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 //                                        int famt = bal - res;
 
                                         SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).edit();
-
+                                        editor.putString("latest_bet", no1);
+                                        editor.putString("digit", no1);
+                                        editor.putString("game_type", "1");
 //                                        editor.putString("present_amount",""+famt);
                                         editor.commit();
                                         getPresentAmount();
@@ -495,6 +498,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                 map.put("player_id", getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", ""));
                                 for (int i = 0; i < number.length; i++) {
                                     if (number[i] != null) {
+                                        no1 = number[i];
                                         map.put("data[" + cnt + "][digit]", number[i]);
                                         map.put("data[" + cnt + "][bet_amount]", amount[i]);
                                         cnt++;
@@ -660,6 +664,9 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 //                                        int famt = bal - res;
 
                                         SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).edit();
+                                        editor.putString("latest_bet", no2);
+                                        editor.putString("digit", no2);
+                                        editor.putString("game_type", "1");
 //                                        editor.putString("present_amount",""+famt);
                                         editor.commit();
                                         getPresentAmount();
@@ -697,6 +704,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                 map.put("player_id", getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", ""));
                                 for (int i = 0; i < number2.length; i++) {
                                     if (number2[i] != null) {
+                                        no2= number2[i];
                                         map.put("data[" + cnt + "][digit]", number2[i]);
                                         map.put("data[" + cnt + "][bet_amount]", amount2[i]);
                                         cnt++;
@@ -867,6 +875,9 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 
                                         SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).edit();
 //                                        editor.putString("present_amount",""+famt);
+                                        editor.putString("latest_bet", no3);
+                                        editor.putString("game_type", "1");
+                                        editor.putString("digit", no3);
                                         editor.commit();
                                         getPresentAmount();
 //                                        balanceStatus.setProgress(famt);
@@ -904,6 +915,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                 map.put("player_id", getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", ""));
                                 for (int i = 0; i < number3.length; i++) {
                                     if (number3[i] != null) {
+                                        no3 = number3[i];
                                         map.put("data[" + cnt + "][digit]", number3[i]);
                                         map.put("data[" + cnt + "][bet_amount]", amount3[i]);
                                         cnt++;

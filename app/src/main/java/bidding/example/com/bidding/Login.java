@@ -450,8 +450,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     public void startService() {
         //startService(new Intent(getBaseContext(), tim.class));
 
-        startService(new Intent(getBaseContext(),timeService.class));
-        startService(new Intent(getBaseContext(), UpdateService.class));
+
     }
 
     // Method to stop the service

@@ -294,7 +294,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             editor.commit();
             stopService();
             finish();
-            startActivity(new Intent(getApplicationContext(), Login.class));
+            startActivity(new Intent(getApplicationContext(), Login.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
         }
 

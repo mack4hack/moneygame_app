@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.os.IBinder;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -65,6 +66,7 @@ public class UpdateService extends Service {
                             connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                             connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED)
                     {
+                        Log.i("service","start");
                         LuckyNo();
 
                     }
@@ -145,19 +147,10 @@ public class UpdateService extends Service {
     private void LuckyNo()
     {
 
-//                            Toast.makeText(getActivity(),"Api Call For Third",Toast.LENGTH_SHORT).show();
-
-
-                //            postString = "player_id=" + playerId + "&data[0][digit]=" + mEditJodi.getText().toString().trim() + "&data[0][bet_amount]=" + mEditJodiAmout.getText().toString().trim();
-                            /*JodiNo=Integer.parseInt(mEditJodi.getText().toString().trim());
-                            flag = 3;
-                            new AsynTaskCall().execute(getString(R.string.PlaceBetJodi),postString);
-
-*/
                 String tag_json_obj = "json_obj_req";
                 final String TAG = "response";
                 final String url = getString(R.string.get_result);//+ URLEncoder.encode("/"+postString);
-
+                Log.i("url",""+url);
                 //          final ProgressDialog pDialog = new ProgressDialog(getActivity());
                 //pDialog.setMessage("Loading...");
                 //pDialog.show();
@@ -178,16 +171,16 @@ public class UpdateService extends Service {
 
                                 // Prepare intent which is triggered if the
                                 // notification is selected
-                                JSONObject jsonObject = object.getJSONObject("data");
+//                                JSONObject jsonObject = object.getJSONObject("data");
                                 Intent intent = new Intent(getApplicationContext(), Notification_Activity.class);
-                                intent.putExtra("lucky_number",jsonObject.getString("lucky_number"));
-                                intent.putExtra("timeslot",jsonObject.getString("end"));
+                                intent.putExtra("lucky_number",object.getString("lucky_number"));
+//                                intent.putExtra("timeslot",object.getString("end"));
                                 PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int) System.currentTimeMillis(), intent, 0);
 
                                 // Build notification
                                 // Actions are just fake
-                                Notification noti = new Notification.Builder(getApplicationContext())
-                                        .setContentTitle("Lucky Number" + jsonObject.getString("lucky_number"))
+                                Notification noti = new NotificationCompat.Builder(getApplicationContext())
+                                        .setContentTitle("Lucky Number is: " + object.getString("lucky_number"))
                                         .setContentText("").setSmallIcon(R.mipmap.ic_launcher)
                                         .setContentIntent(pIntent).build();
                                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -196,10 +189,8 @@ public class UpdateService extends Service {
 
                                 notificationManager.notify(0, noti);
 
-
                                 if(status == 0)
                                 {
-
 
                                 }
 
