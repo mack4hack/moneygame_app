@@ -1,6 +1,8 @@
 package bidding.example.com.bidding;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,6 +36,9 @@ import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import bidding.example.com.bidding.APICALL.ApiCall;
 import bidding.example.com.bidding.Adapter.HistoryAdapter;
@@ -72,6 +77,25 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         DashBoard fragment = new DashBoard();
         fragmentTransaction.replace(R.id.containar, fragment);
         fragmentTransaction.commit();
+
+        Calendar cur_cal = new GregorianCalendar();
+        cur_cal.setTimeInMillis(System.currentTimeMillis());//set the current time and date for this calendar
+
+        Calendar cal = new GregorianCalendar();
+        cal.add(Calendar.DAY_OF_YEAR, cur_cal.get(Calendar.DAY_OF_YEAR));
+        cal.set(Calendar.HOUR_OF_DAY, 00);
+        cal.set(Calendar.MINUTE, 01);
+        cal.set(Calendar.SECOND, cur_cal.get(Calendar.SECOND));
+        cal.set(Calendar.MILLISECOND, cur_cal.get(Calendar.MILLISECOND));
+        cal.set(Calendar.DATE, cur_cal.get(Calendar.DATE));
+        cal.set(Calendar.MONTH, cur_cal.get(Calendar.MONTH));
+
+        startService(new Intent(getBaseContext(), timeService.class));
+
+        Intent intent = new Intent(this, UpdateService.class);
+        PendingIntent pintent = PendingIntent.getService(this, 0, intent, 0);
+        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 24 * 60 * 60 * 1000, pintent);
     }
 
     @Override
@@ -114,7 +138,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
+        getMenuInflater().inflate(R.menu.custom_menu, menu);
         return true;
     }
 
@@ -136,7 +160,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 finish();
             return true;
         }
-
+        if (id == R.id.game_2) {
+            startActivity(new Intent(getApplicationContext(),MainPage.class));
+            finish();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

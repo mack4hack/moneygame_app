@@ -272,10 +272,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 
                             if(default_amnt>prsnt_amnt){
                                 diff = default_amnt-prsnt_amnt;
-                                Log.i("percentag",""+diff);
                                 percent = (diff/default_amnt)*100;
-                                Log.i("percentag",""+default_amnt);
-                                Log.i("percentag",""+(default_amnt/diff));
 
                             }
                             else {

@@ -99,5 +99,7 @@
     <string name="title_activity_transaction_indetail">Transaction Details</string>
     <string name="title_activity_notification_">Notification_Activity</string>
     <string name="title_activity_main_page">MainPage</string>
+    <string name="title_activity_play_details">PlayDetails</string>
+    <string name="title_activity_more_games">MoreGames</string>
     <!--http://46.101.6.171/moneygame/-->
 </resources>

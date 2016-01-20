@@ -80,17 +80,6 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             drawer.closeDrawer(GravityCompat.START);
         } else {
 
-           /* if(count == 0)
-            {
-                count=-1;
-                super.onBackPressed();
-            }
-            else
-            {
-                count++;
-                startActivity(new Intent(getApplicationContext(),Home.class));
-                finish();
-            }*/
             if (exit) {
                 finish(); // finish activity
             } else {
@@ -135,6 +124,11 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             finish();
             return true;
         }
+        if (id == R.id.game_1) {
+            startActivity(new Intent(getApplicationContext(),Home.class));
+            finish();
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -158,11 +152,20 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
 //            fragmentTransaction.replace(R.id.containar1, fragment);
 //            fragmentTransaction.commit();
         }
-        else if (id == R.id.chart) {
+        else if (id == R.id.bet) {
 //            startActivity(new Intent(getApplicationContext(),result_chart.class));
 
         }
-        else if(id==R.id.today_summary)
+        else if(id==R.id.today_history)
+        {
+//            toolbar.setTitle("Todays Summary");
+//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            TodaysSummary fragment = new TodaysSummary();
+//            fragmentTransaction.replace(R.id.containar1, fragment);
+//            fragmentTransaction.commit();
+        }
+        else if(id==R.id.my_accounts)
         {
 //            toolbar.setTitle("Todays Summary");
 //            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
@@ -179,7 +182,8 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             PreviousGameREsult previousGameREsult = new PreviousGameREsult();
             previousTransaction.replace(R.id.containar1, previousGameREsult);
             previousTransaction.commit();
-        } else if (id == R.id.upcoming_matches)
+        }
+        else if (id == R.id.upcoming_matches)
         {
             MainPage.toolbar.setTitle("Upcoming Matches");
             android.support.v4.app.FragmentManager upcomingManager = this.getSupportFragmentManager();
@@ -188,12 +192,12 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             upcomingTransaction.replace(R.id.containar1, upcomingMatches);
             upcomingTransaction.commit();
         }
-        else if (id == R.id.limit)
+        else if (id == R.id.cancel_bet)
         {
 //            getPresentAmount();
 
         }
-        else if (id == R.id.multiple_bet)
+        else if (id == R.id.cancelled_bets)
         {
 //            toolbar.setTitle("Multiple Bet");
 //            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
@@ -202,21 +206,12 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
 //            fragmentTransaction.replace(R.id.containar1, fragment);
 //            fragmentTransaction.commit();
         }
-        else if(id == R.id.profile)
+        else if(id == R.id.score_card)
         {
 //            toolbar.setTitle("Multiple Bet");
 //            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
 //            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //            Profile fragment = new Profile();
-//            fragmentTransaction.replace(R.id.containar1, fragment);
-//            fragmentTransaction.commit();
-        }
-        else if(id == R.id.terms)
-        {
-//            toolbar.setTitle("Term & Condition");
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            TermAndCondition fragment = new TermAndCondition();
 //            fragmentTransaction.replace(R.id.containar1, fragment);
 //            fragmentTransaction.commit();
         }

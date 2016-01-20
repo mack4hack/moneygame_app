@@ -90,7 +90,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         preferences=getSharedPreferences(getString(R.string.prefrence),MODE_PRIVATE);
         if(preferences.getString("logged","").equals("logged")){
             finish();
-            Intent intent = new Intent(Login.this, LandingScreen.class);
+            Intent intent = new Intent(Login.this, Home.class);
             startActivity(intent);
         }
 
@@ -240,7 +240,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
                             startService();
 
-                            startActivity(new Intent(getApplicationContext(), LandingScreen.class));
+                            startActivity(new Intent(getApplicationContext(), Home.class));
                             finish();
                             Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
                         } else if (object.getString("status").equals("false")) {

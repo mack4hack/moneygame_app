@@ -11,7 +11,6 @@
     <TextView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
         android:text="Match Details" />
 
         <View
@@ -23,31 +22,50 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="Play"
-            android:id="@+id/button3" />
+            android:id="@+id/btn_play" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="Later Today"
-            android:id="@+id/button4" />
+            android:id="@+id/btn_today" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="Tomorrow"
-            android:id="@+id/button5" />
+            android:id="@+id/btn_tmrw" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="Next 8 Days"
-        android:id="@+id/button"/>
+        android:id="@+id/btn_next"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/textColor"
+            android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
         android:text="Cricket Calendar"
         android:id="@+id/button2"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/textColor"
+            android:layout_marginTop="5dp"/>
+
+    <CalendarView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/calendarView"
+        android:layout_gravity="left|bottom" />
     </LinearLayout>
 </FrameLayout>

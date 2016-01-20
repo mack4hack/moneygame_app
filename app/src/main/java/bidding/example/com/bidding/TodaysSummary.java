@@ -178,7 +178,7 @@ public class TodaysSummary extends Fragment {
         }
         else
         {
-            Toast.makeText(getActivity(),"please check internet connetion!!!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"please check internet connection!!!",Toast.LENGTH_SHORT).show();
         }
     }
 
