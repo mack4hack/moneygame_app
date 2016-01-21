@@ -102,8 +102,6 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 
         initization(view);
 
-
-
         FirstBtnPlaceBet.setOnClickListener(this);
         SecondBtnPlaceBet.setOnClickListener(this);
         JodiBtnPlaceBet.setOnClickListener(this);
@@ -129,8 +127,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
         FirstEditText7= (EditText) v.findViewById(R.id.firsteditText7);
         FirstEditText8= (EditText) v.findViewById(R.id.firsteditText8);
         FirstEditText9= (EditText) v.findViewById(R.id.firsteditText9);
-
-
+        
         FirstTextView0= (TextView) v.findViewById(R.id.firsttextview0);
         FirstTextView1= (TextView) v.findViewById(R.id.firsttextview1);
         FirstTextView2= (TextView) v.findViewById(R.id.firsttextview2);
@@ -392,7 +389,6 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 
                     }
 
-
                     if (!TextUtils.isEmpty(FirstEditText8.getText().toString().trim())) {
                         number[8] = "8";
                         amount[8] = FirstEditText8.getText().toString().trim();
@@ -406,7 +402,6 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 
                     }
 
-                    //new AsynTaskCall().execute(getString(R.string.PlaceBetFirst),parameter.toString());
                     if (connectionDetector.isConnectingToInternet()) {
                         for (int i = 0; i < 10; i++) {
                             if (amount[i] != null) {
@@ -561,12 +556,10 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         amount2[0] = SecondEditText0.getText().toString().trim();
                     }
 
-
                     if (!TextUtils.isEmpty(SecondEditText1.getText().toString().trim())) {
                         number2[1] = "1";
                         amount2[1] = SecondEditText1.getText().toString().trim();
                     }
-
 
                     if (!TextUtils.isEmpty(SecondEditText2.getText().toString().trim())) {
                         number2[2] = "2";
@@ -835,13 +828,10 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                             }
                         }
 
-
-
                         String tag_json_obj = "json_obj_req";
                         final String TAG = "response";
                         final String url = getString(R.string.PlaceBetJodi);//+ URLEncoder.encode("/"+postString);
 
-                        //final ProgressDialog pDialog = new ProgressDialog(getActivity());
                         pDialog.setMessage("Loading...");
                         pDialog.show();
 
@@ -921,9 +911,6 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                         cnt++;
                                     }
                                 }
-                                /*for (String key : map.keySet()) {
-                                    Log.i("vales", "key = " + key + " val = " + map.get(key));
-                                }*/
                                 return map;
                             }
 
@@ -1039,7 +1026,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                         jodiNumberEditText6.setText(cursor_second.getString(7));
                                         jodiNumberEditText7.setText(cursor_second.getString(8));
                                         jodiNumberEditText8.setText(cursor_second.getString(9));
-                                        //jodiNumberEditText9.setText(cursor.getString(1));
+
                                         break;
                                     }
                                     else
@@ -1118,7 +1105,6 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         error.printStackTrace();
                         VolleyLog.d("CUrrent Result", "Error: " + error.getMessage());
                     }
-                    //    pDialog.hide();
                 }
             }) ;
 
@@ -1160,7 +1146,6 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
             public void onAnimationStart(Animation animation) {
 
             }
-
             @Override
             public void onAnimationEnd(Animation animation) {
                 countDown(tv, count - 1);
@@ -1248,11 +1233,20 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
             try {
                 mTimer.setText("" + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) + ":" + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0));
 
-                if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
+                if(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 0 &&
+                getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) <= 10 ){
+                    Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                    anim.setDuration(100); //You can manage the time of the blink with this parameter
+                    anim.setStartOffset(20);
+                    anim.setRepeatMode(Animation.REVERSE);
+                    anim.setRepeatCount(Animation.INFINITE);
+                    mCurrentResult.startAnimation(anim);
+                }
+               /* if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
                         (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) >= 51 &&
                                 getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) <= 60)) {
                     countDown(mCurrentResult, 14);
-                }
+                }*/
                 if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
                         getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 40) {
                     CurrentResult();

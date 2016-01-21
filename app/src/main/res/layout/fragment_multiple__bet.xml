@@ -106,10 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/single_tile_holder"
         android:orientation="vertical"
-
         >
-
-
 
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -159,7 +156,6 @@
                 android:layout_height="wrap_content"
                 android:scrollbars="horizontal"
                 android:scrollbarFadeDuration="0"
-                android:scrollbarAlwaysDrawHorizontalTrack="true"
                 android:fadeScrollbars="false">
 
             <TableLayout
@@ -174,13 +170,11 @@
                     android:showDividers="beginning|end"
                     android:divider="@android:color/darker_gray">
 
-
                     <TextView
                         android:id="@+id/firsttextview0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-
                         android:gravity="center"/>
 
                     <TextView
@@ -188,7 +182,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
-
                         android:gravity="center"/>
 
                     <TextView
@@ -196,7 +189,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
-
                         android:gravity="center"/>
 
                     <TextView
@@ -204,7 +196,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"
-
                         android:gravity="center"/>
 
                     <TextView
@@ -212,7 +203,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4"
-
                         android:gravity="center"/>
 
                     <TextView
@@ -220,7 +210,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="5"
-
                         android:gravity="center"/>
 
                     <TextView
@@ -228,16 +217,13 @@
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:text="6"
-
                         android:gravity="center"/>
-
 
                     <TextView
                         android:id="@+id/firsttextview7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="7"
-
                         android:gravity="center"/>
 
                     <TextView
@@ -245,9 +231,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="8"
-
                         android:gravity="center"/>
-
 
                     <TextView
                         android:id="@+id/firsttextview9"
@@ -266,15 +250,10 @@
 
                 </TableRow>
 
-<!--<View android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:background="@color/textColor"/>-->
                 <TableRow
                     android:id="@+id/tableRow2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" >
-
-
 
                     <EditText
                         android:id="@+id/firsteditText0"
@@ -292,7 +271,6 @@
                         android:layout_height="wrap_content"
                         android:hint="0"
                         android:inputType="number"/>
-
 
                     <EditText
                         android:id="@+id/firsteditText2"
@@ -333,7 +311,6 @@
                         android:layout_height="wrap_content"
                         android:hint="0"
                         android:inputType="number"/>
-
 
                     <EditText
                         android:id="@+id/firsteditText7"
@@ -389,7 +366,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/card_view_first_digit"
-
             >
 
             <android.support.v7.widget.CardView
@@ -480,13 +456,11 @@
                         android:showDividers="beginning|end"
                         android:divider="@android:color/darker_gray">
 
-
                         <TextView
                             android:id="@+id/secondtextview0"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
-
                             android:gravity="center"/>
 
                         <TextView
@@ -494,7 +468,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1"
-
                             android:gravity="center"/>
 
                         <TextView
@@ -502,7 +475,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2"
-
                             android:gravity="center"/>
 
                         <TextView
@@ -510,7 +482,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="3"
-
                             android:gravity="center"/>
 
                         <TextView
@@ -518,7 +489,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="4"
-
                             android:gravity="center"/>
 
                         <TextView
@@ -526,7 +496,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="5"
-
                             android:gravity="center"/>
 
                         <TextView
@@ -534,16 +503,13 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:text="6"
-
                             android:gravity="center"/>
-
 
                         <TextView
                             android:id="@+id/secondtextview7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="7"
-
                             android:gravity="center"/>
 
                         <TextView
@@ -551,9 +517,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="8"
-
                             android:gravity="center"/>
-
 
                         <TextView
                             android:id="@+id/secondtextview9"
