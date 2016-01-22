@@ -367,6 +367,13 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                                 view = mEditFirstSingleAmout;
                                 cancel = true;
                             }
+                            else if(Integer.parseInt(mEditFirstSingleAmout.getText().toString().trim())>Double.parseDouble(result)){
+                                mEditFirstSingleAmout.requestFocus();
+                                mEditFirstSingleAmout.setFocusable(true);
+                                mEditFirstSingleAmout.setError("Not enough amount found");
+                                view = mEditFirstSingleAmout;
+                                cancel = true;
+                            }
                             else if(Integer.parseInt(mEditFirstSingleAmout.getText().toString().trim())<20)
                             {
                                 mEditFirstSingleAmout.requestFocus();
@@ -521,6 +528,13 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                             view = mEditSecondSingleAmout;
                             cancel = true;
                         }
+                        else if(Integer.parseInt(mEditSecondSingleAmout.getText().toString().trim())>Double.parseDouble(result)) {
+                            mEditSecondSingleAmout.requestFocus();
+                            mEditSecondSingleAmout.setFocusable(true);
+                            mEditSecondSingleAmout.setError("Not enough amount found");
+                            view = mEditSecondSingleAmout;
+                            cancel = true;
+                        }
                         else if(Integer.parseInt(mEditSecondSingleAmout.getText().toString().trim())<20)
                         {
                             mEditSecondSingleAmout.requestFocus();
@@ -668,6 +682,13 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                             mEditJodiAmout.requestFocus();
                             mEditJodiAmout.setFocusable(true);
                             mEditJodiAmout.setError("please enter amount");
+                            view = mEditJodiAmout;
+                            cancel = true;
+                        }
+                        else if(Integer.parseInt(mEditJodiAmout.getText().toString().trim())>Double.parseDouble(result)) {
+                            mEditJodiAmout.requestFocus();
+                            mEditJodiAmout.setFocusable(true);
+                            mEditJodiAmout.setError("Not enough amount found");
                             view = mEditJodiAmout;
                             cancel = true;
                         }

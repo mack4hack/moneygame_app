@@ -405,7 +405,11 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                     if (connectionDetector.isConnectingToInternet()) {
                         for (int i = 0; i < 10; i++) {
                             if (amount[i] != null) {
-                                if (Integer.parseInt(amount[i]) < 20 || Integer.parseInt(amount[i])%20!=0) {
+                                if(Integer.parseInt(amount[i])>Double.parseDouble(result)){
+                                    Toast.makeText(getActivity(), "Not enough amount found", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                else if (Integer.parseInt(amount[i]) < 20 || Integer.parseInt(amount[i])%20!=0) {
                                     Toast.makeText(getActivity(), msg + i, Toast.LENGTH_SHORT).show();
                                     return;
 
@@ -610,7 +614,11 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                     if (connectionDetector.isConnectingToInternet()) {
                         for (int i = 0; i < 10; i++) {
                             if (amount2[i] != null) {
-                                if (Integer.parseInt(amount2[i]) < 20 || Integer.parseInt(amount2[i])%20!=0) {
+                                if(Integer.parseInt(amount2[i])>Double.parseDouble(result)){
+                                    Toast.makeText(getActivity(), "Not enough amount found", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                else if (Integer.parseInt(amount2[i]) < 20 || Integer.parseInt(amount2[i])%20!=0) {
                                     Toast.makeText(getActivity(), msg + i, Toast.LENGTH_SHORT).show();
                                     return;
                                 }
@@ -816,7 +824,11 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         {
                             if(amount3[i] != null)
                             {
-                                if(Integer.parseInt(amount3[i]) < 20 || Integer.parseInt(amount3[i])%2!=0)
+                                if(Integer.parseInt(amount3[i])>Double.parseDouble(result)){
+                                    Toast.makeText(getActivity(), "Not enough amount found", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                else if(Integer.parseInt(amount3[i]) < 20 || Integer.parseInt(amount3[i])%2!=0)
                                 {
                                     Toast.makeText(getActivity(),"please enter valid amount",Toast.LENGTH_SHORT).show();
                                     return;
