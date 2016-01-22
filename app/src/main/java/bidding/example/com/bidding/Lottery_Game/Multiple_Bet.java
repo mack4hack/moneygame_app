@@ -52,7 +52,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
     private ProgressBar balanceStatus;
     private TextView FirstTextView0,FirstTextView1,FirstTextView2,FirstTextView3,FirstTextView4,FirstTextView5,FirstTextView6,FirstTextView7,FirstTextView8,FirstTextView9;
     private EditText FirstEditText0,FirstEditText1,FirstEditText2,FirstEditText3,FirstEditText4,FirstEditText5,FirstEditText6,FirstEditText7,FirstEditText8,FirstEditText9;
-
+    private TextView text_progress;
     private TextView SecondTextView0,SecondTextView1,SecondTextView2,SecondTextView3,SecondTextView4,SecondTextView5,SecondTextView6,SecondTextView7,SecondTextView8,SecondTextView9;
     private EditText SecondEditText0,SecondEditText1,SecondEditText2,SecondEditText3,SecondEditText4,SecondEditText5,SecondEditText6,SecondEditText7,SecondEditText8,SecondEditText9;
     private ConnectionDetector connectionDetector;
@@ -116,6 +116,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
         mTimer= (TextView) v.findViewById(R.id.time_left);
         mCurrentResult = (TextView) v.findViewById(R.id.current_result);
         mCurrentSession= (TextView) v.findViewById(R.id.current_seesion);
+        text_progress = (TextView) v.findViewById(R.id.txtprogress2);
         //First
         FirstEditText0= (EditText) v.findViewById(R.id.firsteditText0);
         FirstEditText1= (EditText) v.findViewById(R.id.firsteditText1);
@@ -258,6 +259,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                             {
                                 int bal = (int) Math.round(prsnt_amnt);
                                 balanceStatus.setProgress(bal);
+                                text_progress.setText(result);
 
                             }
 
@@ -1095,7 +1097,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                             innerObject.getString("start");
                             innerObject.getString("end");
 
-                            mCurrentSession.setText("Current Session: "+innerObject.getString("end"));
+                            mCurrentSession.setText("Current Draw: "+innerObject.getString("end"));
                             mCurrentResult.setText(innerObject.getString("lucky_number"));
                         }
                     }
@@ -1260,7 +1262,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                     countDown(mCurrentResult, 14);
                 }*/
                 if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
-                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 40) {
+                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 50) {
                     CurrentResult();
                 }
                 singleFirstLuckyNo();
@@ -1283,7 +1285,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
     private void singleFirstLuckyNo()
     {
         if(flag==1 && (getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getInt("currentMinute",0) == 14 &&
-                getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getInt("currentMinute",0) == 40))
+                getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getInt("currentMinute",0) == 50))
         {
             flag=0;
             //Toast.makeText(getActivity(),"Api Call For First",Toast.LENGTH_SHORT).show();
@@ -1385,7 +1387,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
     private void singleSecondLuckyNo()
     {
         if(flag == 2 && (getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getInt("currentMinute",0) == 14 &&
-                getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getInt("currentMinute",0) == 40))
+                getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getInt("currentMinute",0) == 50))
         {
                 flag=0;
                 //Toast.makeText(getActivity(),"Api Call For Second",Toast.LENGTH_SHORT).show();
@@ -1488,7 +1490,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
     private void jodiLuckyNo()
     {
         if(flag==3 && (getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getInt("currentMinute",0) == 14 &&
-                getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getInt("currentMinute",0) == 40))
+                getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getInt("currentMinute",0) == 50))
         {
             flag=0;
 //                            Toast.makeText(getActivity(),"Api Call For Third",Toast.LENGTH_SHORT).show();

@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="30dp"
             android:orientation="horizontal"
             android:weightSum="4">
             <TextView
@@ -26,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.6"
                 android:text="04:00"
+                android:textSize="15sp"
                 android:textColor="@color/textColor"
                 android:gravity="center"
                 android:layout_gravity="center"/>
@@ -34,9 +35,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="Current Session:03:30 pm"
+                android:text="Current Draw:03:30 pm"
                 android:textColor="@color/textColor"
                 android:paddingLeft="5dp"
+                android:textSize="15sp"
                 android:gravity="left"
                 android:layout_gravity="center"/>
             <TextView
@@ -54,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
                 android:text=""
-                android:textSize="14dp"
+                android:textSize="15sp"
                 android:gravity="center"
                 android:textColor="@color/textColor"
                 android:layout_gravity="center"
@@ -141,13 +143,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Number"
+                        android:text="Digit"
                         android:gravity="center"
                         android:textColor="@color/textColor"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Amount"
+                        android:text="Chips"
                         android:gravity="center"
                         android:layout_marginTop="20dp"
                         android:textColor="@color/textColor"/>
@@ -426,13 +428,13 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Number"
+                        android:text="Digit"
                         android:gravity="center"
                         android:textColor="@color/textColor"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Amount"
+                        android:text="Chips"
                         android:gravity="center"
                         android:textColor="@color/textColor"
                         android:layout_marginTop="20dp"/>
@@ -720,13 +722,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Number"
+                            android:text="Digit"
                             android:gravity="center"
                             android:textColor="@color/textColor"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="Amount"
+                            android:text="Chips"
                             android:gravity="center"
                             android:textColor="@color/textColor"
                             android:layout_marginTop="20dp"/>
@@ -1026,12 +1028,14 @@
                     android:layout_weight="1"
                     android:text=""
                     android:gravity="center"
+                    android:id="@+id/txtprogress2"
                     android:textColor="@color/textColor"
                     android:layout_gravity="center"/>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     >
+
                     <ProgressBar
                         android:id="@+id/ProgressBar02"
                         style="@style/CustomProgressBar"

@@ -58,7 +58,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
     private static int FirstNo,SecondNo,JodiNo;
     private EditText mEditFirstSingleDigit,mEditSecondSingleDigit,mEditJodi,mEditFirstSingleAmout,mEditSecondSingleAmout,mEditJodiAmout;
     private Button mBtnFirstSingleDigit,mBtnSecondSingleDigit,mBtnJodi;
-    private TextView mFirstSingleDigitReturn,mSecondSingleDigitReturn,mJodiReturn,mCurrentResult;
+    private TextView mFirstSingleDigitReturn,mSecondSingleDigitReturn,mJodiReturn,mCurrentResult, text_progrees;
     public  TextView mTimer,mCurrentSession;
     ProgressDialog pDialog;
     private View view=null;
@@ -110,6 +110,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
         }*/
         connectionDetector=new ConnectionDetector(getActivity());
 
+        text_progrees = (TextView) view.findViewById(R.id.txtprogress);
         balanceStatus = (ProgressBar) view.findViewById(R.id.ProgressBar01);
         int default_amnt= (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("default_amt", "")));
         balanceStatus.setMax(default_amnt);
@@ -267,6 +268,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                             {
                                 int bal = (int) Math.round(prsnt_amnt);
                                 balanceStatus.setProgress(bal);
+                                text_progrees.setText(result);
 
                             }
 
@@ -970,7 +972,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                             innerObject.getString("lucky_number");
                             innerObject.getString("start");
                             innerObject.getString("end");
-                            mCurrentSession.setText("Current Session: "+innerObject.getString("end"));
+                            mCurrentSession.setText("Current Draw: "+innerObject.getString("end"));
                             mCurrentResult.setText(innerObject.getString("lucky_number"));
                         }
                     }
@@ -1085,7 +1087,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                 }*/
 
                 if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
-                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 40) {
+                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 50) {
                     CurrentResult();
                 }
 
