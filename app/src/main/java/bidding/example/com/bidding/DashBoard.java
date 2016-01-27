@@ -121,6 +121,7 @@ public class DashBoard extends Fragment implements View.OnClickListener{
                 break;*/
             case R.id.single_bet_card:
                 try {
+                    Home.toolbar.setTitle("Single Bet");
                     android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     Single_Bet fragment = new Single_Bet();

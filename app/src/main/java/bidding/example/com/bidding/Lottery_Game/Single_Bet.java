@@ -322,7 +322,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.custom_menu, menu);
+//        inflater.inflate(R.menu.custom_menu, menu);
     }
 
     @Override
@@ -1073,12 +1073,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                 mTimer.setText("" + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) + ":" + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0));
                 if(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 0 &&
                         getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) <= 10 ){
-                    Animation anim = new AlphaAnimation(0.0f, 1.0f);
-                    anim.setDuration(100); //You can manage the time of the blink with this parameter
-                    anim.setStartOffset(20);
-                    anim.setRepeatMode(Animation.REVERSE);
-                    anim.setRepeatCount(Animation.INFINITE);
-                    mCurrentResult.startAnimation(anim);
+                    countDown(mCurrentResult, 10);
                 }
                /* if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
                         (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) >= 51 &&
@@ -1087,7 +1082,8 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                 }*/
 
                 if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
-                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 50) {
+                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) == 50 &&
+                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) >= 40) {
                     CurrentResult();
                 }
 

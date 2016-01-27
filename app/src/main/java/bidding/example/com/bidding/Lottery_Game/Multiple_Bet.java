@@ -52,7 +52,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
     private ProgressBar balanceStatus;
     private TextView FirstTextView0,FirstTextView1,FirstTextView2,FirstTextView3,FirstTextView4,FirstTextView5,FirstTextView6,FirstTextView7,FirstTextView8,FirstTextView9;
     private EditText FirstEditText0,FirstEditText1,FirstEditText2,FirstEditText3,FirstEditText4,FirstEditText5,FirstEditText6,FirstEditText7,FirstEditText8,FirstEditText9;
-    private TextView text_progress;
+    private TextView text_progress, text_bet_ttl1, text_bet_ttl2, text_bet_ttl3;
     private TextView SecondTextView0,SecondTextView1,SecondTextView2,SecondTextView3,SecondTextView4,SecondTextView5,SecondTextView6,SecondTextView7,SecondTextView8,SecondTextView9;
     private EditText SecondEditText0,SecondEditText1,SecondEditText2,SecondEditText3,SecondEditText4,SecondEditText5,SecondEditText6,SecondEditText7,SecondEditText8,SecondEditText9;
     private ConnectionDetector connectionDetector;
@@ -76,6 +76,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
     static String no1, no2, no3;
     String result;
     Double default_amnt, prsnt_amnt, diff, percent;
+    Integer total1=0;
 
     CounterClass counterClass;
 
@@ -117,6 +118,9 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
         mCurrentResult = (TextView) v.findViewById(R.id.current_result);
         mCurrentSession= (TextView) v.findViewById(R.id.current_seesion);
         text_progress = (TextView) v.findViewById(R.id.txtprogress2);
+        text_bet_ttl1 = (TextView) v.findViewById(R.id.single_bet_total);
+        text_bet_ttl2 = (TextView) v.findViewById(R.id.second_bet_total);
+        text_bet_ttl3 = (TextView) v.findViewById(R.id.jodi_bets_total);
         //First
         FirstEditText0= (EditText) v.findViewById(R.id.firsteditText0);
         FirstEditText1= (EditText) v.findViewById(R.id.firsteditText1);
@@ -323,13 +327,13 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         FirstEditText4.getText().toString().equals("0") && FirstEditText5.getText().toString().equals("0") &&
                         FirstEditText6.getText().toString().equals("0") && FirstEditText7.getText().toString().equals("0") &&
                         FirstEditText8.getText().toString().equals("0") && FirstEditText9.getText().toString().equals("0")) {
-                    Toast.makeText(getActivity(), "please enter amount!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "please enter chips!!!", Toast.LENGTH_SHORT).show();
                 } else if (TextUtils.isEmpty(FirstEditText0.getText().toString().trim()) && TextUtils.isEmpty(FirstEditText1.getText().toString().trim()) &&
                         TextUtils.isEmpty(FirstEditText2.getText().toString().trim()) && TextUtils.isEmpty(FirstEditText3.getText().toString().trim()) &&
                         TextUtils.isEmpty(FirstEditText4.getText().toString().trim()) && TextUtils.isEmpty(FirstEditText5.getText().toString().trim()) &&
                         TextUtils.isEmpty(FirstEditText6.getText().toString().trim()) && TextUtils.isEmpty(FirstEditText7.getText().toString().trim()) &&
                         TextUtils.isEmpty(FirstEditText8.getText().toString().trim()) && TextUtils.isEmpty(FirstEditText9.getText().toString().trim())) {
-                    Toast.makeText(getActivity(), "please enter amount!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "please enter chips!!!", Toast.LENGTH_SHORT).show();
                 }
 
              /*   else if(Integer.parseInt(FirstEditText0.getText().toString())%20 ==0  && Integer.parseInt(FirstEditText1.getText().toString())%20 ==0 &&
@@ -342,7 +346,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                 else {
                     number = new String[10];
                     amount = new String[10];
-                    String msg = "please enter valid amount at position ";
+                    String msg = "please enter valid chips at position ";
                     if (!TextUtils.isEmpty(FirstEditText0.getText().toString().trim())) {
                         number[0] = "0";
                         amount[0] = FirstEditText0.getText().toString().trim();
@@ -408,7 +412,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         for (int i = 0; i < 10; i++) {
                             if (amount[i] != null) {
                                 if(Integer.parseInt(amount[i])>Double.parseDouble(result)){
-                                    Toast.makeText(getActivity(), "Not enough amount found", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "Not enough chips found", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 else if (Integer.parseInt(amount[i]) < 20 || Integer.parseInt(amount[i])%20!=0) {
@@ -452,7 +456,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                             }
                                         }
                                         //int result = (int) (Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) - (amt * 8.5));
-
+                                        text_bet_ttl1.setText("Bets Total: "+amt);
                                         int res = (int) (amt * 8.5);
 
 //                                        int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
@@ -537,7 +541,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         SecondEditText6.getText().toString().equals("0") && SecondEditText7.getText().toString().equals("0") &&
                         SecondEditText8.getText().toString().equals("0") && SecondEditText9.getText().toString().equals("0"))
                 {
-                    Toast.makeText(getActivity(), "please enter amount!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "please enter chips!!!", Toast.LENGTH_SHORT).show();
 
                 }
                 else if (TextUtils.isEmpty(SecondEditText0.getText().toString().trim()) && TextUtils.isEmpty(SecondEditText1.getText().toString().trim()) &&
@@ -547,7 +551,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         TextUtils.isEmpty(SecondEditText8.getText().toString().trim()) && TextUtils.isEmpty(SecondEditText9.getText().toString().trim()))
                 {
 
-                    Toast.makeText(getActivity(), "please enter amount!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "please enter chips!!!", Toast.LENGTH_SHORT).show();
 
                 }
                 else
@@ -555,7 +559,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                     number2 = new String[10];
                     amount2 = new String[10];
                     StringBuilder builder = new StringBuilder();
-                    String msg = "please enter amount greater than 20 for digit ";
+                    String msg = "please enter chips greater than 20 for digit ";
 
                     if (!TextUtils.isEmpty(SecondEditText0.getText().toString().trim())) {
                         number2[0] = "0";
@@ -617,7 +621,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         for (int i = 0; i < 10; i++) {
                             if (amount2[i] != null) {
                                 if(Integer.parseInt(amount2[i])>Double.parseDouble(result)){
-                                    Toast.makeText(getActivity(), "Not enough amount found", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "Not enough chips found", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 else if (Integer.parseInt(amount2[i]) < 20 || Integer.parseInt(amount2[i])%20!=0) {
@@ -662,6 +666,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                             }
                                         }
                                         int res = (int) (amt * 8.5);
+                                        text_bet_ttl2.setText("Bets Total: :"+amt);
 
 //                                        int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
 //                                        int famt = bal - res;
@@ -754,7 +759,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                             TextUtils.isEmpty(jodiAmountEditText6.getText().toString().trim()) && TextUtils.isEmpty(jodiAmountEditText7.getText().toString().trim()) &&
                             TextUtils.isEmpty(jodiAmountEditText8.getText().toString().trim()) && TextUtils.isEmpty(jodiAmountEditText9.getText().toString().trim()))
                     {
-                        Toast.makeText(getActivity(),"please enter amount!!!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"please enter chips!!!",Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -827,12 +832,12 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                             if(amount3[i] != null)
                             {
                                 if(Integer.parseInt(amount3[i])>Double.parseDouble(result)){
-                                    Toast.makeText(getActivity(), "Not enough amount found", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(), "Not enough chips found", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 else if(Integer.parseInt(amount3[i]) < 20 || Integer.parseInt(amount3[i])%2!=0)
                                 {
-                                    Toast.makeText(getActivity(),"please enter valid amount",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getActivity(),"please enter valid chips",Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 else
@@ -871,7 +876,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                             }
                                         }
 
-
+                                        text_bet_ttl3.setText("Bets Total:"+amt);
                                         int res = (int) (amt * 85);
 
 //                                        int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
@@ -1249,12 +1254,13 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 
                 if(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 0 &&
                 getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) <= 10 ){
-                    Animation anim = new AlphaAnimation(0.0f, 1.0f);
+                 /*   Animation anim = new AlphaAnimation(0.0f, 1.0f);
                     anim.setDuration(100); //You can manage the time of the blink with this parameter
                     anim.setStartOffset(20);
                     anim.setRepeatMode(Animation.REVERSE);
                     anim.setRepeatCount(Animation.INFINITE);
-                    mCurrentResult.startAnimation(anim);
+                    mCurrentResult.startAnimation(anim);*/
+                    countDown(mCurrentResult, 10);
                 }
                /* if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
                         (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) >= 51 &&
@@ -1262,7 +1268,8 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                     countDown(mCurrentResult, 14);
                 }*/
                 if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
-                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 50) {
+                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) <= 50 &&
+                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) >= 40) {
                     CurrentResult();
                 }
                 singleFirstLuckyNo();

@@ -180,7 +180,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         int id = item.getItemId();
         if (id == R.id.dash_board) {
             // Handle the camera action
-            toolbar.setTitle("Single Bet");
+            toolbar.setTitle("Home");
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             DashBoard fragment = new DashBoard();
@@ -299,7 +299,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
         else if(id == R.id.profile)
         {
-            toolbar.setTitle("Multiple Bet");
+            toolbar.setTitle("Profile");
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             Profile fragment = new Profile();
