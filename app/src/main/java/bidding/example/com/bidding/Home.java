@@ -188,6 +188,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             fragmentTransaction.commit();
         }
         else if (id == R.id.chart) {
+            toolbar.setTitle("Home");
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            DashBoard fragment = new DashBoard();
+            fragmentTransaction.replace(R.id.containar, fragment);
+            fragmentTransaction.commit();
             startActivity(new Intent(getApplicationContext(),result_chart.class));
 
         }

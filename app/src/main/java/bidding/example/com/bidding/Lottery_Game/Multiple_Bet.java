@@ -1154,7 +1154,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 
     private void countDown(final TextView tv, final int count) {
         if (count == 0) {
-            tv.setText(""); //Note: the TextView will be visible again here.
+//            tv.setText(""); //Note: the TextView will be visible again here.
             return;
         }
         //tv.setText(count);
