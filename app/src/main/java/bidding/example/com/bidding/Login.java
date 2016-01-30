@@ -226,6 +226,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 editor.putString("player_password", mPassword.getText().toString().trim());
 
                                 editor.putString("logged","logged");
+                                editor.putString("username", mUserName.getText().toString().trim());
                                 editor.commit();
 
                                 /*Thread myThread = null;

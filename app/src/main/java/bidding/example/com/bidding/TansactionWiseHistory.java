@@ -122,6 +122,9 @@ public class TansactionWiseHistory extends AppCompatActivity {
             //double amt = Integer.parseInt(mChip.getText().toString()) * 8.5;
         //    mTotal.setText(mChip.getText().toString());
         }
+        else{
+            mBetText.setText("Jodi Digit");
+        }
 
         if(flag==0)
         {
@@ -290,7 +293,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
                                     JSONObject trnsaction = jsonArray.getJSONObject(i);
 
                                     TransactionDetailsGetSet item = new TransactionDetailsGetSet();
-                                    if (trnsaction.getString("first_digit").equals("999")&&trnsaction.getString("second_digit").equals("999")) {
+                                    if (trnsaction.getInt("first_digit")==999 && trnsaction.getInt("second_digit")==999) {
                                         /*digit = trnsaction.getString("second_digit");
                                         bAmt =  trnsaction.getString("bet_amount_second");
                                         wamt =  trnsaction.getString("win_amount_second");*/
@@ -298,7 +301,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
                                         item.setChip(trnsaction.getString("chips"));
                                         whichBet = "Jodi Digit";
 
-                                    } else if(trnsaction.getString("first_digit").equals("999")&&trnsaction.getString("jodi_digit").equals("999")){
+                                    } else if(trnsaction.getInt("first_digit")==999 && trnsaction.getInt("jodi_digit")==999){
                                         /*digit = trnsaction.getString("first_digit");
                                         bAmt =  trnsaction.getString("bet_amount_first");
                                         wamt =  trnsaction.getString("win_amount_first");*/
@@ -335,7 +338,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(getApplicationContext(),"No transaction present to dusplay!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"No transaction present to display!",Toast.LENGTH_SHORT).show();
                         }
                     }catch (Exception e)
                     {

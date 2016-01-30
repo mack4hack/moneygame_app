@@ -174,6 +174,7 @@ public class UpdateService extends Service {
 //                                JSONObject jsonObject = object.getJSONObject("data");
                                 Intent intent = new Intent(getApplicationContext(), Notification_Activity.class);
                                 intent.putExtra("lucky_number",object.getString("lucky_number"));
+                                intent.putExtra("timeslot", object.getString("draw_time"));
 //                                intent.putExtra("timeslot",object.getString("end"));
                                 PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int) System.currentTimeMillis(), intent, 0);
 
@@ -181,7 +182,7 @@ public class UpdateService extends Service {
                                 // Actions are just fake
                                 Notification noti = new NotificationCompat.Builder(getApplicationContext())
                                         .setContentTitle("Lucky Number is: " + object.getString("lucky_number"))
-                                        .setContentText("").setSmallIcon(R.mipmap.ic_launcher)
+                                        .setContentText("Draw time is: "+object.getString("draw_time")).setSmallIcon(R.mipmap.ic_launcher)
                                         .setContentIntent(pIntent).build();
                                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                                 // hide the notification after its selected

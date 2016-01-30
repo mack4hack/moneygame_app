@@ -73,14 +73,14 @@ public class TodaysSummaryAdapter extends BaseAdapter {
         viewHolder.mAmt.setText(item.getAmount());
         viewHolder.mResult.setText(item.getResult());
 
-        if(item.getResult().equals("0"))
+       /* if(item.getResult().equals("0"))
         {
             viewHolder.mResult.setBackgroundColor(Color.parseColor("#EF9A9A"));
         }
         else
-        {
+        {*/
             viewHolder.mResult.setBackgroundColor(Color.parseColor("#9CCC65"));
-        }
+//        }
 
         return convertView;
     }

@@ -100,7 +100,7 @@ public class timeService extends Service
                     if (s1 == 60) {
                         s1 = 00;
                     } else if (s1 == 0) {
-                        s1 = 0;
+                        s1 = 60;
                     } else if (s1 > 0 && s1 < 60) {
                         s1 = 60 - s1;
                     }

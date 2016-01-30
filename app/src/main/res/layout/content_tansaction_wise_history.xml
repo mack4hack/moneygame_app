@@ -22,7 +22,7 @@
             android:layout_weight="1"
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
-            android:text="Trasaction No."/>
+            android:text="Transaction No."/>
 
         <View
             android:layout_width="0dp"
@@ -38,7 +38,7 @@
             android:layout_weight="1"
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
-            android:text="Trans. Amount"
+            android:text="Trans. Chips"
             android:visibility="gone"/>
 
         <View
@@ -54,7 +54,7 @@
             android:layout_weight="1"
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
-            android:text="Total Chip"/>
+            android:text="Total Chips"/>
 
         <View
             android:layout_width="0dp"

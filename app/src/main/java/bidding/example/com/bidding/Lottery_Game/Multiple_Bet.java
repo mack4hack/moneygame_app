@@ -8,7 +8,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,6 +109,8 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
         SecondBtnPlaceBet.setOnClickListener(this);
         JodiBtnPlaceBet.setOnClickListener(this);
         AutoFill.setOnClickListener(this);
+
+
     }
 
     private void initization(View v)
@@ -132,7 +136,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
         FirstEditText7= (EditText) v.findViewById(R.id.firsteditText7);
         FirstEditText8= (EditText) v.findViewById(R.id.firsteditText8);
         FirstEditText9= (EditText) v.findViewById(R.id.firsteditText9);
-        
+
         FirstTextView0= (TextView) v.findViewById(R.id.firsttextview0);
         FirstTextView1= (TextView) v.findViewById(R.id.firsttextview1);
         FirstTextView2= (TextView) v.findViewById(R.id.firsttextview2);
@@ -228,6 +232,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
         CurrentResult();
     }
 
+
     private String getPresentAmount()
     {
         ConnectionDetector connectionDetector = new ConnectionDetector(getActivity());
@@ -296,7 +301,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                     if (error instanceof TimeoutError) {
                         Toast.makeText(getActivity(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getActivity(), "Present Amount Not Present!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Present Chips Not Present!!!", Toast.LENGTH_SHORT).show();
                     }
                     error.printStackTrace();
                     VolleyLog.d(TAG, "Error: " + error.getMessage());
@@ -456,7 +461,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                             }
                                         }
                                         //int result = (int) (Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) - (amt * 8.5));
-                                        text_bet_ttl1.setText("Bets Total: "+amt);
+//                                        text_bet_ttl1.setText("Bets Total: "+amt);
                                         int res = (int) (amt * 8.5);
 
 //                                        int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
@@ -464,6 +469,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 
                                         SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).edit();
                                         editor.putString("latest_bet", no1);
+                                        editor.putString("bet_amount",String.valueOf(amt));
                                         editor.putString("digit", no1);
                                         editor.putString("game_type", "1");
 //                                        editor.putString("present_amount",""+famt);
@@ -666,13 +672,14 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                             }
                                         }
                                         int res = (int) (amt * 8.5);
-                                        text_bet_ttl2.setText("Bets Total: :"+amt);
+//                                        text_bet_ttl2.setText("Bets Total: :"+amt);
 
 //                                        int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
 //                                        int famt = bal - res;
 
                                         SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).edit();
                                         editor.putString("latest_bet", no2);
+                                        editor.putString("bet_amount",String.valueOf(amt));
                                         editor.putString("digit", no2);
                                         editor.putString("game_type", "1");
 //                                        editor.putString("present_amount",""+famt);
@@ -876,7 +883,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                             }
                                         }
 
-                                        text_bet_ttl3.setText("Bets Total:"+amt);
+//                                        text_bet_ttl3.setText("Bets Total:"+amt);
                                         int res = (int) (amt * 85);
 
 //                                        int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
@@ -885,6 +892,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                         SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).edit();
 //                                        editor.putString("present_amount",""+famt);
                                         editor.putString("latest_bet", no3);
+                                        editor.putString("bet_amount",String.valueOf(amt));
                                         editor.putString("game_type", "1");
                                         editor.putString("digit", no3);
                                         editor.commit();
@@ -1098,12 +1106,12 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         if(object.getString("status").equals("true"))
                         {
                             JSONObject innerObject = object.getJSONObject("data");
-                            innerObject.getString("lucky_number");
+                            JSONObject obj = innerObject.getJSONObject("lucky_number");
                             innerObject.getString("start");
                             innerObject.getString("end");
 
                             mCurrentSession.setText("Current Draw: "+innerObject.getString("end"));
-                            mCurrentResult.setText(innerObject.getString("lucky_number"));
+                            mCurrentResult.setText(obj.getString("lucky_number"));
                         }
                     }
                     catch (Exception e)
@@ -1122,7 +1130,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                     }
                     else {
                         error.printStackTrace();
-                        VolleyLog.d("CUrrent Result", "Error: " + error.getMessage());
+                        VolleyLog.d("Current Result", "Error: " + error.getMessage());
                     }
                 }
             }) ;

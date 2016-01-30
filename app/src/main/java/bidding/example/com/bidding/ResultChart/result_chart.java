@@ -131,6 +131,7 @@ public class result_chart extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         listView = (ListView) findViewById(R.id.resultList);
+        listView.setScrollContainer(false);
 
         t1 = (TextView) findViewById(R.id.text_view2);
         t2 = (TextView) findViewById(R.id.text_view3);
@@ -384,10 +385,7 @@ public class result_chart extends AppCompatActivity {
             if(i==59){
                 t1.setText(date);
             }
-
-
         }
-
     }
 
     public static String getCalculatedDate(String dateFormat, int days) {

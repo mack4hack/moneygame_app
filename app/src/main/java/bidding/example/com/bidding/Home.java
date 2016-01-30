@@ -24,6 +24,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -55,6 +57,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     private boolean exit=false;
     String presnt_amount, result;
     double default_amnt, prsnt_amnt, percentage, prcnt;
+    ImageView icon;
+    TextView username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        icon = (ImageView) findViewById(R.id.imageView);
+        username = (TextView) findViewById(R.id.textuser);
+        username.setText(getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("username", ""));
 
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -227,7 +235,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 {
                     final AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
                     infoDialog.setTitle("Bet Information");
-                    infoDialog.setMessage("You are about to cancel bet of amount RS." + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("bet_amount", ""));
+                    infoDialog.setMessage("You are about to cancel bet of chips " + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("bet_amount", ""));
 
                     infoDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                         @Override
@@ -314,7 +322,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
         else if(id == R.id.terms)
         {
-            toolbar.setTitle("Term & Condition");
+            toolbar.setTitle("Terms & Condition");
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             TermAndCondition fragment = new TermAndCondition();
@@ -378,8 +386,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                             }
                             final AlertDialog.Builder infoDialog = new AlertDialog.Builder(Home.this);
                             infoDialog.setTitle("Account Information");
-                            infoDialog.setMessage("Default Amount : Rs." + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "\n" +
-                                    "Present Amount : Rs." + (int) Math.round(Double.parseDouble(result)) + "\n" +
+                            infoDialog.setMessage("Default Chips : " + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "\n" +
+                                    "Present Chips : " + (int) Math.round(Double.parseDouble(result)) + "\n" +
                                     presnt_amount +" :" + prcnt+"%");
                             infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
@@ -405,7 +413,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     if (error instanceof TimeoutError) {
                         Toast.makeText(getApplicationContext(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getApplicationContext(), "Present Amount Not Present!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Present Chips Not Present!!!", Toast.LENGTH_SHORT).show();
                     }
                     error.printStackTrace();
                     VolleyLog.d(TAG, "Error: " + error.getMessage());

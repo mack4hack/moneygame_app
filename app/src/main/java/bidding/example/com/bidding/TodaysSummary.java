@@ -126,17 +126,18 @@ public class TodaysSummary extends Fragment {
                                     },*/
                                         JSONObject childObject = jsonArray.getJSONObject(i);
                                         HistoryGetSet item = new HistoryGetSet();
-                                        item.setTransactionNo(childObject.getString("balance"));
-                                        item.setTime(childObject.getString("draw_time"));
-                                        item.setTimeSlotId(childObject.getString("timeslot_id"));
-                                        if (childObject.getString("bet_amount").equals("null")) {
-                                            item.setAmount("0");
-                                        } else {
-                                            item.setAmount(childObject.getString("bet_amount"));
-                                        }
-                                        item.setResult(childObject.getString("total_wins"));
 
-                                        todaySummary.add(item);
+                                        if (childObject.getString("bet_amount").equals("null")) {
+//                                            item.setAmount("0");
+                                        } else {
+                                            item.setTransactionNo(childObject.getString("balance"));
+                                            item.setTime(childObject.getString("draw_time"));
+                                            item.setTimeSlotId(childObject.getString("timeslot_id"));
+                                            item.setAmount(childObject.getString("bet_amount"));
+                                            item.setResult(childObject.getString("total_wins"));
+                                            todaySummary.add(item);
+                                        }
+
                                     }
 
                                     todaysHistoryAdapter = new TodaysSummaryAdapter(getActivity(), todaySummary);

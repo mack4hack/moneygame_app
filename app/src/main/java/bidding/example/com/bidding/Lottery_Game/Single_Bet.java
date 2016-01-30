@@ -59,6 +59,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
     private EditText mEditFirstSingleDigit,mEditSecondSingleDigit,mEditJodi,mEditFirstSingleAmout,mEditSecondSingleAmout,mEditJodiAmout;
     private Button mBtnFirstSingleDigit,mBtnSecondSingleDigit,mBtnJodi;
     private TextView mFirstSingleDigitReturn,mSecondSingleDigitReturn,mJodiReturn,mCurrentResult, text_progrees;
+    private TextView FirstBetTotal, SecondBetTotal, JodiBetTotal;
     public  TextView mTimer,mCurrentSession;
     ProgressDialog pDialog;
     private View view=null;
@@ -131,6 +132,10 @@ public class Single_Bet extends Fragment implements View.OnClickListener
         mSecondSingleDigitReturn= (TextView) view.findViewById(R.id.return_second_amount);
         mJodiReturn= (TextView) view.findViewById(R.id.return_jodi_amount);
 
+        FirstBetTotal= (TextView) view.findViewById(R.id.first_bet_ttl);
+        SecondBetTotal= (TextView) view.findViewById(R.id.second_bets_ttl);
+        JodiBetTotal= (TextView) view.findViewById(R.id.jodi_bets_ttl);
+
         mTimer= (TextView) view.findViewById(R.id.time_left);
         mCurrentResult = (TextView) view.findViewById(R.id.current_result);
         mCurrentSession = (TextView) view.findViewById(R.id.current_seesion);
@@ -157,10 +162,12 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 
                 if(!charSequence.toString().equals("")) {
                     mFirstSingleDigitReturn.setText("" + (Integer.parseInt(charSequence.toString()) * 8.5));
+                    FirstBetTotal.setText(charSequence.toString());
                 }
                 else
                 {
                     mFirstSingleDigitReturn.setText("");
+                    FirstBetTotal.setText("");
                 }
             }
 
@@ -182,10 +189,12 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                 Log.i("amt", "" + charSequence);
                 if(!charSequence.toString().equals("")) {
                     mSecondSingleDigitReturn.setText("" + (Integer.parseInt(charSequence.toString()) * 8.5));
+                    SecondBetTotal.setText(charSequence.toString());
                 }
                 else
                 {
                     mSecondSingleDigitReturn.setText("");
+                    SecondBetTotal.setText("");
                 }
             }
 
@@ -206,10 +215,12 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                 Log.i("amt", "" + charSequence);
                 if(!charSequence.toString().equals("")) {
                     mJodiReturn.setText(""+Integer.parseInt(charSequence.toString()) * 85);
+                    JodiBetTotal.setText(charSequence.toString());
                 }
                 else
                 {
                     mJodiReturn.setText("");
+                    JodiBetTotal.setText("");
                 }
             }
 
@@ -298,7 +309,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                     if (error instanceof TimeoutError) {
                         Toast.makeText(getActivity(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getActivity(), "Present Amount Not Present!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Present Chips Not Present!!!", Toast.LENGTH_SHORT).show();
                     }
                     error.printStackTrace();
                     VolleyLog.d(TAG, "Error: " + error.getMessage());
@@ -365,14 +376,14 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                             {
                                 mEditFirstSingleAmout.requestFocus();
                                 mEditFirstSingleAmout.setFocusable(true);
-                                mEditFirstSingleAmout.setError("please enter amount");
+                                mEditFirstSingleAmout.setError("please enter chips");
                                 view = mEditFirstSingleAmout;
                                 cancel = true;
                             }
                             else if(Integer.parseInt(mEditFirstSingleAmout.getText().toString().trim())>Double.parseDouble(result)){
                                 mEditFirstSingleAmout.requestFocus();
                                 mEditFirstSingleAmout.setFocusable(true);
-                                mEditFirstSingleAmout.setError("Not enough amount found");
+                                mEditFirstSingleAmout.setError("Not enough chips found");
                                 view = mEditFirstSingleAmout;
                                 cancel = true;
                             }
@@ -380,7 +391,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                             {
                                 mEditFirstSingleAmout.requestFocus();
                                 mEditFirstSingleAmout.setFocusable(true);
-                                mEditFirstSingleAmout.setError("please enter amount greater than 20");
+                                mEditFirstSingleAmout.setError("please enter chips greater than 20");
                                 view = mEditFirstSingleAmout;
                                 cancel = true;
                             }
@@ -388,7 +399,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                             {
                                 mEditFirstSingleAmout.requestFocus();
                                 mEditFirstSingleAmout.setFocusable(true);
-                                mEditFirstSingleAmout.setError("please enter valid amount!!!");
+                                mEditFirstSingleAmout.setError("please enter valid chips!!!");
                                 view = mEditFirstSingleAmout;
                                 cancel = true;
                             }
@@ -430,7 +441,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 
                                                         editor.putString("latest_bet", mEditFirstSingleDigit.getText().toString().trim());
                                                         editor.putString("game_type", "1");
-                                                        editor.putString("bet_amount",mFirstSingleDigitReturn.getText().toString().trim());
+                                                        editor.putString("bet_amount",mEditFirstSingleAmout.getText().toString().trim());
                                                         editor.putString("digit", mEditFirstSingleDigit.getText().toString().trim());
 
 
@@ -526,14 +537,14 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                         {
                             mEditSecondSingleAmout.requestFocus();
                             mEditSecondSingleAmout.setFocusable(true);
-                            mEditSecondSingleAmout.setError("please enter amount");
+                            mEditSecondSingleAmout.setError("please enter chips");
                             view = mEditSecondSingleAmout;
                             cancel = true;
                         }
                         else if(Integer.parseInt(mEditSecondSingleAmout.getText().toString().trim())>Double.parseDouble(result)) {
                             mEditSecondSingleAmout.requestFocus();
                             mEditSecondSingleAmout.setFocusable(true);
-                            mEditSecondSingleAmout.setError("Not enough amount found");
+                            mEditSecondSingleAmout.setError("Not enough chips found");
                             view = mEditSecondSingleAmout;
                             cancel = true;
                         }
@@ -541,7 +552,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                         {
                             mEditSecondSingleAmout.requestFocus();
                             mEditSecondSingleAmout.setFocusable(true);
-                            mEditSecondSingleAmout.setError("please enter amount greater than 20");
+                            mEditSecondSingleAmout.setError("please enter chips greater than 20");
                             view = mEditSecondSingleAmout;
                             cancel = true;
                         }
@@ -549,7 +560,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                         {
                             mEditSecondSingleAmout.requestFocus();
                             mEditSecondSingleAmout.setFocusable(true);
-                            mEditSecondSingleAmout.setError("please enter valid amount!!!");
+                            mEditSecondSingleAmout.setError("please enter valid chips!!!");
                             view = mEditSecondSingleAmout;
                             cancel = true;
                         }
@@ -588,7 +599,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 //                                                if (flag == 2) {
                                                     editor.putString("latest_bet", mEditSecondSingleDigit.getText().toString().trim());
                                                     editor.putString("game_type", "2");
-                                                    editor.putString("bet_amount",mSecondSingleDigitReturn.getText().toString().trim());
+                                                    editor.putString("bet_amount",mEditSecondSingleAmout.getText().toString().trim());
                                                     editor.putString("digit", mEditSecondSingleDigit.getText().toString().trim());
 //                                                }
 
@@ -683,14 +694,14 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                         {
                             mEditJodiAmout.requestFocus();
                             mEditJodiAmout.setFocusable(true);
-                            mEditJodiAmout.setError("please enter amount");
+                            mEditJodiAmout.setError("please enter chips");
                             view = mEditJodiAmout;
                             cancel = true;
                         }
                         else if(Integer.parseInt(mEditJodiAmout.getText().toString().trim())>Double.parseDouble(result)) {
                             mEditJodiAmout.requestFocus();
                             mEditJodiAmout.setFocusable(true);
-                            mEditJodiAmout.setError("Not enough amount found");
+                            mEditJodiAmout.setError("Not enough chips found");
                             view = mEditJodiAmout;
                             cancel = true;
                         }
@@ -698,7 +709,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                         {
                             mEditJodiAmout.requestFocus();
                             mEditJodiAmout.setFocusable(true);
-                            mEditJodiAmout.setError("please enter amount greater than 20");
+                            mEditJodiAmout.setError("please enter chips greater than 20");
                             view = mEditJodiAmout;
                             cancel = true;
                         }
@@ -706,7 +717,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                         {
                             mEditJodiAmout.requestFocus();
                             mEditJodiAmout.setFocusable(true);
-                            mEditJodiAmout.setError("please enter valid amount!!!");
+                            mEditJodiAmout.setError("please enter valid chips!!!");
                             view = mEditJodiAmout;
                             cancel = true;
                         }
@@ -744,7 +755,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 //                                                if(flag==3)
 //                                                {
                                                     editor.putString("latest_bet",mEditJodi.getText().toString().trim());
-                                                    editor.putString("bet_amount",mJodiReturn.getText().toString().trim());
+                                                    editor.putString("bet_amount",mEditJodiAmout.getText().toString().trim());
                                                     editor.putString("game_type","3");
                                                 editor.putString("digit", mEditJodi.getText().toString().trim());
 //                                                }
@@ -969,11 +980,11 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                         if(object.getString("status").equals("true"))
                         {
                             JSONObject innerObject = object.getJSONObject("data");
-                            innerObject.getString("lucky_number");
+                            JSONObject obj= innerObject.getJSONObject("lucky_number");
                             innerObject.getString("start");
                             innerObject.getString("end");
                             mCurrentSession.setText("Current Draw: "+innerObject.getString("end"));
-                            mCurrentResult.setText(innerObject.getString("lucky_number"));
+                            mCurrentResult.setText(obj.getString("lucky_number"));
                         }
                     }
                     catch (Exception e)
