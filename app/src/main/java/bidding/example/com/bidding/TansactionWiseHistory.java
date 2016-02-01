@@ -123,7 +123,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
         //    mTotal.setText(mChip.getText().toString());
         }
         else{
-            mBetText.setText("Jodi Digit");
+            mBetText.setText("Jodi");
         }
 
         if(flag==0)

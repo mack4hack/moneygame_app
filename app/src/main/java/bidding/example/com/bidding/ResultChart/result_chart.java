@@ -132,6 +132,7 @@ public class result_chart extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.resultList);
         listView.setScrollContainer(false);
+        listView.setEnabled(false);
 
         t1 = (TextView) findViewById(R.id.text_view2);
         t2 = (TextView) findViewById(R.id.text_view3);
