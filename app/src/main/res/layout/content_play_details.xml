@@ -229,7 +229,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/listDetail"
             android:layout_centerHorizontal="true"
-            android:background="@color/material_deep_teal_500"
+            android:background="@color/colorPrimary"
             android:layout_above="@+id/btn_more"
             android:layout_below="@+id/linearLayout"/>
 
@@ -274,7 +274,7 @@
             android:id="@+id/listGames"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:background="@color/material_deep_teal_500"/>
+            android:background="@color/colorPrimary"/>
 
         </RelativeLayout>
         </RelativeLayout>

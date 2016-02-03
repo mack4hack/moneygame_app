@@ -71,6 +71,10 @@
         <activity
             android:name=".MoreGames"
             android:label="@string/title_activity_more_games"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GameTypeDetails"
+            android:label="@string/title_activity_game_type_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
