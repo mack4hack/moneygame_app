@@ -9,21 +9,15 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -38,8 +32,6 @@ import org.json.JSONObject;
 
 import bidding.example.com.bidding.APICALL.ApiCall;
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
-import bidding.example.com.bidding.Lottery_Game.Multiple_Bet;
-import bidding.example.com.bidding.ResultChart.result_chart;
 
 public class MainPage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -144,16 +136,21 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.dash_board) {
-            // Handle the camera action
-//            toolbar.setTitle("Home");
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            DashBoard fragment = new DashBoard();
-//            fragmentTransaction.replace(R.id.containar1, fragment);
-//            fragmentTransaction.commit();
+//             Handle the camera action
+            toolbar.setTitle("Home");
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Cricket_Home fragment = new Cricket_Home();
+            fragmentTransaction.replace(R.id.containar1, fragment);
+            fragmentTransaction.commit();
         }
         else if (id == R.id.bet) {
-//            startActivity(new Intent(getApplicationContext(),result_chart.class));
+            MainPage.toolbar.setTitle("Bet");
+            android.support.v4.app.FragmentManager upcomingManager = this.getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction upcomingTransaction = upcomingManager.beginTransaction();
+            Bet bet = new Bet();
+            upcomingTransaction.replace(R.id.containar1, bet);
+            upcomingTransaction.commit();
 
         }
         else if(id==R.id.today_history)
@@ -191,6 +188,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             UpcomingMatches upcomingMatches = new UpcomingMatches();
             upcomingTransaction.replace(R.id.containar1, upcomingMatches);
             upcomingTransaction.commit();
+
         }
         else if (id == R.id.cancel_bet)
         {

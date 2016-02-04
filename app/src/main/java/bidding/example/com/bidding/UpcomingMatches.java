@@ -1,25 +1,25 @@
 package bidding.example.com.bidding;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.Toast;
+
+import com.squareup.timessquare.CalendarPickerView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * create an instance of this fragment.
- */
 public class UpcomingMatches extends Fragment {
 
-    Button play, later_today, tomorrow, next;
+    CalendarPickerView calendar;
 
     public UpcomingMatches() {
         // Required empty public constructor
@@ -37,17 +37,51 @@ public class UpcomingMatches extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        play = (Button) view.findViewById(R.id.btn_play);
-        later_today = (Button) view.findViewById(R.id.btn_today);
-        tomorrow = (Button) view.findViewById(R.id.btn_tmrw);
-        next = (Button) view.findViewById(R.id.btn_next);
+        Calendar nextYear = Calendar.getInstance();
+        nextYear.add(Calendar.YEAR, 1);
 
-        play.setOnClickListener(new View.OnClickListener() {
+        calendar = (CalendarPickerView) view.findViewById(R.id.upcomingCalendar);
+
+        Date today = new Date();
+        calendar.init(today, nextYear.getTime())
+                .withSelectedDate(today);
+        calendar.highlightDates(getHolidays());
+
+        calendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), PlayDetails.class));
+            public void onDateSelected(Date date) {
+                if (getHolidays().contains(date)) {
+                    Toast.makeText(getActivity(), "" + date, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onDateUnselected(Date date) {
+
             }
         });
 
+    }
+
+    private ArrayList<Date> getHolidays(){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+        String dateInString = "11-03-2016";
+        Date date = null;
+        try {
+            date = sdf.parse(dateInString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String dateInString1 = "21-02-2016";
+        Date date1 = null;
+        try {
+            date1 = sdf.parse(dateInString1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        ArrayList<Date> holidays = new ArrayList<>();
+        holidays.add(date);
+        holidays.add(date1);
+        return holidays;
     }
 }

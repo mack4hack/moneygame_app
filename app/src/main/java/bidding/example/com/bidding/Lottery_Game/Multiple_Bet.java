@@ -1106,12 +1106,12 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                         if(object.getString("status").equals("true"))
                         {
                             JSONObject innerObject = object.getJSONObject("data");
-                            JSONObject obj = innerObject.getJSONObject("lucky_number");
+//                            JSONObject obj = innerObject.getJSONObject("lucky_number");
                             innerObject.getString("start");
                             innerObject.getString("end");
 
                             mCurrentSession.setText("Current Draw: "+innerObject.getString("end"));
-                            mCurrentResult.setText(obj.getString("lucky_number"));
+                            mCurrentResult.setText(innerObject.getString("lucky_number"));
                         }
                     }
                     catch (Exception e)

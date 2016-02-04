@@ -28,11 +28,16 @@ public class PlayDetails extends AppCompatActivity {
     private CardView live, toss;
     ListView listView, listDetail;
     TextView heading, match;
-     private static String[] GAME = {"TOSS","1ST BALL 1ST INNINGS","1ST BALL 2ND INNINGS","1ST OVER RUNS TEAM-1","1ST OVER RUNS TEAM-2","10 OVER SESSION TEAM-1","10 OVER SESSION TEAM-2","1ST WICKET METHOD TEAM-1","1ST WICKET METHOD TEAM-2","HIGHEST OPENING PARTNERSHIP TEAM-1","RACE TO 50","RUNS AT 1ST WICKET FALL TEAM-1","RUNS AT 1ST WICKET FALL TEAM-2","TO MAKE 50 TEAM-1","TO MAKE 50 TEAM-2","TO MAKE 100 TEAM-1","TO MAKE 100 TEAM-2","INNINGS RUN RATE TEAM-1","INNINGS RUN RATE TEAM-2"};
+     private static String[] GAME = {"TOSS","1ST BALL 1ST INNINGS","1ST BALL 2ND INNINGS","1ST OVER RUNS TEAM-1","1ST OVER RUNS TEAM-2","10 OVER SESSION TEAM-1","10 OVER SESSION TEAM-2","1ST WICKET METHOD TEAM-1","1ST WICKET METHOD TEAM-2","HIGHEST OPENING PARTNERSHIP","RACE TO 50","RUNS AT 1ST WICKET FALL TEAM-1","RUNS AT 1ST WICKET FALL TEAM-2","TO MAKE 50 TEAM-1","TO MAKE 50 TEAM-2","TO MAKE 100 TEAM-1","TO MAKE 100 TEAM-2","INNINGS RUN RATE TEAM-1","INNINGS RUN RATE TEAM-2"};
     private static String[] Positon1 = {"Dot ball \t\t 1.25","Wicket \t\t\t 5.5","Wide ball \t\t 2.5","No ball \t\t 4.5","1 run \t\t\t 1.5","2 runs \t\t\t 3.5","3 runs \t\t\t 5.5","4 runs \t\t\t 6.5","6 runs \t\t\t 10"};
     private static String[] Wicket = {"1. Caught behind \t\t xx","2 Caught in the field \t\t xx","3 LBW \t\t xx","4 Bowled \t\t xx","5 Run out \t\t\t xx","6 Stumped \t\t\t xx","7 Hit wicket \t\t xx","8 Retired hurt \t\t\t xx"};
     private static String[] Highest_Opening = {"1 Team 1\t\t 1.85","2 Team 2 \t\t 1.85","3 Tie \t\t 7"};
     private static String[] Wicket_Fall = {"1\t 0 to 10 \t\t 3","2\t 11 to 20 \t\t 3.5","3\t 21 to 30 \t\t 3.5","4\t 31 to 40 \t\t 4","5\t 41 to 50 \t\t 5"};
+    private static String[] First_Over = {"1\t 0 to 1 \t\t 8","2\t 2 to 3 \t\t 7","3\t 4 to 5 \t\t 5.5","4\t 6 to 7 \t\t 5","5\t 8 to 9 \t\t 5.5"};
+    private static String[] Ten_Over = {"1\t Below 55 \t\t 4","2\t 56 to 60 \t\t 4","3\t 61 to 65 \t\t 5","4\t 66 to 70 \t\t 5","5\t 71 to 75 \t\t 5"};
+    private static String[] Make_50 = {"1\t none \t\t 6.5","2\t 1 \t\t 4.5","3\t 2 \t\t 1.9","4\t 3 \t\t 2.55","5\t 4 or more \t\t 3.5"};
+    private static String[] Make_100 = {"1\t none \t\t 2.5","2\t 1 \t\t 2","3\t 2 \t\t 4.5","4\t 3 or more \t\t 6.5"};
+    private static String[] Run_Rate = {"1\t Below 5.00 \t\t 3","2\t 5.01 to 5.5 \t\t 4","3\t 5.51 to 6.00 \t\t 3.5","4\t 6.01 to 6.5 \t\t 3.5","5\t 6.51 to 7.0 \t\t 4.5"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,28 +128,28 @@ public class PlayDetails extends AppCompatActivity {
                        toss.setVisibility(View.GONE);
                        live.setVisibility(View.GONE );
                        listDetail.setVisibility(View.VISIBLE);
-                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Positon1));
+                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, First_Over));
                    }
                    else if(position==4){
                        heading.setText("1ST OVER RUNS TEAM-2");
                        toss.setVisibility(View.GONE);
                        live.setVisibility(View.GONE );
                        listDetail.setVisibility(View.VISIBLE);
-                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Positon1));
+                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, First_Over));
                    }
                    else if(position==5){
                        heading.setText("10 OVER SESSION TEAM-1");
                        toss.setVisibility(View.GONE);
                        live.setVisibility(View.GONE );
                        listDetail.setVisibility(View.VISIBLE);
-                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Positon1));
+                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Ten_Over));
                    }
                    else if(position==6){
                        heading.setText("10 OVER SESSION TEAM-2");
                        toss.setVisibility(View.GONE);
                        live.setVisibility(View.GONE );
                        listDetail.setVisibility(View.VISIBLE);
-                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Positon1));
+                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Ten_Over));
                    }
                    else if(position==7){
                        heading.setText("1ST WICKET METHOD TEAM-1");
@@ -193,42 +198,42 @@ public class PlayDetails extends AppCompatActivity {
                        toss.setVisibility(View.GONE);
                        live.setVisibility(View.GONE );
                        listDetail.setVisibility(View.VISIBLE);
-                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Positon1));
+                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Make_50));
                    }
                    else if(position==14){
                        heading.setText("TO MAKE 50 TEAM-2");
                        toss.setVisibility(View.GONE);
                        live.setVisibility(View.GONE );
                        listDetail.setVisibility(View.VISIBLE);
-                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Positon1));
+                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Make_50));
                    }
                    else if(position==15){
                        heading.setText("TO MAKE 100 TEAM-1");
                        toss.setVisibility(View.GONE);
                        live.setVisibility(View.GONE );
                        listDetail.setVisibility(View.VISIBLE);
-                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Positon1));
+                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Make_100));
                    }
                    else if(position==16){
                        heading.setText("TO MAKE 100 TEAM-2");
                        toss.setVisibility(View.GONE);
                        live.setVisibility(View.GONE );
                        listDetail.setVisibility(View.VISIBLE);
-                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Positon1));
+                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Make_100));
                    }
                    else if(position==17){
                        heading.setText("INNINGS RUN RATE TEAM-1");
                        toss.setVisibility(View.GONE);
                        live.setVisibility(View.GONE );
                        listDetail.setVisibility(View.VISIBLE);
-                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Positon1));
+                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Run_Rate));
                    }
                    else if(position==18){
                        heading.setText("INNINGS RUN RATE TEAM-2");
                        toss.setVisibility(View.GONE);
                        live.setVisibility(View.GONE );
                        listDetail.setVisibility(View.VISIBLE);
-                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Positon1));
+                       listDetail.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, Run_Rate));
                    }
                    popup.setVisibility(View.GONE);
 //                   popup.startAnimation(animHide);

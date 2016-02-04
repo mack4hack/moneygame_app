@@ -2,7 +2,6 @@ package bidding.example.com.bidding;
 
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,9 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bidding.example.com.bidding.Chart.SampleObject;
-import bidding.example.com.bidding.Lottery_Game.Multiple_Bet;
-import bidding.example.com.bidding.Lottery_Game.Single_Bet;
-import bidding.example.com.bidding.ResultChart.result_chart;
 
 /**
  * Created by Gaurav on 18/01/16.
@@ -85,6 +81,12 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
         switch (view.getId()) {
 
             case R.id.bet:
+                MainPage.toolbar.setTitle("Bet");
+                android.support.v4.app.FragmentManager betManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction betTransaction = betManager.beginTransaction();
+                Bet bet = new Bet();
+                betTransaction.replace(R.id.containar1, bet);
+                betTransaction.commit();
                 break;
 
             case R.id.history:
