@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="bidding.example.com.bidding.DashBoard"
+    android:background="@drawable/lotry"
     android:padding="@dimen/abc_action_bar_content_inset_material">
 
     <LinearLayout

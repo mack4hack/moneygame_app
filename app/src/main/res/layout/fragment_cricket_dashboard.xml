@@ -3,8 +3,9 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/crckt_bck"
     tools:context="bidding.example.com.bidding.Cricket_Home"
-    android:padding="@dimen/abc_action_bar_content_inset_material">
+    android:padding="@dimen/abc_action_bar_content_inset_material"  >
 
     <LinearLayout
         android:layout_width="match_parent"
