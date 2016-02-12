@@ -413,7 +413,7 @@ public class result_chart extends AppCompatActivity {
 
                 @Override
                 public void onResponse(String response) {
-                    pDialog.hide();
+
                     try {
                         Log.i("response", "" + response);
                         JSONObject outerObject = new JSONObject(response);
@@ -1063,7 +1063,7 @@ public class result_chart extends AppCompatActivity {
                             {
                                 Toast.makeText(getApplicationContext(),"No Data Present To Display!!!",Toast.LENGTH_SHORT).show();
                             }
-
+                        pDialog.hide();
                     } catch (Exception e) {
                         pDialog.hide();
                         Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();

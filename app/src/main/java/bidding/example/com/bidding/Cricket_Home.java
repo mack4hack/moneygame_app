@@ -84,8 +84,8 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
                 MainPage.toolbar.setTitle("Bet");
                 android.support.v4.app.FragmentManager betManager = getActivity().getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction betTransaction = betManager.beginTransaction();
-                Bet bet = new Bet();
-                betTransaction.replace(R.id.containar1, bet);
+//                Bet bet = new Bet();
+//                betTransaction.replace(R.id.containar1, bet);
                 betTransaction.commit();
                 break;
 
@@ -97,7 +97,7 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
 
                 break;
             case R.id.previous_game_rslt:
-                MainPage.toolbar.setTitle("Previous Game Result");
+                MainPage.toolbar.setTitle("Results");
                 android.support.v4.app.FragmentManager previousManager = getActivity().getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction previousTransaction = previousManager.beginTransaction();
                 PreviousGameREsult previousGameREsult = new PreviousGameREsult();
@@ -105,7 +105,7 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
                 previousTransaction.commit();
                 break;
             case R.id.upcoming:
-                MainPage.toolbar.setTitle("Upcoming Matches");
+                MainPage.toolbar.setTitle("Matches");
                 android.support.v4.app.FragmentManager upcomingManager = getActivity().getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction upcomingTransaction = upcomingManager.beginTransaction();
                 UpcomingMatches upcomingMatches = new UpcomingMatches();

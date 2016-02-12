@@ -19,15 +19,14 @@
         android:id="@+id/top"
         android:layout_below="@+id/view1">
 
-        <LinearLayout android:layout_width="40dp"
+        <LinearLayout android:layout_width="45dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
         <TextView
             android:id="@+id/text_view1"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_weight="1"
+            android:layout_height="34.5dp"
             android:text="Time"
             android:textColor="@color/textColor"
             android:singleLine="true"
@@ -39,8 +38,9 @@
             <TextView
                 android:id="@+id/te1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="00.15"
+                android:textSize="14dp"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
             <View
@@ -50,7 +50,7 @@
             <TextView
                 android:id="@+id/te2"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="19dp"
                 android:text="00.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -83,7 +83,7 @@
             <TextView
                 android:id="@+id/te5"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="1.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -94,7 +94,7 @@
             <TextView
                 android:id="@+id/te6"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="1.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -105,7 +105,7 @@
             <TextView
                 android:id="@+id/te7"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="1.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -116,7 +116,7 @@
             <TextView
                 android:id="@+id/te8"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="2.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -127,7 +127,7 @@
             <TextView
                 android:id="@+id/te9"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="2.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -140,7 +140,7 @@
             <TextView
                 android:id="@+id/te10"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="2.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -151,7 +151,7 @@
             <TextView
                 android:id="@+id/te11"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="2.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -162,7 +162,7 @@
             <TextView
                 android:id="@+id/te12"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="3.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -173,7 +173,7 @@
             <TextView
                 android:id="@+id/te13"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="3.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -184,7 +184,7 @@
             <TextView
                 android:id="@+id/te14"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="3.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -195,7 +195,7 @@
             <TextView
                 android:id="@+id/te15"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="3.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -206,7 +206,7 @@
             <TextView
                 android:id="@+id/te16"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="4.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -217,7 +217,7 @@
             <TextView
                 android:id="@+id/te17"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="4.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -228,7 +228,7 @@
             <TextView
                 android:id="@+id/te18"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="4.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -239,7 +239,7 @@
             <TextView
                 android:id="@+id/te19"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="4.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -250,7 +250,7 @@
             <TextView
                 android:id="@+id/te20"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="5.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -261,7 +261,7 @@
             <TextView
                 android:id="@+id/te21"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="5.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -272,7 +272,7 @@
             <TextView
                 android:id="@+id/te22"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="5.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -283,7 +283,7 @@
             <TextView
                 android:id="@+id/te23"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="5.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -294,7 +294,7 @@
             <TextView
                 android:id="@+id/te24"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="6.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -305,7 +305,7 @@
             <TextView
                 android:id="@+id/te25"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="6.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -317,7 +317,7 @@
             <TextView
                 android:id="@+id/te26"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="6.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -328,7 +328,7 @@
             <TextView
                 android:id="@+id/te27"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="6.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -339,7 +339,7 @@
             <TextView
                 android:id="@+id/te28"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="7.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -350,7 +350,7 @@
             <TextView
                 android:id="@+id/te29"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="7.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -361,7 +361,7 @@
             <TextView
                 android:id="@+id/te30"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="7.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -372,7 +372,7 @@
             <TextView
                 android:id="@+id/te31"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="7.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -383,7 +383,7 @@
             <TextView
                 android:id="@+id/te32"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="8.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -394,7 +394,7 @@
             <TextView
                 android:id="@+id/te33"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="8.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -405,7 +405,7 @@
             <TextView
                 android:id="@+id/te34"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="8.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -416,7 +416,7 @@
             <TextView
                 android:id="@+id/te35"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="8.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -427,7 +427,7 @@
             <TextView
                 android:id="@+id/te36"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="9.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -438,7 +438,7 @@
             <TextView
                 android:id="@+id/te37"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="9.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -449,7 +449,7 @@
             <TextView
                 android:id="@+id/te38"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="9.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -460,7 +460,7 @@
             <TextView
                 android:id="@+id/te39"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="9.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -471,7 +471,7 @@
             <TextView
                 android:id="@+id/te40"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="10.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -482,7 +482,7 @@
             <TextView
                 android:id="@+id/te41"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="10.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -493,7 +493,7 @@
             <TextView
                 android:id="@+id/te42"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="10.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -504,7 +504,7 @@
             <TextView
                 android:id="@+id/te43"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="10.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -515,7 +515,7 @@
             <TextView
                 android:id="@+id/te44"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="11.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -526,7 +526,7 @@
             <TextView
                 android:id="@+id/te45"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="11.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -537,7 +537,7 @@
             <TextView
                 android:id="@+id/te46"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="11.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -548,7 +548,7 @@
             <TextView
                 android:id="@+id/te47"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="11.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -559,7 +559,7 @@
             <TextView
                 android:id="@+id/te48"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="12.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -570,7 +570,7 @@
             <TextView
                 android:id="@+id/te49"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="12.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -581,7 +581,7 @@
             <TextView
                 android:id="@+id/te50"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="12.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -592,7 +592,7 @@
             <TextView
                 android:id="@+id/te51"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="12.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -603,7 +603,7 @@
             <TextView
                 android:id="@+id/te52"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="13.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -614,7 +614,7 @@
             <TextView
                 android:id="@+id/te53"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="13.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -625,7 +625,7 @@
             <TextView
                 android:id="@+id/te54"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="13.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -636,7 +636,7 @@
             <TextView
                 android:id="@+id/te55"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="13.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -647,7 +647,7 @@
             <TextView
                 android:id="@+id/te56"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="14.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -658,7 +658,7 @@
             <TextView
                 android:id="@+id/te57"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="14.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -669,7 +669,7 @@
             <TextView
                 android:id="@+id/te58"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="14.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -680,7 +680,7 @@
             <TextView
                 android:id="@+id/te59"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="14.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -691,7 +691,7 @@
             <TextView
                 android:id="@+id/te60"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="15.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -702,7 +702,7 @@
             <TextView
                 android:id="@+id/te61"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="15.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -713,7 +713,7 @@
             <TextView
                 android:id="@+id/te62"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="15.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -724,7 +724,7 @@
             <TextView
                 android:id="@+id/te63"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="15.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -735,7 +735,7 @@
             <TextView
                 android:id="@+id/te64"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="16.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -746,7 +746,7 @@
             <TextView
                 android:id="@+id/te65"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="16.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -757,7 +757,7 @@
             <TextView
                 android:id="@+id/te66"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="16.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -768,7 +768,7 @@
             <TextView
                 android:id="@+id/te67"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="16.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -779,7 +779,7 @@
             <TextView
                 android:id="@+id/te68"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="17.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -790,7 +790,7 @@
             <TextView
                 android:id="@+id/te69"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="17.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -801,7 +801,7 @@
             <TextView
                 android:id="@+id/te70"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="17.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -812,7 +812,7 @@
             <TextView
                 android:id="@+id/te71"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="17.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -823,7 +823,7 @@
             <TextView
                 android:id="@+id/te72"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="18.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -834,7 +834,7 @@
             <TextView
                 android:id="@+id/te73"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="18.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -845,7 +845,7 @@
             <TextView
                 android:id="@+id/te74"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="18.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -856,7 +856,7 @@
             <TextView
                 android:id="@+id/te75"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="18.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -867,7 +867,7 @@
             <TextView
                 android:id="@+id/te76"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="19.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -878,7 +878,7 @@
             <TextView
                 android:id="@+id/te77"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="19.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -889,7 +889,7 @@
             <TextView
                 android:id="@+id/te78"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="19.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -900,7 +900,7 @@
             <TextView
                 android:id="@+id/te79"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="19.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -911,7 +911,7 @@
             <TextView
                 android:id="@+id/te80"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="20.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -922,7 +922,7 @@
             <TextView
                 android:id="@+id/te81"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="20.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -933,7 +933,7 @@
             <TextView
                 android:id="@+id/te82"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="20.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -944,7 +944,7 @@
             <TextView
                 android:id="@+id/te83"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="20.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -955,7 +955,7 @@
             <TextView
                 android:id="@+id/te84"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="21.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -966,7 +966,7 @@
             <TextView
                 android:id="@+id/te85"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="21.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -977,7 +977,7 @@
             <TextView
                 android:id="@+id/te86"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="21.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -988,7 +988,7 @@
             <TextView
                 android:id="@+id/te87"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="21.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -999,7 +999,7 @@
             <TextView
                 android:id="@+id/te88"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="22.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -1010,7 +1010,7 @@
             <TextView
                 android:id="@+id/te89"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:text="22.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -1021,7 +1021,7 @@
             <TextView
                 android:id="@+id/te90"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="22.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -1032,7 +1032,7 @@
             <TextView
                 android:id="@+id/te91"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="22.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -1043,7 +1043,7 @@
             <TextView
                 android:id="@+id/te92"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="23.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -1054,7 +1054,7 @@
             <TextView
                 android:id="@+id/te93"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="23.15"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -1065,7 +1065,7 @@
             <TextView
                 android:id="@+id/te94"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="23.30"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -1076,7 +1076,7 @@
             <TextView
                 android:id="@+id/te95"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="19dp"
                 android:text="23.45"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>
@@ -1087,7 +1087,7 @@
             <TextView
                 android:id="@+id/te96"
                 android:layout_width="match_parent"
-                android:layout_height="19dp"
+                android:layout_height="20dp"
                 android:text="00.00"
                 android:gravity="center"
                 android:textColor="@color/textColor"/>

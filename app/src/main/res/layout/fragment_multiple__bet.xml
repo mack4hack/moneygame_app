@@ -165,7 +165,8 @@
             <TableLayout
                 android:id="@+id/tableLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                >
 
                 <TableRow
                     android:id="@+id/tableRow11"
@@ -266,7 +267,9 @@
                         android:layout_height="wrap_content"
                         android:hint="0"
                         android:inputType="number"
-                        />
+                        android:descendantFocusability="beforeDescendants"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"/>
 
                     <EditText
                         android:id="@+id/firsteditText1"
@@ -274,7 +277,10 @@
                         android:gravity="center"
                         android:layout_height="wrap_content"
                         android:hint="0"
-                        android:inputType="number"/>
+                        android:inputType="number"
+                        android:descendantFocusability="beforeDescendants"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"/>
 
                     <EditText
                         android:id="@+id/firsteditText2"
@@ -355,14 +361,14 @@
         </HorizontalScrollView>
 
       </LinearLayout>
-                <TextView
+           <!--     <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:layout_marginTop="5dp"
                     android:id="@+id/single_bet_total"
                     android:layout_gravity="center" />
-
+-->
                 <Button
                     android:id="@+id/btnFirstBet"
                     android:layout_width="wrap_content"
@@ -660,13 +666,13 @@
             </HorizontalScrollView>
         </LinearLayout>
 
-                <TextView
+              <!--  <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:layout_marginTop="5dp"
                     android:id="@+id/second_bet_total"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"/>-->
 
                 <Button
                     android:id="@+id/btnSecondBet"
@@ -986,13 +992,13 @@
                         </TableLayout>
                     </HorizontalScrollView>
                 </LinearLayout>
-                <TextView
+              <!--  <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
                     android:layout_marginTop="5dp"
                     android:id="@+id/jodi_bets_total"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"/>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

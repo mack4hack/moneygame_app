@@ -148,8 +148,8 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             MainPage.toolbar.setTitle("Bet");
             android.support.v4.app.FragmentManager upcomingManager = this.getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction upcomingTransaction = upcomingManager.beginTransaction();
-            Bet bet = new Bet();
-            upcomingTransaction.replace(R.id.containar1, bet);
+//            Bet bet = new Bet();
+//            upcomingTransaction.replace(R.id.containar1, bet);
             upcomingTransaction.commit();
 
         }
@@ -173,7 +173,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         }
         else if (id == R.id.previous_result)
         {
-            MainPage.toolbar.setTitle("Previous Game Result");
+            MainPage.toolbar.setTitle("Results");
             android.support.v4.app.FragmentManager previousManager = this.getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction previousTransaction = previousManager.beginTransaction();
             PreviousGameREsult previousGameREsult = new PreviousGameREsult();
@@ -182,7 +182,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         }
         else if (id == R.id.upcoming_matches)
         {
-            MainPage.toolbar.setTitle("Upcoming Matches");
+            MainPage.toolbar.setTitle("Matches");
             android.support.v4.app.FragmentManager upcomingManager = this.getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction upcomingTransaction = upcomingManager.beginTransaction();
             UpcomingMatches upcomingMatches = new UpcomingMatches();

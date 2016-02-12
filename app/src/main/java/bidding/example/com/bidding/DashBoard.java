@@ -86,8 +86,8 @@ public class DashBoard extends Fragment implements View.OnClickListener{
         mMultipleBetCard.setCardBackgroundColor(Color.parseColor("#7986CB"));
         mTodayHistory.setCardBackgroundColor(Color.parseColor("#7986CB"));
         mChart.setCardBackgroundColor(Color.parseColor("#FFAB00"));
-        mCancelBet.setCardBackgroundColor(Color.parseColor("#FFAB00"));
-        mProfile.setCardBackgroundColor(Color.parseColor("#7986CB"));
+        mCancelBet.setCardBackgroundColor(Color.parseColor("#7986CB"));
+        mProfile.setCardBackgroundColor(Color.parseColor("#FFAB00"));
         mTermCondition.setCardBackgroundColor(Color.parseColor("#7986CB"));
         mTodaysSummary.setCardBackgroundColor(Color.parseColor("#FFAB00"));
 
@@ -171,7 +171,7 @@ public class DashBoard extends Fragment implements View.OnClickListener{
                         dialog.setView(dialogView);
 
                         final EditText mPassword = (EditText) dialogView.findViewById(R.id.editConfPassword);
-                        dialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        dialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if(TextUtils.isEmpty(mPassword.getText().toString().trim()))
@@ -192,7 +192,7 @@ public class DashBoard extends Fragment implements View.OnClickListener{
                             }
                         });
 
-                        dialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.cancel();
@@ -335,12 +335,12 @@ public class DashBoard extends Fragment implements View.OnClickListener{
                     }
                     else
                     {
-                        Toast.makeText(getActivity(),"Some thing went wrong please try again",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),"Something went wrong please try again",Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e)
                 {
                     pDialog.hide();
-                    Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
@@ -349,7 +349,7 @@ public class DashBoard extends Fragment implements View.OnClickListener{
             @Override
             public void onErrorResponse(VolleyError error)
             {
-                Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 pDialog.hide();

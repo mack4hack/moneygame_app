@@ -12,6 +12,5 @@
         android:id="@+id/game_2"
         android:orderInCategory="100"
         android:title="@string/Cricket"
-        android:icon="@drawable/cricket2"
         app:showAsAction="always" />
 </menu>

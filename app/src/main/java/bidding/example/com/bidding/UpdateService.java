@@ -66,8 +66,9 @@ public class UpdateService extends Service {
                             connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                             connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED)
                     {
-                        Log.i("service","start");
-                        LuckyNo();
+                        Log.i("service", "start");
+
+
 
                     }
 
@@ -181,8 +182,8 @@ public class UpdateService extends Service {
                                 // Build notification
                                 // Actions are just fake
                                 Notification noti = new NotificationCompat.Builder(getApplicationContext())
-                                        .setContentTitle("Lucky Number is: " + object.getString("lucky_number"))
-                                        .setContentText("Draw time is: "+object.getString("draw_time")).setSmallIcon(R.mipmap.ic_launcher)
+                                        .setContentTitle("Lucky Number " + object.getString("lucky_number") + " for "+object.getString("draw_time"))
+                                        .setContentText("").setSmallIcon(R.mipmap.ic_launcher)
                                         .setContentIntent(pIntent).build();
                                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                                 // hide the notification after its selected

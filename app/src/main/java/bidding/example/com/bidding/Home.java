@@ -100,10 +100,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         startService(new Intent(getBaseContext(), timeService.class));
 
-        Intent intent = new Intent(this, UpdateService.class);
-        PendingIntent pintent = PendingIntent.getService(this, 0, intent, 0);
-        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 24 * 60 * 60 * 1000, pintent);
+//        Intent intent = new Intent(this, UpdateService.class);
+//        PendingIntent pintent = PendingIntent.getService(this, 0, intent, 0);
+//        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//        alarm.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 24 * 60 * 60 * 1000, pintent);
     }
 
     @Override
@@ -237,14 +237,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     infoDialog.setTitle("Bet Information");
                     infoDialog.setMessage("You are about to cancel bet of chips " + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("bet_amount", ""));
 
-                    infoDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    infoDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
                         }
                     });
 
-                    infoDialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
