@@ -102,5 +102,6 @@
     <string name="title_activity_play_details">PlayDetails</string>
     <string name="title_activity_more_games">MoreGames</string>
     <string name="title_activity_game_type_details">GameTypeDetails</string>
+    <string name="title_activity_screen_slide">ScreenSlide</string>
     <!--http://46.101.6.171/moneygame/-->
 </resources>

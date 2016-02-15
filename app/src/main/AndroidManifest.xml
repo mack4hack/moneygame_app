@@ -29,8 +29,8 @@
             android:name=".Home"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".Cricket_Game.Match_details"
             android:label="@string/title_activity_match_details"
@@ -66,16 +66,16 @@
             android:label="@string/title_activity_main_page"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".PlayDetails"
-            android:label="@string/title_activity_play_details"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".MoreGames"
             android:label="@string/title_activity_more_games"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".GameTypeDetails"
-            android:label="@string/title_activity_game_type_details"
+            android:name=".CricketPlaceBet"
+            android:label="CricketPlaceBet"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".ScreenSlide"
+            android:label="@string/title_activity_screen_slide"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -148,8 +148,8 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             MainPage.toolbar.setTitle("Bet");
             android.support.v4.app.FragmentManager upcomingManager = this.getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction upcomingTransaction = upcomingManager.beginTransaction();
-//            Bet bet = new Bet();
-//            upcomingTransaction.replace(R.id.containar1, bet);
+            CriceketBet bet = new CriceketBet();
+            upcomingTransaction.replace(R.id.containar1, bet);
             upcomingTransaction.commit();
 
         }

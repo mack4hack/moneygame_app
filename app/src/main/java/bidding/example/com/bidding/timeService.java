@@ -144,7 +144,7 @@ public class timeService extends Service
                     //}
 
                     if (getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
-                            getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) >= 40) {
+                            getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) == 40) {
                         LuckyNo();
                     }
                 }catch (Exception e)

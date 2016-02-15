@@ -10,7 +10,6 @@
     android:paddingTop="10dp"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="bidding.example.com.bidding.PlayDetails"
     tools:showIn="@layout/activity_play_details">
 
     <LinearLayout
@@ -37,7 +36,7 @@
             android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"
             android:textSize="16sp"
-            android:text="Score : 120/2"
+            android:text="120/2"
             android:id="@+id/textView12" />
 
         <TextView
@@ -46,7 +45,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:textSize="16sp"
-            android:text="LIVE MATCH : Mumbai V/s Pune"
+            android:text="Mumbai V/s Pune"
             android:id="@+id/txtlive"
             android:textColor="#42bcf4"/>
 
@@ -86,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Live Match Bet : MUMBAI V/s PUNE"
+            android:text="MUMBAI V/s PUNE"
             android:id="@+id/txtheading"
             android:layout_gravity="center_horizontal" />
         <View
@@ -110,13 +109,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
-                android:text="Back"
-                android:id="@+id/textView18" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -131,7 +123,7 @@
                 android:text="MUMBAI"
                 android:id="@+id/textView20" />
 
-            <EditText
+            <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText2"
@@ -140,13 +132,6 @@
             </LinearLayout>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                android:text="Back"
-                android:id="@+id/textView19" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -161,7 +146,7 @@
                 android:text="PUNE"
                 android:id="@+id/textView17" />
 
-            <EditText
+            <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText"
@@ -229,7 +214,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/listDetail"
             android:layout_centerHorizontal="true"
-            android:background="@color/colorPrimary"
+            android:background="#888888"
             android:layout_above="@+id/btn_more"
             android:layout_below="@+id/linearLayout"/>
 
@@ -274,7 +259,7 @@
             android:id="@+id/listGames"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:background="@color/colorPrimary"/>
+            android:background="#888888"/>
 
         </RelativeLayout>
         </RelativeLayout>

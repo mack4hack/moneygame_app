@@ -84,8 +84,8 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
                 MainPage.toolbar.setTitle("Bet");
                 android.support.v4.app.FragmentManager betManager = getActivity().getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction betTransaction = betManager.beginTransaction();
-//                Bet bet = new Bet();
-//                betTransaction.replace(R.id.containar1, bet);
+                CriceketBet bet = new CriceketBet();
+                betTransaction.replace(R.id.containar1, bet);
                 betTransaction.commit();
                 break;
 
