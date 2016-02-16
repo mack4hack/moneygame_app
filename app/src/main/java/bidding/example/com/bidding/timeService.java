@@ -149,6 +149,7 @@ public class timeService extends Service
                     }
                 }catch (Exception e)
                 {
+                    LuckyNo();
                     e.printStackTrace();
                 }
             }
@@ -221,7 +222,7 @@ public class timeService extends Service
                         // Actions are just fake
                         Notification noti = new NotificationCompat.Builder(getApplicationContext())
                                 .setContentTitle("Lucky Number " + object.getString("lucky_number") + " for "+object.getString("draw_time"))
-                                .setContentText("").setSmallIcon(R.mipmap.ic_launcher)
+                                .setContentText("").setSmallIcon(R.drawable.logo2)
                                 .setContentIntent(pIntent).build();
                         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                         // hide the notification after its selected

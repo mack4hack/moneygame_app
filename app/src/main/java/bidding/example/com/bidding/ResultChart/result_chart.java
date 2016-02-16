@@ -458,6 +458,7 @@ public class result_chart extends AppCompatActivity {
 //                                            item.setTime("00.30");
                                             item.setDate2(object.getString("lucky_number"));
                                             time60.put("timeslot_id2", object.getString("lucky_number"));
+                                            Log.i("no.",""+object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");

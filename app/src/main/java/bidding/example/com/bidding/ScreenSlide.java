@@ -16,6 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.viewpagerindicator.CirclePageIndicator;
+import com.viewpagerindicator.TitlePageIndicator;
 
 public class ScreenSlide extends FragmentActivity {
     private static final int NUM_PAGES = 7;
@@ -26,6 +30,7 @@ public class ScreenSlide extends FragmentActivity {
      * and next wizard steps.
      */
     private ViewPager mPager;
+    private CirclePageIndicator indicator;
 
     /**
      * The pager adapter, which provides the pages to the view pager widget.
@@ -45,6 +50,20 @@ public class ScreenSlide extends FragmentActivity {
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.setCurrentItem(pagenumber);
+
+        //Bind the title indicator to the adapter
+         indicator = (CirclePageIndicator)findViewById(R.id.mc_cpi);
+        indicator.setViewPager(mPager);
+        indicator.setCurrentItem(pagenumber);
+
+        final float density = getResources().getDisplayMetrics().density;
+        indicator.setBackgroundColor(0xFFCCCCCC);
+        indicator.setRadius(5 * density);
+        indicator.setPageColor(0xFF000000);
+        indicator.setFillColor(0xFF888888);
+        indicator.setStrokeColor(0xFF000000);
+        indicator.setStrokeWidth(2 * density);
+
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
@@ -52,9 +71,10 @@ public class ScreenSlide extends FragmentActivity {
                 // on which page is currently active. An alternative approach is to have each
                 // fragment expose actions itself (rather than the activity exposing actions),
                 // but for simplicity, the activity provides the actions in this sample.
-
+                indicator.setCurrentItem(position);
             }
         });
+
     }
 
     @Override
