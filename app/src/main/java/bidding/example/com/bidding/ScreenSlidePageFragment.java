@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -160,7 +161,7 @@ public class ScreenSlidePageFragment extends Fragment {
             animShow = AnimationUtils.loadAnimation(getActivity(), R.anim.popup_show);
             animHide = AnimationUtils.loadAnimation(getActivity(), R.anim.popup_hide);
 
-            more.setOnClickListener(new View.OnClickListener() {
+            /*more.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
 
                     popup.setVisibility(View.VISIBLE);
@@ -169,7 +170,31 @@ public class ScreenSlidePageFragment extends Fragment {
                     more.setEnabled(false);
                     more.setVisibility(View.GONE);
                     close.setEnabled(true);
-                    listView.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,GAME));
+                    listView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, GAME));
+                }
+            });
+*/
+            more.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent me) {
+                    if (me.getAction() == MotionEvent.ACTION_DOWN) {
+//                        me.getX();
+//                        me.getY();
+//                        Log.i("myTag", "Action Down " + me.getX() + "," + me.getY());
+                    } else if (me.getAction() == MotionEvent.ACTION_MOVE) {
+//                        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(v.getWidth(), v.getHeight());
+//                        params.setMargins((int) me.getRawX() - v.getWidth() / 2, (int) (me.getRawY() - v.getHeight() * 1.5), (int) me.getRawX() - v.getWidth() / 2, (int) (me.getRawY() - v.getHeight() * 1.5));
+//                        v.setLayoutParams(params);
+                        popup.setVisibility(View.VISIBLE);
+//                    popup.startAnimation(animShow);
+                        popUpStatus = true;
+                        more.setEnabled(false);
+                        more.setVisibility(View.GONE);
+                        close.setVisibility(View.VISIBLE);
+                        close.setEnabled(true);
+                        listView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, GAME));
+                    }
+                    return true;
                 }
             });
 
@@ -300,16 +325,19 @@ public class ScreenSlidePageFragment extends Fragment {
                     more.setEnabled(true);
                 }
             });
-            close.setOnClickListener(new View.OnClickListener() {
+            close.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public void onClick(View v) {
-                    popup.setVisibility(View.GONE);
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                        popup.setVisibility(View.GONE);
 //                    popup.startAnimation(animHide);
-                    popUpStatus = false;
-                    close.setEnabled(false);
-                    close.setVisibility(View.GONE);
-                    more.setVisibility(View.VISIBLE);
-                    more.setEnabled(true);
+                        popUpStatus = false;
+                        close.setEnabled(false);
+                        close.setVisibility(View.GONE);
+                        more.setVisibility(View.VISIBLE);
+                        more.setEnabled(true);
+                    }
+                    return true;
                 }
             });
 

@@ -2,16 +2,9 @@ package bidding.example.com.bidding.ResultChart;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -458,7 +451,7 @@ public class result_chart extends AppCompatActivity {
 //                                            item.setTime("00.30");
                                             item.setDate2(object.getString("lucky_number"));
                                             time60.put("timeslot_id2", object.getString("lucky_number"));
-                                            Log.i("no.",""+object.getString("lucky_number"));
+//                                            Log.i("no.",""+object.getString("lucky_number"));
                                             //item.setTime(object.getString("timeslot_id"));
                                         } else {
                                             //item.setTime("-");

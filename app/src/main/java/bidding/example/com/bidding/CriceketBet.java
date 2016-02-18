@@ -1,6 +1,8 @@
 package bidding.example.com.bidding;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -46,6 +48,7 @@ public class CriceketBet extends Fragment {
     private MatchListAdapter matchListAdapter;
     private ConnectionDetector connectionDetector;
     private static String[] Matches = {"Mumbai Vs Pune","Chennai Vs Kolkatta","Punjab Vs Rajasthan","Bengaluru Vs Mumbai","Punjab Vs Kochi","Pune Vs Rajasthan","Kolkatta Vs Bengaluru"};
+    String time1, time2;
 
     public CriceketBet() {
         // Required empty public constructor
@@ -69,12 +72,37 @@ public class CriceketBet extends Fragment {
         getMatchList();
 //        listMatches.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,Matches));
 
+        final SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+
         listMatches.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                MatchListGetSet item = matchList.get(position);
-                startActivity(new Intent(getActivity(), ScreenSlide.class).putExtra("position",position));
+                try {
+                    if (df.parse(item.getDate()).before(df.parse(time2))) {
+                        startActivity(new Intent(getActivity(), ScreenSlide.class).putExtra("position", position));
+                    }
+                    else{
+                        final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                        dialog.setTitle("Alert");
+                        dialog.setMessage("Betting for this match will start 48 hours before");
+                        dialog.setCancelable(true);
+                        // ...Irrelevant code for customizing the buttons and title
 
+                        dialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                            });
+                        dialog.create();
+                        dialog.show();
+                    }
+
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -113,18 +141,18 @@ public class CriceketBet extends Fragment {
                                     MatchListGetSet item = new MatchListGetSet();
                                     Calendar cal = Calendar.getInstance();
                                     SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-                                    String time1 = df.format(cal.getTime());
+                                    time1 = df.format(cal.getTime());
                                     Log.i("time1", "" + time1);
 
                                     cal.add(cal.HOUR, 48);
-                                    String time2= df.format(new Date(cal.getTimeInMillis()));
+                                    time2= df.format(new Date(cal.getTimeInMillis()));
                                     Log.i("time2", "" + time2);
 
                                     String time = childObject.getString("start_date");
                                     time = time.replace("T"," ");
                                     time = time.replace("-","/");
                                     String [] split = time.split("\\u002B");
-                                    if(df.parse(split[0]).after(df.parse(time1)) && df.parse(split[0]).before(df.parse(time2)))
+                                    if(df.parse(split[0]).after(df.parse(time1))) // && df.parse(split[0]).before(df.parse(time2)
                                     {
                                         item.setName(childObject.getString("name"));
                                         item.setDate(split[0]);
