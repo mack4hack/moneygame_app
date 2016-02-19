@@ -98,6 +98,7 @@
     <!-- Cricket URLS-->
     <!-- Get cricket match list-->
     <string name="get_match_list">http://46.101.6.171/moneygame/api/cricket/getCricketMatchList</string>
+    <string name="get_match_details">http://46.101.6.171/moneygame/api/cricket/getCricketMatchDetails</string>
 
     <string name="title_activity_tansaction_wise_history">Tansaction History</string>
     <string name="title_activity_transaction_indetail">Transaction Details</string>

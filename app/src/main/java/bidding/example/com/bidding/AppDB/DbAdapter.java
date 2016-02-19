@@ -13,11 +13,13 @@ import android.util.Log;
  */
 public class DbAdapter extends SQLiteOpenHelper
 {
+    private static final int db_version=1;
     public static final String TAG = "DBAdapter";
     public static final String DATABASE_NAME = "App_DB";
     public static final String DATABASE_First_Number_TABLE = "MultipleBetNoFirst";
     public static final String DATABASE_Second_Number_TABLE = "MultipleBetNoSecond";
     public static final String DATABASE_History_TABLE = "HistoryTable";
+    public static final String DATABASE_Match_Details_TABLE = "MatchDetailsTable";
 
     public SQLiteDatabase db;
 
@@ -46,14 +48,27 @@ public class DbAdapter extends SQLiteOpenHelper
     public static final String margin="charges";
     public static final String date="date";
 
+//    Match Details Table
+    public static final String match_autoid="id";
+    public static final String match_id="match_id";
+    public static final String match_name="name";
+    public static final String match_format="format";
+    public static final String match_venue="venue";
+    public static final String match_start_date="start_date";
+    public static final String match_winner_team="winner_team";
+    public static final String match_status="status";
+
   //Create First Table
     public static final String Create_first_table="create table "+DATABASE_First_Number_TABLE+"("+id+" integer primary key autoincrement,"+col_1+" text,"+col_2+" text,"+col_3+" text,"+col_4+" text)";//Create First Table
 
-  //Create First Table
+  //Create Second Table
     public static final String Create_second_table="create table "+DATABASE_Second_Number_TABLE+"("+id21+" integer primary key autoincrement,"+col_21+" text,"+col_22+" text,"+col_23+" text,"+col_24+" text,"+col_25+" text,"+col_26+" text,"+col_27+" text,"+col_28+" text)";
 
   //Create History Table
     public static final String Create_history_table = "create table "+DATABASE_History_TABLE+"("+result_id+" integer primary key autoincrement,"+number+" text,"+amount+" text,"+time+" text,"+result+" text,"+margin+" text,"+date+" text)";
+
+    //Create Match Details Table
+    public static final String Create_Match_Details_table = "create table "+DATABASE_Match_Details_TABLE+"("+match_autoid+" integer primary key autoincrement,"+match_id+" text,"+match_name+" text,"+match_format+" text,"+match_venue+" text,"+match_start_date+" text,"+match_winner_team+" text,"+match_status+" text)";
 
     public DbAdapter(Context context) {
         super(context, DATABASE_NAME, null,1);
@@ -78,14 +93,16 @@ public class DbAdapter extends SQLiteOpenHelper
             db.execSQL(Create_first_table);
             db.execSQL(Create_second_table);
             db.execSQL(Create_history_table);
+            db.execSQL(Create_Match_Details_table);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+
         db.execSQL("DROP TABLE IF EXIST"+ Create_first_table);
         db.execSQL("DROP TABLE IF EXIST"+ Create_second_table);
         db.execSQL("DROP TABLE IF EXIST"+ Create_history_table);
-
+        db.execSQL("DROP TABLE IF EXIST" + Create_Match_Details_table);
         onCreate(db);
     }
 
@@ -127,6 +144,34 @@ public class DbAdapter extends SQLiteOpenHelper
             e.printStackTrace();
         }
         return result;
+    }
+
+    public long InsertDetails(String id,String name,String format,String venue, String start, String winner, String status)
+    {
+        long result = -1;
+        try {
+            ContentValues values = new ContentValues();
+            values.put(match_id,id);
+            values.put(match_name,name);
+            values.put(match_format,format);
+            values.put(match_venue,venue);
+            values.put(match_start_date,start);
+            values.put(match_winner_team,winner);
+            values.put(match_status,status);
+
+            result = db.insert(DATABASE_Match_Details_TABLE,null,values);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public Cursor GetDetails(int no) throws SQLException
+    {
+        String query = "SELECT * FROM "+ DATABASE_Match_Details_TABLE+" where "+match_autoid+"='"+no+"'";
+
+        return db.rawQuery(query,null);
     }
 
     public Cursor GetRowFromFirst(String no) throws SQLException

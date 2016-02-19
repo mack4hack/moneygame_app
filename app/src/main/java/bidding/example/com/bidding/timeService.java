@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -29,6 +30,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import bidding.example.com.bidding.AppDB.DbAdapter;
 
 /**
  * Created by Sandesh on 28-Nov-15.
@@ -38,6 +41,8 @@ public class timeService extends Service
 
     Thread thread;
     Timer timer;
+    DbAdapter dbAdapter;
+    String matchid, matchname, matchformat, matchvenue, matchstart, matchwinner, matchstatus;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -146,6 +151,13 @@ public class timeService extends Service
                     if (getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
                             getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) == 40) {
                         LuckyNo();
+                    }
+                    int h= Date1.getHours();
+                    int m= Date1.getMinutes();
+                    int s= Date1.getSeconds();
+//                    Log.i("hour",""+h);
+                    if (h==2 && m==39 && s==30){
+                        getMatchDetails();
                     }
                 }catch (Exception e)
                 {
@@ -260,6 +272,79 @@ public class timeService extends Service
                 error.printStackTrace();
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 //    pDialog.hide();
+            }
+        }) ;
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+// Adding request to request queue
+        AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+
+    }
+
+    private void getMatchDetails(){
+        String tag_json_obj = "json_obj_req";
+        final String TAG = "response";
+        final String url = getString(R.string.get_match_details);
+        Log.i("url", "" + url);
+
+        StringRequest jsonObjReq = new StringRequest(Request.Method.GET,
+                url, new Response.Listener<String>() {
+
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+                dbAdapter= new DbAdapter(getApplicationContext());
+                dbAdapter.open();
+                try {
+                    JSONObject object = new JSONObject(response);
+                    int status = 0;
+                    if(object.getString("status").equals("true"))
+                    {
+                        JSONObject jsonObject = object.getJSONObject("data");
+                        JSONArray jsonArray = jsonObject.names();
+                        for(int i=0; i<jsonObject.length(); i++){
+                            JSONObject object1 = jsonObject.getJSONObject(jsonArray.getString(i));
+                            matchid = object1.getString("id");
+                            matchname = object1.getString("name");
+                            matchformat = object1.getString("format");
+                            matchvenue = object1.getString("venue");
+                            String time = object1.getString("start_date");
+                            time = time.replace("T", " ");
+                            time = time.replace("-", "/");
+                            String [] split = time.split("\\u002B");
+                            matchstart =split[0];
+                            matchwinner = object1.getString("winner_team");
+                            matchstatus = object1.getString("status");
+                            dbAdapter.InsertDetails(matchid, matchname, matchformat, matchvenue, matchstart, matchwinner, matchstatus);
+                        }
+
+                    }
+                    dbAdapter.close();
+
+                }
+                catch (Exception e)
+                {
+
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if(error instanceof TimeoutError)
+                {
+
+                }
+                else {
+
+                }
+                error.printStackTrace();
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
             }
         }) ;
         jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,

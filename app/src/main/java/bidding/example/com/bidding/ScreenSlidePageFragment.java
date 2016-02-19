@@ -17,6 +17,7 @@
 package bidding.example.com.bidding;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -33,6 +34,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import bidding.example.com.bidding.AppDB.DbAdapter;
 
 public class ScreenSlidePageFragment extends Fragment {
     /**
@@ -51,7 +54,7 @@ public class ScreenSlidePageFragment extends Fragment {
     private boolean popUpStatus = false;
     private CardView live, toss;
     ListView listView, listDetail;
-    TextView heading, match;
+    TextView heading, match, start, score;
     private static String[] GAME = {"TOSS","1ST BALL 1ST INNINGS","1ST BALL 2ND INNINGS","1ST OVER RUNS TEAM-1","1ST OVER RUNS TEAM-2","10 OVER SESSION TEAM-1","10 OVER SESSION TEAM-2","1ST WICKET METHOD TEAM-1","1ST WICKET METHOD TEAM-2","HIGHEST OPENING PARTNERSHIP","RACE TO 50","RUNS AT 1ST WICKET FALL TEAM-1","RUNS AT 1ST WICKET FALL TEAM-2","TO MAKE 50 TEAM-1","TO MAKE 50 TEAM-2","TO MAKE 100 TEAM-1","TO MAKE 100 TEAM-2","INNINGS RUN RATE TEAM-1","INNINGS RUN RATE TEAM-2"};
     private static String[] Positon1 = {"Dot ball \t\t 1.25","Wicket \t\t\t 5.5","Wide ball \t\t 2.5","No ball \t\t 4.5","1 run \t\t\t 1.5","2 runs \t\t\t 3.5","3 runs \t\t\t 5.5","4 runs \t\t\t 6.5","6 runs \t\t\t 10"};
     private static String[] Wicket = {"Caught behind \t\t xx","Caught in the field \t\t xx","LBW \t\t xx","Bowled \t\t xx","Run out \t\t\t xx","Stumped \t\t\t xx","Hit wicket \t\t xx","Retired hurt \t\t\t xx"};
@@ -105,30 +108,31 @@ public class ScreenSlidePageFragment extends Fragment {
 
         heading = (TextView) view.findViewById(R.id.txtheading);
         match = (TextView) view.findViewById(R.id.txtlive);
+        start = (TextView) view.findViewById(R.id.txtstart);
+        score = (TextView) view.findViewById(R.id.txtScore);
 
         listDetail = (ListView) view.findViewById(R.id.listDetail);
         listDetail.setVisibility(View.GONE);
 
-        if(mPageNumber==0){
+        try {
+            DbAdapter dbAdapter = new DbAdapter(getActivity());
+            dbAdapter.open();
+//            Log.i("page", "" + mPageNumber);
+                Cursor cur = dbAdapter.GetDetails(mPageNumber+1);
+//            Log.i("cursor", "" + cur.getCount());
+                if (cur.getCount() > 0) {
+                    cur.moveToFirst();
+                    do {
+                        heading.setText(cur.getString(2));
+                        match.setText(cur.getString(2));
+                        start.setText(cur.getString(5));
+                    } while (cur.moveToNext());
+                }
 
-        }
-        else  if(mPageNumber==1){
-            match.setText("Chennai Vs Kolkatta");
-        }
-        else  if(mPageNumber==2){
-            match.setText("Punjab Vs Rajasthan");
-        }
-        else  if(mPageNumber==3){
-            match.setText("Bengaluru Vs Mumbai");
-        }
-        else  if(mPageNumber==4){
-            match.setText("Punjab Vs Kochi");
-        }
-        else  if(mPageNumber==5){
-            match.setText("Pune Vs Rajasthan");
-        }
-        else  if(mPageNumber==6){
-            match.setText("Kolkatta Vs Bengaluru");
+                dbAdapter.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
 

@@ -45,6 +45,7 @@ public class CriceketBet extends Fragment {
 
     ListView listMatches;
     private List<MatchListGetSet> matchList = new ArrayList<>();
+    public static List<MatchListGetSet> matchListGetSets;
     private MatchListAdapter matchListAdapter;
     private ConnectionDetector connectionDetector;
     private static String[] Matches = {"Mumbai Vs Pune","Chennai Vs Kolkatta","Punjab Vs Rajasthan","Bengaluru Vs Mumbai","Punjab Vs Kochi","Pune Vs Rajasthan","Kolkatta Vs Bengaluru"};
@@ -134,18 +135,20 @@ public class CriceketBet extends Fragment {
                             JSONObject innerObject = object.getJSONObject("data");
                             Log.d(TAG, innerObject.toString());
                             JSONArray jsonArray = innerObject.getJSONArray("Cricket_Match");
-
+                            matchListGetSets = new ArrayList<>();
                             if(jsonArray.length()!=0) {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject childObject = jsonArray.getJSONObject(i);
                                     MatchListGetSet item = new MatchListGetSet();
                                     Calendar cal = Calendar.getInstance();
                                     SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-                                    time1 = df.format(cal.getTime());
+                                    cal.add(cal.HOUR, -10);
+                                    time1 = df.format(new Date(cal.getTimeInMillis()));
                                     Log.i("time1", "" + time1);
 
-                                    cal.add(cal.HOUR, 48);
-                                    time2= df.format(new Date(cal.getTimeInMillis()));
+                                    Calendar cal1 = Calendar.getInstance();
+                                    cal1.add(cal1.HOUR, 48);
+                                    time2= df.format(new Date(cal1.getTimeInMillis()));
                                     Log.i("time2", "" + time2);
 
                                     String time = childObject.getString("start_date");
@@ -158,6 +161,9 @@ public class CriceketBet extends Fragment {
                                         item.setDate(split[0]);
                                         item.setVenue(childObject.getString("venue"));
                                         matchList.add(item);
+                                        if (df.parse(item.getDate()).before(df.parse(time2))) {
+                                            matchListGetSets.add(item);
+                                        }
                                     }
 
                                 }
@@ -177,6 +183,7 @@ public class CriceketBet extends Fragment {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    pDialog.hide();
                     if(error instanceof TimeoutError)
                     {
                         Toast.makeText(getActivity(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
