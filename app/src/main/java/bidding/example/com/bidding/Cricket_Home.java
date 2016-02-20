@@ -112,6 +112,14 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
                 upcomingTransaction.replace(R.id.containar1, upcomingMatches);
                 upcomingTransaction.commit();
                 break;
+            case R.id.score_crd:
+                MainPage.toolbar.setTitle("Score Card");
+                android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                ScoreCard fragment = new ScoreCard();
+                fragmentTransaction.replace(R.id.containar1, fragment);
+                fragmentTransaction.commit();
+                break;
         }
     }
 }

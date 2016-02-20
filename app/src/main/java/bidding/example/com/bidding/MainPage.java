@@ -206,12 +206,12 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         }
         else if(id == R.id.score_card)
         {
-//            toolbar.setTitle("Multiple Bet");
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            Profile fragment = new Profile();
-//            fragmentTransaction.replace(R.id.containar1, fragment);
-//            fragmentTransaction.commit();
+            toolbar.setTitle("Score Card");
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            ScoreCard fragment = new ScoreCard();
+            fragmentTransaction.replace(R.id.containar1, fragment);
+            fragmentTransaction.commit();
         }
         else if (id == R.id.logout) {
             SharedPreferences settings = getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE);

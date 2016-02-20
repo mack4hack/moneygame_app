@@ -16,11 +16,15 @@
 
 package bidding.example.com.bidding;
 
+import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,10 +34,20 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import bidding.example.com.bidding.AppDB.DbAdapter;
 
@@ -47,7 +61,7 @@ public class ScreenSlidePageFragment extends Fragment {
      * The fragment's page number, which is set to the argument value for {@link #ARG_PAGE}.
      */
     private int mPageNumber;
-    Button more;
+    ImageButton more;
     ImageButton close;
     private Animation animShow, animHide;
     private SlidingPanel popup = null;
@@ -65,7 +79,9 @@ public class ScreenSlidePageFragment extends Fragment {
     private static String[] Make_50 = {"none \t\t 6.5","1 \t\t 4.5","2 \t\t 1.9","3 \t\t 2.55","4 or more \t\t 3.5"};
     private static String[] Make_100 = {"none \t\t 2.5","1 \t\t 2","2 \t\t 4.5","3 or more \t\t 6.5"};
     private static String[] Run_Rate = {"Below 5.00 \t\t 3","5.01 to 5.5 \t\t 4","5.51 to 6.00 \t\t 3.5","6.01 to 6.5 \t\t 3.5","6.51 to 7.0 \t\t 4.5"};
-
+    DbAdapter dbAdapter;
+    String id, mid, oddid, odd, ttlchip, pyout, resltbet, gmcls, prtclr, nm, unq, frmt, ven, strt, ta, tb,wnr, sts, gmnm;
+    public static String matchid;
     /**
      * Factory method for this fragment class. Constructs a new fragment for the given page number.
      */
@@ -102,7 +118,6 @@ public class ScreenSlidePageFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        live = (CardView) view.findViewById(R.id.live_match);
         toss = (CardView) view.findViewById(R.id.toss);
         toss.setVisibility(View.GONE);
 
@@ -110,9 +125,12 @@ public class ScreenSlidePageFragment extends Fragment {
         match = (TextView) view.findViewById(R.id.txtlive);
         start = (TextView) view.findViewById(R.id.txtstart);
         score = (TextView) view.findViewById(R.id.txtScore);
+        more = (ImageButton) view.findViewById(R.id.btn_more);
 
         listDetail = (ListView) view.findViewById(R.id.listDetail);
-        listDetail.setVisibility(View.GONE);
+//        listDetail.setVisibility(View.GONE);
+
+        getMatchDetailsOdds();
 
         try {
             DbAdapter dbAdapter = new DbAdapter(getActivity());
@@ -158,26 +176,13 @@ public class ScreenSlidePageFragment extends Fragment {
 
         try {
             popup = (SlidingPanel) view.findViewById(R.id.popup_window);
-            more = (Button) view.findViewById(R.id.btn_more);
+
             close = (ImageButton) view.findViewById(R.id.cncl);
             listView = (ListView) view.findViewById(R.id.listGames);
 
             animShow = AnimationUtils.loadAnimation(getActivity(), R.anim.popup_show);
             animHide = AnimationUtils.loadAnimation(getActivity(), R.anim.popup_hide);
 
-            /*more.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-
-                    popup.setVisibility(View.VISIBLE);
-//                    popup.startAnimation(animShow);
-                    popUpStatus = true;
-                    more.setEnabled(false);
-                    more.setVisibility(View.GONE);
-                    close.setEnabled(true);
-                    listView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, GAME));
-                }
-            });
-*/
             more.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent me) {
@@ -190,7 +195,7 @@ public class ScreenSlidePageFragment extends Fragment {
 //                        params.setMargins((int) me.getRawX() - v.getWidth() / 2, (int) (me.getRawY() - v.getHeight() * 1.5), (int) me.getRawX() - v.getWidth() / 2, (int) (me.getRawY() - v.getHeight() * 1.5));
 //                        v.setLayoutParams(params);
                         popup.setVisibility(View.VISIBLE);
-//                    popup.startAnimation(animShow);
+                    popup.startAnimation(animShow);
                         popUpStatus = true;
                         more.setEnabled(false);
                         more.setVisibility(View.GONE);
@@ -334,7 +339,7 @@ public class ScreenSlidePageFragment extends Fragment {
                 public boolean onTouch(View v, MotionEvent event) {
                     if (event.getAction() == MotionEvent.ACTION_MOVE) {
                         popup.setVisibility(View.GONE);
-//                    popup.startAnimation(animHide);
+                    popup.startAnimation(animHide);
                         popUpStatus = false;
                         close.setEnabled(false);
                         close.setVisibility(View.GONE);
@@ -364,4 +369,98 @@ public class ScreenSlidePageFragment extends Fragment {
     public int getPageNumber() {
         return mPageNumber;
     }
+
+    private void getMatchDetailsOdds(){
+        String tag_json_obj = "json_obj_req";
+        final String TAG = "response";
+        final String url = getString(R.string.get_match_odds);
+        Log.i("url", "" + url);
+
+
+        final ProgressDialog pDialog = new ProgressDialog(getActivity());
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
+        StringRequest jsonObjReq = new StringRequest(Request.Method.GET,
+                url, new Response.Listener<String>() {
+
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onResponse(String response) {
+                pDialog.hide();
+                Log.d(TAG, response.toString());
+                dbAdapter= new DbAdapter(getActivity());
+                dbAdapter.open();
+                try {
+                    JSONObject object = new JSONObject(response);
+
+                    if(object.getString("status").equals("true"))
+                    {
+                        JSONObject jsonObject = object.getJSONObject("data");
+                        JSONArray jsonArray = jsonObject.getJSONArray("Match_Odds");
+                        for(int i=0; i<jsonArray.length(); i++){
+                            JSONObject object1 = jsonArray.getJSONObject(i);
+                            id = object1.getString("id");
+                            matchid = object1.getString("match_id");
+                            mid = object1.getString("m_id");
+                            oddid = object1.getString("odd_id");
+                            odd = object1.getString("odds");
+                            ttlchip = object1.getString("total_chips");
+                            pyout = object1.getString("payout");
+                            resltbet = object1.getString("result_bet");
+                            gmcls = object1.getString("game_close");
+                            prtclr = object1.getString("perticulars");
+                            nm = object1.getString("name");
+                            unq = object1.getString("unique");
+                            frmt = object1.getString("format");
+                            ven = object1.getString("venue");
+                            String time = object1.getString("start_date");
+                            time = time.replace("T", " ");
+                            time = time.replace("-", "/");
+                            String [] split = time.split("\\u002B");
+                            strt =split[0];
+                            ta = object1.getString("team_a");
+                            tb = object1.getString("team_b");
+                            wnr = object1.getString("winner_team");
+                            sts = object1.getString("status");
+                            gmnm = object1.getString("game_name");
+                            dbAdapter.InsertOdds(id,matchid,mid,oddid,odd,ttlchip,pyout,resltbet,gmcls,prtclr,nm,unq,frmt,ven,strt,ta,tb,wnr,sts,gmnm);
+                        }
+
+                    }
+                    dbAdapter.close();
+
+                }
+                catch (Exception e)
+                {
+
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pDialog.hide();
+                if(error instanceof TimeoutError)
+                {
+
+                }
+                else {
+
+                }
+                error.printStackTrace();
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+            }
+        }) ;
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+// Adding request to request queue
+        AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+
+    }
+
 }

@@ -1,13 +1,8 @@
 package bidding.example.com.bidding;
 
-import android.annotation.TargetApi;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -183,9 +178,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         Log.i("response",""+response);
                         JSONObject object = new JSONObject(response);
                         if (object.getString("status").equals("true")) {
-
-
-
 
                             JSONObject innerObject = new JSONObject(object.getString("data"));
                             //System.out.println(" 2. " + sdf.format(dt));

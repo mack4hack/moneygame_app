@@ -93,7 +93,7 @@
             android:layout_height="0.1dp"
             android:background="@color/textColor"/>
 
-    <android.support.v7.widget.CardView
+  <!--  <android.support.v7.widget.CardView
         android:id="@+id/live_match"
         android:layout_gravity="center"
         android:layout_width="match_parent"
@@ -126,7 +126,7 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText2"
+                android:id="@+id/btn_odd1"
                 android:hint="100"
                 android:layout_weight="1" />
             </LinearLayout>
@@ -149,14 +149,14 @@
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText"
+                android:id="@+id/btn_odd2"
                 android:hint="80"
                 android:layout_weight="1" />
 
 
             </LinearLayout>
         </LinearLayout>
-        </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>-->
 
         <android.support.v7.widget.CardView
             android:id="@+id/toss"
@@ -219,9 +219,9 @@
             android:layout_below="@+id/linearLayout"/>
 
 
-    <Button
+    <ImageButton
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:text="More Games"
         android:id="@+id/btn_more"

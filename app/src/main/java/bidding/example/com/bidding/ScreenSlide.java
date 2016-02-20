@@ -65,6 +65,7 @@ public class ScreenSlide extends FragmentActivity {
                 // fragment expose actions itself (rather than the activity exposing actions),
                 // but for simplicity, the activity provides the actions in this sample.
                 indicator.setCurrentItem(position);
+                mPagerAdapter.notifyDataSetChanged();
             }
         });
 

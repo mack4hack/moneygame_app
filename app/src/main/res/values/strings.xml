@@ -99,8 +99,11 @@
     <!-- Get cricket match list-->
     <string name="get_match_list">http://46.101.6.171/moneygame/api/cricket/getCricketMatchList</string>
     <string name="get_match_details">http://46.101.6.171/moneygame/api/cricket/getCricketMatchDetails</string>
+    <string name="get_match_odds">http://46.101.6.171/moneygame/api/cricket/getCricketMatchDetailsWithOdds</string>
+    <string name="place_cricket_bet">http://46.101.6.171/moneygame/api/cricket/placeCricketMatchBet</string>
+    <string name="get_cricket_odds_with_id">http://46.101.6.171/moneygame/api/cricket/getCricketOddsWithMatchId</string>
 
-    <string name="title_activity_tansaction_wise_history">Tansaction History</string>
+    <string name="title_activity_tansaction_wise_history">Transaction History</string>
     <string name="title_activity_transaction_indetail">Transaction Details</string>
     <string name="title_activity_notification_">Notification_Activity</string>
     <string name="title_activity_main_page">MainPage</string>

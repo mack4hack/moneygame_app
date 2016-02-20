@@ -20,6 +20,7 @@ public class DbAdapter extends SQLiteOpenHelper
     public static final String DATABASE_Second_Number_TABLE = "MultipleBetNoSecond";
     public static final String DATABASE_History_TABLE = "HistoryTable";
     public static final String DATABASE_Match_Details_TABLE = "MatchDetailsTable";
+    public static final String DATABASE_Match_Details_Odds_TABLE = "MatchDetailsOddsTable";
 
     public SQLiteDatabase db;
 
@@ -58,6 +59,29 @@ public class DbAdapter extends SQLiteOpenHelper
     public static final String match_winner_team="winner_team";
     public static final String match_status="status";
 
+    //    Match Details Odds Table
+    public static final String odds_autoid="id";
+    public static final String odds_id="oid";
+    public static final String odds_match_id="match_id";
+    public static final String odds_m_id="m_id";
+    public static final String odds_odd_id="odd_id";
+    public static final String odds_odd="odds";
+    public static final String odds_total_chips="total_chips";
+    public static final String odds_payout="payout";
+    public static final String odds_result_bet="result_bet";
+    public static final String odds_game_close="game_close";
+    public static final String odds_perticulars="perticulars";
+    public static final String odds_name="name";
+    public static final String odds_unique="ounique";
+    public static final String odds_format="format";
+    public static final String odds_venue="venue";
+    public static final String odds_start_date="start_date";
+    public static final String odds_team_a="team_a";
+    public static final String odds_team_b="team_b";
+    public static final String odds_winner_team="winner_team";
+    public static final String odds_status="status";
+    public static final String odds_game_name="game_name";
+
   //Create First Table
     public static final String Create_first_table="create table "+DATABASE_First_Number_TABLE+"("+id+" integer primary key autoincrement,"+col_1+" text,"+col_2+" text,"+col_3+" text,"+col_4+" text)";//Create First Table
 
@@ -69,6 +93,10 @@ public class DbAdapter extends SQLiteOpenHelper
 
     //Create Match Details Table
     public static final String Create_Match_Details_table = "create table "+DATABASE_Match_Details_TABLE+"("+match_autoid+" integer primary key autoincrement,"+match_id+" text,"+match_name+" text,"+match_format+" text,"+match_venue+" text,"+match_start_date+" text,"+match_winner_team+" text,"+match_status+" text)";
+
+    //Create Match Details Odds Table
+    public static final String Create_Match_Details_Odds_table = "create table "+DATABASE_Match_Details_Odds_TABLE+"("+odds_autoid+" integer primary key autoincrement,"+odds_id+" text,"+odds_match_id+" text,"+odds_m_id+" text,"+odds_odd_id+" text,"+odds_odd+" text,"+odds_total_chips+" text,"+odds_payout+" text,"+odds_result_bet+" text,"+odds_game_close+" text" +
+            ","+odds_perticulars+" text,"+odds_name+" text,"+odds_unique+" text,"+odds_format+" text,"+odds_venue+" text,"+odds_start_date+" text,"+odds_team_a+" text,"+odds_team_b+" text,"+odds_winner_team+" text,"+odds_status+" text,"+odds_game_name+" text)";
 
     public DbAdapter(Context context) {
         super(context, DATABASE_NAME, null,1);
@@ -94,6 +122,7 @@ public class DbAdapter extends SQLiteOpenHelper
             db.execSQL(Create_second_table);
             db.execSQL(Create_history_table);
             db.execSQL(Create_Match_Details_table);
+            db.execSQL(Create_Match_Details_Odds_table);
     }
 
     @Override
@@ -103,6 +132,7 @@ public class DbAdapter extends SQLiteOpenHelper
         db.execSQL("DROP TABLE IF EXIST"+ Create_second_table);
         db.execSQL("DROP TABLE IF EXIST"+ Create_history_table);
         db.execSQL("DROP TABLE IF EXIST" + Create_Match_Details_table);
+        db.execSQL("DROP TABLE IF EXIST" + Create_Match_Details_Odds_table);
         onCreate(db);
     }
 
@@ -167,9 +197,51 @@ public class DbAdapter extends SQLiteOpenHelper
         return result;
     }
 
+    public long InsertOdds(String id, String mcthid,String mid,String oddid,String odd, String total_chip, String payout, String result_bet,String gameclose,String particular,String name,String unique, String format,
+                           String venue, String strtdt,String teama,String teamb,String winner,String status, String game_name)
+    {
+        long result = -1;
+        try {
+            ContentValues values = new ContentValues();
+            values.put(odds_id,id);
+            values.put(odds_m_id,mid);
+            values.put(odds_odd_id,oddid);
+            values.put(odds_odd,odd);
+            values.put(odds_total_chips,total_chip);
+            values.put(odds_payout,payout);
+            values.put(odds_result_bet,result_bet);
+            values.put(odds_game_close,gameclose);
+            values.put(odds_perticulars,particular);
+            values.put(odds_name,name);
+            values.put(odds_unique,unique);
+            values.put(odds_format,format);
+            values.put(odds_venue,venue);
+            values.put(odds_start_date,strtdt);
+            values.put(odds_team_a,teama);
+            values.put(odds_team_b,teamb);
+            values.put(odds_winner_team,winner);
+            values.put(odds_status,status);
+            values.put(odds_game_name,game_name);
+
+
+            result = db.insert(DATABASE_Match_Details_Odds_TABLE,null,values);
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public Cursor GetDetails(int no) throws SQLException
     {
         String query = "SELECT * FROM "+ DATABASE_Match_Details_TABLE+" where "+match_autoid+"='"+no+"'";
+
+        return db.rawQuery(query,null);
+    }
+
+    public Cursor GetMatchOdds(int no) throws SQLException
+    {
+        String query = "SELECT * FROM "+ DATABASE_Match_Details_Odds_TABLE+" where "+id+"='"+no+"'";
 
         return db.rawQuery(query,null);
     }
