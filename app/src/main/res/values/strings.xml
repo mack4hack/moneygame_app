@@ -81,6 +81,8 @@
 
     <string name="get_today_history">http://46.101.6.171/moneygame/api/players/playerhistory?player_id=</string>
 
+    <string name="get_history_by_week">http://46.101.6.171/moneygame/api/players/accountsPlayerByWeek?player_id=</string>
+
     <!--get chart-->
     <string name="get_chart">http://46.101.6.171/moneygame/api/bets/LuckyNumberChart?month=</string>
 

@@ -134,7 +134,7 @@ public class TodaysSummary extends Fragment {
                                             item.setTime(childObject.getString("draw_time"));
                                             item.setTimeSlotId(childObject.getString("timeslot_id"));
                                             item.setAmount(childObject.getString("bet_amount"));
-                                            item.setResult(childObject.getString("total_wins"));
+                                            item.setResult(childObject.getString("payout"));
                                             todaySummary.add(item);
                                         }
 

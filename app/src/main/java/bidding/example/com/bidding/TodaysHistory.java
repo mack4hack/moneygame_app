@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -23,7 +24,10 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import bidding.example.com.bidding.Adapter.HistoryAdapter;
@@ -37,6 +41,7 @@ import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
 public class TodaysHistory extends Fragment {
 
     ListView listView;
+    TextView total_bets, winnings, profit_loss;
     List<HistoryGetSet> historyList = new ArrayList<>();
     public TodaysHistory() {
         // Required empty public constructor
@@ -55,6 +60,10 @@ public class TodaysHistory extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         listView = (ListView) view.findViewById(R.id.list);
+        total_bets = (TextView) view.findViewById(R.id.txttotalbets);
+        winnings = (TextView) view.findViewById(R.id.txtwinnings);
+        profit_loss = (TextView) view.findViewById(R.id.txtprftlos);
+
         getHistory();
 
     }
@@ -64,7 +73,21 @@ public class TodaysHistory extends Fragment {
         ConnectionDetector connectionDetector = new ConnectionDetector(getActivity());
         if(connectionDetector.isConnectingToInternet()) {
             String tag_string_req = "string_req";
-            String url = getString(R.string.get_today_history) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "");
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setFirstDayOfWeek(Calendar.MONDAY);
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+            String[] days = new String[7];
+            for (int i = 0; i < 7; i++)
+            {
+                days[i] = format.format(calendar.getTime());
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
+            String week= days[0]+"%20To%20"+days[6];
+            try {
+
+             String url = getString(R.string.get_history_by_week) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week="+week;
 
             final ProgressDialog pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Loading...");
@@ -211,6 +234,10 @@ public class TodaysHistory extends Fragment {
 
 // Adding request to request queue
             AppControler.getInstance().addToRequestQueue(strReq, tag_string_req);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
         }
         else
         {

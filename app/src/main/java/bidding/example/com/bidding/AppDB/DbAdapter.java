@@ -204,6 +204,7 @@ public class DbAdapter extends SQLiteOpenHelper
         try {
             ContentValues values = new ContentValues();
             values.put(odds_id,id);
+            values.put(odds_match_id, mcthid);
             values.put(odds_m_id,mid);
             values.put(odds_odd_id,oddid);
             values.put(odds_odd,odd);
