@@ -81,7 +81,7 @@ public class CriceketBet extends Fragment {
                MatchListGetSet item = matchList.get(position);
                 try {
                     if (df.parse(item.getDate()).before(df.parse(time2))) {
-                        startActivity(new Intent(getActivity(), ScreenSlide.class).putExtra("position", position));
+                        startActivity(new Intent(getActivity(), ScreenSlide.class).putExtra("position", position).putExtra("match_id",item.getId()));
                     }
                     else{
                         final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
@@ -157,6 +157,7 @@ public class CriceketBet extends Fragment {
                                     String [] split = time.split("\\u002B");
                                     if(df.parse(split[0]).after(df.parse(time1))) // && df.parse(split[0]).before(df.parse(time2)
                                     {
+                                        item.setId(childObject.getString("id"));;
                                         item.setName(childObject.getString("name"));
                                         item.setDate(split[0]);
                                         item.setVenue(childObject.getString("venue"));

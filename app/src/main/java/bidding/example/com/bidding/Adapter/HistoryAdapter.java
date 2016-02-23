@@ -1,7 +1,6 @@
 package bidding.example.com.bidding.Adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +42,7 @@ public class HistoryAdapter extends BaseAdapter
 
     class Holder
     {
-        TextView mNumber,mAmt,mBetTime,mMargin;
+        TextView mDate,mTotalBet,mTotalWin,mPL;
     }
 
     @Override
@@ -55,10 +54,10 @@ public class HistoryAdapter extends BaseAdapter
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.child_history,null);
             viewHolder = new Holder();
-            viewHolder.mNumber = (TextView) convertView.findViewById(R.id.number);
-            viewHolder.mAmt = (TextView) convertView.findViewById(R.id.amount);
-            viewHolder.mBetTime = (TextView) convertView.findViewById(R.id.time);
-            viewHolder.mMargin = (TextView) convertView.findViewById(R.id.charge);
+            viewHolder.mDate = (TextView) convertView.findViewById(R.id.date);
+            viewHolder.mTotalBet = (TextView) convertView.findViewById(R.id.bets);
+            viewHolder.mTotalWin = (TextView) convertView.findViewById(R.id.wins);
+            viewHolder.mPL = (TextView) convertView.findViewById(R.id.p_l);
 
             convertView.setTag(viewHolder);
         }
@@ -68,17 +67,17 @@ public class HistoryAdapter extends BaseAdapter
         }
         HistoryGetSet item = historyList.get(position);
 
-        viewHolder.mNumber.setText(item.getNumber());
-        viewHolder.mBetTime.setText(item.getTime());
-        viewHolder.mAmt.setText(item.getAmount());
-        viewHolder.mMargin.setText(item.getCharge());
+        viewHolder.mDate.setText(item.getDate());
+        viewHolder.mTotalBet.setText(item.getTotal_bet());
+        viewHolder.mTotalWin.setText(item.getTotal_wins());
+        viewHolder.mPL.setText(item.getProftlos());
 
-        if(item.getResult().equals("0"))
+       /* if(item.getResult().equals("0"))
         {
             convertView.setBackgroundColor(Color.GRAY);
 
         }
-
+*/
         return convertView;
     }
 }

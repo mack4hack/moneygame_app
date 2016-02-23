@@ -10,11 +10,11 @@
         android:orientation="horizontal"
         android:id="@+id/topLayout">
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Time"
+            android:hint="Date"
             android:textColor="@color/textColor"
             android:gravity="center"
             android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"
@@ -24,27 +24,11 @@
             android:layout_height="match_parent"
             android:background="@color/textColor"/>
         <TextView
-            android:id="@+id/number"
+            android:id="@+id/bets"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Number"
-            android:gravity="center"
-            android:textColor="@color/textColor"
-            android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"
-            android:paddingBottom="@dimen/abc_action_bar_overflow_padding_end_material"/>
-
-        <View
-            android:layout_width="0.1dp"
-            android:layout_height="match_parent"
-            android:background="@color/textColor"/>
-
-        <TextView
-            android:id="@+id/amount"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Amount"
+            android:hint="TotalBets"
             android:gravity="center"
             android:textColor="@color/textColor"
             android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"
@@ -56,11 +40,27 @@
             android:background="@color/textColor"/>
 
         <TextView
-            android:id="@+id/charge"
+            android:id="@+id/wins"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Charge"
+            android:hint="TotalWins"
+            android:gravity="center"
+            android:textColor="@color/textColor"
+            android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"
+            android:paddingBottom="@dimen/abc_action_bar_overflow_padding_end_material"/>
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="match_parent"
+            android:background="@color/textColor"/>
+
+        <TextView
+            android:id="@+id/p_l"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="P/L"
             android:gravity="center"
             android:textColor="@color/textColor"
             android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"

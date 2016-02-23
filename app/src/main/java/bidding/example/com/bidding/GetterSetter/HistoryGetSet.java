@@ -5,8 +5,50 @@ package bidding.example.com.bidding.GetterSetter;
  */
 public class HistoryGetSet
 {
-    String time,number,amount,charge,result;
+    String time;
+    String number;
+    String amount;
+    String charge;
+    String result;
+    String total_bet;
+    String total_wins;
+    String date;
+    String payout;
+    String proftlos;
     String transactionNo,timeSlotId;
+
+    public String getPayout() {
+        return payout;
+    }
+
+    public void setPayout(String payout) {
+        this.payout = payout;
+    }
+
+    public String getProftlos() {
+        return proftlos;
+    }
+
+    public void setProftlos(String proftlos) {
+        this.proftlos = proftlos;
+    }
+
+    public String getTotal_wins() {
+        return total_wins;
+    }
+
+    public void setTotal_wins(String total_wins) {
+        this.total_wins = total_wins;
+    }
+
+    public String getTotal_bet() {
+        return total_bet;
+    }
+
+    public void setTotal_bet(String total_bet) {
+        this.total_bet = total_bet;
+    }
+
 
     public String getTimeSlotId() {
         return timeSlotId;
@@ -16,7 +58,13 @@ public class HistoryGetSet
         this.timeSlotId = timeSlotId;
     }
 
+    public String getDate() {
+        return date;
+    }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getTransactionNo() {
         return transactionNo;

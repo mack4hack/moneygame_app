@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ public class TodaysHistory extends Fragment {
 
     ListView listView;
     TextView total_bets, winnings, profit_loss;
+    int bet=0, win=0, prftlos=0;
     List<HistoryGetSet> historyList = new ArrayList<>();
     public TodaysHistory() {
         // Required empty public constructor
@@ -66,6 +68,23 @@ public class TodaysHistory extends Fragment {
 
         getHistory();
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                HistoryGetSet item = historyList.get(i);
+                //item.getTimeSlotId();
+                Log.i("userid", "" + item.getTimeSlotId() + " id " + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", ""));
+                android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                TodaysSummary fragment = new TodaysSummary();
+                Bundle args = new Bundle();
+                args.putString("date", item.getDate());
+                fragment.setArguments(args);
+                fragmentTransaction.replace(R.id.containar, fragment);
+                fragmentTransaction.commit();
+            }
+        });
+
     }
 
     private void getHistory()
@@ -87,7 +106,7 @@ public class TodaysHistory extends Fragment {
             String week= days[0]+"%20To%20"+days[6];
             try {
 
-             String url = getString(R.string.get_history_by_week) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week="+week;
+             String url = getString(R.string.get_history_by_week) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week=15-02-2016%20To%2021-02-2016";
 
             final ProgressDialog pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Loading...");
@@ -110,11 +129,27 @@ public class TodaysHistory extends Fragment {
                                 for(int i=0; i < jsonArray.length(); i++)
                                 {
                                     JSONObject item = jsonArray.getJSONObject(i);
-
+                                    int pl=0;
                                     HistoryGetSet rowItem = new HistoryGetSet();
                                     rowItem.setAmount(item.getString("bet_amount"));
+                                    rowItem.setDate(item.getString("date"));
+                                    rowItem.setTotal_bet(item.getString("total_bet"));
+                                    rowItem.setTotal_wins(item.getString("total_wins"));
+                                    rowItem.setPayout(item.getString("payout"));
+                                    if(!item.getString("payout").equals("null")) {
+                                        pl = (int)Math.round(Double.parseDouble(item.getString("bet_amount"))) + (int)Math.round(Double.parseDouble(item.getString("payout")));
+                                        rowItem.setProftlos(String.valueOf(pl));
+                                    }
 
-                                    String first = item.getString("first_digit");
+                                    String ttlbet =item.getString("total_bet");
+                                    ttlbet = ttlbet.replace(",","");
+                                    bet+= (int)Math.round(Double.parseDouble(ttlbet));
+                                    String ttlwin =item.getString("total_wins");
+                                    ttlwin = ttlwin.replace(",","");
+                                    win+= (int)Math.round(Double.parseDouble(ttlwin));
+                                    prftlos+= pl;
+
+                                    /*String first = item.getString("first_digit");
                                     String second = item.getString("second_digit");
                                     String third = item.getString("jodi_digit");
                                     //Toast.makeText(getActivity(),"1 = "+first+" 2 = "+second+" 3 = "+third,Toast.LENGTH_SHORT).show();
@@ -161,9 +196,9 @@ public class TodaysHistory extends Fragment {
                                             rowItem.setNumber(third+"(III)");
                                         }
 
-                                    }
+                                    }*/
 
-                                    String[] dateTime = item.getString("timeslot").split(" ");
+                                  /*  String[] dateTime = item.getString("timeslot").split(" ");
                                     String[] time = dateTime[1].split(":");
                                     String[] timeSlot = time[1].split(":");
                                     rowItem.setTime(time[0]+":"+timeSlot[0]);
@@ -193,13 +228,16 @@ public class TodaysHistory extends Fragment {
                                     }
                                     else{
                                         rowItem.setCharge("-");
-                                    }
+                                    }*/
 
                                         historyList.add(rowItem);
 
                                 }
                                 HistoryAdapter adapter = new HistoryAdapter(getActivity(),historyList);
                                 listView.setAdapter(adapter);
+                                total_bets.setText(""+bet);
+                                winnings.setText(""+win);
+                                profit_loss.setText(""+prftlos);
                             }
                             else
                             {

@@ -4,10 +4,19 @@ package bidding.example.com.bidding.GetterSetter;
  * Created by root on 2/17/16.
  */
 public class MatchListGetSet {
+
+    String id;
     String name;
     String date;
     String venue;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }

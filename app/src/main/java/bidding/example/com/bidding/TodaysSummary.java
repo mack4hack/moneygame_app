@@ -28,6 +28,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import bidding.example.com.bidding.Adapter.TodaysSummaryAdapter;
@@ -67,7 +68,23 @@ public class TodaysSummary extends Fragment {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = df.format(cal.getTime());
 
-        getDetails(getString(R.string.get_acc_by_date) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id","") + "&date=" +formattedDate);
+        if(getArguments().getString("date")!=null){
+            String dte= getArguments().getString("date");
+            String date="";
+            try {
+                SimpleDateFormat df1 = new SimpleDateFormat("dd-MM-yyyy");
+                Date dt = df1.parse(dte);
+                date = df.format(dt);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            getDetails(getString(R.string.get_acc_by_date) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id","") + "&date=" +date);
+        }
+        else{
+            getDetails(getString(R.string.get_acc_by_date) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate);
+        }
+
 
         mTodaysSummary.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -17,6 +17,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 public class ScreenSlide extends FragmentActivity {
     private static final int NUM_PAGES = CriceketBet.matchListGetSets.size();
     public int pagenumber;
+    String match_id;
 
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
@@ -36,7 +37,7 @@ public class ScreenSlide extends FragmentActivity {
         setContentView(R.layout.activity_screen_slide);
 
         pagenumber = this.getIntent().getIntExtra("position", 0);
-
+        match_id = this.getIntent().getStringExtra("match_id");
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
 
