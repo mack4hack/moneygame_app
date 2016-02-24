@@ -235,7 +235,7 @@ public class DbAdapter extends SQLiteOpenHelper
 
     public Cursor GetDetails(int no) throws SQLException
     {
-        String query = "SELECT * FROM "+ DATABASE_Match_Details_TABLE+" where "+match_autoid+"='"+no+"'";
+        String query = "SELECT * FROM "+ DATABASE_Match_Details_TABLE+" where "+match_id+"='"+no+"'";
 
         return db.rawQuery(query,null);
     }

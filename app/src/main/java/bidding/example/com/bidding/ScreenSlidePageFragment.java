@@ -49,13 +49,20 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import bidding.example.com.bidding.Adapter.ListDetailsAdapter;
 import bidding.example.com.bidding.AppDB.DbAdapter;
+import bidding.example.com.bidding.GetterSetter.MatchDetailsGetSet;
 
 public class ScreenSlidePageFragment extends Fragment {
     /**
      * The argument key for the page number this fragment represents.
      */
     public static final String ARG_PAGE = "page";
+    List<MatchDetailsGetSet> matchDetailsGetSetList = new ArrayList<>();
+    ListDetailsAdapter listDetailsAdapter;
 
     /**
      * The fragment's page number, which is set to the argument value for {@link #ARG_PAGE}.
@@ -136,7 +143,7 @@ public class ScreenSlidePageFragment extends Fragment {
             DbAdapter dbAdapter = new DbAdapter(getActivity());
             dbAdapter.open();
 //            Log.i("page", "" + mPageNumber);
-                Cursor cur = dbAdapter.GetDetails(mPageNumber+1);
+                Cursor cur = dbAdapter.GetDetails(Integer.parseInt(ScreenSlide.match_id));
 //            Log.i("cursor", "" + cur.getCount());
                 if (cur.getCount() > 0) {
                     cur.moveToFirst();
@@ -214,30 +221,30 @@ public class ScreenSlidePageFragment extends Fragment {
                     if (position == 0) {
                         heading.setText("TOSS");
                         toss.setVisibility(View.VISIBLE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.GONE);
                     } else if (position == 1) {
                         heading.setText("1ST BALL 1ST INNINGS");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Positon1));
                     } else if (position == 2) {
                         heading.setText("1ST BALL 2ND INNINGS");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Positon1));
                     } else if (position == 3) {
                         heading.setText("1ST OVER RUNS TEAM-1");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, First_Over));
                     } else if (position == 4) {
                         heading.setText("1ST OVER RUNS TEAM-2");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, First_Over));
                     } else if (position == 5) {
@@ -249,13 +256,13 @@ public class ScreenSlidePageFragment extends Fragment {
                     } else if (position == 6) {
                         heading.setText("10 OVER SESSION TEAM-2");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Ten_Over));
                     } else if (position == 7) {
                         heading.setText("1ST WICKET METHOD TEAM-1");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Wicket));
                     } else if (position == 8) {
@@ -267,61 +274,61 @@ public class ScreenSlidePageFragment extends Fragment {
                     } else if (position == 9) {
                         heading.setText("HIGHEST OPENING PARTNERSHIP");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Highest_Opening));
                     } else if (position == 10) {
                         heading.setText("RACE TO 50");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Highest_Opening));
                     } else if (position == 11) {
                         heading.setText("RUNS AT 1ST WICKET FALL TEAM-1");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Wicket_Fall));
                     } else if (position == 12) {
                         heading.setText("RUNS AT 1ST WICKET FALL TEAM-2");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Wicket_Fall));
                     } else if (position == 13) {
                         heading.setText("TO MAKE 50 TEAM-1");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Make_50));
                     } else if (position == 14) {
                         heading.setText("TO MAKE 50 TEAM-2");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Make_50));
                     } else if (position == 15) {
                         heading.setText("TO MAKE 100 TEAM-1");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Make_100));
                     } else if (position == 16) {
                         heading.setText("TO MAKE 100 TEAM-2");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Make_100));
                     } else if (position == 17) {
                         heading.setText("INNINGS RUN RATE TEAM-1");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Run_Rate));
                     } else if (position == 18) {
                         heading.setText("INNINGS RUN RATE TEAM-2");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
                         listDetail.setVisibility(View.VISIBLE);
                         listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Run_Rate));
                     }
@@ -389,8 +396,8 @@ public class ScreenSlidePageFragment extends Fragment {
             public void onResponse(String response) {
                 pDialog.hide();
                 Log.d(TAG, response.toString());
-                dbAdapter= new DbAdapter(getActivity());
-                dbAdapter.open();
+//                dbAdapter= new DbAdapter(getActivity());
+//                dbAdapter.open();
                 try {
                     JSONObject object = new JSONObject(response);
 
@@ -399,6 +406,7 @@ public class ScreenSlidePageFragment extends Fragment {
                         JSONObject jsonObject = object.getJSONObject("data");
                         JSONArray jsonArray = jsonObject.getJSONArray("Match_Odds");
                         for(int i=0; i<jsonArray.length(); i++){
+                            MatchDetailsGetSet matchDetailsGetSet = new MatchDetailsGetSet();
                             JSONObject object1 = jsonArray.getJSONObject(i);
                             id = object1.getString("id");
                             matchid = object1.getString("match_id");
@@ -424,11 +432,37 @@ public class ScreenSlidePageFragment extends Fragment {
                             wnr = object1.getString("winner_team");
                             sts = object1.getString("status");
                             gmnm = object1.getString("game_name");
-                            dbAdapter.InsertOdds(id,matchid,mid,oddid,odd,ttlchip,pyout,resltbet,gmcls,prtclr,nm,unq,frmt,ven,strt,ta,tb,wnr,sts,gmnm);
+//                            dbAdapter.InsertOdds(id,matchid,mid,oddid,odd,ttlchip,pyout,resltbet,gmcls,prtclr,nm,unq,frmt,ven,strt,ta,tb,wnr,sts,gmnm);
+
+                            matchDetailsGetSet.setId(id);
+                            matchDetailsGetSet.setMatchid(matchid);
+                            matchDetailsGetSet.setMid(mid);
+                            matchDetailsGetSet.setOddid(oddid);
+                            matchDetailsGetSet.setOdd(odd);
+                            matchDetailsGetSet.setTtlchip(ttlchip);
+                            matchDetailsGetSet.setPayout(pyout);
+                            matchDetailsGetSet.setResultbet(resltbet);
+                            matchDetailsGetSet.setGameclose(gmcls);
+                            matchDetailsGetSet.setPrtclr(prtclr);
+                            matchDetailsGetSet.setName(nm);
+                            matchDetailsGetSet.setUnique(unq);
+                            matchDetailsGetSet.setFormat(frmt);
+                            matchDetailsGetSet.setVenue(ven);
+                            matchDetailsGetSet.setStrt(strt);
+                            matchDetailsGetSet.setTeama(ta);
+                            matchDetailsGetSet.setTeamb(tb);
+                            matchDetailsGetSet.setWinner(wnr);
+                            matchDetailsGetSet.setStatus(sts);
+                            matchDetailsGetSet.setGamename(gmnm);
+
+                            matchDetailsGetSetList.add(matchDetailsGetSet);
                         }
 
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchDetailsGetSetList);
+                        listDetail.setAdapter(listDetailsAdapter);
+
                     }
-                    dbAdapter.close();
+//                    dbAdapter.close();
 
                 }
                 catch (Exception e)
@@ -455,7 +489,7 @@ public class ScreenSlidePageFragment extends Fragment {
 
             }
         }) ;
-        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(180000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 // Adding request to request queue

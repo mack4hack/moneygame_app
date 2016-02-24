@@ -214,7 +214,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/listDetail"
             android:layout_centerHorizontal="true"
-            android:background="#888888"
+            android:background="#fff"
             android:layout_above="@+id/btn_more"
             android:layout_below="@+id/linearLayout"/>
 

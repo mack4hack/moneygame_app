@@ -2,14 +2,19 @@ package bidding.example.com.bidding.Adapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 import bidding.example.com.bidding.AppDB.DbAdapter;
+import bidding.example.com.bidding.GetterSetter.MatchDetailsGetSet;
 import bidding.example.com.bidding.R;
+import bidding.example.com.bidding.ScreenSlide;
 import bidding.example.com.bidding.ScreenSlidePageFragment;
 
 /**
@@ -19,16 +24,18 @@ public class ListDetailsAdapter extends BaseAdapter
 {
     Context context;
     DbAdapter dbAdapter;
+    List<MatchDetailsGetSet> matchDetailsGetSetList;
 
-    public ListDetailsAdapter(Context context)
+    public ListDetailsAdapter(Context context, List<MatchDetailsGetSet> matchDetailsGetSetList)
     {
         this.context = context;
-        dbAdapter = new DbAdapter(context);
+        this.matchDetailsGetSetList = matchDetailsGetSetList;
+//        dbAdapter = new DbAdapter(context);
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return matchDetailsGetSetList.size();
     }
 
     @Override
@@ -38,7 +45,7 @@ public class ListDetailsAdapter extends BaseAdapter
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return matchDetailsGetSetList.get(i).hashCode();
     }
 
     class Holder
@@ -65,17 +72,38 @@ public class ListDetailsAdapter extends BaseAdapter
             viewHolder = (Holder) convertView.getTag();
         }
 
-        dbAdapter.open();
-        Cursor cur = dbAdapter.GetMatchOdds(Integer.parseInt(ScreenSlidePageFragment.matchid));
-        if (cur.getCount() > 0) {
-            cur.moveToFirst();
-            do {
-                viewHolder.mName.setText(cur.getString(7));
-                viewHolder.mOdds.setText(cur.getString(5));
-            } while (cur.moveToNext());
+        MatchDetailsGetSet item = matchDetailsGetSetList.get(position);
+        Log.i("match", "" + item.getMatchid());
+        if(item.getMatchid().equals(ScreenSlide.match_id)) {
+            Log.i("match1", "" + item.getMatchid());
+            if (item.getName().equals(ScreenSlide.match_nm)) {
+                if (item.getGamename().equals("match_win_loss")) {
+                    Log.i("match2", "" + item.getName());
+                    if (position == 0) {
+                        viewHolder.mName.setText(item.getTeama());
+                        viewHolder.mOdds.setText(item.getOdd());
+                    }
+                    if (position == 1) {
+                        viewHolder.mName.setText(item.getTeamb());
+                        viewHolder.mOdds.setText(item.getOdd());
+                    }
+                }
+            }
         }
 
-        dbAdapter.close();
+//        dbAdapter.open();
+//        Cursor cur = dbAdapter.GetMatchOdds(Integer.parseInt(ScreenSlidePageFragment.matchid));
+//        if (cur.getCount() > 0) {
+//            cur.moveToFirst();
+//            do {
+//                viewHolder.mName.setText(cur.getString(7));
+//                viewHolder.mOdds.setText(cur.getString(5));
+//            } while (cur.moveToNext());
+//        }
+//
+//        dbAdapter.close();
+
+
 
 
         return convertView;
