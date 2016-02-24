@@ -62,6 +62,7 @@ public class ScreenSlidePageFragment extends Fragment {
      */
     public static final String ARG_PAGE = "page";
     List<MatchDetailsGetSet> matchDetailsGetSetList = new ArrayList<>();
+    List<String> matchids = new ArrayList<String>();
     ListDetailsAdapter listDetailsAdapter;
 
     /**
@@ -346,7 +347,7 @@ public class ScreenSlidePageFragment extends Fragment {
                 public boolean onTouch(View v, MotionEvent event) {
                     if (event.getAction() == MotionEvent.ACTION_MOVE) {
                         popup.setVisibility(View.GONE);
-                    popup.startAnimation(animHide);
+                        popup.startAnimation(animHide);
                         popUpStatus = false;
                         close.setEnabled(false);
                         close.setVisibility(View.GONE);
@@ -456,6 +457,11 @@ public class ScreenSlidePageFragment extends Fragment {
                             matchDetailsGetSet.setGamename(gmnm);
 
                             matchDetailsGetSetList.add(matchDetailsGetSet);
+                            matchids.add(matchid);
+
+                            if(matchid.equals(ScreenSlide.match_id)){
+
+                            }
                         }
 
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchDetailsGetSetList);

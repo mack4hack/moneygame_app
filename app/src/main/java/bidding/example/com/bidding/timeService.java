@@ -156,7 +156,7 @@ public class timeService extends Service
                     int m= Date1.getMinutes();
                     int s= Date1.getSeconds();
 //                    Log.i("hour",""+h);
-                    if (h==10 && m==32 && s==0){
+                    if (h==00 && m==35 && s==0){
                         getMatchDetails();
                     }
                 }catch (Exception e)
@@ -184,7 +184,6 @@ public class timeService extends Service
             }
         };
         timerTask.scheduledExecutionTime();
-
 
         timer.schedule(timerTask, 5000, 1000);
 
@@ -248,8 +247,6 @@ public class timeService extends Service
                         }
 
                     }
-
-
                 }
                 catch (Exception e)
                 {

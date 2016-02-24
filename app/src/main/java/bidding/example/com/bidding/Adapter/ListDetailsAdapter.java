@@ -1,7 +1,6 @@
 package bidding.example.com.bidding.Adapter;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import bidding.example.com.bidding.AppDB.DbAdapter;
 import bidding.example.com.bidding.GetterSetter.MatchDetailsGetSet;
 import bidding.example.com.bidding.R;
 import bidding.example.com.bidding.ScreenSlide;
-import bidding.example.com.bidding.ScreenSlidePageFragment;
 
 /**
  * Created by root on 2/20/16.
@@ -35,7 +33,7 @@ public class ListDetailsAdapter extends BaseAdapter
 
     @Override
     public int getCount() {
-        return matchDetailsGetSetList.size();
+        return 3;
     }
 
     @Override
@@ -73,7 +71,7 @@ public class ListDetailsAdapter extends BaseAdapter
         }
 
         MatchDetailsGetSet item = matchDetailsGetSetList.get(position);
-        Log.i("match", "" + item.getMatchid());
+        Log.i("match", "" + ScreenSlide.match_id);
         if(item.getMatchid().equals(ScreenSlide.match_id)) {
             Log.i("match1", "" + item.getMatchid());
             if (item.getName().equals(ScreenSlide.match_nm)) {
