@@ -49,19 +49,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:weightSum="2">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text=""
         android:hint="Odds"
         android:layout_gravity="center_vertical"
         android:id="@+id/textOdds" />
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:id="@+id/editBet"
         android:layout_gravity="right" />
 
@@ -72,7 +75,7 @@
         android:text=""
         android:hint="Return"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/textView13" />
+        android:id="@+id/textrtrn" />
 
     <LinearLayout
         android:layout_width="wrap_content"

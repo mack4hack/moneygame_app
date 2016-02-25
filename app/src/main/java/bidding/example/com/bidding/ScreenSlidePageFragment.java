@@ -64,6 +64,29 @@ public class ScreenSlidePageFragment extends Fragment {
     List<MatchDetailsGetSet> matchDetailsGetSetList = new ArrayList<>();
     List<String> matchids = new ArrayList<String>();
     ListDetailsAdapter listDetailsAdapter;
+    List<MatchDetailsGetSet> matchidrecrd;
+    List<MatchDetailsGetSet> matchlivercrd;
+    List<MatchDetailsGetSet> matchtossrcrd;
+    List<MatchDetailsGetSet> matchfrstbalfrstinrcrd;
+    List<MatchDetailsGetSet> matchfrstballscndinrcrd;
+    List<MatchDetailsGetSet> matchfrstoverarcrd;
+    List<MatchDetailsGetSet> matchfrstoverbrcrd;
+    List<MatchDetailsGetSet> match10overarcrd;
+    List<MatchDetailsGetSet> match10overbrcrd;
+    List<MatchDetailsGetSet> matchfrstwcktarcrd;
+    List<MatchDetailsGetSet> matchfrstwcktbrcrd;
+    List<MatchDetailsGetSet> matchhighopnrcrd;
+    List<MatchDetailsGetSet> matchrace50rcrd;
+    List<MatchDetailsGetSet> matchrunatwicktarcrd;
+    List<MatchDetailsGetSet> matchrunatwicktbrcrd;
+    List<MatchDetailsGetSet> matchmake30arcrd;
+    List<MatchDetailsGetSet> matchmake30brcrd;
+    List<MatchDetailsGetSet> matchmake50arcrd;
+    List<MatchDetailsGetSet> matchmake50brcrd;
+    List<MatchDetailsGetSet> matchmake100arcrd;
+    List<MatchDetailsGetSet> matchmake100brcrd;
+    List<MatchDetailsGetSet> matchinnrunratearcrd;
+    List<MatchDetailsGetSet> matchinnrunratebrcrd;
 
     /**
      * The fragment's page number, which is set to the argument value for {@link #ARG_PAGE}.
@@ -77,7 +100,7 @@ public class ScreenSlidePageFragment extends Fragment {
     private CardView live, toss;
     ListView listView, listDetail;
     TextView heading, match, start, score;
-    private static String[] GAME = {"TOSS","1ST BALL 1ST INNINGS","1ST BALL 2ND INNINGS","1ST OVER RUNS TEAM-1","1ST OVER RUNS TEAM-2","10 OVER SESSION TEAM-1","10 OVER SESSION TEAM-2","1ST WICKET METHOD TEAM-1","1ST WICKET METHOD TEAM-2","HIGHEST OPENING PARTNERSHIP","RACE TO 50","RUNS AT 1ST WICKET FALL TEAM-1","RUNS AT 1ST WICKET FALL TEAM-2","TO MAKE 50 TEAM-1","TO MAKE 50 TEAM-2","TO MAKE 100 TEAM-1","TO MAKE 100 TEAM-2","INNINGS RUN RATE TEAM-1","INNINGS RUN RATE TEAM-2"};
+    private static String[] GAME = {"TOSS","1ST BALL 1ST INNINGS","1ST BALL 2ND INNINGS","1ST OVER RUNS TEAM-1","1ST OVER RUNS TEAM-2","10 OVER SESSION TEAM-1","10 OVER SESSION TEAM-2","1ST WICKET METHOD TEAM-1","1ST WICKET METHOD TEAM-2","HIGHEST OPENING PARTNERSHIP","RACE TO 50","RUNS AT 1ST WICKET FALL TEAM-1","RUNS AT 1ST WICKET FALL TEAM-2","TO MAKE 30 TEAM-1","TO MAKE 30 TEAM-2","TO MAKE 50 TEAM-1","TO MAKE 50 TEAM-2","TO MAKE 100 TEAM-1","TO MAKE 100 TEAM-2","INNINGS RUN RATE TEAM-1","INNINGS RUN RATE TEAM-2"};
     private static String[] Positon1 = {"Dot ball \t\t 1.25","Wicket \t\t\t 5.5","Wide ball \t\t 2.5","No ball \t\t 4.5","1 run \t\t\t 1.5","2 runs \t\t\t 3.5","3 runs \t\t\t 5.5","4 runs \t\t\t 6.5","6 runs \t\t\t 10"};
     private static String[] Wicket = {"Caught behind \t\t xx","Caught in the field \t\t xx","LBW \t\t xx","Bowled \t\t xx","Run out \t\t\t xx","Stumped \t\t\t xx","Hit wicket \t\t xx","Retired hurt \t\t\t xx"};
     private static String[] Highest_Opening = {"Team 1\t\t 1.85","Team 2 \t\t 1.85","Tie \t\t 7"};
@@ -90,6 +113,8 @@ public class ScreenSlidePageFragment extends Fragment {
     DbAdapter dbAdapter;
     String id, mid, oddid, odd, ttlchip, pyout, resltbet, gmcls, prtclr, nm, unq, frmt, ven, strt, ta, tb,wnr, sts, gmnm;
     public static String matchid;
+    String matchiid;
+    String mid1="";
     /**
      * Factory method for this fragment class. Constructs a new fragment for the given page number.
      */
@@ -138,6 +163,7 @@ public class ScreenSlidePageFragment extends Fragment {
         listDetail = (ListView) view.findViewById(R.id.listDetail);
 //        listDetail.setVisibility(View.GONE);
 
+        matchiid=ScreenSlide.match_id;
         getMatchDetailsOdds();
 
         try {
@@ -221,117 +247,130 @@ public class ScreenSlidePageFragment extends Fragment {
 //                   int pos= (int) parent.getItemAtPosition(position);
                     if (position == 0) {
                         heading.setText("TOSS");
-                        toss.setVisibility(View.VISIBLE);
+//                        toss.setVisibility(View.VISIBLE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.GONE);
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchtossrcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 1) {
                         heading.setText("1ST BALL 1ST INNINGS");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Positon1));
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstbalfrstinrcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 2) {
                         heading.setText("1ST BALL 2ND INNINGS");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Positon1));
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstballscndinrcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 3) {
                         heading.setText("1ST OVER RUNS TEAM-1");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, First_Over));
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstoverarcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 4) {
                         heading.setText("1ST OVER RUNS TEAM-2");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, First_Over));
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstoverbrcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 5) {
                         heading.setText("10 OVER SESSION TEAM-1");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Ten_Over));
+//                        live.setVisibility(View.GONE);
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), match10overarcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 6) {
                         heading.setText("10 OVER SESSION TEAM-2");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Ten_Over));
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), match10overbrcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 7) {
                         heading.setText("1ST WICKET METHOD TEAM-1");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Wicket));
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstwcktarcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 8) {
                         heading.setText("1ST WICKET METHOD TEAM-2");
                         toss.setVisibility(View.GONE);
-                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Wicket));
+//                        live.setVisibility(View.GONE);
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstwcktbrcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 9) {
                         heading.setText("HIGHEST OPENING PARTNERSHIP");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Highest_Opening));
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchhighopnrcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 10) {
                         heading.setText("RACE TO 50");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Highest_Opening));
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchrace50rcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 11) {
                         heading.setText("RUNS AT 1ST WICKET FALL TEAM-1");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Wicket_Fall));
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchrunatwicktarcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 12) {
                         heading.setText("RUNS AT 1ST WICKET FALL TEAM-2");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Wicket_Fall));
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchrunatwicktbrcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 13) {
+                        heading.setText("TO MAKE 30 TEAM-1");
+                        toss.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake30arcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
+                    } else if (position == 14) {
+                        heading.setText("TO MAKE 30 TEAM-2");
+                        toss.setVisibility(View.GONE);
+//                        live.setVisibility(View.GONE);
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake30brcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
+                    } else if (position == 15) {
                         heading.setText("TO MAKE 50 TEAM-1");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Make_50));
-                    } else if (position == 14) {
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake50arcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
+                    } else if (position == 16) {
                         heading.setText("TO MAKE 50 TEAM-2");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Make_50));
-                    } else if (position == 15) {
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake50brcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
+                    } else if (position == 17) {
                         heading.setText("TO MAKE 100 TEAM-1");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Make_100));
-                    } else if (position == 16) {
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake100arcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
+                    } else if (position == 18) {
                         heading.setText("TO MAKE 100 TEAM-2");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Make_100));
-                    } else if (position == 17) {
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake100brcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
+                    } else if (position == 19) {
                         heading.setText("INNINGS RUN RATE TEAM-1");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Run_Rate));
-                    } else if (position == 18) {
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunratearcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
+                    } else if (position == 20) {
                         heading.setText("INNINGS RUN RATE TEAM-2");
                         toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
-                        listDetail.setVisibility(View.VISIBLE);
-                        listDetail.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, Run_Rate));
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunratebrcrd);
+                        listDetail.setAdapter(listDetailsAdapter);
                     }
                     popup.setVisibility(View.GONE);
 //                   popup.startAnimation(animHide);
@@ -361,7 +400,76 @@ public class ScreenSlidePageFragment extends Fragment {
             listDetail.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        startActivity(new Intent(getActivity(), CricketPlaceBet.class));
+                    MatchDetailsGetSet item;
+                    if(heading.getText().toString().equals("TOSS")) {
+                        item = matchlivercrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("1ST BALL 1ST INNINGS")) {
+                        item = matchfrstbalfrstinrcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("1ST BALL 2ND INNINGS")) {
+                        item = matchfrstballscndinrcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("1ST OVER RUNS TEAM-1")) {
+                        item = matchfrstoverarcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("1ST OVER RUNS TEAM-2")) {
+                        item = matchfrstoverbrcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("10 OVER SESSION TEAM-1")) {
+                        item = match10overarcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("10 OVER SESSION TEAM-2")) {
+                        item = match10overbrcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("1ST WICKET METHOD TEAM-1")) {
+                        item = matchfrstwcktarcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("1ST WICKET METHOD TEAM-2")) {
+                        item = matchfrstwcktbrcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("HIGHEST OPENING PARTNERSHIP")) {
+                        item = matchhighopnrcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("RACE TO 50")) {
+                        item = matchrace50rcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("RUNS AT 1ST WICKET FALL TEAM-1")) {
+                        item = matchrunatwicktarcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("RUNS AT 1ST WICKET FALL TEAM-2")) {
+                        item = matchrunatwicktbrcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("TO MAKE 30 TEAM-1")) {
+                        item = matchmake30arcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("TO MAKE 30 TEAM-2")) {
+                        item = matchmake30brcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("TO MAKE 50 TEAM-1")) {
+                        item = matchmake50arcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("TO MAKE 50 TEAM-2")) {
+                        item = matchmake50brcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("TO MAKE 100 TEAM-1")) {
+                        item = matchmake100arcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("TO MAKE 100 TEAM-2")) {
+                        item = matchmake100brcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("INNINGS RUN RATE TEAM-1")) {
+                        item = matchinnrunratearcrd.get(position);
+                    }
+                    else if(heading.getText().toString().equals("INNINGS RUN RATE TEAM-2")) {
+                        item = matchinnrunratebrcrd.get(position);
+                    }
+                    else{
+                        item = matchlivercrd.get(position);
+                    }
+
+
+                        startActivity(new Intent(getActivity(), CricketPlaceBet.class).putExtra("odd",item.getOdd()).putExtra("match",item.getName()).putExtra("date",item.getStrt()).putExtra("game",item.getGamename()).putExtra("oddid",item.getOddid()).putExtra("mid",item.getMid()));
                 }
             });
 
@@ -399,6 +507,31 @@ public class ScreenSlidePageFragment extends Fragment {
                 Log.d(TAG, response.toString());
 //                dbAdapter= new DbAdapter(getActivity());
 //                dbAdapter.open();
+
+                matchidrecrd = new ArrayList<>();
+                matchlivercrd = new ArrayList<>();
+                matchtossrcrd = new ArrayList<>();
+                matchfrstbalfrstinrcrd = new ArrayList<>();
+                matchfrstballscndinrcrd = new ArrayList<>();
+                matchfrstoverarcrd = new ArrayList<>();
+                matchfrstoverbrcrd = new ArrayList<>();
+                match10overarcrd = new ArrayList<>();
+                match10overbrcrd = new ArrayList<>();
+                matchfrstwcktarcrd = new ArrayList<>();
+                matchfrstwcktbrcrd = new ArrayList<>();
+                matchhighopnrcrd = new ArrayList<>();
+                matchrace50rcrd = new ArrayList<>();
+                matchrunatwicktarcrd = new ArrayList<>();
+                matchrunatwicktbrcrd = new ArrayList<>();
+                matchmake30arcrd = new ArrayList<>();
+                matchmake30brcrd = new ArrayList<>();
+                matchmake50arcrd = new ArrayList<>();
+                matchmake50brcrd = new ArrayList<>();
+                matchmake100arcrd = new ArrayList<>();
+                matchmake100brcrd = new ArrayList<>();
+                matchinnrunratearcrd = new ArrayList<>();
+                matchinnrunratebrcrd = new ArrayList<>();
+
                 try {
                     JSONObject object = new JSONObject(response);
 
@@ -459,12 +592,113 @@ public class ScreenSlidePageFragment extends Fragment {
                             matchDetailsGetSetList.add(matchDetailsGetSet);
                             matchids.add(matchid);
 
-                            if(matchid.equals(ScreenSlide.match_id)){
+                            if(matchid.equals(matchiid)){
+
+                                matchidrecrd.add(matchDetailsGetSet);
+                                Log.i("matchrcrd",""+matchidrecrd.size());
 
                             }
                         }
 
-                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchDetailsGetSetList);
+                        for(int j=0; j < matchidrecrd.size(); j++){
+                                    MatchDetailsGetSet mids = matchidrecrd.get(j);
+
+                            if(j==0) {
+                                mid1 = mids.getMid();
+                            }
+                            if (mid1.equals(mids.getMid().toString())) {
+//                                        m.setTeamb("team_a");
+
+                                matchlivercrd.add(mids);
+                                Log.i("matchlive",""+mid1+mids.getMid().toString());
+//                                mid1="";
+                            }
+                            if(mids.getMid().equals("2")){
+                                matchtossrcrd.add(mids);
+                            }
+                            if(mids.getMid().equals("3")){
+                                matchfrstbalfrstinrcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("4")){
+                                matchfrstballscndinrcrd.add(mids);
+                            }
+                            if(mids.getMid().equals("5")){
+                                matchfrstoverarcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("6")){
+                                matchfrstoverbrcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("7")){
+                                match10overarcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("8")){
+                                match10overbrcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("9")){
+                                matchfrstwcktarcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("10")){
+                                matchfrstwcktbrcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("11")){
+                                matchhighopnrcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("12")){
+                                matchrace50rcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("13")){
+                                matchrunatwicktarcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("14")){
+                                matchrunatwicktbrcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("15")){
+                                matchmake30arcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("16")){
+                                matchmake30brcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("17")){
+                                matchmake50arcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("18")){
+                                matchmake50brcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("19")){
+                                matchmake100arcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("20")){
+                                matchmake100brcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("21")){
+                                matchinnrunratearcrd.add(mids);
+
+                            }
+                            if(mids.getMid().equals("22")){
+                                matchinnrunratebrcrd.add(mids);
+
+                            }
+
+
+                        }
+                        listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchlivercrd);
                         listDetail.setAdapter(listDetailsAdapter);
 
                     }
@@ -494,7 +728,7 @@ public class ScreenSlidePageFragment extends Fragment {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
             }
-        }) ;
+        });
         jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(180000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

@@ -156,7 +156,7 @@ public class timeService extends Service
                     int m= Date1.getMinutes();
                     int s= Date1.getSeconds();
 //                    Log.i("hour",""+h);
-                    if (h==00 && m==35 && s==0){
+                    if (h==11 && m==43 && s==0){
                         getMatchDetails();
                     }
                 }catch (Exception e)

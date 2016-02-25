@@ -22,18 +22,18 @@ public class ListDetailsAdapter extends BaseAdapter
 {
     Context context;
     DbAdapter dbAdapter;
-    List<MatchDetailsGetSet> matchDetailsGetSetList;
+    List<MatchDetailsGetSet> matchLive;
 
-    public ListDetailsAdapter(Context context, List<MatchDetailsGetSet> matchDetailsGetSetList)
+    public ListDetailsAdapter(Context context, List<MatchDetailsGetSet> matchLive)
     {
         this.context = context;
-        this.matchDetailsGetSetList = matchDetailsGetSetList;
+        this.matchLive = matchLive;
 //        dbAdapter = new DbAdapter(context);
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return matchLive.size();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ListDetailsAdapter extends BaseAdapter
 
     @Override
     public long getItemId(int i) {
-        return matchDetailsGetSetList.get(i).hashCode();
+        return matchLive.get(i).hashCode();
     }
 
     class Holder
@@ -70,24 +70,12 @@ public class ListDetailsAdapter extends BaseAdapter
             viewHolder = (Holder) convertView.getTag();
         }
 
-        MatchDetailsGetSet item = matchDetailsGetSetList.get(position);
-        Log.i("match", "" + ScreenSlide.match_id);
-        if(item.getMatchid().equals(ScreenSlide.match_id)) {
-            Log.i("match1", "" + item.getMatchid());
-            if (item.getName().equals(ScreenSlide.match_nm)) {
-                if (item.getGamename().equals("match_win_loss")) {
-                    Log.i("match2", "" + item.getName());
-                    if (position == 0) {
-                        viewHolder.mName.setText(item.getTeama());
-                        viewHolder.mOdds.setText(item.getOdd());
-                    }
-                    if (position == 1) {
-                        viewHolder.mName.setText(item.getTeamb());
-                        viewHolder.mOdds.setText(item.getOdd());
-                    }
-                }
-            }
-        }
+        MatchDetailsGetSet item = matchLive.get(position);
+
+            viewHolder.mName.setText(item.getPrtclr());
+            viewHolder.mOdds.setText(item.getOdd());
+
+
 
 //        dbAdapter.open();
 //        Cursor cur = dbAdapter.GetMatchOdds(Integer.parseInt(ScreenSlidePageFragment.matchid));
