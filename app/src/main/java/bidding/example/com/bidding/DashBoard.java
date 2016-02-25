@@ -271,7 +271,7 @@ public class DashBoard extends Fragment implements View.OnClickListener{
 
                         SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).edit();
                         editor.putString("latest_bet","not_placed");
-                        editor.putString("geme_type", "-1");
+                        editor.putString("game_type", "-1");
                         editor.commit();
                     }
                     else

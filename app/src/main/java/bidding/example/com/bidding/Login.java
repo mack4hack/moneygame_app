@@ -101,8 +101,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
         mLogin= (Button) findViewById(R.id.btnLogin);
 
-        mInputUsername.setHint("Enter UserName");
-        mInputPassword.setHint("Enter Password");
+        mInputUsername.setHint("UserName");
+        mInputPassword.setHint("Password");
 
         mLogin.setOnClickListener(this);
 

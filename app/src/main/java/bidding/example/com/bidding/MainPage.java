@@ -15,9 +15,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -192,7 +196,78 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         }
         else if (id == R.id.cancel_bet)
         {
-//            getPresentAmount();
+            try
+            {
+                String betStatus = getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("latest_bet", "");
+                if(betStatus.equals("not_placed"))
+                {
+                    Toast.makeText(getApplicationContext(), "You dont have any bet to cancel!!!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    final AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
+                    infoDialog.setTitle("Bet Information");
+                    infoDialog.setMessage("You are about to cancel bet of chips " + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("betchips", ""));
+
+                    infoDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+
+                    infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                            // custom dialog
+                            final AlertDialog.Builder dialog = new AlertDialog.Builder(MainPage.this);
+                            dialog.setTitle("Confirmation");
+                            dialog.setCancelable(true);
+                            // ...Irrelevant code for customizing the buttons and title
+                            LayoutInflater inflater = getLayoutInflater();
+                            View dialogView = inflater.inflate(R.layout.custom_layout, null);
+                            dialog.setView(dialogView);
+
+                            final EditText mPassword = (EditText) dialogView.findViewById(R.id.editConfPassword);
+                            dialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    if (TextUtils.isEmpty(mPassword.getText().toString().trim())) {
+                                        Toast.makeText(getApplicationContext(), "please enter pasword!!!", Toast.LENGTH_SHORT).show();
+                                    } else {
+
+                                        if (getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_password", "").equals(mPassword.getText().toString().trim())) {
+                                            String res = "player_id=" + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "");
+                                            dialogInterface.cancel();
+                                            new AsynCancelBet().execute(getString(R.string.cancel_cricket_bet), res);
+
+                                        } else {
+                                            Toast.makeText(getApplicationContext(), "Invalid password!!!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+                            });
+
+                            dialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                            dialog.create();
+                            dialog.show();
+                        }
+                    });
+
+                    infoDialog.create();
+                    infoDialog.show();
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
 
         }
         else if (id == R.id.cancelled_bets)
@@ -353,7 +428,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
 
                         SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).edit();
                         editor.putString("latest_bet","not_placed");
-                        editor.putString("geme_type", "-1");
+                        editor.putString("game_type", "-1");
                         editor.commit();
                     }
                     else

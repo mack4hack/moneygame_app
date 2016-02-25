@@ -9,10 +9,13 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.viewpagerindicator.CirclePageIndicator;
+
+import bidding.example.com.bidding.GetterSetter.MatchListGetSet;
 
 public class ScreenSlide extends FragmentActivity {
     private static final int NUM_PAGES = CriceketBet.matchListGetSets.size();
@@ -67,8 +70,14 @@ public class ScreenSlide extends FragmentActivity {
                 // on which page is currently active. An alternative approach is to have each
                 // fragment expose actions itself (rather than the activity exposing actions),
                 // but for simplicity, the activity provides the actions in this sample.
+                Log.i("pos",""+position);
                 indicator.setCurrentItem(position);
+                MatchListGetSet item =CriceketBet.matchListGetSets.get(position);
+                match_id=item.getId();
+                match_nm=item.getName();
                 mPagerAdapter.notifyDataSetChanged();
+                mPager.setAdapter(mPagerAdapter);
+
             }
         });
 

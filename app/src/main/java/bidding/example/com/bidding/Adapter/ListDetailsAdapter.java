@@ -13,7 +13,6 @@ import java.util.List;
 import bidding.example.com.bidding.AppDB.DbAdapter;
 import bidding.example.com.bidding.GetterSetter.MatchDetailsGetSet;
 import bidding.example.com.bidding.R;
-import bidding.example.com.bidding.ScreenSlide;
 
 /**
  * Created by root on 2/20/16.
@@ -72,6 +71,7 @@ public class ListDetailsAdapter extends BaseAdapter
 
         MatchDetailsGetSet item = matchLive.get(position);
 
+        Log.i("list",""+item.getId());
             viewHolder.mName.setText(item.getPrtclr());
             viewHolder.mOdds.setText(item.getOdd());
 

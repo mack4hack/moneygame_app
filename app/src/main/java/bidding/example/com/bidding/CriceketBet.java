@@ -50,6 +50,7 @@ public class CriceketBet extends Fragment {
     private ConnectionDetector connectionDetector;
     private static String[] Matches = {"Mumbai Vs Pune","Chennai Vs Kolkatta","Punjab Vs Rajasthan","Bengaluru Vs Mumbai","Punjab Vs Kochi","Pune Vs Rajasthan","Kolkatta Vs Bengaluru"};
     String time1, time2;
+    int pos=0;
 
     public CriceketBet() {
         // Required empty public constructor
@@ -79,9 +80,19 @@ public class CriceketBet extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                MatchListGetSet item = matchList.get(position);
+
                 try {
                     if (df.parse(item.getDate()).before(df.parse(time2))) {
-                        startActivity(new Intent(getActivity(), ScreenSlide.class).putExtra("position", position).putExtra("match_id",item.getId()).putExtra("match_name",item.getName()));
+                        MatchListGetSet item1=null;
+                        for(int i=0;i<matchListGetSets.size();i++){
+                            item1=matchListGetSets.get(i);
+                            if(item.getId().equals(item1.getId())){
+                                 pos=i;
+                                break;
+                            }
+                        }
+
+                        startActivity(new Intent(getActivity(), ScreenSlide.class).putExtra("position", pos).putExtra("match_id",item1.getId()).putExtra("match_name",item1.getName()));
                     }
                     else{
                         final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());

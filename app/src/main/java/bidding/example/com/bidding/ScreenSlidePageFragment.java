@@ -19,17 +19,14 @@ package bidding.example.com.bidding;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -97,7 +94,6 @@ public class ScreenSlidePageFragment extends Fragment {
     private Animation animShow, animHide;
     private SlidingPanel popup = null;
     private boolean popUpStatus = false;
-    private CardView live, toss;
     ListView listView, listDetail;
     TextView heading, match, start, score;
     private static String[] GAME = {"TOSS","1ST BALL 1ST INNINGS","1ST BALL 2ND INNINGS","1ST OVER RUNS TEAM-1","1ST OVER RUNS TEAM-2","10 OVER SESSION TEAM-1","10 OVER SESSION TEAM-2","1ST WICKET METHOD TEAM-1","1ST WICKET METHOD TEAM-2","HIGHEST OPENING PARTNERSHIP","RACE TO 50","RUNS AT 1ST WICKET FALL TEAM-1","RUNS AT 1ST WICKET FALL TEAM-2","TO MAKE 30 TEAM-1","TO MAKE 30 TEAM-2","TO MAKE 50 TEAM-1","TO MAKE 50 TEAM-2","TO MAKE 100 TEAM-1","TO MAKE 100 TEAM-2","INNINGS RUN RATE TEAM-1","INNINGS RUN RATE TEAM-2"};
@@ -114,6 +110,7 @@ public class ScreenSlidePageFragment extends Fragment {
     String id, mid, oddid, odd, ttlchip, pyout, resltbet, gmcls, prtclr, nm, unq, frmt, ven, strt, ta, tb,wnr, sts, gmnm;
     public static String matchid;
     String matchiid;
+    String matchstatus;
     String mid1="";
     /**
      * Factory method for this fragment class. Constructs a new fragment for the given page number.
@@ -137,7 +134,7 @@ public class ScreenSlidePageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Inflate the layout containing a title and body text.
         ViewGroup rootView = (ViewGroup) inflater
                 .inflate(R.layout.activity_play_details, container, false);
@@ -151,9 +148,6 @@ public class ScreenSlidePageFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        toss = (CardView) view.findViewById(R.id.toss);
-        toss.setVisibility(View.GONE);
-
         heading = (TextView) view.findViewById(R.id.txtheading);
         match = (TextView) view.findViewById(R.id.txtlive);
         start = (TextView) view.findViewById(R.id.txtstart);
@@ -166,7 +160,7 @@ public class ScreenSlidePageFragment extends Fragment {
         matchiid=ScreenSlide.match_id;
         getMatchDetailsOdds();
 
-        try {
+       /* try {
             DbAdapter dbAdapter = new DbAdapter(getActivity());
             dbAdapter.open();
 //            Log.i("page", "" + mPageNumber);
@@ -186,16 +180,16 @@ public class ScreenSlidePageFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+*/
 
         initPopup(view);
 
-        Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        /*Animation anim = new AlphaAnimation(0.0f, 1.0f);
         anim.setDuration(100); //You can manage the time of the blink with this parameter
         anim.setStartOffset(20);
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
-        match.startAnimation(anim);
+        match.startAnimation(anim);*/
 
         match.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -229,7 +223,7 @@ public class ScreenSlidePageFragment extends Fragment {
 //                        params.setMargins((int) me.getRawX() - v.getWidth() / 2, (int) (me.getRawY() - v.getHeight() * 1.5), (int) me.getRawX() - v.getWidth() / 2, (int) (me.getRawY() - v.getHeight() * 1.5));
 //                        v.setLayoutParams(params);
                         popup.setVisibility(View.VISIBLE);
-                    popup.startAnimation(animShow);
+                        popup.startAnimation(animShow);
                         popUpStatus = true;
                         more.setEnabled(false);
                         more.setVisibility(View.GONE);
@@ -253,121 +247,101 @@ public class ScreenSlidePageFragment extends Fragment {
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 1) {
                         heading.setText("1ST BALL 1ST INNINGS");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstbalfrstinrcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 2) {
                         heading.setText("1ST BALL 2ND INNINGS");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstballscndinrcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 3) {
                         heading.setText("1ST OVER RUNS TEAM-1");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstoverarcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 4) {
                         heading.setText("1ST OVER RUNS TEAM-2");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstoverbrcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 5) {
                         heading.setText("10 OVER SESSION TEAM-1");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), match10overarcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 6) {
                         heading.setText("10 OVER SESSION TEAM-2");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), match10overbrcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 7) {
                         heading.setText("1ST WICKET METHOD TEAM-1");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstwcktarcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 8) {
                         heading.setText("1ST WICKET METHOD TEAM-2");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchfrstwcktbrcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 9) {
                         heading.setText("HIGHEST OPENING PARTNERSHIP");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchhighopnrcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 10) {
                         heading.setText("RACE TO 50");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchrace50rcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 11) {
                         heading.setText("RUNS AT 1ST WICKET FALL TEAM-1");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchrunatwicktarcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 12) {
                         heading.setText("RUNS AT 1ST WICKET FALL TEAM-2");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchrunatwicktbrcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 13) {
                         heading.setText("TO MAKE 30 TEAM-1");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake30arcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 14) {
                         heading.setText("TO MAKE 30 TEAM-2");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake30brcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 15) {
                         heading.setText("TO MAKE 50 TEAM-1");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake50arcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 16) {
                         heading.setText("TO MAKE 50 TEAM-2");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake50brcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 17) {
                         heading.setText("TO MAKE 100 TEAM-1");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake100arcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 18) {
                         heading.setText("TO MAKE 100 TEAM-2");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchmake100brcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 19) {
                         heading.setText("INNINGS RUN RATE TEAM-1");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunratearcrd);
                         listDetail.setAdapter(listDetailsAdapter);
                     } else if (position == 20) {
                         heading.setText("INNINGS RUN RATE TEAM-2");
-                        toss.setVisibility(View.GONE);
 //                        live.setVisibility(View.GONE);
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunratebrcrd);
                         listDetail.setAdapter(listDetailsAdapter);
@@ -469,7 +443,7 @@ public class ScreenSlidePageFragment extends Fragment {
                     }
 
 
-                        startActivity(new Intent(getActivity(), CricketPlaceBet.class).putExtra("odd",item.getOdd()).putExtra("match",item.getName()).putExtra("date",item.getStrt()).putExtra("game",item.getGamename()).putExtra("oddid",item.getOddid()).putExtra("mid",item.getMid()));
+                    startActivity(new Intent(getActivity(), CricketPlaceBet.class).putExtra("odd",item.getOdd()).putExtra("match",item.getName()).putExtra("matchid",item.getMatchid()).putExtra("date",item.getStrt()).putExtra("game",item.getGamename()).putExtra("oddid",item.getOddid()).putExtra("mid",item.getMid()));
                 }
             });
 
@@ -479,9 +453,9 @@ public class ScreenSlidePageFragment extends Fragment {
     }
 
 
-        /**
-         * Returns the page number represented by this fragment object.
-         */
+    /**
+     * Returns the page number represented by this fragment object.
+     */
     public int getPageNumber() {
         return mPageNumber;
     }
@@ -601,15 +575,18 @@ public class ScreenSlidePageFragment extends Fragment {
                         }
 
                         for(int j=0; j < matchidrecrd.size(); j++){
-                                    MatchDetailsGetSet mids = matchidrecrd.get(j);
+                            MatchDetailsGetSet mids = matchidrecrd.get(j);
 
                             if(j==0) {
                                 mid1 = mids.getMid();
                             }
                             if (mid1.equals(mids.getMid().toString())) {
 //                                        m.setTeamb("team_a");
-
                                 matchlivercrd.add(mids);
+                                matchstatus = mids.getStatus();
+                                heading.setText(mids.getName());
+                                match.setText(mids.getName());
+                                start.setText(mids.getStrt());
                                 Log.i("matchlive",""+mid1+mids.getMid().toString());
 //                                mid1="";
                             }
@@ -700,6 +677,9 @@ public class ScreenSlidePageFragment extends Fragment {
                         }
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchlivercrd);
                         listDetail.setAdapter(listDetailsAdapter);
+                        if(matchstatus.equals("started")){
+                            getActivity().startService(new Intent(getActivity(), UpdateService.class));
+                        }
 
                     }
 //                    dbAdapter.close();

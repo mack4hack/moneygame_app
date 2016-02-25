@@ -5,6 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +35,7 @@ public class CricketPlaceBet extends Activity {
     TextView odd, retrn, match, time, heading;
     EditText bet;
     Button placebet, cancel;
-    String odds, mtch, dt, headng, mid, oddid, chips;
+    String odds, mtch, dt, headng, mid, oddid, chips, mtchid;
     private ProgressDialog pDialog;
 
     @Override
@@ -43,6 +45,7 @@ public class CricketPlaceBet extends Activity {
 
         odds = this.getIntent().getStringExtra("odd");
         mtch = this.getIntent().getStringExtra("match");
+        mtchid = this.getIntent().getStringExtra("matchid");
         dt = this.getIntent().getStringExtra("date");
         headng = this.getIntent().getStringExtra("game");
         mid = this.getIntent().getStringExtra("mid");
@@ -70,9 +73,9 @@ public class CricketPlaceBet extends Activity {
             @Override
             public void onClick(View view) {
                 if (!bet.getText().toString().equals("")) {
-                    chips=bet.getText().toString();
-                    Double ret = Double.parseDouble(odds)*Double.parseDouble(chips);
-                    retrn.setText(String.valueOf(ret));
+                    chips = bet.getText().toString().trim();
+//                    Double ret = Double.parseDouble(odds) * Double.parseDouble(chips);
+//                    retrn.setText(String.valueOf(ret));
                     String tag_json_obj = "json_obj_req";
                     final String TAG = "response";
                     final String url = getString(R.string.place_cricket_bet);//+ URLEncoder.encode("/"+postString);
@@ -91,7 +94,20 @@ public class CricketPlaceBet extends Activity {
                             try {
                                 JSONObject object = new JSONObject(response);
                                 if (object.getString("status").equals("true")) {
+                                    finish();
                                     Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
+
+                                    SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).edit();
+
+                                    editor.putString("betmatchid", mtchid);
+                                    editor.putString("latest_bet",chips);
+                                    editor.putString("game_type", "2");
+                                    editor.putString("betchips",bet.getText().toString().trim());
+                                    editor.putString("betmid", mid);
+                                    editor.putString("betoddid", oddid);
+                                    editor.putString("betodds",odds);
+                                    editor.putString("retrn",retrn.getText().toString().trim());
+                                    editor.commit();
 
                                 } else {
                                     Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
@@ -120,7 +136,7 @@ public class CricketPlaceBet extends Activity {
                             map.put("match_id", ScreenSlide.match_id);
                             map.put("m_id", mid);
                             map.put("odds", odds);
-                            map.put("chips", bet.getText().toString());
+                            map.put("chips", bet.getText().toString().trim());
                             map.put("odd_id", oddid);
 
                             for (String key : map.keySet()) {
@@ -153,6 +169,28 @@ public class CricketPlaceBet extends Activity {
             }
         });
 
+        bet.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                Log.i("amt", "" + charSequence);
+                if (!charSequence.toString().equals("")) {
+                    retrn.setText("" + (Integer.parseInt(charSequence.toString()) * Double.parseDouble(odds)));
+                } else {
+                    retrn.setText("");
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 }

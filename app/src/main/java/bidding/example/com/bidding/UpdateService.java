@@ -1,27 +1,18 @@
 package bidding.example.com.bidding;
 
-import android.annotation.TargetApi;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.os.Build;
-import android.os.Environment;
 import android.os.IBinder;
 import android.os.StrictMode;
-import android.support.annotation.Nullable;
-import android.support.v7.app.NotificationCompat;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
@@ -30,6 +21,8 @@ import org.json.JSONObject;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -67,8 +60,7 @@ public class UpdateService extends Service {
                             connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED)
                     {
                         Log.i("service", "start");
-
-
+                        LiveScore();
 
                     }
 
@@ -104,7 +96,7 @@ public class UpdateService extends Service {
             }
         };
 
-        timer.schedule(timerTask, 1000, 15 * 60000);
+        timer.schedule(timerTask, 1000, 60000);
 
 
         return START_STICKY;
@@ -145,89 +137,68 @@ public class UpdateService extends Service {
     }
 
     //get lucky no if Jodi bet is placed
-    private void LuckyNo()
+    private void LiveScore()
     {
+        String tag_json_obj = "json_obj_req";
+        final String TAG = "response";
+        final String url = getString(R.string.live_score);
 
-                String tag_json_obj = "json_obj_req";
-                final String TAG = "response";
-                final String url = getString(R.string.get_result);//+ URLEncoder.encode("/"+postString);
-                Log.i("url",""+url);
-                //          final ProgressDialog pDialog = new ProgressDialog(getActivity());
-                //pDialog.setMessage("Loading...");
-                //pDialog.show();
+        StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                url, new Response.Listener<String>() {
 
-                StringRequest jsonObjReq = new StringRequest(Request.Method.GET,
-                        url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+//                            pDialog.hide();
+                try {
+                    JSONObject object = new JSONObject(response);
+                    if (object.getString("status").equals("true")) {
+                        Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
 
-                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d(TAG, response.toString());
-                        //      pDialog.hide();
-                        try {
-                            JSONObject object = new JSONObject(response);
-                            int status = 0;
-                            if(object.getString("status").equals("true"))
-                            {
-
-                                // Prepare intent which is triggered if the
-                                // notification is selected
-//                                JSONObject jsonObject = object.getJSONObject("data");
-                                Intent intent = new Intent(getApplicationContext(), Notification_Activity.class);
-                                intent.putExtra("lucky_number",object.getString("lucky_number"));
-                                intent.putExtra("timeslot", object.getString("draw_time"));
-//                                intent.putExtra("timeslot",object.getString("end"));
-                                PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int) System.currentTimeMillis(), intent, 0);
-
-                                // Build notification
-                                // Actions are just fake
-                                Notification noti = new NotificationCompat.Builder(getApplicationContext())
-                                        .setContentTitle("Lucky Number " + object.getString("lucky_number") + " for "+object.getString("draw_time"))
-                                        .setContentText("").setSmallIcon(R.mipmap.ic_launcher)
-                                        .setContentIntent(pIntent).build();
-                                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                                // hide the notification after its selected
-                                noti.flags |= Notification.FLAG_AUTO_CANCEL;
-
-                                notificationManager.notify(0, noti);
-
-                                if(status == 0)
-                                {
-
-                                }
-
-                            }
-
-
-                        }
-                        catch (Exception e)
-                        {
-
-                            e.printStackTrace();
-                        }
-
+                    } else {
+                        Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
                     }
-                }, new Response.ErrorListener() {
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
 
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        if(error instanceof TimeoutError)
-                        {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+//                            pDialog.hide();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
 
-                        }
-                        else {
+                HashMap<String, String> map = new HashMap<>();
 
-                        }
-                        error.printStackTrace();
-                        VolleyLog.d(TAG, "Error: " + error.getMessage());
-                        //    pDialog.hide();
-                    }
-                }) ;
-                jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
-                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                map.put("match_id", ScreenSlide.match_id);
+
+                for (String key : map.keySet()) {
+                    Log.i("vales", "key = " + key + " val = " + map.get(key));
+                }
+                return map;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 // Adding request to request queue
-                AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+        AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
 
     }
 

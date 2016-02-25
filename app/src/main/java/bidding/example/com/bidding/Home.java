@@ -1,8 +1,6 @@
 package bidding.example.com.bidding;
 
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -36,16 +34,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import bidding.example.com.bidding.APICALL.ApiCall;
-import bidding.example.com.bidding.Adapter.HistoryAdapter;
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
-import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
 import bidding.example.com.bidding.Lottery_Game.Multiple_Bet;
 import bidding.example.com.bidding.ResultChart.result_chart;
 
@@ -469,7 +464,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
                         SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).edit();
                         editor.putString("latest_bet","not_placed");
-                        editor.putString("geme_type", "-1");
+                        editor.putString("game_type", "-1");
                         editor.commit();
                     }
                     else
