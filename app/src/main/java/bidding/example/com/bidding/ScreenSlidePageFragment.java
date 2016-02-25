@@ -677,7 +677,7 @@ public class ScreenSlidePageFragment extends Fragment {
                         }
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchlivercrd);
                         listDetail.setAdapter(listDetailsAdapter);
-                        if(matchstatus.equals("started")){
+                        if(matchstatus.equals("notstarted")){
                             getActivity().startService(new Intent(getActivity(), UpdateService.class));
                         }
 

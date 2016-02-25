@@ -14,12 +14,12 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"/>
 
-    <com.viewpagerindicator.CirclePageIndicator
-        android:id="@+id/mc_cpi"
-        android:layout_alignParentBottom="true"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-      />
+    <!--<com.viewpagerindicator.CirclePageIndicator-->
+        <!--android:id="@+id/mc_cpi"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content"-->
+      <!--/>-->
 
 
 </RelativeLayout>

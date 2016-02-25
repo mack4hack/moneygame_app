@@ -28,7 +28,7 @@ public class ScreenSlide extends FragmentActivity {
      * and next wizard steps.
      */
     private ViewPager mPager;
-    private CirclePageIndicator indicator;
+//    private CirclePageIndicator indicator;
 
     /**
      * The pager adapter, which provides the pages to the view pager widget.
@@ -51,17 +51,17 @@ public class ScreenSlide extends FragmentActivity {
         mPager.setCurrentItem(pagenumber);
 
         //Bind the title indicator to the adapter
-         indicator = (CirclePageIndicator)findViewById(R.id.mc_cpi);
-        indicator.setViewPager(mPager);
-        indicator.setCurrentItem(pagenumber);
-
-        final float density = getResources().getDisplayMetrics().density;
-        indicator.setBackgroundColor(0xFFCCCCCC);
-        indicator.setRadius(5 * density);
-        indicator.setPageColor(0xFF000000);
-        indicator.setFillColor(0xFF888888);
-        indicator.setStrokeColor(0xFF000000);
-        indicator.setStrokeWidth(2 * density);
+//         indicator = (CirclePageIndicator)findViewById(R.id.mc_cpi);
+//        indicator.setViewPager(mPager);
+//        indicator.setCurrentItem(pagenumber);
+//
+//        final float density = getResources().getDisplayMetrics().density;
+//        indicator.setBackgroundColor(0xFFCCCCCC);
+//        indicator.setRadius(5 * density);
+//        indicator.setPageColor(0xFF000000);
+//        indicator.setFillColor(0xFF888888);
+//        indicator.setStrokeColor(0xFF000000);
+//        indicator.setStrokeWidth(2 * density);
 
         mPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -71,7 +71,7 @@ public class ScreenSlide extends FragmentActivity {
                 // fragment expose actions itself (rather than the activity exposing actions),
                 // but for simplicity, the activity provides the actions in this sample.
                 Log.i("pos",""+position);
-                indicator.setCurrentItem(position);
+//                indicator.setCurrentItem(position);
                 MatchListGetSet item =CriceketBet.matchListGetSets.get(position);
                 match_id=item.getId();
                 match_nm=item.getName();
