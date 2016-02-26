@@ -24,6 +24,8 @@ import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +37,7 @@ public class CricketPlaceBet extends Activity {
     TextView odd, retrn, match, time, heading;
     EditText bet;
     Button placebet, cancel;
-    String odds, mtch, dt, headng, mid, oddid, chips, mtchid;
+    String odds, mtch, dt, headng, mid, oddid, chips, mtchid, game;
     private ProgressDialog pDialog;
 
     @Override
@@ -50,6 +52,7 @@ public class CricketPlaceBet extends Activity {
         headng = this.getIntent().getStringExtra("game");
         mid = this.getIntent().getStringExtra("mid");
         oddid = this.getIntent().getStringExtra("oddid");
+        game = this.getIntent().getStringExtra("partclr");
 
 
         odd = (TextView) findViewById(R.id.textOdds);
@@ -62,11 +65,22 @@ public class CricketPlaceBet extends Activity {
         placebet = (Button) findViewById(R.id.btnPlaceBet);
         cancel = (Button) findViewById(R.id.btnCancel);
 
-        odd.setText(odds);
+        game=game.replace("_"," ");
+        odd.setText(game);
         match.setText(mtch);
-        time.setText(dt);
+        try {
+            String date = "";
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            SimpleDateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            Date dte = df.parse(dt);
+            date = df1.format(dte);
+            time.setText(date);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        headng = headng.replace("_"," ");
         heading.setText(headng);
-
 
 
         placebet.setOnClickListener(new View.OnClickListener() {

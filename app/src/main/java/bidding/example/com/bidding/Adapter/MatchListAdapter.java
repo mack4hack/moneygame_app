@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import bidding.example.com.bidding.GetterSetter.MatchListGetSet;
@@ -68,7 +70,18 @@ public class MatchListAdapter extends BaseAdapter
         MatchListGetSet item = matchList.get(position);
 
         viewHolder.mName.setText(item.getName().trim());
-        viewHolder.mDate.setText(item.getDate());
+        try {
+            String date = "";
+            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            SimpleDateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            Date dte = df.parse(item.getDate());
+            date = df1.format(dte);
+            viewHolder.mDate.setText(date);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
 
         return convertView;
     }

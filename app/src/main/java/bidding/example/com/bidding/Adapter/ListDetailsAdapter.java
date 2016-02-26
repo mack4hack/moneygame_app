@@ -22,6 +22,7 @@ public class ListDetailsAdapter extends BaseAdapter
     Context context;
     DbAdapter dbAdapter;
     List<MatchDetailsGetSet> matchLive;
+    String game;
 
     public ListDetailsAdapter(Context context, List<MatchDetailsGetSet> matchLive)
     {
@@ -72,7 +73,9 @@ public class ListDetailsAdapter extends BaseAdapter
         MatchDetailsGetSet item = matchLive.get(position);
 
         Log.i("list",""+item.getId());
-            viewHolder.mName.setText(item.getPrtclr());
+        game = item.getPrtclr();
+        game = game.replace("_"," ");
+            viewHolder.mName.setText(game);
             viewHolder.mOdds.setText(item.getOdd());
 
 
