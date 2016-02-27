@@ -44,6 +44,7 @@ public class TodaysSummary extends Fragment {
     private ListView mTodaysSummary;
     private List<HistoryGetSet> todaySummary = new ArrayList<>();
     private TodaysSummaryAdapter todaysHistoryAdapter;
+    String data="";
     public TodaysSummary() {
         // Required empty public constructor
     }
@@ -68,7 +69,14 @@ public class TodaysSummary extends Fragment {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = df.format(cal.getTime());
 
-        if(getArguments().getString("date")!=null){
+        try {
+            data = getArguments().getString("date");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+        if(!data.equals("")){
             String dte= getArguments().getString("date");
             String date="";
             try {
