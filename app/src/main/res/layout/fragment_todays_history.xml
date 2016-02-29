@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:context="bidding.example.com.bidding.TodaysHistory"
     android:orientation="vertical"
+    android:background="#dedede"
     android:weightSum="1">
     <LinearLayout
         android:layout_width="match_parent"

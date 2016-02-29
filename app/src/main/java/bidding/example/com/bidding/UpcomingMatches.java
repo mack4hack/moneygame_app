@@ -72,7 +72,7 @@ public class UpcomingMatches extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String dateInString1 = "21-02-2016";
+        String dateInString1 = "21-04-2016";
         Date date1 = null;
         try {
             date1 = sdf.parse(dateInString1);
