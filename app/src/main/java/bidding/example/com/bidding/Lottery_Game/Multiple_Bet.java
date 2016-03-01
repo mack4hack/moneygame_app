@@ -10,12 +10,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
@@ -24,7 +21,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -389,7 +385,6 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 
 
                     if (!TextUtils.isEmpty(FirstEditText5.getText().toString().trim())) {
-
                         number[5] = "5";
                         amount[5] = FirstEditText5.getText().toString().trim();
                     }
@@ -422,7 +417,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                     if (connectionDetector.isConnectingToInternet()) {
                         for (int i = 0; i < 10; i++) {
                             if (amount[i] != null) {
-                                if(Integer.parseInt(amount[i])>Double.parseDouble(result)){
+                                if(Double.parseDouble(amount[i])>Double.parseDouble(result)){
                                     Toast.makeText(getActivity(), "Not enough chips found", Toast.LENGTH_SHORT).show();
                                     return;
                                 }

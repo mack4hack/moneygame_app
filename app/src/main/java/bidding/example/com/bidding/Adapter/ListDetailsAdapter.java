@@ -79,22 +79,6 @@ public class ListDetailsAdapter extends BaseAdapter
             viewHolder.mOdds.setText(item.getOdd());
 
 
-
-//        dbAdapter.open();
-//        Cursor cur = dbAdapter.GetMatchOdds(Integer.parseInt(ScreenSlidePageFragment.matchid));
-//        if (cur.getCount() > 0) {
-//            cur.moveToFirst();
-//            do {
-//                viewHolder.mName.setText(cur.getString(7));
-//                viewHolder.mOdds.setText(cur.getString(5));
-//            } while (cur.moveToNext());
-//        }
-//
-//        dbAdapter.close();
-
-
-
-
         return convertView;
     }
 }

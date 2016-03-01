@@ -6,17 +6,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -34,7 +33,7 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
 
 
 
-    private CardView cbet,chistory,caccnt,cprvsgame,cupcmngmtch,ccnclbet,ccnclldbet,cscrcrd;
+    private ImageView cbet,chistory,caccnt,cprvsgame,cupcmngmtch,ccnclbet,ccnclldbet,cscrcrd;
     ProgressDialog pDialog;
 
     public static String res;
@@ -60,23 +59,14 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        cbet= (CardView) view.findViewById(R.id.bet);
-        chistory = (CardView) view.findViewById(R.id.history);
-        caccnt= (CardView) view.findViewById(R.id.accounts);
-        cprvsgame= (CardView) view.findViewById(R.id.previous_game_rslt);
-        cupcmngmtch= (CardView) view.findViewById(R.id.upcoming);
-        ccnclbet= (CardView) view.findViewById(R.id.cancel_bet);
-        ccnclldbet = (CardView) view.findViewById(R.id.cnclld_bets);
-        cscrcrd = (CardView) view.findViewById(R.id.score_crd);
-
-        cbet.setCardBackgroundColor(Color.parseColor("#FFAB00"));
-        chistory.setCardBackgroundColor(Color.parseColor("#7986CB"));
-        caccnt.setCardBackgroundColor(Color.parseColor("#7986CB"));
-        cprvsgame.setCardBackgroundColor(Color.parseColor("#FFAB00"));
-        cupcmngmtch.setCardBackgroundColor(Color.parseColor("#FFAB00"));
-        ccnclbet.setCardBackgroundColor(Color.parseColor("#7986CB"));
-        ccnclldbet.setCardBackgroundColor(Color.parseColor("#7986CB"));
-        cscrcrd.setCardBackgroundColor(Color.parseColor("#FFAB00"));
+        cbet= (ImageView) view.findViewById(R.id.bet);
+        chistory = (ImageView) view.findViewById(R.id.history);
+        caccnt= (ImageView) view.findViewById(R.id.accounts);
+        cprvsgame= (ImageView) view.findViewById(R.id.previous_game_rslt);
+        cupcmngmtch= (ImageView) view.findViewById(R.id.upcoming);
+        ccnclbet= (ImageView) view.findViewById(R.id.cancel_bet);
+        ccnclldbet = (ImageView) view.findViewById(R.id.cnclld_bets);
+        cscrcrd = (ImageView) view.findViewById(R.id.score_crd);
 
         cbet.setOnClickListener(this);
         chistory.setOnClickListener(this);

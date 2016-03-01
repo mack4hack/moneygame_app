@@ -6,17 +6,16 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -42,8 +41,8 @@ import bidding.example.com.bidding.ResultChart.result_chart;
 public class DashBoard extends Fragment implements View.OnClickListener{
 
 
-
- private CardView mLotteryCard,mCricketCard,mSingleBetCard,mMultipleBetCard,mTodayHistory,mChart,mProfile,mCancelBet,mTermCondition,mTodaysSummary;
+private ImageView mSingleBetCard,mMultipleBetCard;
+ private ImageView mLotteryCard,mCricketCard,mTodayHistory,mChart,mProfile,mCancelBet,mTermCondition,mTodaysSummary;
     ProgressDialog pDialog;
 
     public static String res;
@@ -73,23 +72,15 @@ public class DashBoard extends Fragment implements View.OnClickListener{
 
         /*mLotteryCard= (CardView) view.findViewById(R.id.card_view1);*/
         /*mCricketCard= (CardView) view.findViewById(R.id.card_view2);;*/
-        mSingleBetCard= (CardView) view.findViewById(R.id.single_bet_card);
-        mMultipleBetCard= (CardView) view.findViewById(R.id.multiple_bet_card);
-        mTodayHistory= (CardView) view.findViewById(R.id.todays_history_card);
-        mChart= (CardView) view.findViewById(R.id.chart_card);
-        mProfile= (CardView) view.findViewById(R.id.profile_card);
-        mCancelBet= (CardView) view.findViewById(R.id.cancel_card);
-        mTermCondition = (CardView) view.findViewById(R.id.termcondition);
-        mTodaysSummary = (CardView) view.findViewById(R.id.today_summary);
+        mSingleBetCard= (ImageView) view.findViewById(R.id.single_bet_card);
+        mMultipleBetCard= (ImageView) view.findViewById(R.id.multiple_bet_card);
+        mTodayHistory= (ImageView) view.findViewById(R.id.todays_history_card);
+        mChart= (ImageView) view.findViewById(R.id.chart_card);
+        mProfile= (ImageView) view.findViewById(R.id.profile_card);
+        mCancelBet= (ImageView) view.findViewById(R.id.cancel_card);
+        mTermCondition = (ImageView) view.findViewById(R.id.termcondition);
+        mTodaysSummary = (ImageView) view.findViewById(R.id.today_summary);
 
-        mSingleBetCard.setCardBackgroundColor(Color.parseColor("#FFAB00"));
-        mMultipleBetCard.setCardBackgroundColor(Color.parseColor("#7986CB"));
-        mTodayHistory.setCardBackgroundColor(Color.parseColor("#7986CB"));
-        mChart.setCardBackgroundColor(Color.parseColor("#FFAB00"));
-        mCancelBet.setCardBackgroundColor(Color.parseColor("#7986CB"));
-        mProfile.setCardBackgroundColor(Color.parseColor("#FFAB00"));
-        mTermCondition.setCardBackgroundColor(Color.parseColor("#7986CB"));
-        mTodaysSummary.setCardBackgroundColor(Color.parseColor("#FFAB00"));
 
         /*mLotteryCard.setOnClickListener(this);*/
         /*mCricketCard.setOnClickListener(this);*/
