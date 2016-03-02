@@ -6,16 +6,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -41,12 +42,12 @@ import bidding.example.com.bidding.ResultChart.result_chart;
 public class DashBoard extends Fragment implements View.OnClickListener{
 
 
-private ImageView mSingleBetCard,mMultipleBetCard;
- private ImageView mLotteryCard,mCricketCard,mTodayHistory,mChart,mProfile,mCancelBet,mTermCondition,mTodaysSummary;
+
+    private CardView mLotteryCard,mCricketCard,mSingleBetCard,mMultipleBetCard,mTodayHistory,mChart,mProfile,mCancelBet,mTermCondition,mTodaysSummary;
     ProgressDialog pDialog;
 
     public static String res;
- public static List<SampleObject> sampleObjects = new ArrayList<SampleObject>();
+    public static List<SampleObject> sampleObjects = new ArrayList<SampleObject>();
     public DashBoard() {
         // Required empty public constructor
     }
@@ -72,14 +73,23 @@ private ImageView mSingleBetCard,mMultipleBetCard;
 
         /*mLotteryCard= (CardView) view.findViewById(R.id.card_view1);*/
         /*mCricketCard= (CardView) view.findViewById(R.id.card_view2);;*/
-        mSingleBetCard= (ImageView) view.findViewById(R.id.single_bet_card);
-        mMultipleBetCard= (ImageView) view.findViewById(R.id.multiple_bet_card);
-        mTodayHistory= (ImageView) view.findViewById(R.id.todays_history_card);
-        mChart= (ImageView) view.findViewById(R.id.chart_card);
-        mProfile= (ImageView) view.findViewById(R.id.profile_card);
-        mCancelBet= (ImageView) view.findViewById(R.id.cancel_card);
-        mTermCondition = (ImageView) view.findViewById(R.id.termcondition);
-        mTodaysSummary = (ImageView) view.findViewById(R.id.today_summary);
+        mSingleBetCard= (CardView) view.findViewById(R.id.single_bet_card);
+        mMultipleBetCard= (CardView) view.findViewById(R.id.multiple_bet_card);
+        mTodayHistory= (CardView) view.findViewById(R.id.todays_history_card);
+        mChart= (CardView) view.findViewById(R.id.chart_card);
+        mProfile= (CardView) view.findViewById(R.id.profile_card);
+        mCancelBet= (CardView) view.findViewById(R.id.cancel_card);
+        mTermCondition = (CardView) view.findViewById(R.id.termcondition);
+        mTodaysSummary = (CardView) view.findViewById(R.id.today_summary);
+
+        mSingleBetCard.setCardBackgroundColor(Color.parseColor("#0bc3bb"));
+        mMultipleBetCard.setCardBackgroundColor(Color.parseColor("#12132f"));
+        mTodayHistory.setCardBackgroundColor(Color.parseColor("#2a221f"));
+        mTodaysSummary.setCardBackgroundColor(Color.parseColor("#8c9e90"));
+        mChart.setCardBackgroundColor(Color.parseColor("#3aace2"));
+        mCancelBet.setCardBackgroundColor(Color.parseColor("#710302"));
+        mProfile.setCardBackgroundColor(Color.parseColor("#CDAF95"));
+        mTermCondition.setCardBackgroundColor(Color.parseColor("#cf5300"));
 
 
         /*mLotteryCard.setOnClickListener(this);*/
@@ -283,9 +293,9 @@ private ImageView mSingleBetCard,mMultipleBetCard;
         String  tag_string_req = "string_req";
         String url = "http://lottery.pixmadness.in/api/bets/luckyNumberchart?month=2015-11";//getString(R.string.login);
 
-		final ProgressDialog pDialog = new ProgressDialog(getActivity());
-		pDialog.setMessage("Loading...");
-		pDialog.show();
+        final ProgressDialog pDialog = new ProgressDialog(getActivity());
+        pDialog.setMessage("Loading...");
+        pDialog.show();
         final String TAG="login";
         StringRequest strReq = new StringRequest(Request.Method.GET,
                 url, new Response.Listener<String>() {

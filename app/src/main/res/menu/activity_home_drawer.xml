@@ -7,6 +7,10 @@
             android:icon="@android:drawable/ic_menu_manage"
             android:title="Home" />
         <item
+            android:id="@+id/single_bet"
+            android:icon="@android:drawable/ic_menu_preferences"
+            android:title="Single Bet" />
+        <item
             android:id="@+id/multiple_bet"
             android:icon="@android:drawable/ic_menu_preferences"
             android:title="Multiple Bet" />

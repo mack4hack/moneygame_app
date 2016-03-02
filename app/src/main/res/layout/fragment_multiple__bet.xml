@@ -100,8 +100,9 @@
                 android:layout_weight="1"
                 android:text="@string/first_digit"
                 android:gravity="center"
-                android:textColor="@color/textColor"
-                android:layout_gravity="center"/>
+                android:textColor="#3b5998"
+                android:layout_gravity="center"
+                android:textStyle="bold" />
 
         </android.support.v7.widget.CardView>
     </LinearLayout>
@@ -373,8 +374,10 @@
                 <Button
                     android:id="@+id/btnFirstBet"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:text="Place Bet"
+                    android:textColor="#fff"
+                    android:background="@drawable/button_border"
                     android:layout_gravity="center"/>
 
             </LinearLayout>
@@ -409,8 +412,9 @@
                     android:layout_weight="1"
                     android:text="@string/second_digit"
                     android:gravity="center"
-                    android:textColor="@color/textColor"
-                    android:layout_gravity="center"/>
+                    android:textColor="#3b5998"
+                    android:layout_gravity="center"
+                    android:textStyle="bold" />
 
             </android.support.v7.widget.CardView>
         </LinearLayout>
@@ -678,8 +682,10 @@
                 <Button
                     android:id="@+id/btnSecondBet"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:text="Place Bet"
+                    android:textColor="#fff"
+                    android:background="@drawable/button_border"
                     android:layout_gravity="center"/>
       </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -713,8 +719,9 @@
                     android:layout_weight="1"
                     android:text="@string/jodi_digit"
                     android:gravity="center"
-                    android:textColor="@color/textColor"
-                    android:layout_gravity="center"/>
+                    android:textColor="#3b5998"
+                    android:layout_gravity="center"
+                    android:textStyle="bold" />
 
             </android.support.v7.widget.CardView>
         </LinearLayout>
@@ -1010,20 +1017,22 @@
                     <Button
                         android:id="@+id/btnautofill"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_weight="1"
                         android:text="AutoFill"
                         android:gravity="center"
-                        android:textColor="@color/textColor"
+                        android:textColor="#fff"
+                        android:background="@drawable/button_border"
                         android:layout_gravity="center"/>
                     <Button
                         android:id="@+id/btnJodiBet"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_weight="1"
                         android:text="@string/place_bet"
                         android:gravity="center"
-                        android:textColor="@color/textColor"
+                        android:textColor="#fff"
+                        android:background="@drawable/button_border"
                         android:layout_gravity="center"/>
                 </LinearLayout>
             </LinearLayout>

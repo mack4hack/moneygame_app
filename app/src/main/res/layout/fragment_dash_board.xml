@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -11,21 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-
         >
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="horizontal"
             android:background="#fff">
 
-          <!--  <android.support.v7.widget.CardView
+            <android.support.v7.widget.CardView
                 android:id="@+id/single_bet_card"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dashboard_menu"
@@ -35,29 +28,17 @@
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:layout_weight="1"
-                >-->
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"
-                    android:id="@+id/single_bet_card"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/orangeleaf" />
-
+                >
                 <TextView
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Single Bet"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:layout_marginTop="50dp"
                     android:textSize="16sp"
-                    android:textColor="#000"
+                    android:textColor="@color/textColorWhite"
                     />
-            </RelativeLayout>
-            <!--</android.support.v7.widget.CardView>-->
-
-<!--
+            </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:id="@+id/multiple_bet_card"
                 android:layout_width="0dp"
@@ -67,85 +48,64 @@
                 card_view:cardUseCompatPadding="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
-                android:layout_weight="1">-->
-
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:background="#fff">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"
-                    android:scaleType="fitXY"
-                    android:id="@+id/multiple_bet_card"
-                    android:src="@drawable/yellowleaf" />
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Multiple Bet"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:layout_marginTop="50dp"
                     android:textSize="16sp"
-                    android:textColor="#000"/>
-            <!--</android.support.v7.widget.CardView>-->
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
 
-        </RelativeLayout>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="#fff">
 
-            <RelativeLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/todays_history_card"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:background="#fff">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"
-                    android:scaleType="fitXY"
-                    android:id="@+id/todays_history_card"
-                    android:src="@drawable/greenleaf" />
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="My Accounts"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textColor="#000"
-                    android:layout_marginTop="50dp"
-                    android:textSize="16sp"/>
-        </RelativeLayout>
+                    android:textSize="16sp"
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
 
-            <RelativeLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/today_summary"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:background="#fff">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"
-                    android:scaleType="fitXY"
-                    android:id="@+id/today_summary"
-                    android:src="@drawable/maroonleaf" />
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Today's \nSummary"
+                    android:text="Today's Summary"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textColor="#000"
-                    android:layout_marginTop="40dp"
-                    android:textSize="16sp"/>
-        </RelativeLayout>
+                    android:textSize="16sp"
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
 
         </LinearLayout>
 
@@ -155,55 +115,45 @@
             android:orientation="horizontal"
             android:background="#fff">
 
-
-            <RelativeLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/chart_card"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:background="#fff">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"
-                    android:scaleType="fitXY"
-                    android:id="@+id/chart_card"
-                    android:src="@drawable/orangeleaf" />
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Chart"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textColor="#000"
-                    android:layout_marginTop="50dp"
-                    android:textSize="16sp"/>
-           </RelativeLayout>
+                    android:textSize="16sp"
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
 
-
-            <RelativeLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/cancel_card"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:background="#fff">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"
-                    android:scaleType="fitXY"
-                    android:id="@+id/cancel_card"
-                    android:src="@drawable/yellowleaf" />
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Cancel Bet"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textColor="#000"
-                    android:layout_marginTop="50dp"
-                    android:textSize="16sp"/>
-   </RelativeLayout>
+                    android:textSize="16sp"
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
 
 
         </LinearLayout>
@@ -213,207 +163,200 @@
             android:orientation="horizontal"
             android:background="#fff">
 
-            <RelativeLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/termcondition"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
                 android:layout_weight="1"
-                android:orientation="horizontal"
-                android:background="#fff">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"
-                    android:scaleType="fitXY"
-                    android:id="@+id/termcondition"
-                    android:src="@drawable/greenleaf" />
+                >
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Term &amp; \ncondition"
+                    android:text="Term &amp; condition"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textColor="#000"
-                    android:layout_marginTop="40dp"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:textColor="@color/textColorWhite"/>
 
-         </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
-            <RelativeLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/profile_card"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:background="#fff">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"
-                    android:scaleType="fitXY"
-                    android:id="@+id/profile_card"
-                    android:src="@drawable/maroonleaf" />
+                android:layout_height="@dimen/dashboard_menu"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="2dp"
+                card_view:cardUseCompatPadding="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:layout_weight="1">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Profile"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textColor="#000"
-                    android:layout_marginTop="50dp"
-                    android:textSize="16sp"/>
-        </RelativeLayout>
+                    android:textSize="16sp"
+                    android:textColor="@color/textColorWhite"/>
+            </android.support.v7.widget.CardView>
 
 
         </LinearLayout>
     </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>
 
 
-<!--
-<LinearLayout
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:gravity="center"
-android:padding="@dimen/abc_action_bar_content_inset_material">
-
-<android.support.v7.widget.CardView
-    android:id="@+id/card_view1"
-    android:layout_gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="250dp"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="2dp"
-    card_view:cardUseCompatPadding="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    tools:ignore="NewApi">
+    <!--
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="3">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:background="@color/card_header"
-            android:layout_weight="0.3">
-            <TextView
-                android:id="@+id/total_bet"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Total_bet"
-                android:textColor="@color/textColorWhite"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:paddingLeft="5dp"/>
-            <TextView
-                android:id="@+id/total"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Total_bet"
-                android:textColor="@color/textColorWhite"
-                android:layout_weight="1"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/lottry_bet"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:text="@string/Lottery"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="@color/textColorWhite"
-            android:layout_weight="2.4"
-            android:background="@color/card_body"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:background="@color/card_footer">
-            <TextView
-                android:id="@+id/cardFooter"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/textColorWhite"
-                android:text="Card Footer"
-                android:paddingLeft="5dp"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-    </LinearLayout>
-</android.support.v7.widget.CardView>
-
-<android.support.v7.widget.CardView
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view2"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardUseCompatPadding="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    tools:ignore="NewApi">
-    <LinearLayout
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/abc_action_bar_content_inset_material">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view1"
+        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="3">
+        android:layout_height="250dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="2dp"
+        card_view:cardUseCompatPadding="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        tools:ignore="NewApi">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:background="@color/card_header"
-            android:layout_weight="0.3">
-            <TextView
-                android:id="@+id/total_cricket_bet"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Total_bet"
-                android:textColor="@color/textColorWhite"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:paddingLeft="5dp"/>
-            <TextView
-                android:id="@+id/cricket_total"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Total_bet"
-                android:textColor="@color/textColorWhite"
-                android:layout_weight="1"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/cricket_bet"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:text="@string/Cricket"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="@color/textColorWhite"
-            android:layout_weight="2.4"
-            android:background="@color/card_body"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3"
-            android:background="@color/card_footer">
-            <TextView
-                android:id="@+id/cricket_cardFooter"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/textColorWhite"
-                android:text="Card Footer"
-                android:paddingLeft="5dp"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-    </LinearLayout>
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:background="@color/card_header"
+                android:layout_weight="0.3">
+                <TextView
+                    android:id="@+id/total_bet"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Total_bet"
+                    android:textColor="@color/textColorWhite"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"/>
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Total_bet"
+                    android:textColor="@color/textColorWhite"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
 
-</android.support.v7.widget.CardView>
-</LinearLayout>
--->
+            <TextView
+                android:id="@+id/lottry_bet"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="@string/Lottery"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/textColorWhite"
+                android:layout_weight="2.4"
+                android:background="@color/card_body"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:background="@color/card_footer">
+                <TextView
+                    android:id="@+id/cardFooter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/textColorWhite"
+                    android:text="Card Footer"
+                    android:paddingLeft="5dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view2"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:cardUseCompatPadding="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        tools:ignore="NewApi">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="3">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:background="@color/card_header"
+                android:layout_weight="0.3">
+                <TextView
+                    android:id="@+id/total_cricket_bet"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Total_bet"
+                    android:textColor="@color/textColorWhite"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:paddingLeft="5dp"/>
+                <TextView
+                    android:id="@+id/cricket_total"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Total_bet"
+                    android:textColor="@color/textColorWhite"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/cricket_bet"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="@string/Cricket"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/textColorWhite"
+                android:layout_weight="2.4"
+                android:background="@color/card_body"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:background="@color/card_footer">
+                <TextView
+                    android:id="@+id/cricket_cardFooter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/textColorWhite"
+                    android:text="Card Footer"
+                    android:paddingLeft="5dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    </LinearLayout>
+    -->

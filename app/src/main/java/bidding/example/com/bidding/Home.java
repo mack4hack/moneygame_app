@@ -42,6 +42,7 @@ import java.util.GregorianCalendar;
 import bidding.example.com.bidding.APICALL.ApiCall;
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
 import bidding.example.com.bidding.Lottery_Game.Multiple_Bet;
+import bidding.example.com.bidding.Lottery_Game.Single_Bet;
 import bidding.example.com.bidding.ResultChart.result_chart;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -191,7 +192,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             fragmentTransaction.commit();
         }
         else if (id == R.id.chart) {
-            toolbar.setTitle("Home");
+            toolbar.setTitle("Chart");
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             DashBoard fragment = new DashBoard();
@@ -296,6 +297,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         {
            getPresentAmount();
 
+        }
+        else if (id == R.id.single_bet)
+        {
+            toolbar.setTitle("Single Bet");
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Single_Bet fragment = new Single_Bet();
+            fragmentTransaction.replace(R.id.containar, fragment);
+            fragmentTransaction.commit();
         }
         else if (id == R.id.multiple_bet)
         {
