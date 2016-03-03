@@ -2,27 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingBottom="5dp"
-    android:paddingTop="5dp"
+
     android:weightSum="2">
 
     <TextView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="35dp"
+        android:layout_weight="1.5"
         android:text=""
         android:hint="Name"
         android:id="@+id/txtteam"
         android:textSize="16dp"
-        android:textColor="#000"/>
+        android:layout_marginTop="6dp"
+        android:background="#12121c"
+        android:textColor="#fff"/>
+
+    <View
+        android:layout_width="0.5dp"
+        android:layout_height="match_parent"
+        android:background="#2e3547"/>
 
     <TextView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="35dp"
+        android:layout_weight="0.5"
         android:text=""
         android:hint="Odds"
-        android:id="@+id/txtodd"/>
+        android:textSize="16dp"
+        android:layout_marginTop="6dp"
+        android:background="#12121c"
+        android:id="@+id/txtodd"
+        android:textColor="#fff"/>
 </LinearLayout>

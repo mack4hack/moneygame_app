@@ -105,7 +105,7 @@
     <string name="place_cricket_bet">http://46.101.6.171/moneygame/api/cricket/placeCricketMatchBet</string>
     <string name="get_cricket_odds_with_id">http://46.101.6.171/moneygame/api/cricket/getCricketOddsWithMatchId</string>
     <string name="cancel_cricket_bet">http://46.101.6.171/moneygame/api/cricket/cancelCricketBet</string>
-    <string name="live_score">http://46.101.6.171/moneygame/api/cricket/getMatchLiveScore</string>
+    <string name="live_score">http://46.101.6.171/moneygame/api/cricket/getMatchLiveScore?match_id=</string>
 
     <string name="title_activity_tansaction_wise_history">Transaction History</string>
     <string name="title_activity_transaction_indetail">Transaction Details</string>

@@ -233,7 +233,7 @@ public class timeService extends Service
                         // Actions are just fake
                         Notification noti = new NotificationCompat.Builder(getApplicationContext())
                                 .setContentTitle("Lucky Number " + object.getString("lucky_number") + " for "+object.getString("draw_time"))
-                                .setContentText("").setSmallIcon(R.drawable.logo2)
+                                .setContentText("").setSmallIcon(R.drawable.new_icon)
                                 .setContentIntent(pIntent).build();
                         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                         // hide the notification after its selected

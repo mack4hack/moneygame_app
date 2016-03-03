@@ -106,8 +106,8 @@ public class TodaysHistory extends Fragment {
             String week= days[0]+"%20To%20"+days[6];
             try {
 
-             String url = getString(R.string.get_history_by_week) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week=15-02-2016%20To%2021-02-2016";
-
+             String url = getString(R.string.get_history_by_week) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week="+week;
+                Log.i("url", "" + url);
             final ProgressDialog pDialog = new ProgressDialog(getActivity());
             pDialog.setMessage("Loading...");
             pDialog.show();

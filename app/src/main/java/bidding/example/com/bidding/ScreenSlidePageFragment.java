@@ -18,6 +18,7 @@ package bidding.example.com.bidding;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,6 +52,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import bidding.example.com.bidding.Adapter.ListDetailsAdapter;
 import bidding.example.com.bidding.AppDB.DbAdapter;
@@ -91,7 +94,7 @@ public class ScreenSlidePageFragment extends Fragment {
      * The fragment's page number, which is set to the argument value for {@link #ARG_PAGE}.
      */
     private int mPageNumber;
-    ImageButton more;
+    Button more;
     ImageButton close;
     private Animation animShow, animHide;
     private SlidingPanel popup = null;
@@ -154,7 +157,7 @@ public class ScreenSlidePageFragment extends Fragment {
         match = (TextView) view.findViewById(R.id.txtlive);
         start = (TextView) view.findViewById(R.id.txtstart);
         score = (TextView) view.findViewById(R.id.txtScore);
-        more = (ImageButton) view.findViewById(R.id.btn_more);
+        more = (Button) view.findViewById(R.id.btn_more);
 
         listDetail = (ListView) view.findViewById(R.id.listDetail);
 //        listDetail.setVisibility(View.GONE);
@@ -595,7 +598,9 @@ public class ScreenSlidePageFragment extends Fragment {
                                 match.setText(mids.getName());
                                 String date="";
                                 SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+                                df.setTimeZone (TimeZone.getTimeZone("IST"));
                                 SimpleDateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                                df1.setTimeZone (TimeZone.getTimeZone ("IST"));
                                 Date dt = df.parse(mids.getStrt());
                                 date = df1.format(dt);
                                 start.setText(date);
@@ -691,8 +696,10 @@ public class ScreenSlidePageFragment extends Fragment {
                         }
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchlivercrd);
                         listDetail.setAdapter(listDetailsAdapter);
-                        if(matchstatus.equals("notstarted")){
-//                            getActivity().startService(new Intent(getActivity(), UpdateService.class));
+                        if(matchstatus.equals("started")){
+                            getActivity().startService(new Intent(getActivity(), UpdateService.class));
+                            Log.i("score",""+getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("run", ""));
+                            score.setText(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("run", ""));
                         }
 
                     }

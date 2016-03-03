@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * Created by root on 2/15/16.
@@ -73,7 +74,9 @@ public class CricketPlaceBet extends Activity {
         try {
             String date = "";
             SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            df.setTimeZone (TimeZone.getTimeZone("IST"));
             SimpleDateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            df1.setTimeZone (TimeZone.getTimeZone ("IST"));
             Date dte = df.parse(dt);
             date = df1.format(dte);
             time.setText(date);

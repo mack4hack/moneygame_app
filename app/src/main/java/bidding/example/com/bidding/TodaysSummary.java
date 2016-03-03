@@ -90,7 +90,9 @@ public class TodaysSummary extends Fragment {
             getDetails(getString(R.string.get_acc_by_date) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id","") + "&date=" +date);
         }
         else{
+            String url=getString(R.string.get_acc_by_date) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate;
             getDetails(getString(R.string.get_acc_by_date) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate);
+            Log.i("url",""+url);
         }
 
 

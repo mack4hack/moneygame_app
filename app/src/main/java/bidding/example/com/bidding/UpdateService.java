@@ -3,13 +3,13 @@ package bidding.example.com.bidding;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.IBinder;
 import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -17,12 +17,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,6 +32,7 @@ public class UpdateService extends Service {
 
     Timer timer;
     Thread thread;
+    String id, batteam, ballteam, run;
 
     @Override
     public void onCreate() {
@@ -141,9 +141,9 @@ public class UpdateService extends Service {
     {
         String tag_json_obj = "json_obj_req";
         final String TAG = "response";
-        final String url = getString(R.string.live_score);
+        final String url = getString(R.string.live_score)+ScreenSlide.match_id;
 
-        StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+        StringRequest jsonObjReq = new StringRequest(Request.Method.GET,
                 url, new Response.Listener<String>() {
 
             @Override
@@ -153,7 +153,22 @@ public class UpdateService extends Service {
                 try {
                     JSONObject object = new JSONObject(response);
                     if (object.getString("status").equals("true")) {
-                        Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                      JSONObject jsonObject = object.getJSONObject("data");
+                        JSONArray jsonArray = jsonObject.getJSONArray("Live_Score");
+                        for(int i=0; i<jsonArray.length(); i++){
+                            JSONObject object1 = jsonArray.getJSONObject(i);
+                            id= object1.getString("id");
+                            batteam= object1.getString("batting_team");
+                            ballteam = object1.getString("bowling_team");
+                            run= object1.getString("runs_str");
+
+                        }
+                        SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.prefrence),MODE_PRIVATE).edit();
+                        editor.putString("id", id);
+                        editor.putString("batteam", batteam);
+                        editor.putString("ballteam", ballteam);
+                        editor.putString("run", run);
+                        editor.commit();
 
                     } else {
                         Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
@@ -173,25 +188,7 @@ public class UpdateService extends Service {
 //                            pDialog.hide();
             }
         }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
 
-                HashMap<String, String> map = new HashMap<>();
-
-                map.put("match_id", ScreenSlide.match_id);
-
-                for (String key : map.keySet()) {
-                    Log.i("vales", "key = " + key + " val = " + map.get(key));
-                }
-                return map;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/x-www-form-urlencoded");
-                return params;
-            }
         };
 
         jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,

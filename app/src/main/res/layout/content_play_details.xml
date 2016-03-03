@@ -51,7 +51,7 @@
             android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"
             android:textSize="18sp"
-            android:text="120/2"
+            android:text=""
             android:id="@+id/txtScore" />
 
 
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Overs"
+            android:text=""
             android:id="@+id/txtOver"/>
 
         <View
@@ -88,12 +88,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/listDetail"
         android:layout_centerHorizontal="true"
-        android:background="#fff"
+        android:background="#2e3547"
         android:layout_above="@+id/btn_more"
         android:layout_below="@+id/linearLayout"/>
 
 
-    <ImageButton
+    <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
