@@ -184,7 +184,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         int id = item.getItemId();
         if (id == R.id.dash_board) {
             // Handle the camera action
-            toolbar.setTitle("Home");
+            toolbar.setTitle("Lottery");
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             DashBoard fragment = new DashBoard();

@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
+        android:background="#dedede">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#fff">
+         >
 
             <android.support.v7.widget.CardView
                 android:id="@+id/single_bet_card"
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#fff">
+            >
 
             <android.support.v7.widget.CardView
                 android:id="@+id/todays_history_card"
@@ -113,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#fff">
+         >
 
             <android.support.v7.widget.CardView
                 android:id="@+id/chart_card"
@@ -161,7 +161,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#fff">
+           >
 
             <android.support.v7.widget.CardView
                 android:id="@+id/termcondition"

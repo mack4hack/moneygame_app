@@ -39,7 +39,7 @@ public class CricketPlaceBet extends Activity {
     EditText bet;
     Button placebet, cancel;
     String odds, mtch, dt, headng, mid, oddid, chips, mtchid, game;
-    private ProgressDialog pDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +99,9 @@ public class CricketPlaceBet extends Activity {
                     final String TAG = "response";
                     final String url = getString(R.string.place_cricket_bet);//+ URLEncoder.encode("/"+postString);
 
-//                    final ProgressDialog pDialog = new ProgressDialog(getApplicationContext());
-//                    pDialog.setMessage("Loading...");
-//                    pDialog.show();
+                    final ProgressDialog pDialog = new ProgressDialog(CricketPlaceBet.this);
+                    pDialog.setMessage("Loading...");
+                    pDialog.show();
 
                     StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
                             url, new Response.Listener<String>() {
@@ -109,7 +109,7 @@ public class CricketPlaceBet extends Activity {
                         @Override
                         public void onResponse(String response) {
                             Log.d(TAG, response.toString());
-//                            pDialog.hide();
+                            pDialog.hide();
                             try {
                                 JSONObject object = new JSONObject(response);
                                 if (object.getString("status").equals("true")) {
@@ -143,7 +143,7 @@ public class CricketPlaceBet extends Activity {
                             Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
                             error.printStackTrace();
                             VolleyLog.d(TAG, "Error: " + error.getMessage());
-//                            pDialog.hide();
+                            pDialog.hide();
                         }
                     }) {
                         @Override

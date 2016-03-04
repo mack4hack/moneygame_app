@@ -7,7 +7,7 @@
     android:paddingBottom="10dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="10dp"
+    android:paddingTop="5dp"
     android:background="#dedede"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -19,67 +19,100 @@
         android:orientation="vertical"
         android:id="@+id/linearLayout">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textSize="18sp"
-            android:text=""
-            android:id="@+id/txtlive"
-            android:textColor="#42bcf4"/>
-
-        <View
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_head"
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/textColor"/>
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            card_view:cardBackgroundColor="#3b5998"
+            tools:ignore="NewApi"
+            >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="12:10"
-            android:id="@+id/txtstart"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <View
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:text=""
+                    android:id="@+id/txtlive"
+                    android:textColor="#fff"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text=""
+                    android:textColor="#fff"
+                    android:id="@+id/txtstart"/>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view_second_digit"
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/textColor"/>
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            tools:ignore="NewApi"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18sp"
+                android:text=""
+                android:textColor="#c99802"
+                android:id="@+id/txtScore" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal"
-            android:textSize="18sp"
-            android:text=""
-            android:id="@+id/txtScore" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text=""
+                android:id="@+id/txtOver"/>
+
+        </android.support.v7.widget.CardView>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text=""
-            android:id="@+id/txtOver"/>
-
-        <View
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_heading"
             android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/textColor"/>
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text=""
-            android:id="@+id/txtheading"
-            android:layout_gravity="center_horizontal" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.1dp"
-            android:background="@color/textColor"/>
+            android:layout_height="match_parent"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            tools:ignore="NewApi"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text=""
+                android:id="@+id/txtheading"
+                android:textColor="#3b5998"
+                android:layout_gravity="center_horizontal" />
+        </android.support.v7.widget.CardView>
 
 
     </LinearLayout>
@@ -88,7 +121,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/listDetail"
         android:layout_centerHorizontal="true"
-        android:background="#2e3547"
+        android:background="#fff"
         android:layout_above="@+id/btn_more"
         android:layout_below="@+id/linearLayout"/>
 

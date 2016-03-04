@@ -40,6 +40,8 @@ public class ScreenSlide extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
 
+//        getActionBar().setTitle(getString(R.string.title_activity_screen_slide));
+
         pagenumber = this.getIntent().getIntExtra("position", 0);
         match_id = this.getIntent().getStringExtra("match_id");
         match_nm = this.getIntent().getStringExtra("match_name");

@@ -141,7 +141,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         int id = item.getItemId();
         if (id == R.id.dash_board) {
 //             Handle the camera action
-            toolbar.setTitle("Home");
+            toolbar.setTitle("Cricket");
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             Cricket_Home fragment = new Cricket_Home();
@@ -159,21 +159,21 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         }
         else if(id==R.id.today_history)
         {
-//            toolbar.setTitle("Todays Summary");
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            TodaysSummary fragment = new TodaysSummary();
-//            fragmentTransaction.replace(R.id.containar1, fragment);
-//            fragmentTransaction.commit();
+            toolbar.setTitle("Todays History");
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            CricketHistory fragment = new CricketHistory();
+            fragmentTransaction.replace(R.id.containar1, fragment);
+            fragmentTransaction.commit();
         }
         else if(id==R.id.my_accounts)
         {
-//            toolbar.setTitle("Todays Summary");
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            TodaysSummary fragment = new TodaysSummary();
-//            fragmentTransaction.replace(R.id.containar1, fragment);
-//            fragmentTransaction.commit();
+            toolbar.setTitle("My Accounts");
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            CricketAccounts fragment = new CricketAccounts();
+            fragmentTransaction.replace(R.id.containar1, fragment);
+            fragmentTransaction.commit();
         }
         else if (id == R.id.previous_result)
         {

@@ -102,11 +102,21 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
                 break;
 
             case R.id.history:
-
+                MainPage.toolbar.setTitle("Todays History");
+                android.support.v4.app.FragmentManager historyManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction historyTransaction = historyManager.beginTransaction();
+                CricketHistory history = new CricketHistory();
+                historyTransaction.replace(R.id.containar1, history);
+                historyTransaction.commit();
 
                 break;
             case R.id.accounts:
-
+                MainPage.toolbar.setTitle("My Accounts");
+                android.support.v4.app.FragmentManager fragmentManager1 = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
+                CricketAccounts fragment1 = new CricketAccounts();
+                fragmentTransaction1.replace(R.id.containar1, fragment1);
+                fragmentTransaction1.commit();
                 break;
             case R.id.cancel_bet:
                 try

@@ -5,6 +5,7 @@
 
     android:weightSum="2">
 
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="35dp"
@@ -14,8 +15,10 @@
         android:id="@+id/txtteam"
         android:textSize="16dp"
         android:layout_marginTop="6dp"
-        android:background="#12121c"
-        android:textColor="#fff"/>
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#000"
+        android:textAlignment="center" />
 
     <View
         android:layout_width="0.5dp"
@@ -30,7 +33,10 @@
         android:hint="Odds"
         android:textSize="16dp"
         android:layout_marginTop="6dp"
-        android:background="#12121c"
         android:id="@+id/txtodd"
-        android:textColor="#fff"/>
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="#c99802"/>
+
 </LinearLayout>
