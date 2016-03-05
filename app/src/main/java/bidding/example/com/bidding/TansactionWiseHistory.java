@@ -204,7 +204,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
                             }
                             else
                             {
-                                Toast.makeText(getApplicationContext(),"No transaction present to dusplay!",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"No transaction present to display!",Toast.LENGTH_SHORT).show();
                             }
                         }
                         else

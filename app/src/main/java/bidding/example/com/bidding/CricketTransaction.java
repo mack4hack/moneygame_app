@@ -65,8 +65,8 @@ public class CricketTransaction extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 HistoryGetSet item = list.get(i);
                 transaction_id = item.getTransactionNo();
-                Log.i("url",""+getString(R.string.get_specific_transaction)+item.getTransactionNo()+ "&date="+formattedDate+"&match_id=" + getIntent().getStringExtra("matchid"));
-                getDetails(getString(R.string.get_specific_transaction) + item.getTransactionNo() + "&date=" + formattedDate + "&match_id=" + getIntent().getStringExtra("matchid"));
+                Log.i("url",""+getString(R.string.cricket_transaction_details)+item.getTransactionNo());
+                getDetails(getString(R.string.cricket_transaction_details) + item.getTransactionNo());
             }
         });
     }
@@ -196,7 +196,7 @@ public class CricketTransaction extends AppCompatActivity {
                             }
                             else
                             {
-                                Toast.makeText(getApplicationContext(),"No transaction present to dusplay!",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"No transaction present to display!",Toast.LENGTH_SHORT).show();
                             }
                         }
                         else
@@ -265,49 +265,19 @@ public class CricketTransaction extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(response);
                         if(jsonObject.getString("status").equals("true")) {
                             JSONObject object = jsonObject.getJSONObject("data");
-                            JSONObject jsonObject1 = object.getJSONObject("data_weekly");
-                            JSONArray jsonArray = jsonObject1.getJSONArray(transaction_id);
+                            JSONArray jsonArray = object.getJSONArray("data_weekly");
                             if (jsonArray.length() != 0) {
                                 for (int i = 0; i < jsonArray.length(); i++) {
-                                    /*{
-                                        "sr_no": 1,
-                                            "bet_amount": "40",
-                                            "payout": null,
-                                            "transaction_id": "L332",
-                                            "total_bet": 40,
-                                            "total_wins": 0,
-                                            "first_digit": "2",
-                                            "bet_amount_first": "40",
-                                            "win_amount_first": "",
-                                            "second_digit": "",
-                                            "bet_amount_second": "",
-                                            "win_amount_second": ""
-                                    }*/
+
 
                                     JSONObject trnsaction = jsonArray.getJSONObject(i);
 
                                     TransactionDetailsGetSet item = new TransactionDetailsGetSet();
-                                    if (trnsaction.getInt("first_digit")==999 && trnsaction.getInt("second_digit")==999) {
-                                        /*digit = trnsaction.getString("second_digit");
-                                        bAmt =  trnsaction.getString("bet_amount_second");
-                                        wamt =  trnsaction.getString("win_amount_second");*/
-                                        item.setDigit(trnsaction.getString("jodi_digit"));
-                                        item.setChip(trnsaction.getString("chips"));
-                                        whichBet = "Jodi Digit";
 
-                                    } else if(trnsaction.getInt("first_digit")==999 && trnsaction.getInt("jodi_digit")==999){
-                                        /*digit = trnsaction.getString("first_digit");
-                                        bAmt =  trnsaction.getString("bet_amount_first");
-                                        wamt =  trnsaction.getString("win_amount_first");*/
-                                        item.setDigit(trnsaction.getString("second_digit"));
-                                        item.setChip(trnsaction.getString("chips"));
-                                        whichBet = "Single Digit Second";
-                                    }
-                                    else{
                                         item.setDigit(trnsaction.getString("first_digit"));
                                         item.setChip(trnsaction.getString("chips"));
                                         whichBet = "Single Digit First";
-                                    }
+
 
                                     transList.add(item);
 
@@ -319,12 +289,6 @@ public class CricketTransaction extends AppCompatActivity {
                                         flag=1;
                                         payout = trnsaction.getString("total_wins");
                                     }
-                                    dTime = trnsaction.getString("drawtime");
-                                    tTime = trnsaction.getString("trans_time");
-                                    result = trnsaction.getString("lucky_number");
-                                    //String digit,String chip,String tno,String dTime,String tTime,String result
-
-
 
                                 }
                                 showDetails(transList,transaction_id,dTime,tTime,result,whichBet,payout);
