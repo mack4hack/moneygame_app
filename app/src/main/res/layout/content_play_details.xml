@@ -55,39 +55,26 @@
                     android:text=""
                     android:textColor="#fff"
                     android:id="@+id/txtstart"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="18sp"
+                    android:text=""
+                    android:textColor="#fff"
+                    android:id="@+id/txtScore" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text=""
+                    android:textColor="#fff"
+                    android:id="@+id/txtOver"/>
             </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/card_view_second_digit"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="2dp"
-            card_view:cardUseCompatPadding="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            tools:ignore="NewApi"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_gravity="center_horizontal"
-                android:textSize="18sp"
-                android:text=""
-                android:textColor="#c99802"
-                android:id="@+id/txtScore" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text=""
-                android:id="@+id/txtOver"/>
 
         </android.support.v7.widget.CardView>
 
@@ -110,6 +97,7 @@
                 android:layout_marginTop="5dp"
                 android:text=""
                 android:id="@+id/txtheading"
+                android:textSize="16sp"
                 android:textColor="#3b5998"
                 android:layout_gravity="center_horizontal" />
         </android.support.v7.widget.CardView>
@@ -132,6 +120,8 @@
         android:layout_marginTop="5dp"
         android:text="More Games"
         android:id="@+id/btn_more"
+        android:textColor="#fff"
+        android:background="@drawable/button_border"
         android:layout_alignParentBottom="true" />
 
     <bidding.example.com.bidding.SlidingPanel
@@ -166,7 +156,7 @@
                     android:id="@+id/listGames"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:background="#888888"/>
+                    android:background="#fff"/>
 
             </RelativeLayout>
         </RelativeLayout>

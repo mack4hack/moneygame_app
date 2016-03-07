@@ -389,11 +389,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                                 prcnt = (percentage/default_amnt)*100;
                                 presnt_amount = "Profit";
                             }
+                            int pay=(int) Math.round(Double.parseDouble(result))-(int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", "")));
                             final AlertDialog.Builder infoDialog = new AlertDialog.Builder(Home.this);
                             infoDialog.setTitle("Account Information");
                             infoDialog.setMessage("Default Chips : " + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "\n" +
                                     "Present Chips : " + (int) Math.round(Double.parseDouble(result)) + "\n" +
-                                    presnt_amount +" :" + prcnt+"%");
+                                    presnt_amount + " :" + prcnt + "%" + "\n" +
+                                    "Net Payable : " +pay);
                             infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {

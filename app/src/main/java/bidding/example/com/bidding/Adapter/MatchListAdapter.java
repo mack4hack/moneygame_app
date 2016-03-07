@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -46,6 +48,7 @@ public class MatchListAdapter extends BaseAdapter
     class Holder
     {
         TextView mName, mDate;
+        ImageView enable;
     }
 
     @Override
@@ -59,7 +62,7 @@ public class MatchListAdapter extends BaseAdapter
             viewHolder = new Holder();
             viewHolder.mName = (TextView) convertView.findViewById(R.id.txtname);
             viewHolder.mDate = (TextView) convertView.findViewById(R.id.txttime);
-
+            viewHolder.enable = (ImageView) convertView.findViewById(R.id.green_dot);
 
             convertView.setTag(viewHolder);
         }
@@ -77,6 +80,12 @@ public class MatchListAdapter extends BaseAdapter
             Date dte = df.parse(item.getDate());
             date = df1.format(dte);
             viewHolder.mDate.setText(date);
+            Calendar cal1 = Calendar.getInstance();
+            cal1.add(cal1.HOUR, 48);
+            String time2= df.format(new Date(cal1.getTimeInMillis()));
+            if (dte.before(df.parse(time2))) {
+                viewHolder.enable.setImageResource(R.drawable.enable);
+            }
         }
         catch(Exception e){
             e.printStackTrace();

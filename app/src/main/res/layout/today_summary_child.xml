@@ -18,14 +18,11 @@
             android:layout_weight="1"
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
+            android:gravity="center"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
+
 
         <TextView
             android:id="@+id/transactionNo"
@@ -54,14 +51,10 @@
             android:layout_weight="1"
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
+            android:gravity="center"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
 
         <TextView
             android:id="@+id/result"

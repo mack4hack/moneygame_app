@@ -700,7 +700,6 @@
             android:layout_below="@+id/card_view_first_digit"
             android:layout_marginLeft="@dimen/abc_action_bar_default_height_material"
             android:layout_marginRight="@dimen/abc_action_bar_default_height_material"
-            android:layout_marginTop="@dimen/abc_action_bar_default_padding_material"
             >
             <android.support.v7.widget.CardView
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -1015,7 +1014,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="2"
-                    >
+                    android:layout_marginTop="3dp">
                     <Button
                         android:id="@+id/btnautofill"
                         android:layout_width="wrap_content"
