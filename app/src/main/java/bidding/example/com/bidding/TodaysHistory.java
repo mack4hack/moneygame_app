@@ -136,10 +136,15 @@ public class TodaysHistory extends Fragment {
                                     rowItem.setTotal_bet(item.getString("total_bet"));
                                     rowItem.setTotal_wins(item.getString("total_wins"));
                                     rowItem.setPayout(item.getString("payout"));
-                                    if(!item.getString("payout").equals("null")) {
-                                        pl = (int)Math.round(Double.parseDouble(item.getString("bet_amount"))) + (int)Math.round(Double.parseDouble(item.getString("payout")));
+
+                                    String wins = item.getString("total_wins");
+                                    wins=wins.replace(",","");
+                                    String bets= item.getString("total_bet");
+                                    bets=bets.replace(",","");
+
+                                        pl = (int)Math.round(Double.parseDouble(wins)) - (int)Math.round(Double.parseDouble(bets));
                                         rowItem.setProftlos(String.valueOf(pl));
-                                    }
+
 
                                     String ttlbet =item.getString("total_bet");
                                     ttlbet = ttlbet.replace(",","");

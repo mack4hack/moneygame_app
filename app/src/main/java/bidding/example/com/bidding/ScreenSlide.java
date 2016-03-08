@@ -3,26 +3,25 @@ package bidding.example.com.bidding;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.viewpagerindicator.CirclePageIndicator;
-
 import bidding.example.com.bidding.GetterSetter.MatchListGetSet;
 
-public class ScreenSlide extends FragmentActivity {
+public class ScreenSlide extends AppCompatActivity {
     private static final int NUM_PAGES = CriceketBet.matchListGetSets.size();
     public int pagenumber;
     public static String match_id, match_nm;
 
-
+    public static Toolbar toolbar;
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
      * and next wizard steps.
@@ -39,8 +38,8 @@ public class ScreenSlide extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
-
-//        getActionBar().setTitle(getString(R.string.title_activity_screen_slide));
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         pagenumber = this.getIntent().getIntExtra("position", 0);
         match_id = this.getIntent().getStringExtra("match_id");

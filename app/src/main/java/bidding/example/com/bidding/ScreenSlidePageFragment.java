@@ -36,6 +36,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -63,32 +64,32 @@ public class ScreenSlidePageFragment extends Fragment {
      * The argument key for the page number this fragment represents.
      */
     public static final String ARG_PAGE = "page";
-    List<MatchDetailsGetSet> matchDetailsGetSetList = new ArrayList<>();
-    List<String> matchids = new ArrayList<String>();
+    public static List<MatchDetailsGetSet> matchDetailsGetSetList = new ArrayList<>();
+    public static List<String> matchids = new ArrayList<String>();
     ListDetailsAdapter listDetailsAdapter;
-    List<MatchDetailsGetSet> matchidrecrd;
-    List<MatchDetailsGetSet> matchlivercrd;
-    List<MatchDetailsGetSet> matchtossrcrd;
-    List<MatchDetailsGetSet> matchfrstbalfrstinrcrd;
-    List<MatchDetailsGetSet> matchfrstballscndinrcrd;
-    List<MatchDetailsGetSet> matchfrstoverarcrd;
-    List<MatchDetailsGetSet> matchfrstoverbrcrd;
-    List<MatchDetailsGetSet> match10overarcrd;
-    List<MatchDetailsGetSet> match10overbrcrd;
-    List<MatchDetailsGetSet> matchfrstwcktarcrd;
-    List<MatchDetailsGetSet> matchfrstwcktbrcrd;
-    List<MatchDetailsGetSet> matchhighopnrcrd;
-    List<MatchDetailsGetSet> matchrace50rcrd;
-    List<MatchDetailsGetSet> matchrunatwicktarcrd;
-    List<MatchDetailsGetSet> matchrunatwicktbrcrd;
-    List<MatchDetailsGetSet> matchmake30arcrd;
-    List<MatchDetailsGetSet> matchmake30brcrd;
-    List<MatchDetailsGetSet> matchmake50arcrd;
-    List<MatchDetailsGetSet> matchmake50brcrd;
-    List<MatchDetailsGetSet> matchmake100arcrd;
-    List<MatchDetailsGetSet> matchmake100brcrd;
-    List<MatchDetailsGetSet> matchinnrunratearcrd;
-    List<MatchDetailsGetSet> matchinnrunratebrcrd;
+    public static List<MatchDetailsGetSet> matchidrecrd;
+    public static List<MatchDetailsGetSet> matchlivercrd;
+    public static List<MatchDetailsGetSet> matchtossrcrd;
+    public static List<MatchDetailsGetSet> matchfrstbalfrstinrcrd;
+    public static List<MatchDetailsGetSet> matchfrstballscndinrcrd;
+    public static List<MatchDetailsGetSet> matchfrstoverarcrd;
+    public static List<MatchDetailsGetSet> matchfrstoverbrcrd;
+    public static List<MatchDetailsGetSet> match10overarcrd;
+    public static List<MatchDetailsGetSet> match10overbrcrd;
+    public static List<MatchDetailsGetSet> matchfrstwcktarcrd;
+    public static List<MatchDetailsGetSet> matchfrstwcktbrcrd;
+    public static List<MatchDetailsGetSet> matchhighopnrcrd;
+    public static List<MatchDetailsGetSet> matchrace50rcrd;
+    public static List<MatchDetailsGetSet> matchrunatwicktarcrd;
+    public static List<MatchDetailsGetSet> matchrunatwicktbrcrd;
+    public static List<MatchDetailsGetSet> matchmake30arcrd;
+    public static List<MatchDetailsGetSet> matchmake30brcrd;
+    public static List<MatchDetailsGetSet> matchmake50arcrd;
+    public static List<MatchDetailsGetSet> matchmake50brcrd;
+    public static List<MatchDetailsGetSet> matchmake100arcrd;
+    public static List<MatchDetailsGetSet> matchmake100brcrd;
+    public static List<MatchDetailsGetSet> matchinnrunratearcrd;
+    public static List<MatchDetailsGetSet> matchinnrunratebrcrd;
 
     /**
      * The fragment's page number, which is set to the argument value for {@link #ARG_PAGE}.
@@ -112,11 +113,12 @@ public class ScreenSlidePageFragment extends Fragment {
     private static String[] Make_100 = {"none \t\t 2.5","1 \t\t 2","2 \t\t 4.5","3 or more \t\t 6.5"};
     private static String[] Run_Rate = {"Below 5.00 \t\t 3","5.01 to 5.5 \t\t 4","5.51 to 6.00 \t\t 3.5","6.01 to 6.5 \t\t 3.5","6.51 to 7.0 \t\t 4.5"};
     DbAdapter dbAdapter;
-    String title,id, mid, oddid, odd, ttlchip, pyout, resltbet, gmcls, prtclr, nm, unq, frmt, ven, strt, ta, tb,wnr, sts, gmnm, teama, teamb, head, mtch;
+    public static String title,id, mid, oddid, odd, ttlchip, pyout, resltbet, gmcls, prtclr, nm, unq, frmt, ven, strt, ta, tb,wnr, sts, gmnm, teama, teamb, head, mtch;
     public static String matchid;
-    String matchiid;
-    String matchstatus;
-    String mid1="";
+    public static String matchiid;
+    public static String matchstatus;
+    public static String mid1="";
+    String lid,batteam, ballteam,run;
     /**
      * Factory method for this fragment class. Constructs a new fragment for the given page number.
      */
@@ -144,6 +146,7 @@ public class ScreenSlidePageFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater
                 .inflate(R.layout.activity_play_details, container, false);
 
+//        getActivity().setTitle(getString(R.string.title_activity_screen_slide));
         // Set the title view to show the page number.
 
         return rootView;
@@ -164,7 +167,7 @@ public class ScreenSlidePageFragment extends Fragment {
 
         matchiid=ScreenSlide.match_id;
         getMatchDetailsOdds();
-//        getActivity().getActionBar().setTitle(title);
+//
 
        /* try {
             DbAdapter dbAdapter = new DbAdapter(getActivity());
@@ -382,75 +385,59 @@ public class ScreenSlidePageFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     MatchDetailsGetSet item;
-                    if(heading.getText().toString().equals("Toss")) {
-                        item = matchtossrcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("1st Ball "+ta)) {
-                        item = matchfrstbalfrstinrcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("1st Ball "+tb)) {
-                        item = matchfrstballscndinrcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("1st Over Runs "+ta)) {
-                        item = matchfrstoverarcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("1st Over Runs "+tb)) {
-                        item = matchfrstoverbrcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("10 Over Session "+ta)) {
-                        item = match10overarcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("10 Over Session "+tb)) {
-                        item = match10overbrcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("1st Wicket Method "+ta)) {
-                        item = matchfrstwcktarcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("1st Wicket Method "+tb)) {
-                        item = matchfrstwcktbrcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("Highest Opening Partnership")) {
-                        item = matchhighopnrcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("Race To 50")) {
-                        item = matchrace50rcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("Runs At 1st Wicket Fall "+ta)) {
-                        item = matchrunatwicktarcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("Runs At 1st Wicket Fall "+tb)) {
-                        item = matchrunatwicktbrcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("To Make 30 "+ta)) {
-                        item = matchmake30arcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("To Make 30 "+tb)) {
-                        item = matchmake30brcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("To Make 50 "+ta)) {
-                        item = matchmake50arcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("To Make 50 "+tb)) {
-                        item = matchmake50brcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("To Make 100 "+ta)) {
-                        item = matchmake100arcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("To Make 100 "+tb)) {
-                        item = matchmake100brcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("Innings Run Rate "+ta)) {
-                        item = matchinnrunratearcrd.get(position);
-                    }
-                    else if(heading.getText().toString().equals("Innings Run Rate "+tb)) {
-                        item = matchinnrunratebrcrd.get(position);
+                    if(!matchstatus.equals("completed")) {
+                        if (heading.getText().toString().equals("Toss")) {
+                            item = matchtossrcrd.get(position);
+                        } else if (heading.getText().toString().equals("1st Ball " + ta)) {
+                            item = matchfrstbalfrstinrcrd.get(position);
+                        } else if (heading.getText().toString().equals("1st Ball " + tb)) {
+                            item = matchfrstballscndinrcrd.get(position);
+                        } else if (heading.getText().toString().equals("1st Over Runs " + ta)) {
+                            item = matchfrstoverarcrd.get(position);
+                        } else if (heading.getText().toString().equals("1st Over Runs " + tb)) {
+                            item = matchfrstoverbrcrd.get(position);
+                        } else if (heading.getText().toString().equals("10 Over Session " + ta)) {
+                            item = match10overarcrd.get(position);
+                        } else if (heading.getText().toString().equals("10 Over Session " + tb)) {
+                            item = match10overbrcrd.get(position);
+                        } else if (heading.getText().toString().equals("1st Wicket Method " + ta)) {
+                            item = matchfrstwcktarcrd.get(position);
+                        } else if (heading.getText().toString().equals("1st Wicket Method " + tb)) {
+                            item = matchfrstwcktbrcrd.get(position);
+                        } else if (heading.getText().toString().equals("Highest Opening Partnership")) {
+                            item = matchhighopnrcrd.get(position);
+                        } else if (heading.getText().toString().equals("Race To 50")) {
+                            item = matchrace50rcrd.get(position);
+                        } else if (heading.getText().toString().equals("Runs At 1st Wicket Fall " + ta)) {
+                            item = matchrunatwicktarcrd.get(position);
+                        } else if (heading.getText().toString().equals("Runs At 1st Wicket Fall " + tb)) {
+                            item = matchrunatwicktbrcrd.get(position);
+                        } else if (heading.getText().toString().equals("To Make 30 " + ta)) {
+                            item = matchmake30arcrd.get(position);
+                        } else if (heading.getText().toString().equals("To Make 30 " + tb)) {
+                            item = matchmake30brcrd.get(position);
+                        } else if (heading.getText().toString().equals("To Make 50 " + ta)) {
+                            item = matchmake50arcrd.get(position);
+                        } else if (heading.getText().toString().equals("To Make 50 " + tb)) {
+                            item = matchmake50brcrd.get(position);
+                        } else if (heading.getText().toString().equals("To Make 100 " + ta)) {
+                            item = matchmake100arcrd.get(position);
+                        } else if (heading.getText().toString().equals("To Make 100 " + tb)) {
+                            item = matchmake100brcrd.get(position);
+                        } else if (heading.getText().toString().equals("Innings Run Rate " + ta)) {
+                            item = matchinnrunratearcrd.get(position);
+                        } else if (heading.getText().toString().equals("Innings Run Rate " + tb)) {
+                            item = matchinnrunratebrcrd.get(position);
+                        } else {
+                            item = matchlivercrd.get(position);
+                        }
+
+
+                        startActivity(new Intent(getActivity(), CricketPlaceBet.class).putExtra("odd", item.getOdd()).putExtra("match", item.getName()).putExtra("matchid", item.getMatchid()).putExtra("date", item.getStrt()).putExtra("game", heading.getText().toString()).putExtra("oddid", item.getOddid()).putExtra("mid", item.getMid()).putExtra("partclr", item.getPrtclr()));
                     }
                     else{
-                        item = matchlivercrd.get(position);
+                        Toast.makeText(getActivity(),"Match completed, cannot place bet now",Toast.LENGTH_SHORT).show();
                     }
-
-
-                    startActivity(new Intent(getActivity(), CricketPlaceBet.class).putExtra("odd", item.getOdd()).putExtra("match",item.getName()).putExtra("matchid",item.getMatchid()).putExtra("date",item.getStrt()).putExtra("game",heading.getText().toString()).putExtra("oddid",item.getOddid()).putExtra("mid",item.getMid()).putExtra("partclr",item.getPrtclr()));
                 }
             });
 
@@ -593,7 +580,7 @@ public class ScreenSlidePageFragment extends Fragment {
                                 matchstatus = mids.getStatus();
                                 head = mids.getGamename();
                                 head = head.replace("_", " ");
-                                heading.setText(head);
+                                heading.setText("Match Win Loss");
                                 title=mids.getName();
                                 match.setText(mids.getName());
                                 String date="";
@@ -701,7 +688,9 @@ public class ScreenSlidePageFragment extends Fragment {
                             Log.i("score",""+getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("run", ""));
                             score.setText(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("run", ""));
                         }
-
+                        if(matchstatus.equals("completed")){
+                            LiveScore();
+                        }
                     }
 //                    dbAdapter.close();
 
@@ -738,4 +727,60 @@ public class ScreenSlidePageFragment extends Fragment {
 
     }
 
+    //get lucky no if Jodi bet is placed
+    private void LiveScore()
+    {
+        String tag_json_obj = "json_obj_req";
+        final String TAG = "response";
+        final String url = getString(R.string.live_score)+ScreenSlide.match_id;
+
+        StringRequest jsonObjReq = new StringRequest(Request.Method.GET,
+                url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response.toString());
+//                            pDialog.hide();
+                try {
+                    JSONObject object = new JSONObject(response);
+                    if (object.getString("status").equals("true")) {
+                        JSONObject jsonObject = object.getJSONObject("data");
+                        JSONArray jsonArray = jsonObject.getJSONArray("Live_Score");
+                        for(int i=0; i<jsonArray.length(); i++){
+                            JSONObject object1 = jsonArray.getJSONObject(i);
+                            id= object1.getString("id");
+                            batteam= object1.getString("batting_team");
+                            ballteam = object1.getString("bowling_team");
+                            run= object1.getString("runs_str");
+
+                        }
+                        score.setText(run);
+                    } else {
+                        Toast.makeText(getActivity(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+                VolleyLog.d(TAG, "Error: " + error.getMessage());
+//                            pDialog.hide();
+            }
+        }) {
+
+        };
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+// Adding request to request queue
+        AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+
+    }
 }

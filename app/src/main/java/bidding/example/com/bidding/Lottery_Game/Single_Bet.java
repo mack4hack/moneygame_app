@@ -1,10 +1,8 @@
 package bidding.example.com.bidding.Lottery_Game;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -69,6 +67,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
     private int currentMinute,currentHoure;
     CounterClass counterClass;
     Double default_amnt, prsnt_amnt, diff, percent;
+    String session;
 
     public Single_Bet()
     {
@@ -408,6 +407,8 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 
                                 if(connectionDetector.isConnectingToInternet())
                                 {
+                                    if (!session.equals("00:00 am")) {
+
                                     FirstNo=Integer.parseInt(mEditFirstSingleDigit.getText().toString().trim());
 
                                     postString="player_id="+playerId+"&data[0][digit]="+mEditFirstSingleDigit.getText().toString().trim()+"&data[0][bet_amount]="+mEditFirstSingleAmout.getText().toString().trim();
@@ -443,7 +444,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                                                         editor.putString("game_type", "1");
                                                         editor.putString("bet_amount",mEditFirstSingleAmout.getText().toString().trim());
                                                         editor.putString("digit", mEditFirstSingleDigit.getText().toString().trim());
-
+                                                        editor.putString("drawtimeSession",session);
 
                                                         flag = 1;
                                                         FirstNo = Integer.parseInt(mEditFirstSingleDigit.getText().toString().trim());
@@ -513,6 +514,11 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                                 }
                                 else
                                 {
+                                    Toast.makeText(getActivity(),"Draw is closed",Toast.LENGTH_SHORT).show();
+                                }
+                                }
+                                else
+                                {
                                     Toast.makeText(getActivity(),getString(R.string.internet_err),Toast.LENGTH_SHORT).show();
                                 }
 
@@ -566,111 +572,108 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                         }
                         else {
 
-                            if(connectionDetector.isConnectingToInternet())
-                            {
+                            if(connectionDetector.isConnectingToInternet()) {
 
-                //                postString="player_id="+playerId+"&data[0][digit]="+mEditSecondSingleDigit.getText().toString().trim()+"&data[0][bet_amount]="+mEditSecondSingleAmout.getText().toString().trim();
-                                SecondNo=Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim());
+                                if (!session.equals("00:00 am")) {
+                                    //                postString="player_id="+playerId+"&data[0][digit]="+mEditSecondSingleDigit.getText().toString().trim()+"&data[0][bet_amount]="+mEditSecondSingleAmout.getText().toString().trim();
+                                    SecondNo = Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim());
 
 //                                new AsynTaskCall().execute(getString(R.string.PlaceBetSecond),postString);
 
-                                String tag_json_obj = "json_obj_req";
-                                final String TAG = "response";
-                                final String url = getString(R.string.PlaceBetSecond);//+ URLEncoder.encode("/"+postString);
+                                    String tag_json_obj = "json_obj_req";
+                                    final String TAG = "response";
+                                    final String url = getString(R.string.PlaceBetSecond);//+ URLEncoder.encode("/"+postString);
 
-                  //              final ProgressDialog pDialog = new ProgressDialog(getActivity());
-                                pDialog.setMessage("Loading...");
-                                pDialog.show();
+                                    //              final ProgressDialog pDialog = new ProgressDialog(getActivity());
+                                    pDialog.setMessage("Loading...");
+                                    pDialog.show();
 
-                                StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
-                                        url, new Response.Listener<String>() {
+                                    StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                                            url, new Response.Listener<String>() {
 
-                                    @Override
-                                    public void onResponse(String response) {
-                                        Log.d(TAG, response.toString());
-                                        pDialog.hide();
-                                        try
-                                        {
-                                            JSONObject object = new JSONObject(response);
-                                            if (object.getString("status").equals("true")) {
-                                                Toast.makeText(getActivity(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                                        @Override
+                                        public void onResponse(String response) {
+                                            Log.d(TAG, response.toString());
+                                            pDialog.hide();
+                                            try {
+                                                JSONObject object = new JSONObject(response);
+                                                if (object.getString("status").equals("true")) {
+                                                    Toast.makeText(getActivity(), object.getString("message"), Toast.LENGTH_SHORT).show();
 
-                                                SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).edit();
+                                                    SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).edit();
 //                                                if (flag == 2) {
                                                     editor.putString("latest_bet", mEditSecondSingleDigit.getText().toString().trim());
                                                     editor.putString("game_type", "2");
-                                                    editor.putString("bet_amount",mEditSecondSingleAmout.getText().toString().trim());
+                                                    editor.putString("bet_amount", mEditSecondSingleAmout.getText().toString().trim());
                                                     editor.putString("digit", mEditSecondSingleDigit.getText().toString().trim());
+                                                    editor.putString("drawtimeSession",session);
 //                                                }
 
 
-                                                flag = 2;
+                                                    flag = 2;
 //                                                int res = (int) (Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim()) * 8.5);
 //
 //                                                int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
 //                                                int amt = bal - res;
 //                                                editor.putString("present_amount", ""+amt);
 
-                                                editor.commit();
+                                                    editor.commit();
 
 
-                                                getPresentAmount();
-                                                mEditSecondSingleDigit.getText().clear();
-                                                mEditFirstSingleAmout.getText().clear();
-                                                mSecondSingleDigitReturn.setHint("00");
+                                                    getPresentAmount();
+                                                    mEditSecondSingleDigit.getText().clear();
+                                                    mEditSecondSingleAmout.getText().clear();
+                                                    mSecondSingleDigitReturn.setHint("00");
+                                                }
+                                            } catch (Exception e) {
+                                                Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                                                e.printStackTrace();
                                             }
                                         }
-                                        catch (Exception e)
-                                        {
-                                            Toast.makeText(getActivity(),"something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
-                                            e.printStackTrace();
+                                    }, new Response.ErrorListener() {
+
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            if (error instanceof TimeoutError) {
+                                                Toast.makeText(getActivity(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                                            }
+                                            error.printStackTrace();
+                                            VolleyLog.d(TAG, "Error: " + error.getMessage());
+                                            pDialog.hide();
                                         }
-                                    }
-                                }, new Response.ErrorListener() {
+                                    }) {
+                                        @Override
+                                        protected Map<String, String> getParams() throws AuthFailureError {
 
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        if(error instanceof TimeoutError)
-                                        {
-                                            Toast.makeText(getActivity(),"Request Timeout!!!", Toast.LENGTH_SHORT).show();
+                                            HashMap<String, String> map = new HashMap<>();
+                                            map.put("player_id", playerId);
+                                            map.put("data[0][digit]", mEditSecondSingleDigit.getText().toString().trim());
+                                            map.put("data[0][bet_amount]", mEditSecondSingleAmout.getText().toString().trim());
+                                            return map;
                                         }
-                                        else {
-                                            Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+
+                                        @Override
+                                        public Map<String, String> getHeaders() throws AuthFailureError {
+                                            Map<String, String> params = new HashMap<String, String>();
+                                            params.put("Content-Type", "application/x-www-form-urlencoded");
+                                            return params;
                                         }
-                                        error.printStackTrace();
-                                        VolleyLog.d(TAG, "Error: " + error.getMessage());
-                                        pDialog.hide();
-                                    }
-                                }) {
-                                    @Override
-                                    protected Map<String, String> getParams() throws AuthFailureError {
+                                    };
 
-                                        HashMap<String, String> map = new HashMap<>();
-                                        map.put("player_id", playerId);
-                                        map.put("data[0][digit]", mEditSecondSingleDigit.getText().toString().trim());
-                                        map.put("data[0][bet_amount]", mEditSecondSingleAmout.getText().toString().trim());
-                                        return map;
-                                    }
-
-                                    @Override
-                                    public Map<String, String> getHeaders() throws AuthFailureError {
-                                        Map<String, String> params = new HashMap<String, String>();
-                                        params.put("Content-Type", "application/x-www-form-urlencoded");
-                                        return params;
-                                    }
-                                };
-
-                                jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
-                                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                                    jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 // Adding request to request queue
-                                AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+                                    AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+                                } else {
+                                    Toast.makeText(getActivity(), "Draw is closed", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                            else
-                            {
-                                Toast.makeText(getActivity(),getString(R.string.internet_err),Toast.LENGTH_SHORT).show();
+                            else {
+                                Toast.makeText(getActivity(), getString(R.string.internet_err), Toast.LENGTH_SHORT).show();
                             }
-
 
                         }
                     }catch (Exception e)
@@ -721,48 +724,47 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                             view = mEditJodiAmout;
                             cancel = true;
                         }
-                        else
-                        {
-                            if(connectionDetector.isConnectingToInternet())
-                            {
-                    //            postString = "player_id=" + playerId + "&data[0][digit]=" + mEditJodi.getText().toString().trim() + "&data[0][bet_amount]=" + mEditJodiAmout.getText().toString().trim();
+                        else {
+                            if (connectionDetector.isConnectingToInternet()) {
+                                //            postString = "player_id=" + playerId + "&data[0][digit]=" + mEditJodi.getText().toString().trim() + "&data[0][bet_amount]=" + mEditJodiAmout.getText().toString().trim();
                             /*JodiNo=Integer.parseInt(mEditJodi.getText().toString().trim());
                             flag = 3;
                             new AsynTaskCall().execute(getString(R.string.PlaceBetJodi),postString);
 
 */
-                                String tag_json_obj = "json_obj_req";
-                                final String TAG = "response";
-                                final String url = getString(R.string.PlaceBetJodi);//+ URLEncoder.encode("/"+postString);
+                                if (!session.equals("00:00 am")) {
+                                    String tag_json_obj = "json_obj_req";
+                                    final String TAG = "response";
+                                    final String url = getString(R.string.PlaceBetJodi);//+ URLEncoder.encode("/"+postString);
 
-                      //          final ProgressDialog pDialog = new ProgressDialog(getActivity());
-                                pDialog.setMessage("Loading...");
-                                pDialog.show();
+                                    //          final ProgressDialog pDialog = new ProgressDialog(getActivity());
+                                    pDialog.setMessage("Loading...");
+                                    pDialog.show();
 
-                                StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
-                                        url, new Response.Listener<String>() {
+                                    StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                                            url, new Response.Listener<String>() {
 
-                                    @Override
-                                    public void onResponse(String response) {
-                                        Log.d(TAG, response.toString());
-                                        pDialog.hide();
-                                        try {
-                                            JSONObject object = new JSONObject(response);
-                                            if(object.getString("status").equals("true"))
-                                            {
-                                                SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).edit();
-                                                Toast.makeText(getActivity(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                                        @Override
+                                        public void onResponse(String response) {
+                                            Log.d(TAG, response.toString());
+                                            pDialog.hide();
+                                            try {
+                                                JSONObject object = new JSONObject(response);
+                                                if (object.getString("status").equals("true")) {
+                                                    SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).edit();
+                                                    Toast.makeText(getActivity(), object.getString("message"), Toast.LENGTH_SHORT).show();
 //                                                if(flag==3)
 //                                                {
-                                                    editor.putString("latest_bet",mEditJodi.getText().toString().trim());
-                                                    editor.putString("bet_amount",mEditJodiAmout.getText().toString().trim());
-                                                    editor.putString("game_type","3");
-                                                editor.putString("digit", mEditJodi.getText().toString().trim());
+                                                    editor.putString("latest_bet", mEditJodi.getText().toString().trim());
+                                                    editor.putString("bet_amount", mEditJodiAmout.getText().toString().trim());
+                                                    editor.putString("game_type", "3");
+                                                    editor.putString("digit", mEditJodi.getText().toString().trim());
+                                                    editor.putString("drawtimeSession",session);
 //                                                }
 
 
-                                                flag = 3;
-                                                JodiNo = Integer.parseInt(mEditJodi.getText().toString().trim());
+                                                    flag = 3;
+                                                    JodiNo = Integer.parseInt(mEditJodi.getText().toString().trim());
 
 //                                                int res = (int) (Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim()) * 85);
 //
@@ -771,68 +773,67 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 //                                                int amt = bal - res;
 //                                                editor.putString("present_amount", ""+amt);
 
-                                                editor.commit();
-                                                getPresentAmount();
+                                                    editor.commit();
+                                                    getPresentAmount();
 
 //                                                balanceStatus.setProgress(amt);
 
-                                                mEditJodi.getText().clear();
-                                                mEditJodiAmout.getText().clear();
-                                                mJodiReturn.setHint("00");
+                                                    mEditJodi.getText().clear();
+                                                    mEditJodiAmout.getText().clear();
+                                                    mJodiReturn.setHint("00");
+                                                }
+
+                                            } catch (Exception e) {
+                                                Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                                                e.printStackTrace();
                                             }
-
                                         }
-                                        catch (Exception e)
-                                        {
-                                            Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }, new Response.ErrorListener() {
+                                    }, new Response.ErrorListener() {
 
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        if(error instanceof TimeoutError)
-                                        {
-                                            Toast.makeText(getActivity(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            if (error instanceof TimeoutError) {
+                                                Toast.makeText(getActivity(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                                            }
+                                            error.printStackTrace();
+                                            VolleyLog.d(TAG, "Error: " + error.getMessage());
+                                            pDialog.hide();
                                         }
-                                        else {
-                                            Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                                    }) {
+                                        @Override
+                                        protected Map<String, String> getParams() throws AuthFailureError {
+                                            Log.i(" Perems ", "player_id=" + playerId + "&data[0][digit]=" + mEditJodi.getText().toString().trim() + "&data[0][bet_amount]=" + mEditJodiAmout.getText().toString().trim());
+                                            HashMap<String, String> map = new HashMap<>();
+                                            map.put("player_id", playerId);
+                                            map.put("data[0][digit]", mEditJodi.getText().toString().trim());
+                                            map.put("data[0][bet_amount]", mEditJodiAmout.getText().toString().trim());
+                                            return map;
                                         }
-                                        error.printStackTrace();
-                                        VolleyLog.d(TAG, "Error: " + error.getMessage());
-                                        pDialog.hide();
-                                    }
-                                }) {
-                                    @Override
-                                    protected Map<String, String> getParams() throws AuthFailureError {
-                                        Log.i(" Perems ", "player_id=" + playerId + "&data[0][digit]=" + mEditJodi.getText().toString().trim() + "&data[0][bet_amount]=" + mEditJodiAmout.getText().toString().trim());
-                                        HashMap<String, String> map = new HashMap<>();
-                                        map.put("player_id", playerId);
-                                        map.put("data[0][digit]", mEditJodi.getText().toString().trim());
-                                        map.put("data[0][bet_amount]", mEditJodiAmout.getText().toString().trim());
-                                        return map;
-                                    }
 
-                                    @Override
-                                    public Map<String, String> getHeaders() throws AuthFailureError {
-                                        Map<String, String> params = new HashMap<String, String>();
-                                        params.put("Content-Type", "application/x-www-form-urlencoded");
-                                        return params;
-                                    }
-                                };
+                                        @Override
+                                        public Map<String, String> getHeaders() throws AuthFailureError {
+                                            Map<String, String> params = new HashMap<String, String>();
+                                            params.put("Content-Type", "application/x-www-form-urlencoded");
+                                            return params;
+                                        }
+                                    };
 
-                                jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
-                                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                                    jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 // Adding request to request queue
-                                AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+                                    AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+                                } else {
+                                    Toast.makeText(getActivity(), "Draw is closed", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                            else
-                            {
-                                Toast.makeText(getActivity(),getString(R.string.internet_err),Toast.LENGTH_SHORT).show();
+                            else{
+                                Toast.makeText(getActivity(), getString(R.string.internet_err), Toast.LENGTH_SHORT).show();
                             }
                         }
+
                     }catch (Exception e)
                     {
                         e.printStackTrace();
@@ -982,7 +983,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                             JSONObject innerObject = object.getJSONObject("data");
 //                            JSONObject obj= innerObject.getJSONObject("lucky_number");
                             innerObject.getString("start");
-                            innerObject.getString("end");
+                            session=  innerObject.getString("end");
                             mCurrentSession.setText("Current Draw: "+innerObject.getString("end"));
                             mCurrentResult.setText(innerObject.getString("lucky_number"));
                         }
