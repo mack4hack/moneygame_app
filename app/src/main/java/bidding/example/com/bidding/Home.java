@@ -262,7 +262,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             fragmentTransaction.replace(R.id.containar, fragment);
             fragmentTransaction.commit();
         }
-        else if(id == R.id.terms)
+      /*  else if(id == R.id.terms)
         {
             toolbar.setTitle("Terms & Condition");
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
@@ -281,7 +281,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             startActivity(new Intent(getApplicationContext(), Login.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
         }
-
+*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

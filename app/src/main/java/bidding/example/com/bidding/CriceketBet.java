@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import bidding.example.com.bidding.Adapter.MatchListAdapter;
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
@@ -76,7 +75,7 @@ public class CriceketBet extends Fragment {
 //        listMatches.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,Matches));
 
         final SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-        df.setTimeZone (TimeZone.getTimeZone("IST"));
+//        df.setTimeZone (TimeZone.getTimeZone("IST"));
 
         listMatches.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -155,7 +154,7 @@ public class CriceketBet extends Fragment {
                                     MatchListGetSet item = new MatchListGetSet();
                                     Calendar cal = Calendar.getInstance();
                                     SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-                                    df.setTimeZone (TimeZone.getTimeZone ("IST"));
+//                                    df.setTimeZone (TimeZone.getTimeZone ("IST"));
                                     cal.add(cal.HOUR, -10);
                                     time1 = df.format(new Date(cal.getTimeInMillis()));
                                     Log.i("time1", "" + time1);
