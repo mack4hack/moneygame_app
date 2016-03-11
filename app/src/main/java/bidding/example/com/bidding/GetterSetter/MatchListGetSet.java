@@ -9,6 +9,24 @@ public class MatchListGetSet {
     String name;
     String date;
     String venue;
+    String teama;
+    String teamb;
+
+    public String getTeamb() {
+        return teamb;
+    }
+
+    public void setTeamb(String teamb) {
+        this.teamb = teamb;
+    }
+
+    public String getTeama() {
+        return teama;
+    }
+
+    public void setTeama(String teama) {
+        this.teama = teama;
+    }
 
     public String getId() {
         return id;

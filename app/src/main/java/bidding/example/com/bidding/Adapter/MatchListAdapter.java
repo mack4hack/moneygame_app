@@ -75,7 +75,7 @@ public class MatchListAdapter extends BaseAdapter
         viewHolder.mName.setText(item.getName().trim());
         try {
             String date = "";
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
             SimpleDateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
             Date dte = df.parse(item.getDate());
             date = df1.format(dte);

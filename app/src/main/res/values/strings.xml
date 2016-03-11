@@ -110,7 +110,7 @@
     <string name="cricket_daily">http://46.101.6.171/moneygame/api/cricket/accountsPlayerByDate?player_id=</string>
     <string name="match_wise">http://46.101.6.171/moneygame/api/cricket/accountsPlayerBymatch?player_id=</string>
     <string name="cricket_transaction_details">http://46.101.6.171/moneygame/api/cricket/accountsPlayerByTransactionId?transaction_id=</string>
-    <string name="score_card">http://46.101.6.171/moneygame/api/cricket/getMatchLiveScoreCard</string>
+    <string name="score_card">http://46.101.6.171/moneygame/api/cricket/getMatchLiveScoreCard?match_id=</string>
 
     <string name="title_activity_tansaction_wise_history">Transaction History</string>
     <string name="title_activity_transaction_indetail">Transaction Details</string>
@@ -122,5 +122,6 @@
     <string name="title_activity_screen_slide">Cricket Games</string>
     <string name="title_activity_cricket_transaction">Cricket Transaction</string>
     <string name="title_activity_upcoming_list">UpcomingList</string>
+    <string name="title_activity_match_score_card">MatchScoreCard</string>
     <!--http://46.101.6.171/moneygame/-->
 </resources>

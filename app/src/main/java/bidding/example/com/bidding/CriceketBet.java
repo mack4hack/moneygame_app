@@ -74,7 +74,7 @@ public class CriceketBet extends Fragment {
         getMatchList();
 //        listMatches.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,Matches));
 
-        final SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        final SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
 //        df.setTimeZone (TimeZone.getTimeZone("IST"));
 
         listMatches.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -153,7 +153,7 @@ public class CriceketBet extends Fragment {
                                     JSONObject childObject = jsonArray.getJSONObject(i);
                                     MatchListGetSet item = new MatchListGetSet();
                                     Calendar cal = Calendar.getInstance();
-                                    SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+                                    SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
 //                                    df.setTimeZone (TimeZone.getTimeZone ("IST"));
                                     cal.add(cal.HOUR, -10);
                                     time1 = df.format(new Date(cal.getTimeInMillis()));
@@ -167,7 +167,10 @@ public class CriceketBet extends Fragment {
                                     String time = childObject.getString("start_date");
                                     time = time.replace("T"," ");
                                     time = time.replace("-","/");
-                                    String [] split = time.split("\\u002B");
+                                    String [] split1=time.split(", ");
+                                    String t= split1[1];
+
+                                    String [] split = t.split("\\u002B");
                                     if(df.parse(split[0]).after(df.parse(time1))) // && df.parse(split[0]).before(df.parse(time2)
                                     {
                                         item.setId(childObject.getString("id"));;

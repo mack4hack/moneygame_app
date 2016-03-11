@@ -7,10 +7,8 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <com.squareup.timessquare.CalendarPickerView
-        android:id="@+id/upcomingCalendar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
-
+<CalendarView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/upcomingCalendar"></CalendarView>
 </FrameLayout>

@@ -116,7 +116,7 @@ public class ScreenSlidePageFragment extends Fragment {
     public static String title,id, mid, oddid, odd, ttlchip, pyout, resltbet, gmcls, prtclr, nm, unq, frmt, ven, strt, ta, tb,wnr, sts, gmnm, teama, teamb, head, mtch;
     public static String matchid;
     public static String matchiid;
-    public static String matchstatus;
+    public static String matchstatus="";
     public static String mid1="";
     String lid,batteam, ballteam,run;
     /**

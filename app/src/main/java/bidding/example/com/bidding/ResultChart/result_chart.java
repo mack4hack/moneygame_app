@@ -127,7 +127,7 @@ public class result_chart extends AppCompatActivity {
         listView.setScrollContainer(false);
         listView.setEnabled(false);
 
-        t1 = (TextView) findViewById(R.id.text_view2);
+       /* t1 = (TextView) findViewById(R.id.text_view2);
         t2 = (TextView) findViewById(R.id.text_view3);
         t3 = (TextView) findViewById(R.id.text_view4);
         t4 = (TextView) findViewById(R.id.text_view5);
@@ -155,7 +155,7 @@ public class result_chart extends AppCompatActivity {
         t26 = (TextView) findViewById(R.id.text_view27);
         t27 = (TextView) findViewById(R.id.text_view28);
         t28 = (TextView) findViewById(R.id.text_view29);
-        t29 = (TextView) findViewById(R.id.text_view30);
+        t29 = (TextView) findViewById(R.id.text_view30);*/
         t30 = (TextView) findViewById(R.id.text_view31);
         t31 = (TextView) findViewById(R.id.text_view32);
         t32 = (TextView) findViewById(R.id.text_view33);
@@ -292,7 +292,7 @@ public class result_chart extends AppCompatActivity {
             if(i==30){
                 t30.setText(date);
             }
-            if(i==31){
+        /*    if(i==31){
                 t29.setText(date);
             }
             if(i==32){
@@ -378,7 +378,7 @@ public class result_chart extends AppCompatActivity {
             }
             if(i==59){
                 t1.setText(date);
-            }
+            }*/
         }
     }
 
@@ -437,7 +437,7 @@ public class result_chart extends AppCompatActivity {
 
 //                                            time60.put("timeslot", object.getString("timeslot_id"));
 
-                                            if (date.equals(t1.getText().toString())) {
+                                     /*       if (date.equals(t1.getText().toString())) {
 //                                                item.setTime(object.getString("timeslot_id"));
                                                 item.setDate1(object.getString("lucky_number"));
                                                 time60.put("timeslot_id1", object.getString("lucky_number"));
@@ -725,7 +725,7 @@ public class result_chart extends AppCompatActivity {
                                         } else {
                                             //item.setTime("-");
 //                                            time60.put("timeslot_id29", "-");
-                                        }
+                                        }*/
 
                                         if (date.equals(t30.getText().toString())) {
 //                                            item.setTime(object.getString("timeslot_id"));

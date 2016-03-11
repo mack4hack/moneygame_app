@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -17,7 +18,6 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
-import com.squareup.timessquare.CalendarPickerView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,7 +26,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
 import bidding.example.com.bidding.GetterSetter.MatchListGetSet;
@@ -34,11 +37,13 @@ import bidding.example.com.bidding.GetterSetter.MatchListGetSet;
 
 public class UpcomingMatches extends Fragment {
 
-    CalendarPickerView calendar;
+    CalendarView calendar;
     ConnectionDetector connectionDetector;
     String time1, time2;
+    private Calendar currentCalender = Calendar.getInstance(Locale.getDefault());
     private List<MatchListGetSet> matchList = new ArrayList<>();
     public static List<MatchListGetSet> matchListUpcoming = new ArrayList<>();
+    private Map<Date, List<Date>> bookings = new HashMap<>();
 
     public UpcomingMatches() {
         // Required empty public constructor
@@ -56,36 +61,36 @@ public class UpcomingMatches extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        calendar = (CalendarPickerView) view.findViewById(R.id.upcomingCalendar);
+        calendar = (CalendarView) view.findViewById(R.id.upcomingCalendar);
+//        calendar.drawSmallIndicatorForEvents(true);
 
         connectionDetector=new ConnectionDetector(getActivity());
 
         Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR, 1);
         Date today = new Date();
-        calendar.init(today, nextYear.getTime())
-                .withSelectedDate(today);
+//        calendar.init(today, nextYear.getTime())
+//                .withSelectedDate(today);
 
         getMatchList();
 
-
-        calendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
+       /* calendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override
             public void onDateSelected(Date date) {
                 if (getHolidays().contains(date)) {
-                    Log.i("date",""+date);
+                    Log.i("date", "" + date);
                     MatchListGetSet item1 = new MatchListGetSet();
-                    for(int i=0; i<matchList.size(); i++) {
+                    for (int i = 0; i < matchList.size(); i++) {
                         MatchListGetSet item = matchList.get(i);
                         String dt = item.getDate();
-                        if(item.getDate().contains(date.toString())){
+                        if (item.getDate().contains(date.toString())) {
                             item1.setName(item.getName());
                             item1.setDate(item.getDate());
                             matchListUpcoming.add(item1);
                         }
 
                     }
-                   startActivity(new Intent(getActivity(), UpcomingList.class));
+                    startActivity(new Intent(getActivity(), UpcomingList.class));
                 }
             }
 
@@ -93,8 +98,43 @@ public class UpcomingMatches extends Fragment {
             public void onDateUnselected(Date date) {
 
             }
-        });
+        });*/
 
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener()
+        {
+            @Override
+            public void onSelectedDayChange(CalendarView view,
+                                            int year,int month,int day)
+            {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+                SimpleDateFormat df1 = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
+                String date=day+"-"+(month+1)+"-"+year;
+
+                try {
+                    if (getHolidays().contains(sdf.parse(date))) {
+
+                        MatchListGetSet item1 = new MatchListGetSet();
+                        for (int i = 0; i < matchList.size(); i++) {
+                            MatchListGetSet item = matchList.get(i);
+                            String dt = item.getDate();
+                            Log.i("date", "" + df1.parse(dt));
+                            Log.i("date2", "" + sdf.parse(date));
+                            if (df1.parse(dt).equals(sdf.parse(date))) {
+                                item1.setName(item.getName());
+                                item1.setDate(item.getDate());
+                                matchListUpcoming.add(item1);
+                                Log.i("list",""+item1.getName());
+                            }
+
+                        }
+                        startActivity(new Intent(getActivity(), UpcomingList.class));
+                    }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void getMatchList()
@@ -130,7 +170,7 @@ public class UpcomingMatches extends Fragment {
                                     JSONObject childObject = jsonArray.getJSONObject(i);
                                     MatchListGetSet item = new MatchListGetSet();
                                     Calendar cal = Calendar.getInstance();
-                                    SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+                                    SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
 //                                    df.setTimeZone (TimeZone.getTimeZone ("IST"));
                                     cal.add(cal.HOUR, -10);
                                     time1 = df.format(new Date(cal.getTimeInMillis()));
@@ -144,7 +184,9 @@ public class UpcomingMatches extends Fragment {
                                     String time = childObject.getString("start_date");
                                     time = time.replace("T"," ");
                                     time = time.replace("-","/");
-                                    String [] split = time.split("\\u002B");
+                                    String [] split1=time.split(", ");
+                                    String t= split1[1];
+                                    String [] split = t.split("\\u002B");
                                     if(df.parse(split[0]).after(df.parse(time1))) // && df.parse(split[0]).before(df.parse(time2)
                                     {
                                         item.setId(childObject.getString("id"));;
@@ -159,7 +201,8 @@ public class UpcomingMatches extends Fragment {
 
                             }
 
-                            calendar.highlightDates(getHolidays());
+//                            addEvents(calendar, Calendar.MARCH);
+//                            calendar.highlightDates(getHolidays());
                             Log.i("date", "" + getHolidays());
                         }
                     }
@@ -202,7 +245,7 @@ public class UpcomingMatches extends Fragment {
 
 
     private ArrayList<Date> getHolidays(){
-        SimpleDateFormat df1 = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        SimpleDateFormat df1 = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
         SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
         ArrayList<Date> holidays = new ArrayList<>();
         for(int i=0; i<matchList.size(); i++){
@@ -210,9 +253,9 @@ public class UpcomingMatches extends Fragment {
             try {
                 Date dte = df1.parse(item.getDate());
 //                Log.i("date",""+dte);
-//                String date1 = sdf.format(dte);
-//                Date date=sdf.parse(date1);
-                holidays.add(dte);
+                String date1 = sdf.format(dte);
+                Date date=sdf.parse(date1);
+                holidays.add(date);
             }
             catch (Exception e){
             e.printStackTrace();
