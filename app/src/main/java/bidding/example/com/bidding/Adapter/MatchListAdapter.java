@@ -23,6 +23,7 @@ public class MatchListAdapter extends BaseAdapter
 {
     Context context;
     List<MatchListGetSet> matchList;
+    MatchListGetSet item;
 
     public MatchListAdapter(Context context,List<MatchListGetSet> matchList)
     {
@@ -45,32 +46,21 @@ public class MatchListAdapter extends BaseAdapter
         return matchList.get(i).hashCode();
     }
 
-    class Holder
-    {
-        TextView mName, mDate;
-        ImageView enable;
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup)
     {
         Holder viewHolder;
-        if(convertView == null)
-        {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.child_match_list,null);
-            viewHolder = new Holder();
-            viewHolder.mName = (TextView) convertView.findViewById(R.id.txtname);
-            viewHolder.mDate = (TextView) convertView.findViewById(R.id.txttime);
-            viewHolder.enable = (ImageView) convertView.findViewById(R.id.green_dot);
 
-            convertView.setTag(viewHolder);
-        }
-        else
-        {
-            viewHolder = (Holder) convertView.getTag();
-        }
-        MatchListGetSet item = matchList.get(position);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final View itemView = inflater.inflate(R.layout.child_match_list,viewGroup, false);
+            viewHolder = new Holder();
+            viewHolder.mName = (TextView) itemView.findViewById(R.id.txtname);
+            viewHolder.mDate = (TextView) itemView.findViewById(R.id.txttime);
+            viewHolder.enable = (ImageView) itemView.findViewById(R.id.green_dot);
+
+
+       item = matchList.get(position);
 
         viewHolder.mName.setText(item.getName().trim());
         try {
@@ -86,13 +76,23 @@ public class MatchListAdapter extends BaseAdapter
             if (dte.before(df.parse(time2))) {
                 viewHolder.enable.setImageResource(R.drawable.enable);
             }
+            else{
+
+            }
+
         }
         catch(Exception e){
             e.printStackTrace();
         }
 
 
-        return convertView;
+        return itemView;
     }
+}
+
+class Holder
+{
+    TextView mName, mDate;
+    ImageView enable;
 }
 

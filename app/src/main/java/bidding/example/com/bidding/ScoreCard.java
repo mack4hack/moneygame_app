@@ -65,7 +65,7 @@ public class ScoreCard extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MatchListGetSet item = matchList.get(position);
-                startActivity(new Intent(getActivity(), Container.class).putExtra("match_id", item.getId()).putExtra("match_name", item.getName()).putExtra("teama", item.getTeama()).putExtra("teamb",item.getTeamb()).putExtra("date",item.getDate()).putExtra("venue",item.getVenue()));
+                startActivity(new Intent(getActivity(), Container_score_card.class).putExtra("match_id", item.getId()).putExtra("match_name", item.getName()).putExtra("teama", item.getTeama()).putExtra("teamb",item.getTeamb()).putExtra("date",item.getDate()).putExtra("venue",item.getVenue()));
 
             }
         });

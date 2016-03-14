@@ -201,7 +201,7 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
                 previousTransaction.commit();
                 break;
             case R.id.upcoming:
-                MainPage.toolbar.setTitle("Matches");
+                MainPage.toolbar.setTitle("Upcoming Matches");
                 android.support.v4.app.FragmentManager upcomingManager = getActivity().getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction upcomingTransaction = upcomingManager.beginTransaction();
                 UpcomingMatches upcomingMatches = new UpcomingMatches();

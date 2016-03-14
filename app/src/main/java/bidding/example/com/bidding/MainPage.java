@@ -186,7 +186,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         }
         else if (id == R.id.upcoming_matches)
         {
-            MainPage.toolbar.setTitle("Matches");
+            MainPage.toolbar.setTitle("Upcoming Matches");
             android.support.v4.app.FragmentManager upcomingManager = this.getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction upcomingTransaction = upcomingManager.beginTransaction();
             UpcomingMatches upcomingMatches = new UpcomingMatches();

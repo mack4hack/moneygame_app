@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_gravity="center_horizontal"
-                android:textSize="18sp"
+                android:textSize="17sp"
                 android:text="Match about to start"
                 android:textColor="#000"
                 android:id="@+id/txtScore" />

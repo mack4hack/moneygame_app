@@ -71,6 +71,7 @@ public class CriceketBet extends Fragment {
         connectionDetector=new ConnectionDetector(getActivity());
 
         listMatches = (ListView) view.findViewById(R.id.listMatch);
+        listMatches.setScrollingCacheEnabled(false);
         getMatchList();
 //        listMatches.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,Matches));
 

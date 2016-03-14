@@ -42,7 +42,7 @@ public class UpcomingMatches extends Fragment {
     String time1, time2;
     private Calendar currentCalender = Calendar.getInstance(Locale.getDefault());
     private List<MatchListGetSet> matchList = new ArrayList<>();
-    public static List<MatchListGetSet> matchListUpcoming = new ArrayList<>();
+    public static List<MatchListGetSet> matchListUpcoming;
     private Map<Date, List<Date>> bookings = new HashMap<>();
 
     public UpcomingMatches() {
@@ -72,6 +72,9 @@ public class UpcomingMatches extends Fragment {
 //        calendar.init(today, nextYear.getTime())
 //                .withSelectedDate(today);
 
+        calendar.setShowWeekNumber(false);
+
+
         getMatchList();
 
        /* calendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
@@ -100,26 +103,25 @@ public class UpcomingMatches extends Fragment {
             }
         });*/
 
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener()
-        {
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view,
-                                            int year,int month,int day)
-            {
+                                            int year, int month, int day) {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
                 SimpleDateFormat df1 = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
-                String date=day+"-"+(month+1)+"-"+year;
+                String date = day + "-" + (month + 1) + "-" + year;
 
                 try {
                     if (getHolidays().contains(sdf.parse(date))) {
 
-                        MatchListGetSet item1 = new MatchListGetSet();
+                        matchListUpcoming = new ArrayList<MatchListGetSet>();
                         for (int i = 0; i < matchList.size(); i++) {
+                            MatchListGetSet item1 = new MatchListGetSet();
                             MatchListGetSet item = matchList.get(i);
                             String dt = item.getDate();
-                            Log.i("date", "" + df1.parse(dt));
-                            Log.i("date2", "" + sdf.parse(date));
-                            if (df1.parse(dt).equals(sdf.parse(date))) {
+                            Log.i("date", "" + sdf.format(df1.parse(dt)));
+                            Log.i("date2", "" + sdf.format(sdf.parse(date)));
+                            if (sdf.format(df1.parse(dt)).equals(sdf.format(sdf.parse(date)))) {
                                 item1.setName(item.getName());
                                 item1.setDate(item.getDate());
                                 matchListUpcoming.add(item1);

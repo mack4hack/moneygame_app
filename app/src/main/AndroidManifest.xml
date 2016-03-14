@@ -90,20 +90,19 @@
         <activity
             android:name=".UpcomingList"
             android:label="@string/title_activity_upcoming_list"
-            android:theme="@style/Theme.AppCompat.Dialog" />
-        <activity
-            android:name=".Container"
-            android:label="@string/title_activity_match_score_card"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".MatchScoreCard"
             android:label="@string/title_activity_match_score_card"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MatchScoreTeamb"
             android:label="@string/title_activity_match_score_card"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Container_score_card"
+            android:label="@string/title_activity_container_score_card"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-
     </application>
 
 </manifest>

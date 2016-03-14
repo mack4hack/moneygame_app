@@ -121,7 +121,8 @@
     <string name="title_activity_game_type_details">Game Type Details</string>
     <string name="title_activity_screen_slide">Cricket Games</string>
     <string name="title_activity_cricket_transaction">Cricket Transaction</string>
-    <string name="title_activity_upcoming_list">UpcomingList</string>
+    <string name="title_activity_upcoming_list">Upcoming List</string>
     <string name="title_activity_match_score_card">MatchScoreCard</string>
+    <string name="title_activity_container_score_card">Container_score_card</string>
     <!--http://46.101.6.171/moneygame/-->
 </resources>

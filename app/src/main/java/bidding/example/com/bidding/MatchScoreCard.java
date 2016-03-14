@@ -3,7 +3,6 @@ package bidding.example.com.bidding;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,9 +39,7 @@ public class MatchScoreCard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match_score_card);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+       
         connectionDetector=new ConnectionDetector(getApplicationContext());
 
         match_id=this.getIntent().getStringExtra("match_id");

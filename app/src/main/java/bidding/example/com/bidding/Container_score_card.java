@@ -1,27 +1,23 @@
 package bidding.example.com.bidding;
 
-import android.app.Activity;
 import android.app.LocalActivityManager;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TabHost;
 
-/**
- * Created by root on 3/11/16.
- */
-public class Container extends Activity {
-
+public class Container_score_card extends AppCompatActivity {
     TabHost tabHost;
     String teama, teamb, match_id, match_name, date, venue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.container);
+        setContentView(R.layout.activity_container_score_card);
 
         tabHost = (TabHost) findViewById(R.id.tabHost);
-        LocalActivityManager mLocalActivityManager = new LocalActivityManager(Container.this, false);
+        LocalActivityManager mLocalActivityManager = new LocalActivityManager(Container_score_card.this, false);
         mLocalActivityManager.dispatchCreate(savedInstanceState);
         tabHost.setup(mLocalActivityManager);
 
@@ -47,4 +43,5 @@ public class Container extends Activity {
 
 
     }
+
 }
