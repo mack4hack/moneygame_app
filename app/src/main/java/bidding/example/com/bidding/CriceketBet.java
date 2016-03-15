@@ -158,12 +158,12 @@ public class CriceketBet extends Fragment {
 //                                    df.setTimeZone (TimeZone.getTimeZone ("IST"));
                                     cal.add(cal.HOUR, -10);
                                     time1 = df.format(new Date(cal.getTimeInMillis()));
-                                    Log.i("time1", "" + time1);
+//                                    Log.i("time1", "" + time1);
 
                                     Calendar cal1 = Calendar.getInstance();
                                     cal1.add(cal1.HOUR, 48);
                                     time2= df.format(new Date(cal1.getTimeInMillis()));
-                                    Log.i("time2", "" + time2);
+//                                    Log.i("time2", "" + time2);
 
                                     String time = childObject.getString("start_date");
                                     time = time.replace("T"," ");

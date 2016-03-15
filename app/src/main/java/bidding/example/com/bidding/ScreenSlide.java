@@ -78,6 +78,7 @@ public class ScreenSlide extends AppCompatActivity {
                 match_nm=item.getName();
                 mPagerAdapter.notifyDataSetChanged();
                 mPager.setAdapter(mPagerAdapter);
+                stopService(new Intent(getApplicationContext(), UpdateService.class));
 
             }
         });
@@ -120,5 +121,11 @@ public class ScreenSlide extends AppCompatActivity {
         public int getCount() {
             return NUM_PAGES;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(getApplicationContext(), OddsService.class));
     }
 }

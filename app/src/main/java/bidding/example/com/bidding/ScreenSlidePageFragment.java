@@ -168,38 +168,8 @@ public class ScreenSlidePageFragment extends Fragment {
 
         matchiid=ScreenSlide.match_id;
         getMatchDetailsOdds();
-//
-
-       /* try {
-            DbAdapter dbAdapter = new DbAdapter(getActivity());
-            dbAdapter.open();
-//            Log.i("page", "" + mPageNumber);
-                Cursor cur = dbAdapter.GetDetails(Integer.parseInt(ScreenSlide.match_id));
-//            Log.i("cursor", "" + cur.getCount());
-                if (cur.getCount() > 0) {
-                    cur.moveToFirst();
-                    do {
-                        heading.setText(cur.getString(2));
-                        match.setText(cur.getString(2));
-                        start.setText(cur.getString(5));
-                    } while (cur.moveToNext());
-                }
-
-                dbAdapter.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-*/
 
         initPopup(view);
-
-        /*Animation anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setDuration(100); //You can manage the time of the blink with this parameter
-        anim.setStartOffset(20);
-        anim.setRepeatMode(Animation.REVERSE);
-        anim.setRepeatCount(Animation.INFINITE);
-        match.startAnimation(anim);*/
 
         match.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -684,6 +654,8 @@ public class ScreenSlidePageFragment extends Fragment {
                         }
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchlivercrd);
                         listDetail.setAdapter(listDetailsAdapter);
+                        getActivity().startService(new Intent(getActivity(), OddsService.class));
+
                         if(matchstatus.equals("started")){
                             getActivity().startService(new Intent(getActivity(), UpdateService.class));
                             Log.i("score",""+getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("run", ""));

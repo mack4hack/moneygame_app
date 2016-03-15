@@ -10,7 +10,7 @@
         android:id="@+id/game_1"
         android:orderInCategory="100"
         android:title="@string/Lottery"
-        android:icon="@drawable/lotry"
+        android:icon="@drawable/num"
         app:showAsAction="always" />
 
 </menu>
