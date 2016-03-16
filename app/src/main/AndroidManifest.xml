@@ -49,6 +49,7 @@
             android:theme="@style/AppTheme" />
 
         <service android:name=".timeService" />
+        <service android:name=".OddsService" />
         <service android:name=".UpdateService" />
 
         <activity

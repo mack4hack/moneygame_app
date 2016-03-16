@@ -11,7 +11,7 @@
         android:id="@+id/buttonlayout"
         android:layout_width="fill_parent"
         android:layout_height="60sp"
-
+        android:background="@color/headblue"
         android:gravity="left|top"
         android:height="60sp"
         android:orientation="horizontal" >
@@ -26,7 +26,7 @@
             android:layout_width="30sp"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
-            android:src="@drawable/left_arrow"
+            android:src="@drawable/l_arrow"
             android:layout_marginLeft="10sp" >
         </ImageView>
 
@@ -37,7 +37,7 @@
             android:layout_weight="0.6"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#FFFFFF" >
+            android:textColor="#fff" >
         </TextView>
 
         <ImageView
@@ -45,7 +45,7 @@
             android:layout_width="30sp"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
-            android:src="@drawable/right_arrow"
+            android:src="@drawable/r_arrow"
             android:layout_marginRight="10sp" >
         </ImageView>
 
@@ -55,14 +55,6 @@
             android:layout_height="60sp" />-->
     </LinearLayout>
 
-    <Button
-        android:id="@+id/selectedDayMonthYear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" >
-    </Button>
 
     <LinearLayout
         android:layout_width="fill_parent"

@@ -101,7 +101,8 @@ public class ScreenSlidePageFragment extends Fragment {
     private SlidingPanel popup = null;
     private boolean popUpStatus = false;
     ListView listView, listDetail;
-    TextView heading, match, start, score, overs;
+    TextView heading, match, start, overs;
+    TextView score;
     private static String[] GAME = {"Toss","1ST BALL 1ST INNINGS","1ST BALL 2ND INNINGS","1ST OVER RUNS TEAM-1","1ST OVER RUNS TEAM-2","10 OVER SESSION TEAM-1","10 OVER SESSION TEAM-2","1ST WICKET METHOD TEAM-1","1ST WICKET METHOD TEAM-2","HIGHEST OPENING PARTNERSHIP","RACE TO 50","RUNS AT 1ST WICKET FALL TEAM-1","RUNS AT 1ST WICKET FALL TEAM-2","TO MAKE 30 TEAM-1","TO MAKE 30 TEAM-2","TO MAKE 50 TEAM-1","TO MAKE 50 TEAM-2","TO MAKE 100 TEAM-1","TO MAKE 100 TEAM-2","INNINGS RUN RATE TEAM-1","INNINGS RUN RATE TEAM-2"};
     private static String[] Positon1 = {"Dot ball \t\t 1.25","Wicket \t\t\t 5.5","Wide ball \t\t 2.5","No ball \t\t 4.5","1 run \t\t\t 1.5","2 runs \t\t\t 3.5","3 runs \t\t\t 5.5","4 runs \t\t\t 6.5","6 runs \t\t\t 10"};
     private static String[] Wicket = {"Caught behind \t\t xx","Caught in the field \t\t xx","LBW \t\t xx","Bowled \t\t xx","Run out \t\t\t xx","Stumped \t\t\t xx","Hit wicket \t\t xx","Retired hurt \t\t\t xx"};
@@ -656,14 +657,17 @@ public class ScreenSlidePageFragment extends Fragment {
                         listDetail.setAdapter(listDetailsAdapter);
                         getActivity().startService(new Intent(getActivity(), OddsService.class));
 
-                        if(matchstatus.equals("started")){
+                        if(matchstatus.equals("started")) {
                             getActivity().startService(new Intent(getActivity(), UpdateService.class));
-                            Log.i("score",""+getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("run", ""));
-                            score.setText(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("batteam", "")+": "+getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("run", ""));
+                            Log.i("score", "" + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("batteam", ""));
+                            score.setText(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("batteam", "") + ": " + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("run", ""));
+
                         }
-                        if(matchstatus.equals("completed")){
+                        if(matchstatus.equals("completed"))
+                        {
                             LiveScore();
                         }
+
                     }
 //                    dbAdapter.close();
 

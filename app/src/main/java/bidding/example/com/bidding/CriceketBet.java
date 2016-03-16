@@ -99,7 +99,7 @@ public class CriceketBet extends Fragment {
                     else{
                         final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                         dialog.setTitle("Alert");
-                        dialog.setMessage("Betting for this match will start 48 hours before");
+                        dialog.setMessage("Game for this match will start 48 hours before");
                         dialog.setCancelable(true);
                         // ...Irrelevant code for customizing the buttons and title
 

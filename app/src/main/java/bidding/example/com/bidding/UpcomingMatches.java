@@ -55,7 +55,6 @@ public class UpcomingMatches extends Fragment{
     private static final String tag = "MyCalendarActivity";
 
     private TextView currentMonth;
-    private Button selectedDayMonthYearButton;
     private ImageView prevMonth;
     private ImageView nextMonth;
     private GridView calendarView;
@@ -87,12 +86,8 @@ public class UpcomingMatches extends Fragment{
         _calendar = Calendar.getInstance(Locale.getDefault());
         month = _calendar.get(Calendar.MONTH) + 1;
         year = _calendar.get(Calendar.YEAR);
-        Log.d(tag, "Calendar Instance:= " + "Month: " + month + " "  + "Year: "
+        Log.d(tag, "Calendar Instance:= " + "Month: " + month + " " + "Year: "
                 + year);
-
-        selectedDayMonthYearButton = (Button) getActivity()
-                .findViewById(R.id.selectedDayMonthYear);
-        selectedDayMonthYearButton.setText("Selected: ");
 
         prevMonth = (ImageView) getActivity().findViewById(R.id.prevMonth);
         prevMonth.setOnClickListener(new View.OnClickListener() {
@@ -427,7 +422,7 @@ public class GridCellAdapter extends BaseAdapter implements View.OnClickListener
                     + " NextYear: " + nextYear);
         }
 
-        int currentWeekDay = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        int currentWeekDay = cal.get(Calendar.DAY_OF_WEEK)-1;
         trailingSpaces = currentWeekDay;
 
         Log.d(tag, "Week Day:" + currentWeekDay + " is "
@@ -481,6 +476,8 @@ public class GridCellAdapter extends BaseAdapter implements View.OnClickListener
             list.add(String.valueOf(i + 1) + "-GREY" + "-"
                     + getMonthAsString(nextMonth) + "-" + nextYear);
         }
+
+
     }
 
     /**
@@ -554,15 +551,31 @@ public class GridCellAdapter extends BaseAdapter implements View.OnClickListener
         gridcell.setText(theday);
         gridcell.setTag(theday + "-" + themonth + "-" + theyear);
         Log.d(tag, "Setting GridCell " + theday + "-" + themonth + "-"
-                + theyear);
+                + theyear+ " "+weekdays);
 
         if (day_color[1].equals("GREY")) {
             gridcell.setTextColor(getResources()
-                    .getColor(R.color.lightgray));
+                    .getColor(R.color.lightgray02));
+            gridcell.setBackgroundColor(getResources().getColor(R.color.lightgray));
         }
         if (day_color[1].equals("WHITE")) {
             gridcell.setTextColor(getResources().getColor(
-                    R.color.lightgray02));
+                    R.color.black));
+            gridcell.setBackgroundColor(getResources().getColor(R.color.lightgray));
+        }
+
+        try {
+            Date sdate = dateFormatter.parse(theday + "-" + themonth + "-" + theyear);
+            String Sundate= sdate.toString();
+            String [] split= Sundate.split(" ");
+            if (split[0].equals("Sun")) {
+                gridcell.setTextColor(getResources().getColor(
+                        R.color.red));
+                gridcell.setBackgroundColor(getResources().getColor(R.color.lightgray));
+            }
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
 
         if ((!events.isEmpty()) && (events != null)) {
@@ -574,7 +587,8 @@ public class GridCellAdapter extends BaseAdapter implements View.OnClickListener
 //                    Integer numEvents = (Integer) events.get(theday);
 //                    num_events_per_day.setText(numEvents.toString());
                     gridcell.setTextColor(getResources().getColor(
-                            R.color.blue));
+                            R.color.lightblue));
+                    gridcell.setBackgroundColor(getResources().getColor(R.color.lightgray));
                 }
             }
             catch (Exception e){
@@ -583,7 +597,9 @@ public class GridCellAdapter extends BaseAdapter implements View.OnClickListener
         }
 
         if (day_color[1].equals("BLUE")) {
-            gridcell.setTextColor(getResources().getColor(R.color.orrange));
+            gridcell.setTextColor(getResources().getColor(
+                    R.color.white));
+            gridcell.setBackgroundColor(getResources().getColor(R.color.headblue));
         }
 
         return row;
@@ -592,7 +608,6 @@ public class GridCellAdapter extends BaseAdapter implements View.OnClickListener
     @Override
     public void onClick(View view) {
         String date_month_year = (String) view.getTag();
-        selectedDayMonthYearButton.setText("Selected: " + date_month_year);
         Log.e("Selected date", date_month_year);
         SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
         SimpleDateFormat df1 = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
