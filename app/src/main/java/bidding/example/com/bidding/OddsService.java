@@ -146,8 +146,6 @@ public class OddsService extends Service {
         final String url = getString(R.string.get_match_odds);
         Log.i("url", "" + url);
 
-
-
         StringRequest jsonObjReq = new StringRequest(Request.Method.GET,
                 url, new Response.Listener<String>() {
 
@@ -264,8 +262,6 @@ public class OddsService extends Service {
                                 ScreenSlidePageFragment.head = ScreenSlidePageFragment.head.replace("_", " ");
                                 ScreenSlidePageFragment.title=mids.getName();
 
-//                                Log.i("matchlive",""+mid1+mids.getMid().toString());
-//                                mid1="";
                             }
                             if(mids.getMid().equals("2")){
                                 ScreenSlidePageFragment.matchtossrcrd.add(mids);
@@ -351,6 +347,7 @@ public class OddsService extends Service {
                             }
 
                         }
+                        ScreenSlidePageFragment.listDetailsAdapter.notifyDataSetChanged();
 
                     }
 //                    dbAdapter.close();

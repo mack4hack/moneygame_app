@@ -18,11 +18,14 @@ package bidding.example.com.bidding;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -57,6 +60,7 @@ import java.util.TimeZone;
 
 import bidding.example.com.bidding.Adapter.ListDetailsAdapter;
 import bidding.example.com.bidding.AppDB.DbAdapter;
+import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
 import bidding.example.com.bidding.GetterSetter.MatchDetailsGetSet;
 
 public class ScreenSlidePageFragment extends Fragment {
@@ -66,7 +70,7 @@ public class ScreenSlidePageFragment extends Fragment {
     public static final String ARG_PAGE = "page";
     public static List<MatchDetailsGetSet> matchDetailsGetSetList = new ArrayList<>();
     public static List<String> matchids = new ArrayList<String>();
-    ListDetailsAdapter listDetailsAdapter;
+    public static ListDetailsAdapter listDetailsAdapter;
     public static List<MatchDetailsGetSet> matchidrecrd;
     public static List<MatchDetailsGetSet> matchlivercrd;
     public static List<MatchDetailsGetSet> matchtossrcrd;
@@ -119,7 +123,12 @@ public class ScreenSlidePageFragment extends Fragment {
     public static String matchiid;
     public static String matchstatus="";
     public static String mid1="";
-    String lid,batteam, ballteam,run;
+    String lid,batteam, ballteam,run, result;
+    static boolean flag=false;
+    BroadcastReceiver receiver;
+    Intent serviceIntent;
+    Toolbar toolbar;
+
     /**
      * Factory method for this fragment class. Constructs a new fragment for the given page number.
      */
@@ -147,7 +156,6 @@ public class ScreenSlidePageFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater
                 .inflate(R.layout.activity_play_details, container, false);
 
-//        getActivity().setTitle(getString(R.string.title_activity_screen_slide));
         // Set the title view to show the page number.
 
         return rootView;
@@ -166,11 +174,23 @@ public class ScreenSlidePageFragment extends Fragment {
 
         listDetail = (ListView) view.findViewById(R.id.listDetail);
 //        listDetail.setVisibility(View.GONE);
+        getPresentAmount();
 
         matchiid=ScreenSlide.match_id;
         getMatchDetailsOdds();
 
         initPopup(view);
+
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                String battm = intent.getStringExtra("batteam");
+                String run = intent.getStringExtra("run");
+
+                score.setText(battm + ": " + run);
+            }
+        };
 
         match.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -658,9 +678,10 @@ public class ScreenSlidePageFragment extends Fragment {
                         getActivity().startService(new Intent(getActivity(), OddsService.class));
 
                         if(matchstatus.equals("started")) {
-                            getActivity().startService(new Intent(getActivity(), UpdateService.class));
-                            Log.i("score", "" + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("batteam", ""));
-                            score.setText(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("batteam", "") + ": " + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("run", ""));
+                            serviceIntent = new Intent(getActivity(),
+                                    UpdaterService.class);
+                            getActivity().startService(serviceIntent);
+                            flag=true;
 
                         }
                         if(matchstatus.equals("completed"))
@@ -704,6 +725,68 @@ public class ScreenSlidePageFragment extends Fragment {
 
     }
 
+    private String getPresentAmount()
+    {
+        ConnectionDetector connectionDetector = new ConnectionDetector(getActivity());
+        if(connectionDetector.isConnectingToInternet()) {
+            String tag_string_req = "string_req";
+            String url = getString(R.string.url_amount) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "");
+
+            final ProgressDialog pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Loading...");
+            pDialog.show();
+            final String TAG = "login";
+
+            StringRequest strReq = new StringRequest(Request.Method.GET,
+                    url, new Response.Listener<String>() {
+
+                @Override
+                public void onResponse(String response) {
+                    pDialog.hide();
+                    try {
+                        Log.i("response", "" + response);
+                        if(response != null)
+                        {
+                            JSONObject jsonObject = new JSONObject(response);
+                            result = jsonObject.getString("present_amount");
+                            getActivity().setTitle("Limit: " +result);
+                        }
+
+                    } catch (Exception e) {
+                        pDialog.hide();
+                        Toast.makeText(getActivity(), "Something went wrong please try again!", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    pDialog.hide();
+                    if (error instanceof TimeoutError) {
+                        Toast.makeText(getActivity(), "Request Timeout!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), "Something went wrong please try again!", Toast.LENGTH_SHORT).show();
+                    }
+                    error.printStackTrace();
+                    VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                }
+            });
+            strReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+// Adding request to request queue
+            AppControler.getInstance().addToRequestQueue(strReq, tag_string_req);
+        }
+        else
+        {
+            Toast.makeText(getActivity(),"Please check internet connection!!!",Toast.LENGTH_SHORT).show();
+        }
+        return result;
+    }
+
     //get lucky no if Jodi bet is placed
     private void LiveScore()
     {
@@ -736,7 +819,7 @@ public class ScreenSlidePageFragment extends Fragment {
                         Toast.makeText(getActivity(), object.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
@@ -744,7 +827,7 @@ public class ScreenSlidePageFragment extends Fragment {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 //                            pDialog.hide();
@@ -759,5 +842,29 @@ public class ScreenSlidePageFragment extends Fragment {
 // Adding request to request queue
         AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getActivity().registerReceiver(receiver, new IntentFilter(
+                UpdaterService.BROADCAST_ACTION));
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if(flag) {
+            try {
+                getActivity().stopService(serviceIntent);
+                getActivity().unregisterReceiver(receiver);
+                flag=false;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -50,7 +50,7 @@
 
         <service android:name=".timeService" />
         <service android:name=".OddsService" />
-        <service android:name=".UpdateService" />
+        <service android:name=".UpdaterService" />
 
         <activity
             android:name=".LandingScreen"
@@ -83,7 +83,7 @@
         <activity
             android:name=".ScreenSlide"
             android:label="@string/title_activity_screen_slide"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".CricketTransaction"
             android:label="@string/title_activity_cricket_transaction"

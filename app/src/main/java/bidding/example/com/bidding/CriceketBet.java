@@ -48,7 +48,6 @@ public class CriceketBet extends Fragment {
     public static List<MatchListGetSet> matchListGetSets;
     private MatchListAdapter matchListAdapter;
     private ConnectionDetector connectionDetector;
-    private static String[] Matches = {"Mumbai Vs Pune","Chennai Vs Kolkatta","Punjab Vs Rajasthan","Bengaluru Vs Mumbai","Punjab Vs Kochi","Pune Vs Rajasthan","Kolkatta Vs Bengaluru"};
     String time1, time2;
     int pos=0;
 
