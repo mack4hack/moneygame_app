@@ -264,7 +264,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
                 public void onResponse(String response) {
                     pDialog.hide();
                     String payout="",digit,bAmt,wamt,whichBet="",transactionNo = null;
-                    String dTime = "", tTime = "", result ="";
+                    String dTime = "", tTime = "", result ="", drawTime= "";
                     transList = new ArrayList<>();
                     try
                     {
@@ -328,14 +328,27 @@ public class TansactionWiseHistory extends AppCompatActivity {
                                         payout = trnsaction.getString("total_wins");
                                     }
                                     dTime = trnsaction.getString("drawtime");
+                                    if(dTime!=null){
+                                        Calendar cal = Calendar.getInstance();
+                                        SimpleDateFormat df = new SimpleDateFormat("HH:mm aa");
+                                        String t=df.format(cal.getTime());
+                                        if(df.parse(t).before(df.parse(dTime))){
+                                            drawTime="";
+                                        }
+                                        else{
+                                            drawTime=dTime;
+                                            result = trnsaction.getString("lucky_number");
+                                        }
+
+                                    }
                                     tTime = trnsaction.getString("trans_time");
-                                    result = trnsaction.getString("lucky_number");
+
                                     //String digit,String chip,String tno,String dTime,String tTime,String result
 
 
 
                                 }
-                                showDetails(transList,transaction_id,dTime,tTime,result,whichBet,payout);
+                                showDetails(transList,transaction_id,drawTime,tTime,result,whichBet,payout);
                             }
                         }
                         else

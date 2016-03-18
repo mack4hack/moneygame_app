@@ -47,7 +47,6 @@ public class OddsService extends Service {
         @Override
         public int onStartCommand(Intent intent, final int flags, int startId) {
 
-
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         timer= new Timer();

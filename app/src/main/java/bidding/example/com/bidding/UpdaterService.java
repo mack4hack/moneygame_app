@@ -43,7 +43,7 @@ public class UpdaterService extends Service {
         super.onCreate();
         updater = new Updater();
         Log.d("acd", "Created");
-        showMSg("Created");
+//        showMSg("Created");
 
         intent = new Intent(BROADCAST_ACTION);
 
@@ -55,7 +55,7 @@ public class UpdaterService extends Service {
         if (!updater.isRunning()) {
             updater.start();
             Log.d("acd", "Started");
-            showMSg("Started");
+//            showMSg("Started");
             updater.isRunning = true;
         }
 
@@ -69,7 +69,7 @@ public class UpdaterService extends Service {
         if (updater.isRunning) {
             updater.interrupt();
             Log.d("acd", "Destroyed");
-            showMSg("Destroyed");
+//            showMSg("Destroyed");
             updater.isRunning = false;
             updater = null;
         }

@@ -145,7 +145,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="left"
-        android:padding="1px"
         android:visibility="gone"
         >
 
@@ -153,11 +152,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageButton
-                android:layout_width="40dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/cncl"
-                android:src="@android:drawable/ic_delete"
-                android:layout_alignParentRight="true" />
+                android:src="@drawable/rsz_more_game" />
 
             <RelativeLayout
                 android:id="@+id/list_layout"

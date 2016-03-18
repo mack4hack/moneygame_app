@@ -139,14 +139,14 @@ public class TodaysHistory extends Fragment {
 
                                     String wins = item.getString("total_wins");
                                     wins=wins.replace(",","");
-                                    String bets= item.getString("total_bet");
+                                    String bets= item.getString("bet_amount");
                                     bets=bets.replace(",","");
 
                                         pl = (int)Math.round(Double.parseDouble(wins)) - (int)Math.round(Double.parseDouble(bets));
                                         rowItem.setProftlos(String.valueOf(pl));
 
 
-                                    String ttlbet =item.getString("total_bet");
+                                    String ttlbet =item.getString("bet_amount");
                                     ttlbet = ttlbet.replace(",","");
                                     bet+= (int)Math.round(Double.parseDouble(ttlbet));
                                     String ttlwin =item.getString("total_wins");

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.TabHost;
 
 public class Container_score_card extends AppCompatActivity {
@@ -15,6 +16,8 @@ public class Container_score_card extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container_score_card);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         tabHost = (TabHost) findViewById(R.id.tabHost);
         LocalActivityManager mLocalActivityManager = new LocalActivityManager(Container_score_card.this, false);

@@ -68,7 +68,7 @@ public class HistoryAdapter extends BaseAdapter
         HistoryGetSet item = historyList.get(position);
 
         viewHolder.mDate.setText(item.getDate());
-        viewHolder.mTotalBet.setText(item.getTotal_bet());
+        viewHolder.mTotalBet.setText(item.getAmount());
         viewHolder.mTotalWin.setText(item.getTotal_wins());
         viewHolder.mPL.setText(item.getProftlos());
 

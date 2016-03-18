@@ -576,11 +576,18 @@ public class ScreenSlidePageFragment extends Fragment {
                                 title=mids.getName();
                                 match.setText(mids.getName());
                                 String date="";
-                                SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+                                SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
                                 df.setTimeZone (TimeZone.getTimeZone("IST"));
                                 SimpleDateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                                df1.setTimeZone (TimeZone.getTimeZone ("IST"));
-                                Date dt = df.parse(mids.getStrt());
+                                df1.setTimeZone(TimeZone.getTimeZone("IST"));
+                                String time = mids.getStrt();
+                                time = time.replace("T", " ");
+                                time = time.replace("-","/");
+                                String [] split1=time.split(", ");
+                                String t= split1[1];
+
+                                String [] split = t.split("\\u002B");
+                                Date dt = df.parse(split[0]);
                                 date = df1.format(dt);
                                 start.setText(date);
                                 ta = mids.getTeama();
