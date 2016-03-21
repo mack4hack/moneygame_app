@@ -854,9 +854,10 @@ public class ScreenSlidePageFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-        getActivity().registerReceiver(receiver, new IntentFilter(
-                UpdaterService.BROADCAST_ACTION));
+        if(flag) {
+            getActivity().registerReceiver(receiver, new IntentFilter(
+                    UpdaterService.BROADCAST_ACTION));
+        }
 
     }
 

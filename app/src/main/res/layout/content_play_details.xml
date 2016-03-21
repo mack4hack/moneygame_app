@@ -155,6 +155,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:id="@+id/cncl"
+                android:scaleType="fitXY"
+                android:background="#8b9dc3"
                 android:src="@drawable/rsz_more_game" />
 
             <RelativeLayout

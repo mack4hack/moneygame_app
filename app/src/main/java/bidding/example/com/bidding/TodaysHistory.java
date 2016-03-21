@@ -137,22 +137,22 @@ public class TodaysHistory extends Fragment {
                                     rowItem.setTotal_wins(item.getString("total_wins"));
                                     rowItem.setPayout(item.getString("payout"));
 
-                                    String wins = item.getString("total_wins");
+                                    String wins = item.getString("payout");
                                     wins=wins.replace(",","");
                                     String bets= item.getString("bet_amount");
                                     bets=bets.replace(",","");
-
-                                        pl = (int)Math.round(Double.parseDouble(wins)) - (int)Math.round(Double.parseDouble(bets));
+                                    if(!wins.equals("null")) {
+                                        pl = (int) Math.round(Double.parseDouble(wins)) - (int) Math.round(Double.parseDouble(bets));
                                         rowItem.setProftlos(String.valueOf(pl));
+                                        String ttlbet =item.getString("bet_amount");
+                                        ttlbet = ttlbet.replace(",","");
+                                        bet+= (int)Math.round(Double.parseDouble(ttlbet));
+                                        String ttlwin =item.getString("payout");
+                                        ttlwin = ttlwin.replace(",","");
+                                        win+= (int)Math.round(Double.parseDouble(ttlwin));
+                                        prftlos+= pl;
+                                    }
 
-
-                                    String ttlbet =item.getString("bet_amount");
-                                    ttlbet = ttlbet.replace(",","");
-                                    bet+= (int)Math.round(Double.parseDouble(ttlbet));
-                                    String ttlwin =item.getString("total_wins");
-                                    ttlwin = ttlwin.replace(",","");
-                                    win+= (int)Math.round(Double.parseDouble(ttlwin));
-                                    prftlos+= pl;
 
                                     /*String first = item.getString("first_digit");
                                     String second = item.getString("second_digit");

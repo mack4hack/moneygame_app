@@ -79,7 +79,6 @@ public class TansactionWiseHistory extends AppCompatActivity {
         dialog.setContentView(R.layout.transaction_details_custom_layout);
         dialog.setTitle("Transaction Details");
 
-
         TextView mDigit,mChip,mTransNo,mDrawTime,mTransTime,mResult,mTotal,mBetText,mWin,mLoss;
         ListView mListView;
 
@@ -209,7 +208,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(getApplicationContext(),"something went wrong please try again!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"Something went wrong please try again!",Toast.LENGTH_SHORT).show();
                         }
                     }catch (Exception e)
                     {
@@ -332,7 +331,8 @@ public class TansactionWiseHistory extends AppCompatActivity {
                                         Calendar cal = Calendar.getInstance();
                                         SimpleDateFormat df = new SimpleDateFormat("HH:mm aa");
                                         String t=df.format(cal.getTime());
-                                        if(df.parse(t).before(df.parse(dTime))){
+                                        Log.i("time",""+dTime);
+                                        if(df.parse(dTime).after(df.parse(t))){
                                             drawTime="";
                                         }
                                         else{

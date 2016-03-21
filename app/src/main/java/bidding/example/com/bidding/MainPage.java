@@ -180,7 +180,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             MainPage.toolbar.setTitle("Results");
             android.support.v4.app.FragmentManager previousManager = this.getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction previousTransaction = previousManager.beginTransaction();
-            PreviousGameREsult previousGameREsult = new PreviousGameREsult();
+            Results previousGameREsult = new Results();
             previousTransaction.replace(R.id.containar1, previousGameREsult);
             previousTransaction.commit();
         }

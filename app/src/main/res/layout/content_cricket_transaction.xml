@@ -25,11 +25,7 @@
             android:paddingLeft="5dp"
             android:text="Transaction No."/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
+
 
         <TextView
             android:id="@+id/transactionNo"
@@ -42,11 +38,6 @@
             android:text="Trans. Chips"
             android:visibility="gone"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
 
         <TextView
             android:layout_width="0dp"
@@ -57,11 +48,7 @@
             android:paddingLeft="5dp"
             android:text="Total Chips"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
+
 
         <TextView
             android:layout_width="0dp"

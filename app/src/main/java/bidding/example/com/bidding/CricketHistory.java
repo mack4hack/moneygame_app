@@ -139,18 +139,7 @@ public class CricketHistory extends Fragment {
 
                                 if(jsonArray.length()!=0) {
                                     for (int i = 0; i < jsonArray.length(); i++) {
-                                    /*{
-                                        "sr_no": 1,
-                                            "user_code": null,
-                                            "bet_amount": null,
-                                            "payout": null,
-                                            "balance": 0,
-                                            "total_bet": 0,
-                                            "total_wins": 0,
-                                            "total_balance": 0,
-                                            "draw_time": "12:15 am",
-                                            "timeslot_id": 1
-                                    },*/
+
                                         JSONObject childObject = jsonArray.getJSONObject(i);
                                         HistoryGetSet item = new HistoryGetSet();
 

@@ -31,7 +31,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import bidding.example.com.bidding.Adapter.TimeSlotAdapter;
-import bidding.example.com.bidding.Adapter.TransacionDetailsAdapter;
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
 import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
 import bidding.example.com.bidding.GetterSetter.TransactionDetailsGetSet;
@@ -76,7 +75,7 @@ public class CricketTransaction extends AppCompatActivity {
     {
 // custom dialog
         final Dialog dialog = new Dialog(CricketTransaction.this);
-        dialog.setContentView(R.layout.transaction_details_custom_layout);
+        dialog.setContentView(R.layout.cricket_transaction);
         dialog.setTitle("Transaction Details");
 
 
@@ -96,7 +95,7 @@ public class CricketTransaction extends AppCompatActivity {
 
         mListView = (ListView) dialog.findViewById(R.id.list);
 
-        TransacionDetailsAdapter adapter = new TransacionDetailsAdapter(getApplicationContext(),List);
+        CricketTransactionAdapter adapter = new CricketTransactionAdapter(getApplicationContext(),List);
         adapter.notifyDataSetChanged();
         mListView.setAdapter(adapter);
         /*mDigit.setText(digit);
@@ -262,6 +261,7 @@ public class CricketTransaction extends AppCompatActivity {
 //                                        item.setDigit(trnsaction.getString("first_digit"));
                                         item.setChip(trnsaction.getString("chips"));
                                         whichBet = trnsaction.getString("game_name");
+                                    whichBet=whichBet.replace("_"," ");
 
 
                                     transList.add(item);

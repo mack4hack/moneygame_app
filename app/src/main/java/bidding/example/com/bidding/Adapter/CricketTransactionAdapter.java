@@ -9,17 +9,17 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
+import bidding.example.com.bidding.GetterSetter.TransactionDetailsGetSet;
 import bidding.example.com.bidding.R;
 
 /**
- * Created by Sandesh on 02-Dec-15.
+ * Created by root on 3/21/16.
  */
-public class HistoryAdapter extends BaseAdapter
-{
+public class CricketTransactionAdapter extends BaseAdapter {
     Context context;
-    List<HistoryGetSet> historyList;
-    public HistoryAdapter(Context context,List<HistoryGetSet> historyList)
+    List<TransactionDetailsGetSet> historyList;
+
+    public CricketTransactionAdapter(Context context,List<TransactionDetailsGetSet> historyList)
     {
         this.context = context;
         this.historyList = historyList;
@@ -42,7 +42,7 @@ public class HistoryAdapter extends BaseAdapter
 
     class Holder
     {
-        TextView mDate,mTotalBet,mTotalWin,mPL;
+        TextView mDigit,mChip, mPayout;
     }
 
     @Override
@@ -52,12 +52,11 @@ public class HistoryAdapter extends BaseAdapter
         if(convertView == null)
         {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.child_history,null);
+            convertView = inflater.inflate(R.layout.transaction_child,null);
             viewHolder = new Holder();
-            viewHolder.mDate = (TextView) convertView.findViewById(R.id.date);
-            viewHolder.mTotalBet = (TextView) convertView.findViewById(R.id.bets);
-            viewHolder.mTotalWin = (TextView) convertView.findViewById(R.id.wins);
-            viewHolder.mPL = (TextView) convertView.findViewById(R.id.p_l);
+            viewHolder.mDigit = (TextView) convertView.findViewById(R.id.transactionNo);
+            viewHolder.mChip = (TextView) convertView.findViewById(R.id.chip);
+            viewHolder.mChip = (TextView) convertView.findViewById(R.id.payout);
 
             convertView.setTag(viewHolder);
         }
@@ -65,19 +64,15 @@ public class HistoryAdapter extends BaseAdapter
         {
             viewHolder = (Holder) convertView.getTag();
         }
-        HistoryGetSet item = historyList.get(position);
+        TransactionDetailsGetSet item = historyList.get(position);
 
-        viewHolder.mDate.setText(item.getDate());
-        viewHolder.mTotalBet.setText(item.getAmount());
-        viewHolder.mTotalWin.setText(item.getPayout());
-        viewHolder.mPL.setText(item.getProftlos());
+        //viewHolder.mTransactionNo.setText(item.getNumber());
+        viewHolder.mDigit.setText(item.getDigit());
+        viewHolder.mChip.setText(item.getChip());
+        viewHolder.mPayout.setText(item.getChip());
 
-       /* if(item.getResult().equals("0"))
-        {
-            convertView.setBackgroundColor(Color.GRAY);
-
-        }
-*/
         return convertView;
     }
 }
+
+
