@@ -2,6 +2,7 @@ package bidding.example.com.bidding;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -67,6 +69,15 @@ public class Results extends Fragment {
         matches= (ListView) view.findViewById(R.id.listMatch);
         connectionDetector=new ConnectionDetector(getActivity());
         getMatchList();
+
+        matches.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MatchListGetSet item = matchList.get(position);
+                startActivity(new Intent(getActivity(), RedsultDetails.class).putExtra("id", item.getId()).putExtra("name", item.getName()).putExtra("date",item.getDate()));
+
+            }
+        });
     }
 
     private void getMatchList()
@@ -104,7 +115,7 @@ public class Results extends Fragment {
                                     Calendar cal = Calendar.getInstance();
                                     SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
 //                                    df.setTimeZone (TimeZone.getTimeZone ("IST"));
-                                    cal.add(cal.DATE, -3);
+                                    cal.add(cal.DATE, -7);
                                     time1 = df.format(new Date(cal.getTimeInMillis()));
 //                                    Log.i("time1", "" + time1);
 
@@ -119,16 +130,18 @@ public class Results extends Fragment {
                                     String [] split1=time.split(", ");
                                     String t= split1[1];
                                     String [] split = t.split("\\u002B");
-                                    if(df.parse(split[0]).after(df.parse(time1)) && df.parse(split[0]).before(df.parse(time2))) // && df.parse(split[0]).before(df.parse(time2)
-                                    {
-                                        item.setId(childObject.getString("id"));;
-                                        item.setName(childObject.getString("name"));
-                                        item.setDate(split[0]);
-                                        item.setVenue(childObject.getString("venue"));
-                                        matchList.add(item);
+                                    if(childObject.getString("status").equals("completed")) {
+                                        if (df.parse(split[0]).after(df.parse(time1)) && df.parse(split[0]).before(df.parse(time2))) // && df.parse(split[0]).before(df.parse(time2)
+                                        {
+                                            item.setId(childObject.getString("id"));
+                                            ;
+                                            item.setName(childObject.getString("name"));
+                                            item.setDate(split[0]);
+                                            item.setVenue(childObject.getString("venue"));
+                                            matchList.add(item);
 
+                                        }
                                     }
-
                                 }
 
                                 listMatch = new ListMatchAdapter(getActivity(), matchList);

@@ -332,13 +332,10 @@ public class TansactionWiseHistory extends AppCompatActivity {
                                         SimpleDateFormat df = new SimpleDateFormat("HH:mm aa");
                                         String t=df.format(cal.getTime());
                                         Log.i("time",""+dTime);
-                                        if(df.parse(dTime).after(df.parse(t))){
-                                            drawTime="";
-                                        }
-                                        else{
+
                                             drawTime=dTime;
                                             result = trnsaction.getString("lucky_number");
-                                        }
+
 
                                     }
                                     tTime = trnsaction.getString("trans_time");

@@ -111,6 +111,8 @@
     <string name="match_wise">http://46.101.6.171/moneygame/api/cricket/accountsPlayerBymatch?player_id=</string>
     <string name="cricket_transaction_details">http://46.101.6.171/moneygame/api/cricket/accountsPlayerByTransactionId?transaction_id=</string>
     <string name="score_card">http://46.101.6.171/moneygame/api/cricket/getMatchLiveScoreCard?match_id=</string>
+    <string name="match_result">http://46.101.6.171/moneygame/api/cricket/getMatchResults?match_id=</string>
+    <string name="cancelled_bets">http://46.101.6.171/moneygame/api/cricket/getUserCancelledBets?player_id=</string>
 
     <string name="title_activity_tansaction_wise_history">Transaction History</string>
     <string name="title_activity_transaction_indetail">Transaction Details</string>
@@ -124,5 +126,6 @@
     <string name="title_activity_upcoming_list">Upcoming List</string>
     <string name="title_activity_match_score_card">MatchScoreCard</string>
     <string name="title_activity_container_score_card">Score Card</string>
+    <string name="title_activity_redsult_details">Result Details</string>
     <!--http://46.101.6.171/moneygame/-->
 </resources>

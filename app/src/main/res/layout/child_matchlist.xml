@@ -16,6 +16,7 @@
             android:textSize="16dp"
             android:textColor="#000"
             android:layout_gravity="center"
+            android:gravity="center"
             />
 
         <TextView
@@ -25,5 +26,5 @@
             android:hint="date"
             android:id="@+id/txttime"
             android:layout_gravity="center"
-           />
+            android:gravity="center" />
 </LinearLayout>

@@ -76,11 +76,11 @@ public class CricketPlaceBet extends Activity {
         match.setText(mtch);
         try {
             String date = "";
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
             df.setTimeZone (TimeZone.getTimeZone("IST"));
             SimpleDateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
             df1.setTimeZone (TimeZone.getTimeZone ("IST"));
-            Date dte = df.parse(dt);
+            Date dte = df1.parse(dt);
             date = df1.format(dte);
             time.setText(date);
         }
@@ -121,7 +121,7 @@ public class CricketPlaceBet extends Activity {
                                     pDialog.hide();
                                     try {
                                         JSONObject object = new JSONObject(response);
-                                        if (object.getString("status").equals("true")) {
+                                        if (object.getBoolean("status")) {
                                             finish();
                                             Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
 
@@ -137,7 +137,8 @@ public class CricketPlaceBet extends Activity {
                                             editor.putString("retrn", retrn.getText().toString().trim());
                                             editor.commit();
 
-                                        } else {
+                                        }
+                                        else {
                                             Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
                                         }
                                     } catch (Exception e) {
@@ -216,7 +217,8 @@ public class CricketPlaceBet extends Activity {
 
                 Log.i("amt", "" + charSequence);
                 if (!charSequence.toString().equals("")) {
-                    retrn.setText("" + (Integer.parseInt(charSequence.toString()) * Double.parseDouble(odds)));
+                    Double value=(Integer.parseInt(charSequence.toString()) * Double.parseDouble(odds));
+                    retrn.setText("" + String.format("%.2f",value));
                 } else {
                     retrn.setText("");
 

@@ -68,7 +68,7 @@ public class UpdaterService extends Service {
 
         if (updater.isRunning) {
             updater.interrupt();
-            Log.d("acd", "Destroyed");
+//            Log.d("acd", "Destroyed");
 //            showMSg("Destroyed");
             updater.isRunning = false;
             updater = null;
@@ -79,7 +79,7 @@ public class UpdaterService extends Service {
     class Updater extends Thread {
 
         public boolean isRunning = false;
-        public long DELAY = 60000;
+        public long DELAY = 120000;
 
         int i = 0;
 
@@ -99,7 +99,8 @@ public class UpdaterService extends Service {
                     Thread.sleep(DELAY);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                    isRunning = false;
+                    Thread.currentThread().interrupt();
+                    return;
                 }
             } // while end
         } // run end
@@ -117,7 +118,7 @@ public class UpdaterService extends Service {
     }
 
     public void showMSg(String msg) {
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
 
 

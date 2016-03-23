@@ -126,6 +126,5 @@ public class ScreenSlide extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopService(new Intent(getApplicationContext(), OddsService.class));
     }
 }

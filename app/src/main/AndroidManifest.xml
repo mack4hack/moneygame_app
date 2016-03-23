@@ -49,7 +49,6 @@
             android:theme="@style/AppTheme" />
 
         <service android:name=".timeService" />
-        <service android:name=".OddsService" />
         <service android:name=".UpdaterService" />
 
         <activity
@@ -103,6 +102,10 @@
         <activity
             android:name=".Container_score_card"
             android:label="@string/title_activity_container_score_card"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RedsultDetails"
+            android:label="@string/title_activity_redsult_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
