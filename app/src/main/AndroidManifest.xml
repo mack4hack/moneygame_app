@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="bidding.example.com.bidding" >
+    package="bidding.example.com.bidding">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
         android:name=".AppControler"
@@ -13,11 +15,11 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,8 +30,7 @@
             android:name=".Login"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Home"
             android:label="@string/title_activity_home"
@@ -48,7 +49,7 @@
             android:theme="@style/AppTheme" />
 
         <service android:name=".timeService" />
-        <service android:name=".UpdateService" />
+        <service android:name=".UpdaterService" />
 
         <activity
             android:name=".LandingScreen"
@@ -81,12 +82,31 @@
         <activity
             android:name=".ScreenSlide"
             android:label="@string/title_activity_screen_slide"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".CricketTransaction"
             android:label="@string/title_activity_cricket_transaction"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UpcomingList"
+            android:label="@string/title_activity_upcoming_list"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".MatchScoreCard"
+            android:label="@string/title_activity_match_score_card"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MatchScoreTeamb"
+            android:label="@string/title_activity_match_score_card"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Container_score_card"
+            android:label="@string/title_activity_container_score_card"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RedsultDetails"
+            android:label="@string/title_activity_redsult_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

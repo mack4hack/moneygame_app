@@ -1,14 +1,17 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#dedede"
+    android:orientation="vertical"
+    android:weightSum="2"
     tools:context="bidding.example.com.bidding.TodaysSummary">
 
     <LinearLayout
         android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
         android:orientation="horizontal"
         android:weightSum="3"
         >
@@ -23,11 +26,6 @@
             android:paddingLeft="5dp"
             android:text="Time"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
 
         <TextView
             android:id="@+id/transactionNo"
@@ -40,11 +38,6 @@
             android:text="Trans. Amount"
             android:visibility="gone"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
 
         <TextView
             android:id="@+id/transactionAmt"
@@ -54,13 +47,9 @@
             android:layout_weight="1"
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
+            android:gravity="center"
             android:text="Trans. Chips"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
 
         <TextView
             android:id="@+id/result"
@@ -81,7 +70,63 @@
     <ListView
         android:id="@+id/today_summary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/view"/>
+        android:layout_height="0dp"
+        android:layout_weight="1.8"
+        android:layout_below="@+id/view"
+        android:layout_alignParentBottom="true" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/bootom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        >
+        <TextView
+            android:id="@+id/total"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/textColor"
+            android:paddingLeft="5dp"
+            android:text="Total"/>
+
+
+        <TextView
+            android:id="@+id/ttlTransaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:textColor="@color/textColor"
+            android:paddingLeft="5dp"
+            android:text=""
+            android:visibility="gone"/>
+
+
+        <TextView
+            android:id="@+id/ttlAmnt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:textColor="@color/textColor"
+            android:paddingLeft="5dp"
+            android:gravity="center"
+            android:text=""/>
+
+
+        <TextView
+            android:id="@+id/ttlReslt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:textColor="@color/textColor"
+            android:gravity="center"
+            android:text=""/>
+    </LinearLayout>
+</LinearLayout>

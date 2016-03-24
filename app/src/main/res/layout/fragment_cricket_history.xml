@@ -23,11 +23,6 @@
             android:paddingLeft="5dp"
             android:text="Match"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
 
         <TextView
             android:id="@+id/transactionNo"
@@ -40,11 +35,7 @@
             android:text="Trans. Amount"
             android:visibility="gone"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
+
 
         <TextView
             android:id="@+id/transactionAmt"
@@ -54,13 +45,11 @@
             android:layout_weight="1"
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:text="Trans. Chips"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
+
 
         <TextView
             android:id="@+id/result"

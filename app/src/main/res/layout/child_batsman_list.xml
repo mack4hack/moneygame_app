@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="4">
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:weightSum="3">
+
 
     <TextView
         android:layout_width="0dp"
@@ -15,7 +13,9 @@
         android:text=""
         android:hint="batsman"
         android:id="@+id/txtbatsman"
-        android:textAlignment="center" />
+        android:textColor="#000"
+        android:layout_gravity="center"
+        android:gravity="center" />
 
     <TextView
         android:layout_width="0dp"
@@ -24,10 +24,12 @@
         android:text=""
         android:hint="runs"
         android:id="@+id/txtruns"
-        android:layout_gravity="center_horizontal"
+        android:textColor="#000"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:textAlignment="center" />
 
-    <TextView
+   <!-- <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.6"
@@ -44,22 +46,23 @@
         android:hint="6s"
         android:id="@+id/txt6s"
         android:layout_gravity="center_horizontal" />
-
+-->
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.6"
+        android:layout_weight="0.8"
         android:text=""
         android:hint="S.Rate"
+        android:textColor="#000"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:id="@+id/txtrate" />
 
     </LinearLayout>
 
-    <TextView
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
         android:hint="Out by"
-        android:id="@+id/txtoutby" />
-
-</LinearLayout>
+        android:id="@+id/txtoutby" />-->

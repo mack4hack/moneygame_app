@@ -11,15 +11,6 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        try
-        {
-            //getActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(63, 81, 181)));
-            getActionBar().hide();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
 
         setContentView(R.layout.activity_splash);
 

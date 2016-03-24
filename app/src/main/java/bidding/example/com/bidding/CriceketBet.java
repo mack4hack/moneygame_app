@@ -28,9 +28,9 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import bidding.example.com.bidding.Adapter.MatchListAdapter;
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
@@ -49,9 +49,11 @@ public class CriceketBet extends Fragment {
     public static List<MatchListGetSet> matchListGetSets;
     private MatchListAdapter matchListAdapter;
     private ConnectionDetector connectionDetector;
-    private static String[] Matches = {"Mumbai Vs Pune","Chennai Vs Kolkatta","Punjab Vs Rajasthan","Bengaluru Vs Mumbai","Punjab Vs Kochi","Pune Vs Rajasthan","Kolkatta Vs Bengaluru"};
     String time1, time2;
     int pos=0;
+    SimpleDateFormat df;
+    private List<Date> DateList= new ArrayList<>();
+    private List<MatchListGetSet> matchDateList;
 
     public CriceketBet() {
         // Required empty public constructor
@@ -72,16 +74,17 @@ public class CriceketBet extends Fragment {
         connectionDetector=new ConnectionDetector(getActivity());
 
         listMatches = (ListView) view.findViewById(R.id.listMatch);
+        listMatches.setScrollingCacheEnabled(false);
         getMatchList();
 //        listMatches.setAdapter(new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,Matches));
 
-        final SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-        df.setTimeZone (TimeZone.getTimeZone("IST"));
+         df = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
+//        df.setTimeZone (TimeZone.getTimeZone("IST"));
 
         listMatches.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               MatchListGetSet item = matchList.get(position);
+               MatchListGetSet item = matchDateList.get(position);
 
                 try {
                     if (df.parse(item.getDate()).before(df.parse(time2))) {
@@ -99,7 +102,7 @@ public class CriceketBet extends Fragment {
                     else{
                         final AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                         dialog.setTitle("Alert");
-                        dialog.setMessage("Betting for this match will start 48 hours before");
+                        dialog.setMessage("Game for this match will start 48 hours before");
                         dialog.setCancelable(true);
                         // ...Irrelevant code for customizing the buttons and title
 
@@ -142,6 +145,7 @@ public class CriceketBet extends Fragment {
                     Log.d(TAG, response.toString());
                           pDialog.hide();
                     try {
+                        df = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
                         JSONObject object = new JSONObject(response);
                         if(object.getString("status").equals("true"))
                         {
@@ -154,21 +158,24 @@ public class CriceketBet extends Fragment {
                                     JSONObject childObject = jsonArray.getJSONObject(i);
                                     MatchListGetSet item = new MatchListGetSet();
                                     Calendar cal = Calendar.getInstance();
-                                    SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-                                    df.setTimeZone (TimeZone.getTimeZone ("IST"));
+
+//                                    df.setTimeZone (TimeZone.getTimeZone ("IST"));
                                     cal.add(cal.HOUR, -10);
                                     time1 = df.format(new Date(cal.getTimeInMillis()));
-                                    Log.i("time1", "" + time1);
+//                                    Log.i("time1", "" + time1);
 
                                     Calendar cal1 = Calendar.getInstance();
                                     cal1.add(cal1.HOUR, 48);
                                     time2= df.format(new Date(cal1.getTimeInMillis()));
-                                    Log.i("time2", "" + time2);
+//                                    Log.i("time2", "" + time2);
 
                                     String time = childObject.getString("start_date");
                                     time = time.replace("T"," ");
                                     time = time.replace("-","/");
-                                    String [] split = time.split("\\u002B");
+                                    String [] split1=time.split(", ");
+                                    String t= split1[1];
+
+                                    String [] split = t.split("\\u002B");
                                     if(df.parse(split[0]).after(df.parse(time1))) // && df.parse(split[0]).before(df.parse(time2)
                                     {
                                         item.setId(childObject.getString("id"));;
@@ -176,6 +183,7 @@ public class CriceketBet extends Fragment {
                                         item.setDate(split[0]);
                                         item.setVenue(childObject.getString("venue"));
                                         matchList.add(item);
+                                        DateList.add(df.parse(split[0]));
                                         if (df.parse(item.getDate()).before(df.parse(time2))) {
                                             matchListGetSets.add(item);
 
@@ -183,7 +191,24 @@ public class CriceketBet extends Fragment {
                                     }
 
                                 }
-                                matchListAdapter = new MatchListAdapter(getActivity(), matchList);
+                                Collections.sort(DateList);
+                                Log.i("date list", "" + DateList);
+                                matchDateList = new ArrayList<>();
+                                for(int j=0; j<DateList.size(); j++){
+                                    for(int k=0; k<matchList.size(); k++){
+                                        MatchListGetSet item=matchList.get(k);
+                                        MatchListGetSet item1= new MatchListGetSet();
+                                        if(DateList.get(j).equals(df.parse(item.getDate()))){
+                                            item1.setId(item.getId());
+                                            item1.setName(item.getName());
+                                            item1.setDate(item.getDate());
+                                            item1.setVenue(item.getVenue());
+                                            matchDateList.add(item1);
+                                            break;
+                                        }
+                                    }
+                                }
+                                matchListAdapter = new MatchListAdapter(getActivity(), matchDateList);
                                 listMatches.setAdapter(matchListAdapter);
                             }
 

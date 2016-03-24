@@ -31,7 +31,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import bidding.example.com.bidding.Adapter.TimeSlotAdapter;
-import bidding.example.com.bidding.Adapter.TransacionDetailsAdapter;
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
 import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
 import bidding.example.com.bidding.GetterSetter.TransactionDetailsGetSet;
@@ -72,11 +71,11 @@ public class CricketTransaction extends AppCompatActivity {
     }
 
 
-    private void showDetails(List<TransactionDetailsGetSet> List,String tno,String dTime,String tTime,String result,String whichBet,String payout)
+    private void showDetails(List<TransactionDetailsGetSet> List,String tno,String whichBet,String payout)
     {
 // custom dialog
         final Dialog dialog = new Dialog(CricketTransaction.this);
-        dialog.setContentView(R.layout.transaction_details_custom_layout);
+        dialog.setContentView(R.layout.cricket_transaction);
         dialog.setTitle("Transaction Details");
 
 
@@ -96,15 +95,12 @@ public class CricketTransaction extends AppCompatActivity {
 
         mListView = (ListView) dialog.findViewById(R.id.list);
 
-        TransacionDetailsAdapter adapter = new TransacionDetailsAdapter(getApplicationContext(),List);
+        CricketTransactionAdapter adapter = new CricketTransactionAdapter(getApplicationContext(),List);
         adapter.notifyDataSetChanged();
         mListView.setAdapter(adapter);
         /*mDigit.setText(digit);
         mChip.setText(chip);*/
         mTransNo.setText(tno);
-        mDrawTime.setText(dTime);
-        mTransTime.setText(tTime);
-        mResult.setText(result);
 
         int chip=0;
         for(TransactionDetailsGetSet item:transList)
@@ -113,20 +109,8 @@ public class CricketTransaction extends AppCompatActivity {
         }
         mTotal.setText(""+chip);
 
-        if(whichBet.equals("Single Digit Second")) {
-            mBetText.setText("Single Digit Second");
+        mBetText.setText(whichBet);
             //double amt = Integer.parseInt(Chip)*8.5;
-
-        }
-        else if(whichBet.equals("Single Digit First"))
-        {
-            mBetText.setText("Single Digit First");
-            //double amt = Integer.parseInt(mChip.getText().toString()) * 8.5;
-            //    mTotal.setText(mChip.getText().toString());
-        }
-        else{
-            mBetText.setText("Jodi");
-        }
 
         if(flag==0)
         {
@@ -274,9 +258,10 @@ public class CricketTransaction extends AppCompatActivity {
 
                                     TransactionDetailsGetSet item = new TransactionDetailsGetSet();
 
-                                        item.setDigit(trnsaction.getString("first_digit"));
+//                                        item.setDigit(trnsaction.getString("first_digit"));
                                         item.setChip(trnsaction.getString("chips"));
-                                        whichBet = "Single Digit First";
+                                        whichBet = trnsaction.getString("game_name");
+                                    whichBet=whichBet.replace("_"," ");
 
 
                                     transList.add(item);
@@ -291,7 +276,7 @@ public class CricketTransaction extends AppCompatActivity {
                                     }
 
                                 }
-                                showDetails(transList,transaction_id,dTime,tTime,result,whichBet,payout);
+                                showDetails(transList,transaction_id,whichBet,payout);
                             }
                         }
                         else

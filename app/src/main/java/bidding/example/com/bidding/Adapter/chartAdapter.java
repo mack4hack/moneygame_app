@@ -1,18 +1,15 @@
 package bidding.example.com.bidding.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.List;
 
-import bidding.example.com.bidding.GetterSetter.chartGetSet;
 import bidding.example.com.bidding.R;
 import bidding.example.com.bidding.ResultChart.result_chart;
 
@@ -61,7 +58,7 @@ public class chartAdapter extends BaseAdapter
             viewHolder = new Holder();
 
 //            viewHolder.mTime = (TextView) convertView.findViewById(R.id.text_view1);
-            viewHolder.mNumber1 = (TextView) convertView.findViewById(R.id.text_view2);
+           /* viewHolder.mNumber1 = (TextView) convertView.findViewById(R.id.text_view2);
             viewHolder.mNumber2 = (TextView) convertView.findViewById(R.id.text_view3);
             viewHolder.mNumber3 = (TextView) convertView.findViewById(R.id.text_view4);
             viewHolder.mNumber4 = (TextView) convertView.findViewById(R.id.text_view5);
@@ -89,7 +86,7 @@ public class chartAdapter extends BaseAdapter
             viewHolder.mNumber26 = (TextView) convertView.findViewById(R.id.text_view27);
             viewHolder.mNumber27 = (TextView) convertView.findViewById(R.id.text_view28);
             viewHolder.mNumber28 = (TextView) convertView.findViewById(R.id.text_view29);
-            viewHolder.mNumber29 = (TextView) convertView.findViewById(R.id.text_view30);
+            viewHolder.mNumber29 = (TextView) convertView.findViewById(R.id.text_view30);*/
             viewHolder.mNumber30 = (TextView) convertView.findViewById(R.id.text_view31);
             viewHolder.mNumber31 = (TextView) convertView.findViewById(R.id.text_view32);
             viewHolder.mNumber32 = (TextView) convertView.findViewById(R.id.text_view33);
@@ -139,7 +136,7 @@ public class chartAdapter extends BaseAdapter
 
 //        for(int i = 0; i<chartList.size(); i++) {
 
-            viewHolder.mNumber1.setText(rowItem.get(result_chart.TIMESLOT1));
+           /* viewHolder.mNumber1.setText(rowItem.get(result_chart.TIMESLOT1));
             viewHolder.mNumber2.setText(rowItem.get(result_chart.TIMESLOT2));
             viewHolder.mNumber3.setText(rowItem.get(result_chart.TIMESLOT3));
             viewHolder.mNumber4.setText(rowItem.get(result_chart.TIMESLOT4));
@@ -167,7 +164,7 @@ public class chartAdapter extends BaseAdapter
             viewHolder.mNumber26.setText(rowItem.get(result_chart.TIMESLOT26));
             viewHolder.mNumber27.setText(rowItem.get(result_chart.TIMESLOT27));
             viewHolder.mNumber28.setText(rowItem.get(result_chart.TIMESLOT28));
-            viewHolder.mNumber29.setText(rowItem.get(result_chart.TIMESLOT29));
+            viewHolder.mNumber29.setText(rowItem.get(result_chart.TIMESLOT29));*/
             viewHolder.mNumber30.setText(rowItem.get(result_chart.TIMESLOT30));
             viewHolder.mNumber31.setText(rowItem.get(result_chart.TIMESLOT31));
             viewHolder.mNumber32.setText(rowItem.get(result_chart.TIMESLOT32));

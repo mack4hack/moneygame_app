@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -42,9 +43,12 @@ import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
 public class TodaysSummary extends Fragment {
 
     private ListView mTodaysSummary;
+    TextView totAmnt, totRslt;
     private List<HistoryGetSet> todaySummary = new ArrayList<>();
     private TodaysSummaryAdapter todaysHistoryAdapter;
     String data="";
+    Double ttlAmnt=0.0, ttlResult=0.0;
+
     public TodaysSummary() {
         // Required empty public constructor
     }
@@ -57,6 +61,8 @@ public class TodaysSummary extends Fragment {
         View view = inflater.inflate(R.layout.fragment_todays_summary, container, false);
 
         mTodaysSummary = (ListView) view.findViewById(R.id.today_summary);
+        totAmnt = (TextView) view.findViewById(R.id.ttlAmnt);
+        totRslt = (TextView) view.findViewById(R.id.ttlReslt);
 
         return view;
     }
@@ -139,18 +145,7 @@ public class TodaysSummary extends Fragment {
 
                                 if(jsonArray.length()!=0) {
                                     for (int i = 0; i < jsonArray.length(); i++) {
-                                    /*{
-                                        "sr_no": 1,
-                                            "user_code": null,
-                                            "bet_amount": null,
-                                            "payout": null,
-                                            "balance": 0,
-                                            "total_bet": 0,
-                                            "total_wins": 0,
-                                            "total_balance": 0,
-                                            "draw_time": "12:15 am",
-                                            "timeslot_id": 1
-                                    },*/
+
                                         JSONObject childObject = jsonArray.getJSONObject(i);
                                         HistoryGetSet item = new HistoryGetSet();
 
@@ -163,12 +158,26 @@ public class TodaysSummary extends Fragment {
                                             item.setAmount(childObject.getString("bet_amount"));
                                             item.setResult(childObject.getString("payout"));
                                             todaySummary.add(item);
+                                            String amnt = childObject.getString("bet_amount");
+                                            if (amnt.contains(",")) {
+                                                amnt = amnt.replace(",", "");
+                                            }
+                                            ttlAmnt += Double.parseDouble(amnt);
+                                            if(!childObject.getString("payout").equals("null")) {
+                                                String rslt = childObject.getString("payout");
+                                                if (rslt.contains(",")) {
+                                                    rslt = rslt.replace(",", "");
+                                                }
+                                                ttlResult += Double.parseDouble(rslt);
+                                            }
                                         }
 
                                     }
 
                                     todaysHistoryAdapter = new TodaysSummaryAdapter(getActivity(), todaySummary);
                                     mTodaysSummary.setAdapter(todaysHistoryAdapter);
+                                    totAmnt.setText(""+ttlAmnt);
+                                    totRslt.setText(""+ttlResult);
                                 }else
                                 {
                                     Toast.makeText(getActivity(),"No transaction present to display",Toast.LENGTH_SHORT).show();

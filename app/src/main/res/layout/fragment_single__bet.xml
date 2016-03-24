@@ -130,6 +130,7 @@
                 card_view:cardUseCompatPadding="true"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:layout_marginTop="4dp"
                 tools:ignore="NewApi">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -139,6 +140,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
+                                android:layout_marginTop="2dp"
                                 android:weightSum="2"
                                 >
                                 <EditText
@@ -167,7 +169,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                >
+                                android:layout_marginTop="3dp">
                                 <Button
                                     android:id="@+id/btn_first_place_bet"
                                     android:layout_width="wrap_content"
@@ -181,6 +183,7 @@
                                <LinearLayout
                                    android:layout_width="match_parent"
                                    android:layout_height="wrap_content"
+                                   android:layout_marginTop="5dp"
                                    android:weightSum="4">
                                    <TextView
                                        android:layout_width="0dp"
@@ -266,6 +269,7 @@
             card_view:cardUseCompatPadding="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
+            android:layout_marginTop="4dp"
             tools:ignore="NewApi">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -275,6 +279,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_marginTop="2dp"
                     android:weightSum="2"
                     >
                     <EditText
@@ -303,7 +308,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    >
+                    android:layout_marginTop="3dp" >
                     <Button
                         android:id="@+id/btn_second_place_bet"
                         android:layout_width="wrap_content"
@@ -316,7 +321,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="4">
+                        android:weightSum="4"
+                        android:layout_marginTop="5dp">
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -401,6 +407,7 @@
             card_view:cardCornerRadius="4dp"
             card_view:cardElevation="2dp"
             card_view:cardUseCompatPadding="true"
+            android:layout_marginTop="4dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             tools:ignore="NewApi">
@@ -413,6 +420,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="2"
+                    android:layout_marginTop="2dp"
                     >
                     <EditText
                         android:id="@+id/edit_jodi_digit"
@@ -439,7 +447,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginTop="3dp">
                     <Button
                         android:id="@+id/btn_jodi_place_bet"
                         android:layout_width="wrap_content"
@@ -453,7 +462,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="4">
+                        android:weightSum="4"
+                        android:layout_marginTop="5dp">
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"

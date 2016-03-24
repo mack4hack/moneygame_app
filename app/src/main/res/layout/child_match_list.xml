@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
     android:paddingBottom="5dp"
-    android:paddingTop="5dp">
+    android:paddingTop="5dp"
+    android:weightSum="2">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1.7"
+        android:layout_gravity="center">
 
     <TextView
         android:layout_width="match_parent"
@@ -14,12 +22,22 @@
         android:hint="Name"
         android:id="@+id/txtname"
         android:textSize="16dp"
-        android:textColor="#000"/>
+        android:textColor="#000"
+        android:layout_gravity="center"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text=""
         android:hint="date"
-        android:id="@+id/txttime"/>
+        android:id="@+id/txttime"
+        android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:id="@+id/green_dot"
+        android:layout_weight="0.3"
+        android:layout_gravity="center" />
 </LinearLayout>

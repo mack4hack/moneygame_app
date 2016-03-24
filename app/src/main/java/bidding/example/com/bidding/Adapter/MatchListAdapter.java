@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +23,7 @@ public class MatchListAdapter extends BaseAdapter
 {
     Context context;
     List<MatchListGetSet> matchList;
+    MatchListGetSet item;
 
     public MatchListAdapter(Context context,List<MatchListGetSet> matchList)
     {
@@ -43,47 +46,53 @@ public class MatchListAdapter extends BaseAdapter
         return matchList.get(i).hashCode();
     }
 
-    class Holder
-    {
-        TextView mName, mDate;
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup)
     {
         Holder viewHolder;
-        if(convertView == null)
-        {
+
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.child_match_list,null);
+            final View itemView = inflater.inflate(R.layout.child_match_list,viewGroup, false);
             viewHolder = new Holder();
-            viewHolder.mName = (TextView) convertView.findViewById(R.id.txtname);
-            viewHolder.mDate = (TextView) convertView.findViewById(R.id.txttime);
+            viewHolder.mName = (TextView) itemView.findViewById(R.id.txtname);
+            viewHolder.mDate = (TextView) itemView.findViewById(R.id.txttime);
+            viewHolder.enable = (ImageView) itemView.findViewById(R.id.green_dot);
 
 
-            convertView.setTag(viewHolder);
-        }
-        else
-        {
-            viewHolder = (Holder) convertView.getTag();
-        }
-        MatchListGetSet item = matchList.get(position);
+       item = matchList.get(position);
 
         viewHolder.mName.setText(item.getName().trim());
         try {
             String date = "";
-            SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy HH:mm:ss");
             SimpleDateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
             Date dte = df.parse(item.getDate());
             date = df1.format(dte);
             viewHolder.mDate.setText(date);
+            Calendar cal1 = Calendar.getInstance();
+            cal1.add(cal1.HOUR, 48);
+            String time2= df.format(new Date(cal1.getTimeInMillis()));
+            if (dte.before(df.parse(time2))) {
+                viewHolder.enable.setImageResource(R.drawable.green);
+            }
+            else{
+
+            }
+
         }
         catch(Exception e){
             e.printStackTrace();
         }
 
 
-        return convertView;
+        return itemView;
     }
+}
+
+class Holder
+{
+    TextView mName, mDate;
+    ImageView enable;
 }
 

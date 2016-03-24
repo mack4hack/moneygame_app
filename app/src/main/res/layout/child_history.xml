@@ -19,10 +19,7 @@
             android:gravity="center"
             android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"
             android:paddingBottom="@dimen/abc_action_bar_overflow_padding_end_material"/>
-        <View
-            android:layout_width="0.1dp"
-            android:layout_height="match_parent"
-            android:background="@color/textColor"/>
+
         <TextView
             android:id="@+id/bets"
             android:layout_width="0dp"
@@ -33,11 +30,6 @@
             android:textColor="@color/textColor"
             android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"
             android:paddingBottom="@dimen/abc_action_bar_overflow_padding_end_material"/>
-
-        <View
-            android:layout_width="0.1dp"
-            android:layout_height="match_parent"
-            android:background="@color/textColor"/>
 
         <TextView
             android:id="@+id/wins"
@@ -50,10 +42,7 @@
             android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"
             android:paddingBottom="@dimen/abc_action_bar_overflow_padding_end_material"/>
 
-        <View
-            android:layout_width="0.1dp"
-            android:layout_height="match_parent"
-            android:background="@color/textColor"/>
+
 
         <TextView
             android:id="@+id/p_l"

@@ -20,10 +20,7 @@
             android:text="Date"
             android:textColor="@color/textColor"
             android:gravity="center"/>
-        <View
-            android:layout_width="0.1dp"
-            android:layout_height="match_parent"
-            android:background="@color/textColor"/>
+
 
         <TextView
             android:layout_width="0dp"
@@ -33,10 +30,6 @@
             android:gravity="center"
             android:textColor="@color/textColor"/>
 
-        <View
-            android:layout_width="0.1dp"
-            android:layout_height="match_parent"
-            android:background="@color/textColor"/>
 
         <TextView
             android:layout_width="0dp"
@@ -46,10 +39,6 @@
             android:gravity="center"
             android:textColor="@color/textColor"/>
 
-        <View
-            android:layout_width="0.1dp"
-            android:layout_height="match_parent"
-            android:background="@color/textColor"/>
 
         <TextView
             android:layout_width="0dp"
@@ -94,7 +83,8 @@
             android:text="Total Bets Weekly"
             android:textColor="@color/textColor"
             android:id="@+id/textView12"
-            android:layout_gravity="right" />
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
 
         <View
@@ -109,7 +99,8 @@
             android:text="Winnings Weekly"
             android:textColor="@color/textColor"
             android:id="@+id/textView19"
-            android:layout_gravity="right" />
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <View
             android:layout_width="0.1dp"
@@ -122,7 +113,9 @@
             android:layout_weight="1"
             android:text="P/L Weekly"
             android:textColor="@color/textColor"
-            android:id="@+id/textView16" />
+            android:id="@+id/textView16"
+            android:layout_gravity="center"
+            android:gravity="center"/>
         <View
             android:layout_width="0.1dp"
             android:layout_height="match_parent"
@@ -151,7 +144,9 @@
             android:layout_weight="1"
             android:text=""
             android:textColor="@color/textColor"
-            android:id="@+id/txttotalbets" />
+            android:id="@+id/txttotalbets"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
 
         <View
@@ -165,7 +160,9 @@
             android:layout_weight="1"
             android:text=""
             android:textColor="@color/textColor"
-            android:id="@+id/txtwinnings" />
+            android:id="@+id/txtwinnings"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <View
             android:layout_width="0.1dp"
@@ -178,7 +175,9 @@
             android:layout_weight="1"
             android:text=""
             android:textColor="@color/textColor"
-            android:id="@+id/txtprftlos"/>
+            android:id="@+id/txtprftlos"
+            android:layout_gravity="center"
+            android:gravity="center"/>
         <View
             android:layout_width="0.1dp"
             android:layout_height="match_parent"

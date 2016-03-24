@@ -79,7 +79,6 @@ public class TansactionWiseHistory extends AppCompatActivity {
         dialog.setContentView(R.layout.transaction_details_custom_layout);
         dialog.setTitle("Transaction Details");
 
-
         TextView mDigit,mChip,mTransNo,mDrawTime,mTransTime,mResult,mTotal,mBetText,mWin,mLoss;
         ListView mListView;
 
@@ -209,7 +208,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(getApplicationContext(),"something went wrong please try again!",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"Something went wrong please try again!",Toast.LENGTH_SHORT).show();
                         }
                     }catch (Exception e)
                     {
@@ -264,7 +263,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
                 public void onResponse(String response) {
                     pDialog.hide();
                     String payout="",digit,bAmt,wamt,whichBet="",transactionNo = null;
-                    String dTime = "", tTime = "", result ="";
+                    String dTime = "", tTime = "", result ="", drawTime= "";
                     transList = new ArrayList<>();
                     try
                     {
@@ -328,14 +327,25 @@ public class TansactionWiseHistory extends AppCompatActivity {
                                         payout = trnsaction.getString("total_wins");
                                     }
                                     dTime = trnsaction.getString("drawtime");
+                                    if(dTime!=null){
+                                        Calendar cal = Calendar.getInstance();
+                                        SimpleDateFormat df = new SimpleDateFormat("HH:mm aa");
+                                        String t=df.format(cal.getTime());
+                                        Log.i("time",""+dTime);
+
+                                            drawTime=dTime;
+                                            result = trnsaction.getString("lucky_number");
+
+
+                                    }
                                     tTime = trnsaction.getString("trans_time");
-                                    result = trnsaction.getString("lucky_number");
+
                                     //String digit,String chip,String tno,String dTime,String tTime,String result
 
 
 
                                 }
-                                showDetails(transList,transaction_id,dTime,tTime,result,whichBet,payout);
+                                showDetails(transList,transaction_id,drawTime,tTime,result,whichBet,payout);
                             }
                         }
                         else

@@ -5,7 +5,28 @@ package bidding.example.com.bidding.GetterSetter;
  */
 public class TransactionDetailsGetSet {
 
-    String digit,chip;
+    String digit;
+    String chip;
+    String odds;
+
+    String particular;
+
+
+    public String getParticular() {
+        return particular;
+    }
+
+    public void setParticular(String particular) {
+        this.particular = particular;
+    }
+
+    public String getOdds() {
+        return odds;
+    }
+
+    public void setOdds(String odds) {
+        this.odds = odds;
+    }
 
     public String getDigit() {
         return digit;

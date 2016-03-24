@@ -5,7 +5,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="title_activity_single__bet">Single_Bet</string>
+    <string name="title_activity_single__bet">Single Bet</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -23,11 +23,11 @@
     <string name="internet_err">Internet connection not present!!!</string>
     <string name="invalid_user">You are not valid user</string>
     <string name="invalid_username_pass">Invalid username or password</string>
-    <string name="title_activity_match_details">Match_details</string>
+    <string name="title_activity_match_details">Match Details</string>
     <string name="prefrence">UserPrefrence</string>
     <string name="title_activity_table_main">TableMain</string>
     <string name="title_activity_landing_screen">LandingScreen</string>
-    <string name="title_activity_result_chart">result_chart</string>
+    <string name="title_activity_result_chart">Chart</string>
 
     <!--Api Urls-->
     <!--login api
@@ -110,6 +110,9 @@
     <string name="cricket_daily">http://46.101.6.171/moneygame/api/cricket/accountsPlayerByDate?player_id=</string>
     <string name="match_wise">http://46.101.6.171/moneygame/api/cricket/accountsPlayerBymatch?player_id=</string>
     <string name="cricket_transaction_details">http://46.101.6.171/moneygame/api/cricket/accountsPlayerByTransactionId?transaction_id=</string>
+    <string name="score_card">http://46.101.6.171/moneygame/api/cricket/getMatchLiveScoreCard?match_id=</string>
+    <string name="match_result">http://46.101.6.171/moneygame/api/cricket/getMatchResults?match_id=</string>
+    <string name="cancelled_bets">http://46.101.6.171/moneygame/api/cricket/getUserCancelledBets?player_id=</string>
 
     <string name="title_activity_tansaction_wise_history">Transaction History</string>
     <string name="title_activity_transaction_indetail">Transaction Details</string>
@@ -120,5 +123,9 @@
     <string name="title_activity_game_type_details">Game Type Details</string>
     <string name="title_activity_screen_slide">Cricket Games</string>
     <string name="title_activity_cricket_transaction">Cricket Transaction</string>
+    <string name="title_activity_upcoming_list">Upcoming List</string>
+    <string name="title_activity_match_score_card">MatchScoreCard</string>
+    <string name="title_activity_container_score_card">Score Card</string>
+    <string name="title_activity_redsult_details">Result Details</string>
     <!--http://46.101.6.171/moneygame/-->
 </resources>

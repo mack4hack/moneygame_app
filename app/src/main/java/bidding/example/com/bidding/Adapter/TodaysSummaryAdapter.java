@@ -71,8 +71,12 @@ public class TodaysSummaryAdapter extends BaseAdapter {
         //viewHolder.mTransactionNo.setText(item.getNumber());
         viewHolder.mBetTime.setText(item.getTime());
         viewHolder.mAmt.setText(item.getAmount());
-        viewHolder.mResult.setText(item.getResult());
-
+        if(item.getResult().equals("null")){
+            viewHolder.mResult.setText("0");
+        }
+        else {
+            viewHolder.mResult.setText(item.getResult());
+        }
        /* if(item.getResult().equals("0"))
         {
             viewHolder.mResult.setBackgroundColor(Color.parseColor("#EF9A9A"));

@@ -51,7 +51,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     ProgressDialog pDialog;
     private static int count = -1;
     private boolean exit=false;
-    String presnt_amount, result;
+    String presnt_amount, result, dTime="";
     double default_amnt, prsnt_amnt, percentage, prcnt;
     ImageView icon;
     TextView username;
@@ -74,7 +74,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         icon = (ImageView) findViewById(R.id.imageView);
         username = (TextView) findViewById(R.id.textuser);
-        username.setText(getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("username", ""));
+//        username.setText(getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("username", ""));
 
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -222,71 +222,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         {
             try
             {
-                String betStatus = getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("latest_bet", "");
-                if(betStatus.equals("not_placed"))
-                {
-                    Toast.makeText(getApplicationContext(), "You dont have any bet to cancel!!!", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    final AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
-                    infoDialog.setTitle("Bet Information");
-                    infoDialog.setMessage("You are about to cancel bet of chips " + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("bet_amount", ""));
+                CurrentResult();
 
-                    infoDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    });
-
-                    infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            // custom dialog
-                            final AlertDialog.Builder dialog = new AlertDialog.Builder(Home.this);
-                            dialog.setTitle("Confirmation");
-                            dialog.setCancelable(true);
-                            // ...Irrelevant code for customizing the buttons and title
-                            LayoutInflater inflater = getLayoutInflater();
-                            View dialogView = inflater.inflate(R.layout.custom_layout, null);
-                            dialog.setView(dialogView);
-
-                            final EditText mPassword = (EditText) dialogView.findViewById(R.id.editConfPassword);
-                            dialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    if (TextUtils.isEmpty(mPassword.getText().toString().trim())) {
-                                        Toast.makeText(getApplicationContext(), "please enter pasword!!!", Toast.LENGTH_SHORT).show();
-                                    } else {
-
-                                        if (getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_password", "").equals(mPassword.getText().toString().trim())) {
-                                            String res = "player_id=" + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "");
-                                            dialogInterface.cancel();
-                                            new AsynCancelBet().execute(getString(R.string.cancel_bet), res);
-
-                                        } else {
-                                            Toast.makeText(getApplicationContext(), "Invalid password!!!", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-                            });
-
-                            dialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel();
-                                }
-                            });
-                            dialog.create();
-                            dialog.show();
-                        }
-                    });
-
-                    infoDialog.create();
-                    infoDialog.show();
-                }
             }
             catch (Exception e)
             {
@@ -325,7 +262,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             fragmentTransaction.replace(R.id.containar, fragment);
             fragmentTransaction.commit();
         }
-        else if(id == R.id.terms)
+      /*  else if(id == R.id.terms)
         {
             toolbar.setTitle("Terms & Condition");
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
@@ -344,10 +281,155 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             startActivity(new Intent(getApplicationContext(), Login.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
         }
-
+*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void CurrentResult()
+    {
+        ConnectionDetector connectionDetector = new ConnectionDetector(this);
+        if(connectionDetector.isConnectingToInternet())
+        {
+            //            postString = "player_id=" + playerId + "&data[0][digit]=" + mEditJodi.getText().toString().trim() + "&data[0][bet_amount]=" + mEditJodiAmout.getText().toString().trim();
+                            /*JodiNo=Integer.parseInt(mEditJodi.getText().toString().trim());
+                            flag = 3;
+                            new AsynTaskCall().execute(getString(R.string.PlaceBetJodi),postString);
+
+*/
+            String tag_json_obj = "json_obj_req";
+            final String TAG = "response";
+            final String url = getString(R.string.get_current_result);//+ URLEncoder.encode("/"+postString);
+
+            //          final ProgressDialog pDialog = new ProgressDialog(getActivity());
+            //pDialog.setMessage("Loading...");
+            //pDialog.show();
+
+            StringRequest jsonObjReq = new StringRequest(Request.Method.GET,
+                    url, new Response.Listener<String>() {
+
+                @Override
+                public void onResponse(String response) {
+                    Log.d(TAG, response.toString());
+                    //      pDialog.hide();
+                    try {
+                        JSONObject object = new JSONObject(response);
+                        if(object.getString("status").equals("true"))
+                        {
+                            JSONObject innerObject = object.getJSONObject("data");
+//                            JSONObject obj= innerObject.getJSONObject("lucky_number");
+                            innerObject.getString("start");
+                            dTime=innerObject.getString("end");
+
+                            String betStatus = getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("latest_bet", "");
+                            String drawTime = getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("drawtimeSession", "");
+                            if(betStatus.equals("not_placed"))
+                            {
+                                Toast.makeText(getApplicationContext(), "You dont have any bet to cancel!!!", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Log.i("drwtime",""+drawTime+","+dTime);
+                                if(dTime.equals(drawTime)) {
+                                    final AlertDialog.Builder infoDialog = new AlertDialog.Builder(Home.this);
+                                    infoDialog.setTitle("Bet Information");
+                                    infoDialog.setMessage("You are about to cancel bet of chips " + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("bet_amount", ""));
+
+                                    infoDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.dismiss();
+                                        }
+                                    });
+
+                                    infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.dismiss();
+                                            // custom dialog
+                                            final AlertDialog.Builder dialog = new AlertDialog.Builder(Home.this);
+                                            dialog.setTitle("Confirmation");
+                                            dialog.setCancelable(true);
+                                            // ...Irrelevant code for customizing the buttons and title
+                                            LayoutInflater inflater = getLayoutInflater();
+                                            View dialogView = inflater.inflate(R.layout.custom_layout, null);
+                                            dialog.setView(dialogView);
+
+                                            final EditText mPassword = (EditText) dialogView.findViewById(R.id.editConfPassword);
+                                            dialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    if (TextUtils.isEmpty(mPassword.getText().toString().trim())) {
+                                                        Toast.makeText(getApplicationContext(), "please enter pasword!!!", Toast.LENGTH_SHORT).show();
+                                                    } else {
+
+                                                        if (getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_password", "").equals(mPassword.getText().toString().trim())) {
+                                                            String res = "player_id=" + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "");
+                                                            dialogInterface.cancel();
+                                                            new AsynCancelBet().execute(getString(R.string.cancel_bet), res);
+
+                                                        } else {
+                                                            Toast.makeText(getApplicationContext(), "Invalid password!!!", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                }
+                                            });
+
+                                            dialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    dialogInterface.cancel();
+                                                }
+                                            });
+                                            dialog.create();
+                                            dialog.show();
+                                        }
+                                    });
+
+                                    infoDialog.create();
+                                    infoDialog.show();
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(), "Bet cannot be cancelled now", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    if(error instanceof TimeoutError)
+                    {
+                        Toast.makeText(getApplicationContext(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                    }
+                    error.printStackTrace();
+                    VolleyLog.d("CUrrent Result", "Error: " + error.getMessage());
+                    //    pDialog.hide();
+                }
+            }) ;
+
+            jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+// Adding request to request queue
+            AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(),getString(R.string.internet_err),Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private String getPresentAmount()
@@ -389,11 +471,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                                 prcnt = (percentage/default_amnt)*100;
                                 presnt_amount = "Profit";
                             }
+                            int pay=(int) Math.round(Double.parseDouble(result))-(int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", "")));
                             final AlertDialog.Builder infoDialog = new AlertDialog.Builder(Home.this);
                             infoDialog.setTitle("Account Information");
                             infoDialog.setMessage("Default Chips : " + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "\n" +
                                     "Present Chips : " + (int) Math.round(Double.parseDouble(result)) + "\n" +
-                                    presnt_amount +" :" + prcnt+"%");
+                                    presnt_amount + " :" + prcnt + "%" + "\n" +
+                                    "Net Payable : " +pay);
                             infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {

@@ -23,13 +23,9 @@
             android:layout_weight="1"
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
-            android:text="Transaction No."/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
+            android:text="Transaction No."
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/transactionNo"
@@ -40,13 +36,9 @@
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
             android:text="Trans. Chips"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:visibility="gone"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
 
         <TextView
             android:layout_width="0dp"
@@ -55,13 +47,9 @@
             android:layout_weight="1"
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
-            android:text="Total Chips"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.01"
-            android:background="@color/textColor"/>
+            android:text="Total Chips"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
         <TextView
             android:layout_width="0dp"
@@ -69,8 +57,9 @@
             android:singleLine="true"
             android:layout_weight="1"
             android:textColor="@color/textColor"
-            android:gravity="center"
-            android:text="Total Payout"/>
+            android:text="Total Payout"
+            android:layout_gravity="center"
+            android:gravity="center"/>
     </LinearLayout>
     <View
         android:id="@+id/view"
