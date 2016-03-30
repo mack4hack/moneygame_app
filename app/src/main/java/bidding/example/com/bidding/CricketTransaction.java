@@ -28,6 +28,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import bidding.example.com.bidding.Adapter.TimeSlotAdapter;
@@ -41,8 +42,9 @@ public class CricketTransaction extends AppCompatActivity {
     private List<HistoryGetSet> list = new ArrayList<>();
     private TimeSlotAdapter adapter;
     List<TransactionDetailsGetSet> transList;
-    String transaction_id;
+    String transaction_id, tr_time, reslt, mtch_nm;
     private static int flag=0;
+    String formattedDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,18 @@ public class CricketTransaction extends AppCompatActivity {
         mList= (ListView) findViewById(R.id.transactionHistory);
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        final String formattedDate = df.format(cal.getTime());
+        try {
+            if (this.getIntent().hasExtra("date")) {
+                String dte = this.getIntent().getStringExtra("date");
+                Date dt=df.parse(dte);
+                formattedDate=df.format(dt);
+            } else {
+                formattedDate = df.format(cal.getTime());
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
         Log.i("url",""+getString(R.string.match_wise) +getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date="+formattedDate+"&match_id=" + getIntent().getStringExtra("matchid"));
         getTransactionDetails(getString(R.string.match_wise) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate + "&match_id=" + getIntent().getStringExtra("matchid"));
@@ -71,7 +84,7 @@ public class CricketTransaction extends AppCompatActivity {
     }
 
 
-    private void showDetails(List<TransactionDetailsGetSet> List,String tno,String whichBet,String payout)
+    private void showDetails(List<TransactionDetailsGetSet> List,String mnm,String tno, String time, String res, String whichBet,String payout)
     {
 // custom dialog
         final Dialog dialog = new Dialog(CricketTransaction.this);
@@ -79,11 +92,11 @@ public class CricketTransaction extends AppCompatActivity {
         dialog.setTitle("Transaction Details");
 
 
-        TextView mDigit,mChip,mTransNo,mDrawTime,mTransTime,mResult,mTotal,mBetText,mWin,mLoss;
+        TextView mDigit,mMtch,mTransNo,mDrawTime,mTransTime,mResult,mTotal,mBetText,mWin,mLoss;
         ListView mListView;
 
 //        mDigit = (TextView) dialog.findViewById(R.id.digit);
-        //      mChip = (TextView) dialog.findViewById(R.id.chip);
+              mMtch = (TextView) dialog.findViewById(R.id.mtch_nm);
         mTransNo = (TextView) dialog.findViewById(R.id.trans_id);
         mDrawTime = (TextView) dialog.findViewById(R.id.draw_time);
         mTransTime = (TextView) dialog.findViewById(R.id.trans_time);
@@ -98,9 +111,11 @@ public class CricketTransaction extends AppCompatActivity {
         CricketTransactionAdapter adapter = new CricketTransactionAdapter(getApplicationContext(),List);
         adapter.notifyDataSetChanged();
         mListView.setAdapter(adapter);
-        /*mDigit.setText(digit);
-        mChip.setText(chip);*/
+
+        mMtch.setText(mnm);
         mTransNo.setText(tno);
+        mTransTime.setText(time);
+        mResult.setText(res);
 
         int chip=0;
         for(TransactionDetailsGetSet item:transList)
@@ -258,8 +273,14 @@ public class CricketTransaction extends AppCompatActivity {
 
                                     TransactionDetailsGetSet item = new TransactionDetailsGetSet();
 
-//                                        item.setDigit(trnsaction.getString("first_digit"));
+                                        mtch_nm=trnsaction.getString("match_name");
+                                        reslt=trnsaction.getString("result");
                                         item.setChip(trnsaction.getString("chips"));
+                                        tr_time=trnsaction.getString("transaction_time");
+                                    String per=trnsaction.getString("perticulars");
+                                    per=per.replace("_"," ");
+                                        item.setParticular(per);
+                                        item.setOdds(trnsaction.getString("odds"));
                                         whichBet = trnsaction.getString("game_name");
                                     whichBet=whichBet.replace("_"," ");
 
@@ -276,7 +297,7 @@ public class CricketTransaction extends AppCompatActivity {
                                     }
 
                                 }
-                                showDetails(transList,transaction_id,whichBet,payout);
+                                showDetails(transList,mtch_nm, transaction_id,tr_time, reslt,  whichBet,payout);
                             }
                         }
                         else

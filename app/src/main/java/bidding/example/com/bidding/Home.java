@@ -477,7 +477,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                             infoDialog.setMessage("Default Chips : " + (int) Math.round(Double.parseDouble(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("default_amt", ""))) + "\n" +
                                     "Present Chips : " + (int) Math.round(Double.parseDouble(result)) + "\n" +
                                     presnt_amount + " :" + prcnt + "%" + "\n" +
-                                    "Net Payable : " +pay);
+                                    "Net Balance : " +pay);
                             infoDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {

@@ -178,15 +178,18 @@ public class CriceketBet extends Fragment {
                                     String [] split = t.split("\\u002B");
                                     if(df.parse(split[0]).after(df.parse(time1))) // && df.parse(split[0]).before(df.parse(time2)
                                     {
-                                        item.setId(childObject.getString("id"));;
-                                        item.setName(childObject.getString("name"));
-                                        item.setDate(split[0]);
-                                        item.setVenue(childObject.getString("venue"));
-                                        matchList.add(item);
-                                        DateList.add(df.parse(split[0]));
-                                        if (df.parse(item.getDate()).before(df.parse(time2))) {
-                                            matchListGetSets.add(item);
+                                        if(!childObject.getString("status").equals("completed")) {
+                                            item.setId(childObject.getString("id"));
+                                            ;
+                                            item.setName(childObject.getString("name"));
+                                            item.setDate(split[0]);
+                                            item.setVenue(childObject.getString("venue"));
+                                            matchList.add(item);
+                                            DateList.add(df.parse(split[0]));
+                                            if (df.parse(item.getDate()).before(df.parse(time2))) {
+                                                matchListGetSets.add(item);
 
+                                            }
                                         }
                                     }
 

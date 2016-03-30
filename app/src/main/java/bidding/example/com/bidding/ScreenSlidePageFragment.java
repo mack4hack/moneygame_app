@@ -1145,8 +1145,10 @@ public class ScreenSlidePageFragment extends Fragment {
                 }*/
                 Log.i("present second",""+getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0));
                 if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) == 50 ) {
-                    getMatchOdds();
-                    LiveScore();
+                    //getMatchOdds();
+                    if(matchstatus.equals("started")) {
+                        LiveScore();
+                    }
                 }
 
             }

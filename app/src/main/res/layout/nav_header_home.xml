@@ -15,7 +15,7 @@
         android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/new_icon"
+        android:src="@drawable/new_icon1"
         android:paddingTop="@dimen/nav_header_vertical_spacing" />
 
     <TextView

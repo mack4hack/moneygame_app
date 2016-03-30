@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="bidding.example.com.bidding.TodaysHistory"
+    android:orientation="vertical"
+    android:background="#dedede"
+    android:weightSum="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.05"
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:id="@+id/topLayout">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Transaction Id"
+            android:textColor="@color/textColor"
+            android:gravity="center"/>
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Match"
+            android:gravity="center"
+            android:textColor="@color/textColor"/>
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Game"
+            android:gravity="center"
+            android:textColor="@color/textColor"/>
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Chips"
+            android:gravity="center"
+            android:textColor="@color/textColor"/>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/textColor"/>
+    <ListView
+        android:id="@+id/listcnclld"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.95"
+        android:layout_below="@+id/view"
+        android:layout_above="@+id/view2"/>
+
+
+
+</LinearLayout>

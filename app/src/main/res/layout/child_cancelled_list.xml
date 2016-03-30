@@ -10,33 +10,33 @@
         android:orientation="horizontal"
         android:id="@+id/topLayout">
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/tr_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Date"
+            android:hint="Trans_id"
             android:textColor="@color/textColor"
             android:gravity="center"
             android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"
             android:paddingBottom="@dimen/abc_action_bar_overflow_padding_end_material"/>
 
         <TextView
-            android:id="@+id/bets"
+            android:id="@+id/mtch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="TotalBets"
+            android:hint="Match"
             android:gravity="center"
             android:textColor="@color/textColor"
             android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"
             android:paddingBottom="@dimen/abc_action_bar_overflow_padding_end_material"/>
 
         <TextView
-            android:id="@+id/wins"
+            android:id="@+id/game"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="TotalWins"
+            android:hint="Game"
             android:gravity="center"
             android:textColor="@color/textColor"
             android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"
@@ -45,11 +45,11 @@
 
 
         <TextView
-            android:id="@+id/p_l"
+            android:id="@+id/chip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="-"
+            android:hint="chips"
             android:gravity="center"
             android:textColor="@color/textColor"
             android:paddingTop="@dimen/abc_action_bar_overflow_padding_end_material"

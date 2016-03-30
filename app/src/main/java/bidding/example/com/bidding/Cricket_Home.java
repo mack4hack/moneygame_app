@@ -216,6 +216,14 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
                 fragmentTransaction.replace(R.id.containar1, fragment);
                 fragmentTransaction.commit();
                 break;
+            case R.id.cnclld_bets:
+                MainPage.toolbar.setTitle("Cancelled Bets");
+                android.support.v4.app.FragmentManager cnlldManager = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction cnclldTransaction = cnlldManager.beginTransaction();
+                CancelledBets cnclldfragment = new CancelledBets();
+                cnclldTransaction.replace(R.id.containar1, cnclldfragment);
+                cnclldTransaction.commit();
+                break;
         }
     }
 

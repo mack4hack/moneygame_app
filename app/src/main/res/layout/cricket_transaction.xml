@@ -4,16 +4,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
     <LinearLayout
         android:id="@+id/holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="@dimen/abc_action_bar_content_inset_material">
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mtch_nm"
+            android:textColor="@color/textColor"
+            android:textSize="16sp"
+            android:text=""
+            android:singleLine="true"
+            android:gravity="center"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.1dp"
+            android:layout_marginTop="10dp"
             android:background="@color/textColor"/>
 
         <LinearLayout
@@ -90,7 +103,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Digit"
+                android:text="Trans. Time"
                 android:textColor="@color/textColor"
                 android:gravity="center"/>
 
@@ -104,7 +117,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Chip"
+                android:text="Result"
                 android:textColor="@color/textColor"
                 android:gravity="center"/>
 
@@ -188,7 +201,7 @@
                 <ListView
                     android:id="@+id/list"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"></ListView>
+                    android:layout_height="100dp"></ListView>
                 <!--<TextView
                     android:id="@+id/digit"
                     android:layout_width="0dp"

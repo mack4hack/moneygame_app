@@ -8,9 +8,17 @@ public class TransactionDetailsGetSet {
     String digit;
     String chip;
     String odds;
-
+    String time;
     String particular;
 
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getParticular() {
         return particular;

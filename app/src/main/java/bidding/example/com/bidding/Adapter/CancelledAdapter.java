@@ -9,25 +9,26 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import bidding.example.com.bidding.GetterSetter.CancelledGetSet;
 import bidding.example.com.bidding.GetterSetter.TransactionDetailsGetSet;
 import bidding.example.com.bidding.R;
 
 /**
- * Created by root on 3/21/16.
+ * Created by Gaurav on 29/03/16.
  */
-public class CricketTransactionAdapter extends BaseAdapter {
+public class CancelledAdapter extends BaseAdapter {
     Context context;
-    List<TransactionDetailsGetSet> historyList;
+    List<CancelledGetSet> canclldList;
 
-    public CricketTransactionAdapter(Context context,List<TransactionDetailsGetSet> historyList)
+    public CancelledAdapter(Context context,List<CancelledGetSet> canclldList)
     {
         this.context = context;
-        this.historyList = historyList;
+        this.canclldList = canclldList;
     }
 
     @Override
     public int getCount() {
-        return historyList.size();
+        return canclldList.size();
     }
 
     @Override
@@ -37,12 +38,12 @@ public class CricketTransactionAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return historyList.get(i).hashCode();
+        return canclldList.get(i).hashCode();
     }
 
     class Holder
     {
-        TextView mDigit,mChip, mPayout;
+        TextView mtransid,mChip, mMatch, mGame;
     }
 
     @Override
@@ -52,11 +53,12 @@ public class CricketTransactionAdapter extends BaseAdapter {
         if(convertView == null)
         {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.transaction_child,null);
+            convertView = inflater.inflate(R.layout.child_cancelled_list,null);
             viewHolder = new Holder();
-            viewHolder.mDigit = (TextView) convertView.findViewById(R.id.transactionNo);
+            viewHolder.mtransid = (TextView) convertView.findViewById(R.id.tr_id);
             viewHolder.mChip = (TextView) convertView.findViewById(R.id.chip);
-            viewHolder.mPayout = (TextView) convertView.findViewById(R.id.payout);
+            viewHolder.mMatch = (TextView) convertView.findViewById(R.id.mtch);
+            viewHolder.mGame = (TextView) convertView.findViewById(R.id.game);
 
             convertView.setTag(viewHolder);
         }
@@ -64,15 +66,13 @@ public class CricketTransactionAdapter extends BaseAdapter {
         {
             viewHolder = (Holder) convertView.getTag();
         }
-        TransactionDetailsGetSet item = historyList.get(position);
+        CancelledGetSet item = canclldList.get(position);
 
-        //viewHolder.mTransactionNo.setText(item.getNumber());
-        viewHolder.mDigit.setText(item.getDigit());
-        viewHolder.mChip.setText(item.getChip());
-        viewHolder.mPayout.setText(item.getChip());
+        viewHolder.mGame.setText(item.getGame());
+        viewHolder.mtransid.setText(item.getTrans_id());
+        viewHolder.mChip.setText(item.getChips());
+        viewHolder.mMatch.setText(item.getMatch_name());
 
         return convertView;
     }
 }
-
-

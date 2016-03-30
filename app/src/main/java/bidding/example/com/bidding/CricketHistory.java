@@ -45,6 +45,7 @@ public class CricketHistory extends Fragment {
     private List<HistoryGetSet> todaySummary = new ArrayList<>();
     private TodaysSummaryAdapter todaysHistoryAdapter;
     String data="";
+    String date="";
     public CricketHistory() {
         // Required empty public constructor
     }
@@ -78,7 +79,7 @@ public class CricketHistory extends Fragment {
 
         if(!data.equals("")){
             String dte= getArguments().getString("date");
-            String date="";
+
             try {
                 SimpleDateFormat df1 = new SimpleDateFormat("dd-MM-yyyy");
                 Date dt = df1.parse(dte);
@@ -103,6 +104,7 @@ public class CricketHistory extends Fragment {
                 //item.getTimeSlotId();
                 Log.i("userid", "" + item.getTimeSlotId() + " id " + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", ""));
                 Intent intent = new Intent(getActivity(), CricketTransaction.class);
+                intent.putExtra("date", date);
                 intent.putExtra("matchid", item.getTimeSlotId());
                 startActivity(intent);
             }

@@ -272,12 +272,12 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
         }
         else if (id == R.id.cancelled_bets)
         {
-//            toolbar.setTitle("Multiple Bet");
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            Multiple_Bet fragment = new Multiple_Bet();
-//            fragmentTransaction.replace(R.id.containar1, fragment);
-//            fragmentTransaction.commit();
+            toolbar.setTitle("Cancelled Bets");
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            CancelledBets fragment = new CancelledBets();
+            fragmentTransaction.replace(R.id.containar1, fragment);
+            fragmentTransaction.commit();
         }
         else if(id == R.id.score_card)
         {

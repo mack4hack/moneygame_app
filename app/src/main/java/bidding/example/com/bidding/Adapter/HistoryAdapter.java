@@ -69,7 +69,13 @@ public class HistoryAdapter extends BaseAdapter
 
         viewHolder.mDate.setText(item.getDate());
         viewHolder.mTotalBet.setText(item.getAmount());
-        viewHolder.mTotalWin.setText(item.getPayout());
+        if(item.getPayout().equals("null")){
+            viewHolder.mTotalWin.setText("0");
+        }
+        else{
+            viewHolder.mTotalWin.setText(item.getPayout());
+        }
+
         viewHolder.mPL.setText(item.getProftlos());
 
        /* if(item.getResult().equals("0"))
