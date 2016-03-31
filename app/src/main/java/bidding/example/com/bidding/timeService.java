@@ -68,28 +68,22 @@ public class timeService extends Service
                 try {
                     SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 
-
                     Date systemDate = Calendar.getInstance().getTime();
                     String myDate = sdf.format(systemDate);
 //                  txtCurrentTime.setText(myDate);
 
                     Date Date1 = sdf.parse(myDate);
                     Date Date2 = sdf.parse(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("time", ""));
-                    long diff = Date1.getTime() - Date2.getTime();
 
-                    int Hours = (int) (diff/(1000 * 60 * 60));
-                    int Mins = (int) (diff/(1000*60)) % 60;
-                    long Secs = (int) (diff / 1000) % 60;
+                    if(Date1.before(Date2)) {
 
-                    long dd=diff/1000;
-                    int secondDiff = (int) (dd % 60);
+                        long diff = Date1.getTime() - Date2.getTime();
 
-                /*    Calendar c = Calendar.getInstance();
-                    c.add(Calendar.HOUR,-Hours);
-                    c.add(Calendar.MINUTE,-Mins);
-                    c.add(Calendar.SECOND,-secondDiff);
-                    Log.i("diff",""+c.getTime());*/
+                        long hours = diff / 3600000;
+                        long minutes = (diff - hours * 3600000) / 60000;
+                        long seconds = (diff - hours * 3600000 - minutes * 60000) / 1000;
 
+                    }
                     int h1 = Date1.getHours();
                     int m1 = Date1.getMinutes();
                     int s1 = Date1.getSeconds();

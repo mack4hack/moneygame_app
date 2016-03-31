@@ -862,6 +862,7 @@ public class ScreenSlidePageFragment extends Fragment {
                                 head = mids.getGamename();
                                 head = head.replace("_", " ");
                                 heading.setText("Match Win Loss");
+                                pos=21;
                                 title=mids.getName();
                                 match.setText(mids.getName());
                                 String date="";
@@ -1149,6 +1150,9 @@ public class ScreenSlidePageFragment extends Fragment {
                     if(matchstatus.equals("started")) {
                         LiveScore();
                     }
+                }
+                if(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0)%5 == 0){
+                    getMatchOdds();
                 }
 
             }

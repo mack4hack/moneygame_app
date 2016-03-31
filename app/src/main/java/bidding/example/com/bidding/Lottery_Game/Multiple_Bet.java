@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -76,10 +77,11 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
     private int currentMinute,currentHoure;
     private static int flag;
     static String no1, no2, no3;
-    String result, session;
+    String result, session, currenttime;
     Double default_amnt, prsnt_amnt, diff, percent;
     Integer total1=0;
 
+    public SharedPreferences preferences;
     CounterClass counterClass;
     HorizontalScrollView scroll1, scroll2, scroll3;
 
@@ -106,11 +108,14 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 
         initization(view);
 
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        preferences=getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE);
+
         FirstBtnPlaceBet.setOnClickListener(this);
         SecondBtnPlaceBet.setOnClickListener(this);
         JodiBtnPlaceBet.setOnClickListener(this);
         AutoFill.setOnClickListener(this);
-
 
     }
 
@@ -1273,7 +1278,14 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
 //                            JSONObject obj = innerObject.getJSONObject("lucky_number");
                             innerObject.getString("start");
                             session=innerObject.getString("end");
+                            String time=innerObject.getString("current");
+                            String split[]=time.split(" ");
+                            String split1[]=split[1].split(" ");
+                            currenttime = split1[0];
 
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("time",currenttime);
+                            editor.commit();
                             mCurrentSession.setText("Current Draw: "+innerObject.getString("end"));
                             mCurrentResult.setText(innerObject.getString("lucky_number"));
                         }
