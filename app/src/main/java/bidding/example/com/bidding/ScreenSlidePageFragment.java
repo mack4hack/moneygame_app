@@ -1152,7 +1152,7 @@ public class ScreenSlidePageFragment extends Fragment {
                     }
                 }
                 if(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0)%5 == 0){
-                    getMatchOdds();
+//                    getMatchOdds();
                 }
 
             }
