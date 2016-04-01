@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#dedede"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_tansaction_wise_history"
+    tools:showIn="@layout/activity__cricket_tansaction"
     tools:context="bidding.example.com.bidding.CricketTransaction">
     <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
 
@@ -23,7 +23,9 @@
             android:layout_weight="1"
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
-            android:text="Transaction No."/>
+            android:text="Game"
+            android:layout_gravity="center"
+            android:gravity="center"/>
 
 
 
@@ -46,7 +48,8 @@
             android:layout_weight="1"
             android:textColor="@color/textColor"
             android:paddingLeft="5dp"
-            android:text="Total Chips"/>
+            android:text="Total Chips"
+            android:gravity="center"/>
 
 
 

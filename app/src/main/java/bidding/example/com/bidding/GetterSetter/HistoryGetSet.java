@@ -17,6 +17,16 @@ public class HistoryGetSet
     String proftlos;
     String transactionNo,timeSlotId;
 
+    public String getGame() {
+        return game;
+    }
+
+    public void setGame(String game) {
+        this.game = game;
+    }
+
+    String game;
+
     public String getPayout() {
         return payout;
     }

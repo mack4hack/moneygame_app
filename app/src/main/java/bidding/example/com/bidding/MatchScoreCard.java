@@ -71,6 +71,7 @@ public class MatchScoreCard extends AppCompatActivity {
             final String TAG = "response";
             final String url = getString(R.string.score_card)+match_id;//+ URLEncoder.encode("/"+postString);
 
+            Log.i("score card",""+url);
             final ProgressDialog pDialog = new ProgressDialog(MatchScoreCard.this);
             pDialog.setMessage("Loading...");
             pDialog.show();

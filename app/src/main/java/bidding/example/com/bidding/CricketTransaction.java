@@ -42,7 +42,7 @@ public class CricketTransaction extends AppCompatActivity {
     private List<HistoryGetSet> list = new ArrayList<>();
     private TimeSlotAdapter adapter;
     List<TransactionDetailsGetSet> transList;
-    String transaction_id, tr_time, reslt, mtch_nm, team1, team2;
+    String transaction_id, tr_time, reslt, mtch_nm, team1, team2, win, loss;
     private static int flag=0;
     String formattedDate;
 
@@ -76,15 +76,15 @@ public class CricketTransaction extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 HistoryGetSet item = list.get(i);
-                transaction_id = item.getTransactionNo();
-                Log.i("url",""+getString(R.string.cricket_transaction_details)+item.getTransactionNo());
-                getDetails(getString(R.string.cricket_transaction_details) + item.getTransactionNo());
+                transaction_id = item.getGame();
+                Log.i("url",""+getString(R.string.cricket_transaction_details)+item.getGame());
+                getDetails(getString(R.string.cricket_transaction_details) + item.getGame());
             }
         });
     }
 
 
-    private void showDetails(List<TransactionDetailsGetSet> List,String mnm,String tno, String time, String res, String whichBet,String payout)
+    private void showDetails(List<TransactionDetailsGetSet> List,String mnm,String tno, String time, String res, String whichBet,String payout, String wins, String los)
     {
 // custom dialog
         final Dialog dialog = new Dialog(CricketTransaction.this);
@@ -115,7 +115,13 @@ public class CricketTransaction extends AppCompatActivity {
         mMtch.setText(mnm);
         mTransNo.setText(tno);
         mTransTime.setText(time);
-        mResult.setText(res);
+        if(res.equals("1")){
+            mResult.setText("Win");
+        }
+        else{
+            mResult.setText("Loss");
+        }
+
 
         int chip=0;
         for(TransactionDetailsGetSet item:transList)
@@ -127,16 +133,8 @@ public class CricketTransaction extends AppCompatActivity {
         mBetText.setText(whichBet);
             //double amt = Integer.parseInt(Chip)*8.5;
 
-        if(flag==0)
-        {
-            mWin.setText("0");
-            mLoss.setText(payout);
-        }
-        else
-        {
-            mWin.setText(payout);
-            mLoss.setText("0");
-        }
+       mWin.setText(wins);
+        mLoss.setText(los);
 
         Button cancel = (Button) dialog.findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -180,7 +178,19 @@ public class CricketTransaction extends AppCompatActivity {
                                     HistoryGetSet item = new HistoryGetSet();
                                     JSONObject trnsaction = jsonArray.getJSONObject(i);
 
-                                    item.setTransactionNo(trnsaction.getString("transaction_id"));
+                                    item.setGame(trnsaction.getString("transaction_id"));
+                                    team1=trnsaction.getString("team_a");
+                                    team2=trnsaction.getString("team_b");
+                                    String game=trnsaction.getString("game_name");
+                                    game=game.replace("_"," ");
+                                    if(game.contains("team1")){
+                                        game=game.replace("team1",team1);
+                                    }
+                                    else if(game.contains("team2")) {
+                                        game=game.replace("team2",team2);
+                                    }
+
+                                    item.setTransactionNo(game);
                                     item.setAmount(trnsaction.getString("bet_amount"));
                                     if (trnsaction.getString("payout").equals("null")) {
                                         item.setTime("0");
@@ -275,21 +285,21 @@ public class CricketTransaction extends AppCompatActivity {
                                         mtch_nm=trnsaction.getString("match_name");
                                         reslt=trnsaction.getString("result");
                                         item.setChip(trnsaction.getString("chips"));
-                                    team1=trnsaction.getString("teama");
-                                    team2=trnsaction.getString("teamb");
+                                    team1=trnsaction.getString("team_a");
+                                    team2=trnsaction.getString("team_b");
                                         tr_time=trnsaction.getString("transaction_time");
                                     String per=trnsaction.getString("perticulars");
                                     per=per.replace("_"," ");
-                                    if(per.contains("team1")){
-                                        per=per.replace("team1",team1);
+                                    if(per.contains("team 1")){
+                                        per=per.replace("team 1",team1);
                                     }
-                                    else if(per.contains("team2")) {
-                                        per=per.replace("team2",team2);
+                                    else if(per.contains("team 2")) {
+                                        per=per.replace("team 2",team2);
                                     }
-                                        item.setParticular(per);
+                                    item.setParticular(per);
                                         item.setOdds(trnsaction.getString("odds"));
                                         whichBet = trnsaction.getString("game_name");
-                                    whichBet=whichBet.replace("_"," ");
+                                    whichBet = whichBet.replace("_"," ");
                                     if(whichBet.contains("team1")){
                                         whichBet=whichBet.replace("team1",team1);
                                     }
@@ -297,7 +307,8 @@ public class CricketTransaction extends AppCompatActivity {
                                         whichBet=whichBet.replace("team2",team2);
                                     }
 
-
+                                    win= trnsaction.getString("win");
+                                    loss= trnsaction.getString("loss");
                                     transList.add(item);
 
 //                                    transactionNo = trnsaction.getString("transaction_id");
@@ -310,7 +321,7 @@ public class CricketTransaction extends AppCompatActivity {
                                     }
 
                                 }
-                                showDetails(transList,mtch_nm, transaction_id,tr_time, reslt,  whichBet,payout);
+                                showDetails(transList,mtch_nm, transaction_id,tr_time, reslt,  whichBet,payout, win, loss);
                             }
                         }
                         else

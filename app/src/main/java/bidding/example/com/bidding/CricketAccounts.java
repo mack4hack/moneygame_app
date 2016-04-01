@@ -130,21 +130,27 @@ public class CricketAccounts extends Fragment {
                                     {
                                         JSONObject item = jsonArray.getJSONObject(i);
                                         int pl=0;
+                                        String pay;
                                         HistoryGetSet rowItem = new HistoryGetSet();
                                         rowItem.setAmount(item.getString("bet_amount"));
                                         rowItem.setDate(item.getString("date"));
                                         rowItem.setTotal_bet(item.getString("total_bet"));
                                         rowItem.setTotal_wins(item.getString("total_wins"));
                                         rowItem.setPayout(item.getString("payout"));
-                                        if(!item.getString("payout").equals("null")) {
-                                            pl = (int)Math.round(Double.parseDouble(item.getString("bet_amount"))) + (int)Math.round(Double.parseDouble(item.getString("payout")));
-                                            rowItem.setProftlos(String.valueOf(pl));
+                                        if(item.getString("payout").equals("null")) {
+                                           pay="0";
                                         }
+                                        else{
+                                            pay=item.getString("payout");
+                                        }
+                                        pl = (int)Math.round(Double.parseDouble(pay)) - (int)Math.round(Double.parseDouble(item.getString("bet_amount")));
+                                        rowItem.setProftlos(String.valueOf(pl));
 
-                                        String ttlbet =item.getString("total_bet");
+                                        String ttlbet =item.getString("bet_amount");
                                         ttlbet = ttlbet.replace(",","");
                                         bet+= (int)Math.round(Double.parseDouble(ttlbet));
-                                        String ttlwin =item.getString("total_wins");
+                                        Log.i("bet",""+bet);
+                                        String ttlwin =item.getString("payout");
                                         ttlwin = ttlwin.replace(",","");
                                         win+= (int)Math.round(Double.parseDouble(ttlwin));
                                         prftlos+= pl;
