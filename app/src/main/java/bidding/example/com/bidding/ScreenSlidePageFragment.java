@@ -1163,9 +1163,11 @@ public class ScreenSlidePageFragment extends Fragment {
                         LiveScore();
                     }
                 }
+
                 if(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0)%5 == 0 &&
                         getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) == 50 ){
                     getMatchOdds();
+
                 }
 
             }

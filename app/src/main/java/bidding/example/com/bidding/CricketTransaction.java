@@ -42,7 +42,7 @@ public class CricketTransaction extends AppCompatActivity {
     private List<HistoryGetSet> list = new ArrayList<>();
     private TimeSlotAdapter adapter;
     List<TransactionDetailsGetSet> transList;
-    String transaction_id, tr_time, reslt, mtch_nm;
+    String transaction_id, tr_time, reslt, mtch_nm, team1, team2;
     private static int flag=0;
     String formattedDate;
 
@@ -268,7 +268,6 @@ public class CricketTransaction extends AppCompatActivity {
                             if (jsonArray.length() != 0) {
                                 for (int i = 0; i < jsonArray.length(); i++) {
 
-
                                     JSONObject trnsaction = jsonArray.getJSONObject(i);
 
                                     TransactionDetailsGetSet item = new TransactionDetailsGetSet();
@@ -276,13 +275,27 @@ public class CricketTransaction extends AppCompatActivity {
                                         mtch_nm=trnsaction.getString("match_name");
                                         reslt=trnsaction.getString("result");
                                         item.setChip(trnsaction.getString("chips"));
+                                    team1=trnsaction.getString("teama");
+                                    team2=trnsaction.getString("teamb");
                                         tr_time=trnsaction.getString("transaction_time");
                                     String per=trnsaction.getString("perticulars");
                                     per=per.replace("_"," ");
+                                    if(per.contains("team1")){
+                                        per=per.replace("team1",team1);
+                                    }
+                                    else if(per.contains("team2")) {
+                                        per=per.replace("team2",team2);
+                                    }
                                         item.setParticular(per);
                                         item.setOdds(trnsaction.getString("odds"));
                                         whichBet = trnsaction.getString("game_name");
                                     whichBet=whichBet.replace("_"," ");
+                                    if(whichBet.contains("team1")){
+                                        whichBet=whichBet.replace("team1",team1);
+                                    }
+                                    else if(whichBet.contains("team2")){
+                                        whichBet=whichBet.replace("team2",team2);
+                                    }
 
 
                                     transList.add(item);
