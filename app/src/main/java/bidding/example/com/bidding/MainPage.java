@@ -288,6 +288,15 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             fragmentTransaction.replace(R.id.containar1, fragment);
             fragmentTransaction.commit();
         }
+        else if(id == R.id.terms)
+        {
+            toolbar.setTitle("Terms & Conditions");
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            CricketTerms fragment = new CricketTerms();
+            fragmentTransaction.replace(R.id.containar1, fragment);
+            fragmentTransaction.commit();
+        }
         else if (id == R.id.logout) {
             SharedPreferences settings = getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = settings.edit();

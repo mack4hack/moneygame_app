@@ -6,6 +6,56 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_single__bet">Single Bet</string>
+    
+    <string name="money_play_terms">Moneyplay is virtual game and involves no real money, but it satisfies your betting appetite.
+Any misuse of this game will lead to legal consequences.</string>
+    <string name="how_play">How to play?</string>
+    <string name="play_lottery">ONE LUCKY DOUBLE DIGIT NUMBER GENARETED EVERY 15 MINUTES, YOU CAN BET ON SINGLE DIGIT FIRST, SINGLE
+DIGIT SECOND AND COMBINATION OF BOTH AS JODI AND WIN CHIPS.THERE IS CHART TO HELP YOU…!!</string>
+
+    <string name="cricket_play">IN CRICKET YOU HAVE DIFFERENT GAMES YOU CAN PLAY.</string>
+
+<string name="match"><b>MATCH WIN LOSS</b> – PREDICT THE WINNING TEAM AND BET CHIPS ON IT.
+
+THIS GAME CLOSES BEFORE MATCH.</string>
+
+<string name="toss"><b>TOSS</b> – PREDICT THE TOSS AND BET CHIPS ON IT.
+
+THIS GAME CLOSES BEFORE TOSS.</string>
+
+<string name="frst_ball"><b>1ST BALL GAME FOR BOTH TEAMS</b> – PREDICT WHAT HAPPENS ON 1ST BALL AND BET CHIPS ON IT.
+
+THIS GAME CLOSES BEFORE INNINGS START.</string>
+
+<string name="oversrun"><b>1ST OVER RUNS FOR BOTH TEAMS</b> – PREDICT 1ST OVER RUNS AND BET CHIPS ON IT.
+
+THIS GAME CLOSES BEFORE INNINGS START.</string>
+
+<string name="overses"><b>10 OVER SESSION FOR BOTH TEAMS</b> – PREDICT TEAM SCORE IN 1ST 10 OVERS AND BET CHIPS ON IT.
+
+THIS GAME CLOSES IN 6 OVERS OF THE INNINGS.</string>
+
+<string name="wckt"><b>1ST WICKET METOD FOR BOTH TEAMS</b> – PREDICT THE METHOD OF THE 1ST WICKET AND BET CHIPS ON IT.
+
+THIS GAME CLOSES BEFORE START OF AN INNINGS.</string>
+
+<string name="runs"><b>RUNS AT 1ST WICKET FALL FOR BOTH TEAMS</b> – PREDICT THE OPENING PARTNERSHIP AND BET CHIPS ON IT.
+
+THIS GAME WILL CLOSE BEFORE INNINGS START.</string>
+
+<string name="innings"><b>INNINGS RUN RATE</b> – PREDICT INNINGS RUN RATE AND BET CHIPS ON IT.
+
+THIS GAME WILL CLOSE IN MID INNINGS.</string>
+
+<string name="highest"><b>HIGHEST OPENING PARTNERSHIP</b> – PREDICT WHICH TEAM SCORES HIGHEST OPENING PARTNERSHIP AND BET CHIPS ON
+
+IT. THIS GAME WILL CLOSE BEFORE MATCH START</string>
+
+<string name="race"><b>RACE TO FIFTY</b> – PREDICT WHICH TEAM SCORES 50 RUNS FIRST AND BET CHIPS ON IT.
+
+THIS GAME WILL CLOSE BEFORE MATCH START.</string>
+
+<string name="cncl">IF MATCH IS ABANDONED OR CANCELLED THE CHIPS WILL BE CREDITED BACK TO PLAYER.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -11,6 +11,16 @@ public class ScoreCardGetSet {
     String balls;
     String strikerate;
 
+    String total;
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+
     public String getStrikerate() {
         return strikerate;
     }

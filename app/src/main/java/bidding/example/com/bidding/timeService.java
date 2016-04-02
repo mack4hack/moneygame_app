@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -43,6 +42,8 @@ public class timeService extends Service
     Timer timer;
     DbAdapter dbAdapter;
     String matchid, matchname, matchformat, matchvenue, matchstart, matchwinner, matchstatus;
+    public static final String TIME_SERVER = "time-a.nist.gov";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -73,17 +74,18 @@ public class timeService extends Service
 //                  txtCurrentTime.setText(myDate);
 
                     Date Date1 = sdf.parse(myDate);
-                    Date Date2 = sdf.parse(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("time", ""));
+//                    Date Date2 = sdf.parse(getSharedPreferences(getString(R.string.prefrence), MODE_PRIVATE).getString("time", ""));
 
-                    if(Date1.before(Date2)) {
 
-                        long diff = Date1.getTime() - Date2.getTime();
+                  /*      NTPUDPClient timeClient = new NTPUDPClient();
+                        InetAddress inetAddress = InetAddress.getByName(TIME_SERVER);
+                        TimeInfo timeInfo = timeClient.getTime(inetAddress);
+                        //long returnTime = timeInfo.getReturnTime();   //local device time
+                        long returnTime = timeInfo.getMessage().getReceiveTimeStamp().getTime();   //server time
 
-                        long hours = diff / 3600000;
-                        long minutes = (diff - hours * 3600000) / 60000;
-                        long seconds = (diff - hours * 3600000 - minutes * 60000) / 1000;
+                        Date time = new Date(returnTime);
+                        Log.d("time", "Time from " + TIME_SERVER + ": " + time);*/
 
-                    }
                     int h1 = Date1.getHours();
                     int m1 = Date1.getMinutes();
                     int s1 = Date1.getSeconds();
@@ -124,23 +126,7 @@ public class timeService extends Service
                     if (s1 < 10) {
                         s1 = Integer.parseInt("0" + s1);
                     }
-                    /*int diff = getSharedPreferences(getString(R.string.prefrence),MODE_PRIVATE).getInt("min", 0);
-                    if(diff>0) {
-                        if(m1 > diff) {
-                            Log.i("Current Time with diff ", "" + h1 + ":" + (m1 - diff) + ":" + s1);
-                        }else
-                        {
-                            Log.i("Current Time with diff ", "" + h1 + ":" + m1 + ":" + s1);
-                        }
-                    }
-                    else
-                    {*/
-                        //Log.i("Current Time", "" + h1 + ":" + m1  + ":" + s1);
-                    SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.prefrence),MODE_PRIVATE).edit();
-                    editor.putInt("currentMinute",m1);
-                    editor.putInt("currentSecond",s1);
-                    editor.commit();
-                    //}
+
 
                     if (getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
                             getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) == 40) {

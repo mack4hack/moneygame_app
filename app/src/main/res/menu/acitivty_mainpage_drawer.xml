@@ -40,6 +40,10 @@
             android:icon="@android:drawable/ic_menu_manage"
             android:title="Score Card" />
         <item
+            android:id="@+id/terms"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Terms &amp; Conditions" />
+        <item
             android:id="@+id/logout"
             android:icon="@android:drawable/ic_menu_manage"
             android:title="Logout" />

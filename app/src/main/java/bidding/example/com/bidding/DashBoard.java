@@ -177,7 +177,7 @@ public class DashBoard extends Fragment implements View.OnClickListener{
                 profileTransaction.commit();
                 break;
             case R.id.termcondition:
-                Home.toolbar.setTitle("Term & Condition");
+                Home.toolbar.setTitle("Terms & Conditions");
                 android.support.v4.app.FragmentManager termManager = getActivity().getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction termTransaction = termManager.beginTransaction();
                 TermAndCondition termfragment = new TermAndCondition();

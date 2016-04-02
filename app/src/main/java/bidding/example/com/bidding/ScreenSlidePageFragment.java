@@ -664,7 +664,7 @@ public class ScreenSlidePageFragment extends Fragment {
                             if(matchid.equals(matchiid)){
 
                                 matchidrecrd.add(matchDetailsGetSet);
-//                                Log.i("matchrcrd",""+matchidrecrd.size());
+                                Log.i("matchrcrd",""+matchidrecrd.size());
 
                             }
                         }

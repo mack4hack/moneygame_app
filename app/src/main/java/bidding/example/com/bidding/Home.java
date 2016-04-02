@@ -55,6 +55,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     double default_amnt, prsnt_amnt, percentage, prcnt;
     ImageView icon;
     TextView username;
+    public static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         cal.set(Calendar.DATE, cur_cal.get(Calendar.DATE));
         cal.set(Calendar.MONTH, cur_cal.get(Calendar.MONTH));
 
+        context=Home.this;
         startService(new Intent(getBaseContext(), timeService.class));
 
 //        Intent intent = new Intent(this, UpdateService.class);

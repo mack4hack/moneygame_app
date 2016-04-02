@@ -1,16 +1,42 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#dedede"
+    android:padding="5dp"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
     tools:context="bidding.example.com.bidding.TermAndCondition">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Term and Conditions Of Game"
+        android:layout_height="wrap_content"
+        android:text="@string/money_play_terms"
         android:textColor="@color/textColor"
+        android:background="#fff"
+        android:textSize="16sp"
         android:gravity="center"/>
 
-</FrameLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/how_play"
+        android:textColor="#fff"
+        android:background="#3b5998"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/play_lottery"
+        android:textColor="@color/textColor"
+        android:background="#fff"
+        android:textSize="16sp"
+        android:gravity="center"/>
+
+</LinearLayout>
