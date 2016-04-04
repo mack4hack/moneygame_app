@@ -10,7 +10,7 @@ import android.widget.TabHost;
 
 public class Container_score_card extends AppCompatActivity {
     TabHost tabHost;
-    String teama, teamb, match_id, match_name, date, venue;
+    String teama, teamb, match_id, match_name, date, venue, runa, runb, win;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +34,15 @@ public class Container_score_card extends AppCompatActivity {
         teamb= this.getIntent().getStringExtra("teamb");
         date= this.getIntent().getStringExtra("date");
         venue=this.getIntent().getStringExtra("venue");
+        runa=this.getIntent().getStringExtra("runa");
+        runb= this.getIntent().getStringExtra("runb");
+        win= this.getIntent().getStringExtra("win");
 
         tab1.setIndicator(teama);
-        tab1.setContent(new Intent(getApplicationContext(), MatchScoreCard.class).putExtra("match_id", match_id).putExtra("match_name", match_name).putExtra("date",date).putExtra("venue",venue));
+        tab1.setContent(new Intent(getApplicationContext(), MatchScoreCard.class).putExtra("match_id", match_id).putExtra("match_name", match_name).putExtra("date",date).putExtra("venue", venue).putExtra("runa",runa).putExtra("runb",runb).putExtra("win",win));
 
         tab2.setIndicator(teamb);;
-        tab2.setContent(new Intent(getApplicationContext(), MatchScoreTeamb.class).putExtra("match_id",match_id).putExtra("match_name", match_name).putExtra("date",date).putExtra("venue",venue));
+        tab2.setContent(new Intent(getApplicationContext(), MatchScoreTeamb.class).putExtra("match_id",match_id).putExtra("match_name", match_name).putExtra("date", date).putExtra("venue",venue).putExtra("runa",runa).putExtra("runb",runb).putExtra("win",win));
 
         tabHost.addTab(tab1);
         tabHost.addTab(tab2);

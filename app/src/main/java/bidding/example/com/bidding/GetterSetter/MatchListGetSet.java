@@ -11,6 +11,34 @@ public class MatchListGetSet {
     String venue;
     String teama;
     String teamb;
+    String runa;
+    String runb;
+    String winner;
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
+
+    public String getRunb() {
+        return runb;
+    }
+
+    public void setRunb(String runb) {
+        this.runb = runb;
+    }
+
+    public String getRuna() {
+        return runa;
+    }
+
+    public void setRuna(String runa) {
+        this.runa = runa;
+    }
+
 
     public String getTeamb() {
         return teamb;

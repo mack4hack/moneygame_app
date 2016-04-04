@@ -29,7 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import bidding.example.com.bidding.Adapter.MatchListAdapter;
+import bidding.example.com.bidding.Adapter.ListMatchAdapter;
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
 import bidding.example.com.bidding.GetterSetter.MatchListGetSet;
 
@@ -39,7 +39,8 @@ public class ScoreCard extends Fragment {
     ConnectionDetector connectionDetector;
     ListView listMatches;
     private List<MatchListGetSet> matchList = new ArrayList<>();
-    private MatchListAdapter matchListAdapter;
+    private ListMatchAdapter matchListAdapter;
+    String win;
 
     public ScoreCard() {
         // Required empty public constructor
@@ -65,7 +66,7 @@ public class ScoreCard extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MatchListGetSet item = matchList.get(position);
-                startActivity(new Intent(getActivity(), Container_score_card.class).putExtra("match_id", item.getId()).putExtra("match_name", item.getName()).putExtra("teama", item.getTeama()).putExtra("teamb",item.getTeamb()).putExtra("date",item.getDate()).putExtra("venue",item.getVenue()));
+                startActivity(new Intent(getActivity(), Container_score_card.class).putExtra("match_id", item.getId()).putExtra("match_name", item.getName()).putExtra("teama", item.getTeama()).putExtra("teamb",item.getTeamb()).putExtra("date",item.getDate()).putExtra("venue",item.getVenue()).putExtra("runa",item.getRuna()).putExtra("runb",item.getRunb()).putExtra("win",item.getWinner()));
 
             }
         });
@@ -100,7 +101,7 @@ public class ScoreCard extends Fragment {
                             Log.d(TAG, innerObject.toString());
                             JSONArray jsonArray = innerObject.getJSONArray("Cricket_Match");
                             if(jsonArray.length()!=0) {
-                                for (int i = 1; i < jsonArray.length(); i++) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject childObject = jsonArray.getJSONObject(i);
                                     MatchListGetSet item = new MatchListGetSet();
                                     Calendar cal = Calendar.getInstance();
@@ -121,19 +122,26 @@ public class ScoreCard extends Fragment {
                                         if (childObject.getString("status").equals("started") || childObject.getString("status").equals("completed")) // && df.parse(split[0]).before(df.parse(time2)
                                         {
                                             item.setId(childObject.getString("id"));
-                                            ;
                                             item.setName(childObject.getString("name"));
                                             item.setDate(split[0]);
                                             item.setVenue(childObject.getString("venue"));
                                             item.setTeama(childObject.getString("team_a"));
                                             item.setTeamb(childObject.getString("team_b"));
+                                            item.setRuna(childObject.getString("runs_str_a"));
+                                            item.setRunb(childObject.getString("runs_str_b"));
+                                            win=childObject.getString("winner_team");
+                                            if(win.equals("a"))
+                                                win=childObject.getString("team_a");
+                                            else
+                                                win=childObject.getString("team_b");
+                                            item.setWinner(win);
                                             matchList.add(item);
 
                                         }
                                     }
 
                                 }
-                                matchListAdapter = new MatchListAdapter(getActivity(), matchList);
+                                matchListAdapter = new ListMatchAdapter(getActivity(), matchList);
                                 listMatches.setAdapter(matchListAdapter);
                             }
 

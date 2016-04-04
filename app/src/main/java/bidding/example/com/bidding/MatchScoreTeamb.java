@@ -31,8 +31,8 @@ import bidding.example.com.bidding.GetterSetter.ScoreCardGetSet;
  */
 public class MatchScoreTeamb  extends AppCompatActivity {
 
-    String match_id, match_name, date, venue;
-    TextView matchnm, tdate, tvenue;
+    String match_id, match_name, date, venue, tot, win;
+    TextView matchnm, tdate, tvenue, total, winner;
     ListView lbatsman, lbowler, lwickets;
     ConnectionDetector connectionDetector;
     ScoreCardAdapter adapter;
@@ -49,6 +49,8 @@ public class MatchScoreTeamb  extends AppCompatActivity {
         match_name=this.getIntent().getStringExtra("match_name");
         date= this.getIntent().getStringExtra("date");
         venue=this.getIntent().getStringExtra("venue");
+        tot=this.getIntent().getStringExtra("runb");
+        win=this.getIntent().getStringExtra("win");
 
         matchnm = (TextView) findViewById(R.id.textteam);
         matchnm.setText(match_name);
@@ -56,6 +58,10 @@ public class MatchScoreTeamb  extends AppCompatActivity {
         tdate.setText(date);
         tvenue = (TextView) findViewById(R.id.textvenue);
         tvenue.setText(venue);
+        total = (TextView) findViewById(R.id.textrun);
+        total.setText(tot);
+        winner = (TextView) findViewById(R.id.textwin);
+        winner.setText("Winner : "+win);
 
         lbatsman = (ListView) findViewById(R.id.listbatsman);
 //        lbowler = (ListView) findViewById(R.id.listbowler);
@@ -63,6 +69,11 @@ public class MatchScoreTeamb  extends AppCompatActivity {
 
         getScoreCard();
 
+    }
+
+    public void onBackPressed(){
+        //Your code here
+        super.onBackPressed();
     }
 
     private void getScoreCard()
@@ -90,7 +101,7 @@ public class MatchScoreTeamb  extends AppCompatActivity {
                         if(object.getString("status").equals("true"))
                         {
                             JSONObject jsonObject = object.getJSONObject("data");
-                            JSONArray jsonArray = jsonObject.getJSONArray("Live_Score_Team1");
+                            JSONArray jsonArray = jsonObject.getJSONArray("Live_Score_Team2");
                             if(jsonArray.length()!=0){
                                 for(int i=0; i<jsonArray.length(); i++){
                                     JSONObject childObject = jsonArray.getJSONObject(i);

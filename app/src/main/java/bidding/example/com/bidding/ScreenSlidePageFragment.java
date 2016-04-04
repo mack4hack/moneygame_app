@@ -94,6 +94,8 @@ public class ScreenSlidePageFragment extends Fragment {
     List<MatchDetailsGetSet> matchmake100brcrd;
     List<MatchDetailsGetSet> matchinnrunratearcrd;
     List<MatchDetailsGetSet> matchinnrunratebrcrd;
+    List<MatchDetailsGetSet> matchinnrunarcrd;
+    List<MatchDetailsGetSet> matchinnrunbrcrd;
 
     /**
      * The fragment's page number, which is set to the argument value for {@link #ARG_PAGE}.
@@ -348,6 +350,18 @@ public class ScreenSlidePageFragment extends Fragment {
                             listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunratebrcrd);
                             listDetail.setAdapter(listDetailsAdapter);
                         }
+                        else if (position == 20) {
+                            heading.setText("Innings Runs " + ta);
+//                        live.setVisibility(View.GONE);
+                            listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunarcrd);
+                            listDetail.setAdapter(listDetailsAdapter);
+                        }
+                        else if (position == 21) {
+                            heading.setText("Innings Runs " + tb);
+//                        live.setVisibility(View.GONE);
+                            listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunbrcrd);
+                            listDetail.setAdapter(listDetailsAdapter);
+                        }
                     }
                     else{
                         if (position == 0) {
@@ -452,6 +466,18 @@ public class ScreenSlidePageFragment extends Fragment {
                             listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunratebrcrd);
                             listDetail.setAdapter(listDetailsAdapter);
                         }
+                        else if (position == 20) {
+                            heading.setText("Innings Runs " + ta);
+//                        live.setVisibility(View.GONE);
+                            listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunarcrd);
+                            listDetail.setAdapter(listDetailsAdapter);
+                        }
+                        else if (position == 21) {
+                            heading.setText("Innings Runs " + tb);
+//                        live.setVisibility(View.GONE);
+                            listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunbrcrd);
+                            listDetail.setAdapter(listDetailsAdapter);
+                        }
                     }
                     popup.setVisibility(View.GONE);
 //                   popup.startAnimation(animHide);
@@ -528,6 +554,12 @@ public class ScreenSlidePageFragment extends Fragment {
                             item = matchinnrunratearcrd.get(position);
                         } else if (heading.getText().toString().equals("Innings Run Rate " + tb)) {
                             item = matchinnrunratebrcrd.get(position);
+                        }
+                        else if (heading.getText().toString().equals("Innings Runs " + ta)) {
+                            item = matchinnrunarcrd.get(position);
+                        }
+                        else if (heading.getText().toString().equals("Innings Runs " + tb)) {
+                            item = matchinnrunbrcrd.get(position);
                         } else {
                             item = matchlivercrd.get(position);
                         }
@@ -599,6 +631,8 @@ public class ScreenSlidePageFragment extends Fragment {
                 matchmake100brcrd = new ArrayList<>();
                 matchinnrunratearcrd = new ArrayList<>();
                 matchinnrunratebrcrd = new ArrayList<>();
+                matchinnrunarcrd = new ArrayList<>();
+                matchinnrunbrcrd = new ArrayList<>();
 
                 try {
                     JSONObject object = new JSONObject(response);
@@ -786,7 +820,14 @@ public class ScreenSlidePageFragment extends Fragment {
                                 matchinnrunratebrcrd.add(mids);
 
                             }
+                            if(mids.getMid().equals("23")){
+                                matchinnrunarcrd.add(mids);
 
+                            }
+                            if(mids.getMid().equals("24")){
+                                matchinnrunbrcrd.add(mids);
+
+                            }
 
                         }
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchlivercrd);
@@ -1079,7 +1120,14 @@ public class ScreenSlidePageFragment extends Fragment {
                                 matchinnrunratebrcrd.add(mids);
 
                             }
+                            if(mids.getMid().equals("23")){
+                                matchinnrunarcrd.add(mids);
 
+                            }
+                            if(mids.getMid().equals("24")){
+                                matchinnrunbrcrd.add(mids);
+
+                            }
 
                         }
                         if(frmt.equals("t20")) {
@@ -1186,6 +1234,18 @@ public class ScreenSlidePageFragment extends Fragment {
                                 listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunratebrcrd);
                                 listDetail.setAdapter(listDetailsAdapter);
                             }
+                            else if (pos == 20) {
+                                heading.setText("Innings Runs " + ta);
+//                        live.setVisibility(View.GONE);
+                                listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunarcrd);
+                                listDetail.setAdapter(listDetailsAdapter);
+                            }
+                            else if (pos == 21) {
+                                heading.setText("Innings Runs " + tb);
+//                        live.setVisibility(View.GONE);
+                                listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunbrcrd);
+                                listDetail.setAdapter(listDetailsAdapter);
+                            }
                         }
                         else{
                             if (pos == 0) {
@@ -1289,6 +1349,18 @@ public class ScreenSlidePageFragment extends Fragment {
                                 heading.setText("Innings Run Rate " + tb);
 //                        live.setVisibility(View.GONE);
                                 listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunratebrcrd);
+                                listDetail.setAdapter(listDetailsAdapter);
+                            }
+                            else if (pos == 20) {
+                                heading.setText("Innings Runs " + ta);
+//                        live.setVisibility(View.GONE);
+                                listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunarcrd);
+                                listDetail.setAdapter(listDetailsAdapter);
+                            }
+                            else if (pos == 21) {
+                                heading.setText("Innings Runs " + tb);
+//                        live.setVisibility(View.GONE);
+                                listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchinnrunbrcrd);
                                 listDetail.setAdapter(listDetailsAdapter);
                             }
                         }

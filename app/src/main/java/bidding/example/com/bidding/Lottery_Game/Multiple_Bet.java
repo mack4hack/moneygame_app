@@ -39,6 +39,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import bidding.example.com.bidding.AppControler;
 import bidding.example.com.bidding.AppDB.DbAdapter;
@@ -84,6 +85,10 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
     public SharedPreferences preferences;
     CounterClass counterClass;
     HorizontalScrollView scroll1, scroll2, scroll3;
+
+    private static final String FORMAT = "%02d:%02d";
+    long millis=900000, sec;
+    public static int flg=0;
 
     private ProgressDialog pDialog;
     public Multiple_Bet() {
@@ -220,9 +225,17 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
             e.printStackTrace();
         }*/
 
+        flg=0;
+        new CountDownTimer(900000, 1000) { // adjust the milli seconds here
 
-        counterClass = new CounterClass(90000,1000);
-        counterClass.start();
+            public void onTick(long millisUntilFinished) {
+
+
+            }
+
+            public void onFinish() {
+            }
+        }.start();
        /* try
         {
             Thread myThread = null;
@@ -1281,13 +1294,45 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                             String time=innerObject.getString("current");
                             String split[]=time.split(" ");
                             String split1[]=split[1].split(" ");
-                            currenttime = split1[0];
+                            String splithrs[]=split1[0].split(":");
+                            Log.i("min",""+splithrs[1]);
 
-                            SharedPreferences.Editor editor = preferences.edit();
-                            editor.putString("time",currenttime);
-                            editor.commit();
-                            mCurrentSession.setText("Current Draw: "+innerObject.getString("end"));
+
+                            mCurrentSession.setText("Current Draw: " + innerObject.getString("end"));
                             mCurrentResult.setText(innerObject.getString("lucky_number"));
+
+                            int m1=Integer.parseInt(splithrs[1]);
+                            int s1=Integer.parseInt(splithrs[2]);
+                            if ( m1>= 45) {
+                                m1 = 59 - m1;
+                            } else if (m1 >= 30) {
+                                m1 = 44 - m1;
+                            } else if (m1 >= 15) {
+                                m1 = 29 - m1;
+                            } else if (m1 < 15) {
+                                m1 = 14 - m1;
+                            }
+
+                            if (s1 == 60) {
+                                s1 = 00;
+                            } else if (s1 == 0) {
+                                s1 = 60;
+                            } else if (s1 > 0 && s1 < 60) {
+                                s1 = 60 - s1;
+                            }
+
+                            currenttime = String.valueOf(m1)+":"+splithrs[2];
+                            Log.i("current time",""+currenttime);
+
+                            long timelong=((m1*60)+s1)*1000;
+                            if(flg!=0){
+                                counterClass.cancel();
+                                flg=0;
+                            }
+                            sec=timelong;
+                            counterClass = new CounterClass(sec,1000);
+                            counterClass.start();
+                            flg=1;
                         }
                     }
                     catch (Exception e)
@@ -1434,16 +1479,23 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
         public void onTick(long millisUntilFinished) {
 
             try {
-                mTimer.setText("" + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) + ":" + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0));
 
-                if(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 0 &&
-                getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) <= 10 ){
-                 /*   Animation anim = new AlphaAnimation(0.0f, 1.0f);
-                    anim.setDuration(100); //You can manage the time of the blink with this parameter
-                    anim.setStartOffset(20);
-                    anim.setRepeatMode(Animation.REVERSE);
-                    anim.setRepeatCount(Animation.INFINITE);
-                    mCurrentResult.startAnimation(anim);*/
+                mTimer.setText(""+String.format(FORMAT,
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                                TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                                TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished))));
+
+                int min=(int)TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - (int)TimeUnit.HOURS.toMinutes(
+                        TimeUnit.MILLISECONDS.toHours(millisUntilFinished));
+                int sec=(int)TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - (int)TimeUnit.MINUTES.toSeconds(
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished));
+                SharedPreferences.Editor editor = getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).edit();
+                editor.putInt("currentMinute", min);
+                editor.putInt("currentSecond",sec);
+                editor.commit();
+//                mTimer.setText("" + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) + ":" + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0));
+                if(min == 0 && sec <= 10 ){
                     countDown(mCurrentResult, 10);
                 }
                /* if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
@@ -1451,9 +1503,21 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                 getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) <= 60)) {
                     countDown(mCurrentResult, 14);
                 }*/
-                if (getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
-                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) <= 50 &&
-                        getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) >= 40) {
+
+                if(min == 00 &&
+                        sec == 01 ){
+                    if(flg!=0){
+                        flg=0;
+                        counterClass.cancel();
+
+                    }
+                    sec=900000;
+                    counterClass = new CounterClass(sec,1000);
+                    counterClass.start();
+                    flg=1;
+                }
+
+                if (min == 14 && sec== 50 && sec >= 40) {
                     CurrentResult();
                 }
                 singleFirstLuckyNo();
@@ -1781,6 +1845,12 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
             }
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        CurrentResult();
     }
 }
 

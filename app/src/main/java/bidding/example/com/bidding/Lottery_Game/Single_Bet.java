@@ -105,6 +105,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
         pDialog = new ProgressDialog(getActivity());
         playerId = getActivity().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).getString("player_id", "");
 
+        flg=0;
         new CountDownTimer(900000, 1000) { // adjust the milli seconds here
 
             public void onTick(long millisUntilFinished) {
@@ -1493,5 +1494,11 @@ public class Single_Bet extends Fragment implements View.OnClickListener
             }
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        CurrentResult();
     }
 }

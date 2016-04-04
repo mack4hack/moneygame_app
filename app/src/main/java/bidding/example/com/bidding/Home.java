@@ -75,7 +75,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         icon = (ImageView) findViewById(R.id.imageView);
         username = (TextView) findViewById(R.id.textuser);
-//        username.setText(getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("username", ""));
+        username.setText(getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("username", ""));
 
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

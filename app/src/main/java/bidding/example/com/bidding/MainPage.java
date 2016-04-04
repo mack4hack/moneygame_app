@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -45,6 +46,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
     private boolean exit=false;
     String presnt_amount, result;
     double default_amnt, prsnt_amnt, percentage, prcnt;
+    TextView username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,9 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        username = (TextView) findViewById(R.id.textuser);
+        username.setText(getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("username", ""));
 
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
