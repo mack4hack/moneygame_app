@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import bidding.example.com.bidding.APICALL.ApiCall;
 
@@ -81,7 +93,7 @@ public class Profile extends Fragment {
 
                dialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
                    @Override
-                   public void onClick(DialogInterface dialogInterface, int i) {
+                   public void onClick(final DialogInterface dialogInterface, int i) {
                        if(TextUtils.isEmpty(mOldPassword.getText().toString().trim()))
                        {
                            Toast.makeText(getActivity(),"please enter old password",Toast.LENGTH_SHORT).show();
@@ -106,7 +118,73 @@ public class Profile extends Fragment {
                        {
                            //Update password in prefrences
                            //Toast.makeText(getActivity(),"Password Changed Local",Toast.LENGTH_SHORT).show();
-                           dialogInterface.cancel();
+                           String tag_json_obj = "json_obj_req";
+                           final String TAG = "response";
+                           final String url = getString(R.string.password_chng);//+ URLEncoder.encode("/"+postString);
+
+                           final ProgressDialog pDialog = new ProgressDialog(getActivity());
+                           pDialog.setMessage("Loading...");
+                           pDialog.show();
+
+                           StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
+                                   url, new Response.Listener<String>() {
+
+                               @Override
+                               public void onResponse(String response) {
+                                   Log.d(TAG, response.toString());
+                                   pDialog.hide();
+                                   try {
+                                       JSONObject object = new JSONObject(response);
+                                       if (object.getString("status").equals("true")) {
+                                           dialogInterface.cancel();
+                                           Toast.makeText(getActivity(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                                       }
+                                       else {
+                                           Toast.makeText(getActivity(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                                       }
+                                   } catch (Exception e) {
+                                       Toast.makeText(getActivity(), "Something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                                       e.printStackTrace();
+                                   }
+                               }
+                           }, new Response.ErrorListener() {
+
+                               @Override
+                               public void onErrorResponse(VolleyError error) {
+                                   Toast.makeText(getActivity(), "Something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                                   error.printStackTrace();
+                                   VolleyLog.d(TAG, "Error: " + error.getMessage());
+                                   pDialog.hide();
+                               }
+                           }) {
+                               @Override
+                               protected Map<String, String> getParams() throws AuthFailureError {
+
+                                   HashMap<String, String> map = new HashMap<>();
+
+                                   map.put("player_id", getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", ""));
+                                   map.put("new_password", mConfPassword.getText().toString().trim());
+
+                                   for (String key : map.keySet()) {
+                                       Log.i("values", "key = " + key + " val = " + map.get(key));
+                                   }
+                                   return map;
+                               }
+
+                               @Override
+                               public Map<String, String> getHeaders() throws AuthFailureError {
+                                   Map<String, String> params = new HashMap<String, String>();
+                                   params.put("Content-Type", "application/x-www-form-urlencoded");
+                                   return params;
+                               }
+                           };
+
+                           jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                                   DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                                   DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+// Adding request to request queue
+                           AppControler.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+
                        }
 
                    }

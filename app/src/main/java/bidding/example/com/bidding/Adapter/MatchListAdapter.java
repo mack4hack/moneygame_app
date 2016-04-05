@@ -74,7 +74,7 @@ public class MatchListAdapter extends BaseAdapter
             cal1.add(cal1.HOUR, 48);
             String time2= df.format(new Date(cal1.getTimeInMillis()));
             if (dte.before(df.parse(time2))) {
-                viewHolder.enable.setImageResource(R.drawable.darkgreen);
+                viewHolder.enable.setImageResource(R.drawable.green_dot);
             }
             else{
 
