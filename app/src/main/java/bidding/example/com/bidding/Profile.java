@@ -64,6 +64,7 @@ public class Profile extends Fragment {
 
         pDialog = new ProgressDialog(getActivity());
         mPassword = (EditText) view.findViewById(R.id.editPassword);
+        mPassword.setEnabled(false);
         mName = (TextView) view.findViewById(R.id.txtName);
         mUserCode = (TextView) view.findViewById(R.id.UserCode);
         mContact = (TextView) view.findViewById(R.id.contact);
@@ -163,7 +164,7 @@ public class Profile extends Fragment {
                                    HashMap<String, String> map = new HashMap<>();
 
                                    map.put("player_id", getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", ""));
-                                   map.put("new_password", mConfPassword.getText().toString().trim());
+                                   map.put("password", mConfPassword.getText().toString().trim());
 
                                    for (String key : map.keySet()) {
                                        Log.i("values", "key = " + key + " val = " + map.get(key));

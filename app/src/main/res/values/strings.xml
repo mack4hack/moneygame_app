@@ -181,7 +181,7 @@ THIS GAME WILL CLOSE BEFORE MATCH START.</string>
     <string name="cancelled_bets">http://46.101.6.171/moneygame/api/cricket/getUserCancelledBets?player_id=</string>
 
     <!--Password change-->
-    <string name="password_chng"></string>
+    <string name="password_chng">http://46.101.6.171/moneygame/api/players/changePassword</string>
 
     <string name="title_activity_tansaction_wise_history">Transaction History</string>
     <string name="title_activity_transaction_indetail">Transaction Details</string>
