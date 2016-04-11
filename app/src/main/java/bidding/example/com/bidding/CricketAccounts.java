@@ -94,16 +94,16 @@ public class CricketAccounts extends Fragment {
             String tag_string_req = "string_req";
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             Calendar calendar = Calendar.getInstance();
-            calendar.setFirstDayOfWeek(Calendar.MONDAY);
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+            //calendar.setFirstDayOfWeek(Calendar.SUNDAY);
+            //calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
-            String[] days = new String[7];
-            for (int i = 0; i < 7; i++)
+            String[] days = new String[15];
+            for (int i = 0; i < 15; i++)
             {
                 days[i] = format.format(calendar.getTime());
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DAY_OF_MONTH, -1);
             }
-            String week= days[0]+"%20To%20"+days[6];
+            String week= days[14]+"%20To%20"+days[0];
             try {
 
                 String url = getString(R.string.cricket_account) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week="+week;
@@ -150,7 +150,7 @@ public class CricketAccounts extends Fragment {
                                         ttlbet = ttlbet.replace(",","");
                                         bet+= (int)Math.round(Double.parseDouble(ttlbet));
                                         Log.i("bet",""+bet);
-                                        String ttlwin =item.getString("payout");
+                                        String ttlwin = pay;//item.getString("payout");
                                         ttlwin = ttlwin.replace(",","");
                                         win+= (int)Math.round(Double.parseDouble(ttlwin));
                                         prftlos+= pl;

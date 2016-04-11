@@ -101,7 +101,7 @@ public class CancelledBets extends Fragment {
                                     CancelledGetSet item = new CancelledGetSet();
 
                                             item.setTrans_id(childObject.getString("transaction_id"));
-                                            item.setMatch_name(childObject.getString("name"));
+                                            item.setMatch_name(childObject.getString("s_name"));
                                     String game_nm=childObject.getString("game_name");
                                     game_nm=game_nm.replace("_"," ");
                                             item.setGame(game_nm);

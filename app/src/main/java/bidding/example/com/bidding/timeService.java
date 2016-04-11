@@ -284,7 +284,7 @@ public class timeService extends Service
                         for(int i=0; i<jsonObject.length(); i++){
                             JSONObject object1 = jsonObject.getJSONObject(jsonArray.getString(i));
                             matchid = object1.getString("id");
-                            matchname = object1.getString("name");
+                            matchname = object1.getString("s_name");
                             matchformat = object1.getString("format");
                             matchvenue = object1.getString("venue");
                             String time = object1.getString("start_date");

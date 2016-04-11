@@ -69,7 +69,7 @@ public class CricketHistory extends Fragment {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = df.format(cal.getTime());
-
+        Log.i("Date ::::::",formattedDate );
         try {
             data = getArguments().getString("date");
         }
@@ -91,11 +91,15 @@ public class CricketHistory extends Fragment {
             getDetails(getString(R.string.cricket_daily) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id","") + "&date=" +date);
         }
         else{
+            date = formattedDate;
             String url=getString(R.string.cricket_daily) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate;
             getDetails(getString(R.string.cricket_daily) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate);
             Log.i("url",""+url);
         }
 
+
+        //pun00100001
+        //141414
 
         mTodaysSummary.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

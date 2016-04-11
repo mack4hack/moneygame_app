@@ -53,6 +53,9 @@ public class CricketTransaction extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        String tempDate = getIntent().getExtras().getString("date");
+        Log.i("Date::::::::::::",tempDate.toString());
+
         mList= (ListView) findViewById(R.id.transactionHistory);
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");

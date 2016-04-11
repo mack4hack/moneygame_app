@@ -654,7 +654,7 @@ public class ScreenSlidePageFragment extends Fragment {
                             resltbet = object1.getString("result_bet");
                             gmcls = object1.getString("game_close");
                             prtclr = object1.getString("perticulars");
-                            nm = object1.getString("name");
+                            nm = object1.getString("s_name");
                             unq = object1.getString("unique");
                             frmt = object1.getString("format");
                             ven = object1.getString("venue");
@@ -833,11 +833,11 @@ public class ScreenSlidePageFragment extends Fragment {
                         listDetailsAdapter = new ListDetailsAdapter(getActivity(), matchlivercrd);
                         listDetail.setAdapter(listDetailsAdapter);
                         if(frmt.equals("t20")) {
-                            String[] GAME = {"Match Win Loss", "Toss", "1st Ball " + ta, "1st Ball " + tb, "1st Over Runs " + ta, "1st Over Runs " + tb, "10 Over Session " + ta, "10 Over Session " + tb, "1st Wicket Method " + ta, "1st Wicket Method " + tb, "Highest Opening Partnership", "Race To 50", "Runs At 1st Wicket Fall " + ta, "Runs At 1st Wicket Fall " + tb, "To Make 30 " + ta, "To Make 30 " + tb, "To Make 50 " + ta, "To Make 50 " + tb, "Innings Run Rate " + ta, "Innings Run Rate " + tb};
+                            String[] GAME = {"Match Win Loss", "Toss", "1st Ball " + ta, "1st Ball " + tb, "1st Over Runs " + ta, "1st Over Runs " + tb, "10 Over Session " + ta, "10 Over Session " + tb, "1st Wicket Method " + ta, "1st Wicket Method " + tb, "Highest Opening Partnership", "Race To 50", "Runs At 1st Wicket Fall " + ta, "Runs At 1st Wicket Fall " + tb, "To Make 30 " + ta, "To Make 30 " + tb, "To Make 50 " + ta, "To Make 50 " + tb, "Innings Run Rate " + ta, "Innings Run Rate " + tb, "Innings Runs " + ta, "Innings Runs " + tb};
                             listView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, GAME));
                         }
                         else{
-                            String[] GAME = {"Match Win Loss", "Toss", "1st Ball " + ta, "1st Ball " + tb, "1st Over Runs " + ta, "1st Over Runs " + tb, "10 Over Session " + ta, "10 Over Session " + tb, "1st Wicket Method " + ta, "1st Wicket Method " + tb, "Highest Opening Partnership", "Race To 50", "Runs At 1st Wicket Fall " + ta, "Runs At 1st Wicket Fall " + tb, "To Make 50 " + ta, "To Make 50 " + tb, "To Make 100 " + ta, "To Make 100 " + tb, "Innings Run Rate " + ta, "Innings Run Rate " + tb};
+                            String[] GAME = {"Match Win Loss", "Toss", "1st Ball " + ta, "1st Ball " + tb, "1st Over Runs " + ta, "1st Over Runs " + tb, "10 Over Session " + ta, "10 Over Session " + tb, "1st Wicket Method " + ta, "1st Wicket Method " + tb, "Highest Opening Partnership", "Race To 50", "Runs At 1st Wicket Fall " + ta, "Runs At 1st Wicket Fall " + tb, "To Make 50 " + ta, "To Make 50 " + tb, "To Make 100 " + ta, "To Make 100 " + tb, "Innings Run Rate " + ta, "Innings Run Rate " + tb, "Innings Runs " + ta, "Innings Runs " + tb};
                             listView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, GAME));
                         }
 //                        getActivity().startService(new Intent(getActivity(), OddsService.class));
@@ -954,7 +954,7 @@ public class ScreenSlidePageFragment extends Fragment {
                             resltbet = object1.getString("result_bet");
                             gmcls = object1.getString("game_close");
                             prtclr = object1.getString("perticulars");
-                            nm = object1.getString("name");
+                            nm = object1.getString("s_name");
                             unq = object1.getString("unique");
                             frmt = object1.getString("format");
                             ven = object1.getString("venue");

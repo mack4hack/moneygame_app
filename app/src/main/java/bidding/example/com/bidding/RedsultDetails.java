@@ -47,7 +47,7 @@ public class RedsultDetails extends AppCompatActivity {
         connectionDetector=new ConnectionDetector(getApplicationContext());
 
         id= this.getIntent().getStringExtra("id");
-        match_name= this.getIntent().getStringExtra("name");
+        match_name= this.getIntent().getStringExtra("s_name");
         date= this.getIntent().getStringExtra("date");
 
         tMatch=(TextView) findViewById(R.id.txtmatch);

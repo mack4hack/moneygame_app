@@ -241,7 +241,7 @@ public class UpcomingMatches extends Fragment{
                                     if(df.parse(split[0]).after(df.parse(time1))) // && df.parse(split[0]).before(df.parse(time2)
                                     {
                                         item.setId(childObject.getString("id"));;
-                                        item.setName(childObject.getString("name"));
+                                        item.setName(childObject.getString("s_name"));
                                         item.setDate(split[0]);
                                         item.setVenue(childObject.getString("venue"));
                                         matchList.add(item);

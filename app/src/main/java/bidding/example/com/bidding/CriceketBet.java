@@ -181,7 +181,7 @@ public class CriceketBet extends Fragment {
                                         if(!childObject.getString("status").equals("completed")) {
                                             item.setId(childObject.getString("id"));
                                             ;
-                                            item.setName(childObject.getString("name"));
+                                            item.setName(childObject.getString("s_name"));
                                             item.setDate(split[0]);
                                             item.setVenue(childObject.getString("venue"));
                                             matchList.add(item);

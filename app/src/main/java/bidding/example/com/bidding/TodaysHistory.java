@@ -94,16 +94,16 @@ public class TodaysHistory extends Fragment {
             String tag_string_req = "string_req";
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             Calendar calendar = Calendar.getInstance();
-            calendar.setFirstDayOfWeek(Calendar.MONDAY);
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+            //calendar.setFirstDayOfWeek(Calendar.MONDAY);
+            //calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
-            String[] days = new String[7];
-            for (int i = 0; i < 7; i++)
+            String[] days = new String[15];
+            for (int i = 0; i < 15; i++)
             {
                 days[i] = format.format(calendar.getTime());
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                calendar.add(Calendar.DAY_OF_MONTH, -1);
             }
-            String week= days[0]+"%20To%20"+days[6];
+            String week= days[14]+"%20To%20"+days[0];
             try {
 
              String url = getString(R.string.get_history_by_week) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week="+week;

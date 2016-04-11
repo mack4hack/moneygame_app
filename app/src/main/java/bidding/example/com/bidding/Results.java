@@ -74,7 +74,7 @@ public class Results extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MatchListGetSet item = matchList.get(position);
-                startActivity(new Intent(getActivity(), RedsultDetails.class).putExtra("id", item.getId()).putExtra("name", item.getName()).putExtra("date",item.getDate()));
+                startActivity(new Intent(getActivity(), RedsultDetails.class).putExtra("id", item.getId()).putExtra("s_name", item.getName()).putExtra("date",item.getDate()));
 
             }
         });
@@ -135,7 +135,7 @@ public class Results extends Fragment {
                                         {
                                             item.setId(childObject.getString("id"));
                                             ;
-                                            item.setName(childObject.getString("name"));
+                                            item.setName(childObject.getString("s_name"));
                                             item.setDate(split[0]);
                                             item.setVenue(childObject.getString("venue"));
                                             matchList.add(item);

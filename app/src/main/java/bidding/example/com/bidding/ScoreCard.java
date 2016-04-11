@@ -122,7 +122,7 @@ public class ScoreCard extends Fragment {
                                         if (childObject.getString("status").equals("started") || childObject.getString("status").equals("completed")) // && df.parse(split[0]).before(df.parse(time2)
                                         {
                                             item.setId(childObject.getString("id"));
-                                            item.setName(childObject.getString("name"));
+                                            item.setName(childObject.getString("s_name"));
                                             item.setDate(split[0]);
                                             item.setVenue(childObject.getString("venue"));
                                             item.setTeama(childObject.getString("team_a"));
