@@ -28,6 +28,7 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import bidding.example.com.bidding.Adapter.TimeSlotAdapter;
@@ -263,7 +264,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
                 public void onResponse(String response) {
                     pDialog.hide();
                     String payout="",digit,bAmt,wamt,whichBet="",transactionNo = null;
-                    String dTime = "", tTime = "", result ="", drawTime= "";
+                    String dTime = "", tTime = "", result ="", drawTime= "", currentTime="";
                     transList = new ArrayList<>();
                     try
                     {
@@ -276,36 +277,18 @@ public class TansactionWiseHistory extends AppCompatActivity {
                             JSONArray jsonArray = jsonObject1.getJSONArray(transaction_id);
                             if (jsonArray.length() != 0) {
                                 for (int i = 0; i < jsonArray.length(); i++) {
-                                    /*{
-                                        "sr_no": 1,
-                                            "bet_amount": "40",
-                                            "payout": null,
-                                            "transaction_id": "L332",
-                                            "total_bet": 40,
-                                            "total_wins": 0,
-                                            "first_digit": "2",
-                                            "bet_amount_first": "40",
-                                            "win_amount_first": "",
-                                            "second_digit": "",
-                                            "bet_amount_second": "",
-                                            "win_amount_second": ""
-                                    }*/
 
                                     JSONObject trnsaction = jsonArray.getJSONObject(i);
 
                                     TransactionDetailsGetSet item = new TransactionDetailsGetSet();
                                     if (trnsaction.getInt("first_digit")==999 && trnsaction.getInt("second_digit")==999) {
-                                        /*digit = trnsaction.getString("second_digit");
-                                        bAmt =  trnsaction.getString("bet_amount_second");
-                                        wamt =  trnsaction.getString("win_amount_second");*/
+
                                         item.setDigit(trnsaction.getString("jodi_digit"));
                                         item.setChip(trnsaction.getString("chips"));
                                         whichBet = "Jodi Digit";
 
                                     } else if(trnsaction.getInt("first_digit")==999 && trnsaction.getInt("jodi_digit")==999){
-                                        /*digit = trnsaction.getString("first_digit");
-                                        bAmt =  trnsaction.getString("bet_amount_first");
-                                        wamt =  trnsaction.getString("win_amount_first");*/
+
                                         item.setDigit(trnsaction.getString("second_digit"));
                                         item.setChip(trnsaction.getString("chips"));
                                         whichBet = "Single Digit Second";
@@ -319,24 +302,34 @@ public class TansactionWiseHistory extends AppCompatActivity {
                                     transList.add(item);
 
 //                                    transactionNo = trnsaction.getString("transaction_id");
+
+                                    dTime = trnsaction.getString("drawtime");
+                                    currentTime = trnsaction.getString("time");
+                                   String currentSplit[]=currentTime.split(" ");
+                                    if(!dTime.equals("")){
+                                        Calendar cal = Calendar.getInstance();
+                                        SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
+                                        SimpleDateFormat df1 = new SimpleDateFormat("hh:mm:ss aa");
+                                        String t=df.format(cal.getTime());
+                                        Date d1=df.parse(dTime);
+                                        Date d2=df1.parse(currentSplit[1]+" "+currentSplit[2]);
+
+                                        if(d1.compareTo(d2)<0){
+                                            Log.i("if time",""+d1.compareTo(d2));
+                                            drawTime = dTime;
+                                            result = trnsaction.getString("lucky_number");
+                                        }
+                                        else {
+                                            Log.i("else time",""+dTime);
+                                        }
+
+                                    }
                                     if (trnsaction.getString("total_wins").equals("0.00")) {
                                         flag=0;
                                         payout = trnsaction.getString("total_bet");
                                     } else {
                                         flag=1;
                                         payout = trnsaction.getString("total_wins");
-                                    }
-                                    dTime = trnsaction.getString("drawtime");
-                                    if(dTime!=null){
-                                        Calendar cal = Calendar.getInstance();
-                                        SimpleDateFormat df = new SimpleDateFormat("HH:mm aa");
-                                        String t=df.format(cal.getTime());
-                                        Log.i("time",""+dTime);
-
-                                            drawTime=dTime;
-                                            result = trnsaction.getString("lucky_number");
-
-
                                     }
                                     tTime = trnsaction.getString("trans_time");
 

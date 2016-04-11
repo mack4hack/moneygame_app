@@ -66,7 +66,7 @@ public class CricketAccounts extends Fragment {
         winnings = (TextView) view.findViewById(R.id.txtwinnings);
         profit_loss = (TextView) view.findViewById(R.id.txtprftlos);
 
-        getHistory();
+        getHistoryLastWeek();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -94,16 +94,20 @@ public class CricketAccounts extends Fragment {
             String tag_string_req = "string_req";
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             Calendar calendar = Calendar.getInstance();
-            //calendar.setFirstDayOfWeek(Calendar.SUNDAY);
+            calendar.setFirstDayOfWeek(Calendar.SUNDAY);
             //calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
-            String[] days = new String[15];
-            for (int i = 0; i < 15; i++)
+            int sunday=calendar.get(Calendar.DAY_OF_WEEK);
+            String[] days = new String[7];
+            if (sunday==Calendar.SUNDAY){
+                calendar.add(Calendar.DAY_OF_MONTH,-6);
+            }
+            for (int i = 0; i < 7; i++)
             {
                 days[i] = format.format(calendar.getTime());
-                calendar.add(Calendar.DAY_OF_MONTH, -1);
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
             }
-            String week= days[14]+"%20To%20"+days[0];
+            String week= days[0]+"%20To%20"+days[6];
             try {
 
                 String url = getString(R.string.cricket_account) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week="+week;
@@ -155,86 +159,134 @@ public class CricketAccounts extends Fragment {
                                         win+= (int)Math.round(Double.parseDouble(ttlwin));
                                         prftlos+= pl;
 
-                                    /*String first = item.getString("first_digit");
-                                    String second = item.getString("second_digit");
-                                    String third = item.getString("jodi_digit");
-                                    //Toast.makeText(getActivity(),"1 = "+first+" 2 = "+second+" 3 = "+third,Toast.LENGTH_SHORT).show();
-                                    if(!first.equals("null"))
-                                    {
-                                        if(item.getString("game_type").equals("1")) {
-                                            rowItem.setNumber(first+"(I)");
-                                        }
-                                        else if(item.getString("game_type").equals("2"))
-                                        {
-                                            rowItem.setNumber(first+"(II)");
-                                        }
-                                        else if(item.getString("game_type").equals("3"))
-                                        {
-                                            rowItem.setNumber(first+"(III)");
-                                        }
-                                    }
-                                    else if(!second.equals("null")) {
-
-                                        if(item.getString("game_type").equals("1")) {
-                                            rowItem.setNumber(second+"(I)");
-                                        }
-                                        else if(item.getString("game_type").equals("2"))
-                                        {
-                                            rowItem.setNumber(second+"(II)");
-                                        }
-                                        else if(item.getString("game_type").equals("3"))
-                                        {
-                                            rowItem.setNumber(second+"(III)");
-                                        }
+                                        historyList.add(rowItem);
 
                                     }
-                                    else if(!third.equals("null"))
+                                    HistoryAdapter adapter = new HistoryAdapter(getActivity(),historyList);
+                                    listView.setAdapter(adapter);
+                                    total_bets.setText(""+bet);
+                                    winnings.setText(""+win);
+                                    profit_loss.setText(""+prftlos);
+                                }
+                                else
+                                {
+                                    Toast.makeText(getActivity(),"something went wrong, please try again!!!",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                        } catch (Exception e) {
+                            pDialog.hide();
+                            Toast.makeText(getActivity(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        pDialog.hide();
+                        if (error instanceof TimeoutError) {
+                            Toast.makeText(getActivity(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getActivity(), "History for Current Week Not Present!!!", Toast.LENGTH_SHORT).show();
+                        }
+                        error.printStackTrace();
+                        VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+                    }
+                });
+                strReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+// Adding request to request queue
+                AppControler.getInstance().addToRequestQueue(strReq, tag_string_req);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            Toast.makeText(getActivity(),"please check internet connetion!!!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void getHistoryLastWeek()
+    {
+        ConnectionDetector connectionDetector = new ConnectionDetector(getActivity());
+        if(connectionDetector.isConnectingToInternet()) {
+            String tag_string_req = "string_req";
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            Calendar calendar = Calendar.getInstance();
+            calendar.setFirstDayOfWeek(Calendar.MONDAY);
+            //calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+            int sunday=calendar.get(Calendar.DAY_OF_WEEK);
+            String[] days = new String[7];
+            if (sunday==Calendar.SUNDAY){
+                calendar.add(Calendar.WEEK_OF_MONTH,-2);
+                calendar.add(Calendar.DAY_OF_MONTH,1);
+            }
+            else{
+                calendar.add(Calendar.WEEK_OF_MONTH, -1);
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                days[i] = format.format(calendar.getTime());
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
+            String week= days[0]+"%20To%20"+days[6];
+            try {
+
+                String url = getString(R.string.cricket_account) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week="+week;
+                Log.i("url", "" + url);
+                final ProgressDialog pDialog = new ProgressDialog(getActivity());
+                pDialog.setMessage("Loading...");
+                pDialog.show();
+                final String TAG = "login";
+                StringRequest strReq = new StringRequest(Request.Method.GET,
+                        url, new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+                        pDialog.hide();
+                        try {
+                            Log.i("response", "" + response);
+                            if(response != null)
+                            {
+                                JSONObject jsonObject = new JSONObject(response);
+                                if(jsonObject.getString("status").equals("true"))
+                                {
+                                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+                                    for(int i=0; i < jsonArray.length(); i++)
                                     {
-                                        if(item.getString("game_type").equals("1")) {
-                                            rowItem.setNumber(third+"(I)");
+                                        JSONObject item = jsonArray.getJSONObject(i);
+                                        int pl=0;
+                                        String pay;
+                                        HistoryGetSet rowItem = new HistoryGetSet();
+                                        rowItem.setAmount(item.getString("bet_amount"));
+                                        rowItem.setDate(item.getString("date"));
+                                        rowItem.setTotal_bet(item.getString("total_bet"));
+                                        rowItem.setTotal_wins(item.getString("total_wins"));
+                                        rowItem.setPayout(item.getString("payout"));
+                                        if(item.getString("payout").equals("null")) {
+                                            pay="0";
                                         }
-                                        else if(item.getString("game_type").equals("2"))
-                                        {
-                                            rowItem.setNumber(third+"(II)");
+                                        else{
+                                            pay=item.getString("payout");
                                         }
-                                        else if(item.getString("game_type").equals("3"))
-                                        {
-                                            rowItem.setNumber(third+"(III)");
-                                        }
+                                        pl = (int)Math.round(Double.parseDouble(pay)) - (int)Math.round(Double.parseDouble(item.getString("bet_amount")));
+                                        rowItem.setProftlos(String.valueOf(pl));
 
-                                    }*/
-
-                                  /*  String[] dateTime = item.getString("timeslot").split(" ");
-                                    String[] time = dateTime[1].split(":");
-                                    String[] timeSlot = time[1].split(":");
-                                    rowItem.setTime(time[0]+":"+timeSlot[0]);
-
-
-                                    rowItem.setResult(item.getString("result"));
-
-                                    if(item.getString("result").equals("1")) {
-                                    if(item.getString("game_type").equals("1"))
-                                    {
-                                        double amount = Double.parseDouble(item.getString("bet_amount")) * 8.5;
-
-                                        rowItem.setCharge(""+amount);
-                                    }
-                                    else if(item.getString("game_type").equals("2"))
-                                    {
-                                        double amount = Double.parseDouble(item.getString("bet_amount")) * 8.5;
-
-                                        rowItem.setCharge(""+amount);
-                                    }
-                                    else if(item.getString("game_type").equals("3"))
-                                    {
-                                        double amount = Double.parseDouble(item.getString("bet_amount")) * 85;
-
-                                            rowItem.setCharge("" + amount);
-                                        }
-                                    }
-                                    else{
-                                        rowItem.setCharge("-");
-                                    }*/
+                                        String ttlbet =item.getString("bet_amount");
+                                        ttlbet = ttlbet.replace(",","");
+                                        bet+= (int)Math.round(Double.parseDouble(ttlbet));
+                                        Log.i("bet",""+bet);
+                                        String ttlwin = pay;//item.getString("payout");
+                                        ttlwin = ttlwin.replace(",","");
+                                        win+= (int)Math.round(Double.parseDouble(ttlwin));
+                                        prftlos+= pl;
 
                                         historyList.add(rowItem);
 
@@ -265,7 +317,7 @@ public class CricketAccounts extends Fragment {
                         if (error instanceof TimeoutError) {
                             Toast.makeText(getActivity(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getActivity(), "History Not Present!!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "History for Last Week Not Present!!!", Toast.LENGTH_SHORT).show();
                         }
                         error.printStackTrace();
                         VolleyLog.d(TAG, "Error: " + error.getMessage());
@@ -282,6 +334,7 @@ public class CricketAccounts extends Fragment {
             catch (Exception e){
                 e.printStackTrace();
             }
+            getHistory();
         }
         else
         {
