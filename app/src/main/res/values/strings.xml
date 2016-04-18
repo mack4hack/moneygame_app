@@ -71,7 +71,7 @@ THIS GAME WILL CLOSE BEFORE MATCH START.</string>
 
     THIS GAME WILL CLOSE IN MID INNINGS.</string>
 
-<string name="cncl">IF MATCH IS ABANDONED OR CANCELLED THE CHIPS WILL BE CREDITED BACK TO PLAYER.</string>
+    <string name="cncl">IF MATCH IS ABANDONED OR CANCELLED THE CHIPS WILL BE CREDITED BACK TO PLAYER.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -196,5 +196,6 @@ THIS GAME WILL CLOSE BEFORE MATCH START.</string>
     <string name="title_activity_match_score_card">MatchScoreCard</string>
     <string name="title_activity_container_score_card">Score Card</string>
     <string name="title_activity_redsult_details">Result Details</string>
+    <string name="title_activity_cricket_transaction_details">Transaction List</string>
     <!--http://46.101.6.171/moneygame/-->
 </resources>

@@ -108,6 +108,10 @@
         <activity
             android:name=".RedsultDetails"
             android:label="@string/title_activity_redsult_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CricketTransactionDetails"
+            android:label="@string/title_activity_cricket_transaction_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

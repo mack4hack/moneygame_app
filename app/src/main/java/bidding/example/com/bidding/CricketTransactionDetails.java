@@ -3,7 +3,6 @@ package bidding.example.com.bidding;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,7 +28,6 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import bidding.example.com.bidding.Adapter.TimeSlotAdapter;
@@ -37,7 +35,7 @@ import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
 import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
 import bidding.example.com.bidding.GetterSetter.TransactionDetailsGetSet;
 
-public class CricketTransaction extends AppCompatActivity {
+public class CricketTransactionDetails extends AppCompatActivity {
 
     private ListView mList;
     private List<HistoryGetSet> list = new ArrayList<>();
@@ -45,27 +43,25 @@ public class CricketTransaction extends AppCompatActivity {
     List<TransactionDetailsGetSet> transList;
     String transaction_id, tr_time, reslt, mtch_nm, team1, team2, win, loss;
     private static int flag=0;
-    String formattedDate, matchid;
+    String formattedDate, gamenm, matchid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cricket_transaction);
+        setContentView(R.layout.activity_cricket_transaction_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        matchid = getIntent().getStringExtra("matchid");
-        String tempDate = getIntent().getExtras().getString("date");
-        Log.i("Date::::::::::::",tempDate.toString());
 
         mList= (ListView) findViewById(R.id.transactionHistory);
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        matchid = this.getIntent().getStringExtra("match_id");
+        gamenm = this.getIntent().getStringExtra("game");
         try {
             if (this.getIntent().hasExtra("date")) {
-                String dte = this.getIntent().getStringExtra("date");
-                Date dt=df.parse(dte);
-                formattedDate=df.format(dt);
+
+                formattedDate=this.getIntent().getStringExtra("date");
             } else {
                 formattedDate = df.format(cal.getTime());
             }
@@ -74,17 +70,16 @@ public class CricketTransaction extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Log.i("url",""+getString(R.string.match_wise) +getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date="+formattedDate+"&match_id=" + getIntent().getStringExtra("matchid"));
-        getTransactionDetails(getString(R.string.match_wise) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate + "&match_id=" + getIntent().getStringExtra("matchid"));
+        Log.i("url", "" + getString(R.string.match_wise) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate + "&match_id=" + matchid);
+        getTransactionDetails(getString(R.string.match_wise) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate + "&match_id=" + matchid);
 
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 HistoryGetSet item = list.get(i);
                 transaction_id = item.getTransactionNo();
-//                Log.i("url",""+getString(R.string.cricket_transaction_details)+item.getGame());
-//                getDetails(getString(R.string.cricket_transaction_details) + item.getGame());
-                startActivity(new Intent(getApplicationContext(), CricketTransactionDetails.class).putExtra("game",transaction_id).putExtra("date",formattedDate).putExtra("match_id",matchid));
+                Log.i("url",""+getString(R.string.cricket_transaction_details)+item.getTransactionNo());
+                getDetails(getString(R.string.cricket_transaction_details) + item.getTransactionNo());
             }
         });
     }
@@ -93,7 +88,7 @@ public class CricketTransaction extends AppCompatActivity {
     private void showDetails(List<TransactionDetailsGetSet> List,String mnm,String tno, String time, String res, String whichBet,String payout, String wins, String los)
     {
 // custom dialog
-        final Dialog dialog = new Dialog(CricketTransaction.this);
+        final Dialog dialog = new Dialog(CricketTransactionDetails.this);
         dialog.setContentView(R.layout.cricket_transaction);
         dialog.setTitle("Transaction Details");
 
@@ -102,7 +97,7 @@ public class CricketTransaction extends AppCompatActivity {
         ListView mListView;
 
 //        mDigit = (TextView) dialog.findViewById(R.id.digit);
-              mMtch = (TextView) dialog.findViewById(R.id.mtch_nm);
+        mMtch = (TextView) dialog.findViewById(R.id.mtch_nm);
         mTransNo = (TextView) dialog.findViewById(R.id.trans_id);
         mDrawTime = (TextView) dialog.findViewById(R.id.draw_time);
         mTransTime = (TextView) dialog.findViewById(R.id.trans_time);
@@ -137,9 +132,9 @@ public class CricketTransaction extends AppCompatActivity {
         mTotal.setText(""+chip);
 
         mBetText.setText(whichBet);
-            //double amt = Integer.parseInt(Chip)*8.5;
+        //double amt = Integer.parseInt(Chip)*8.5;
 
-       mWin.setText(wins);
+        mWin.setText(wins);
         mLoss.setText(los);
 
         Button cancel = (Button) dialog.findViewById(R.id.cancel);
@@ -161,7 +156,7 @@ public class CricketTransaction extends AppCompatActivity {
             String tag_string_req = "string_req";
 
             Log.i("url",url);
-            final ProgressDialog pDialog = new ProgressDialog(CricketTransaction.this);
+            final ProgressDialog pDialog = new ProgressDialog(CricketTransactionDetails.this);
             pDialog.setMessage("Loading...");
             pDialog.show();
             final String TAG = "login";
@@ -180,38 +175,40 @@ public class CricketTransaction extends AppCompatActivity {
                             JSONArray jsonArray = object.getJSONArray("data_weekly");
                             if (jsonArray.length() != 0) {
                                 for (int i = 0; i < jsonArray.length(); i++) {
-                                
+
                                     HistoryGetSet item = new HistoryGetSet();
                                     JSONObject trnsaction = jsonArray.getJSONObject(i);
 
-                                    item.setGame(trnsaction.getString("transaction_id"));
-                                    team1=trnsaction.getString("team_a");
-                                    team2=trnsaction.getString("team_b");
-                                    String game=trnsaction.getString("game_name");
-                                    game=game.replace("_"," ");
-                                    if(game.contains("team1")){
-                                        game=game.replace("team1",team1);
-                                    }
-                                    else if(game.contains("team2")) {
-                                        game=game.replace("team2",team2);
+
+                                    team1 = trnsaction.getString("team_a");
+                                    team2 = trnsaction.getString("team_b");
+                                    String game = trnsaction.getString("game_name");
+                                    game = game.replace("_", " ");
+                                    if (game.contains("team1")) {
+                                        game = game.replace("team1", team1);
+                                    } else if (game.contains("team2")) {
+                                        game = game.replace("team2", team2);
                                     }
 
-                                    item.setTransactionNo(game);
-                                    item.setAmount(trnsaction.getString("bet_amount"));
-                                    if (trnsaction.getString("payout").equals("null")) {
-                                        item.setTime("0");
-                                    } else {
-                                        item.setTime(trnsaction.getString("payout"));
-                                    }
+                                    if (game.equals(gamenm)) {
+                                        item.setGame(game);
+                                        item.setTransactionNo(trnsaction.getString("transaction_id"));
 
+                                        item.setAmount(trnsaction.getString("bet_amount"));
+                                        if (trnsaction.getString("payout").equals("null")) {
+                                            item.setTime("0");
+                                        } else {
+                                            item.setTime(trnsaction.getString("payout"));
+                                        }
                                     list.add(item);
+                                }
                                 }
                                 adapter = new TimeSlotAdapter(getApplicationContext(), list);
                                 mList.setAdapter(adapter);
                             }
                             else
                             {
-                                Toast.makeText(getApplicationContext(),"No transaction present to display!",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "No transaction present to display!", Toast.LENGTH_SHORT).show();
                             }
                         }
                         else
@@ -260,7 +257,7 @@ public class CricketTransaction extends AppCompatActivity {
             String tag_string_req = "string_req";
 
             Log.i("url",url);
-            final ProgressDialog pDialog = new ProgressDialog(CricketTransaction.this);
+            final ProgressDialog pDialog = new ProgressDialog(CricketTransactionDetails.this);
             pDialog.setMessage("Loading...");
             pDialog.show();
             final String TAG = "login";
@@ -288,12 +285,12 @@ public class CricketTransaction extends AppCompatActivity {
 
                                     TransactionDetailsGetSet item = new TransactionDetailsGetSet();
 
-                                        mtch_nm=trnsaction.getString("match_name");
-                                        reslt=trnsaction.getString("result");
-                                        item.setChip(trnsaction.getString("chips"));
+                                    mtch_nm=trnsaction.getString("match_name");
+                                    reslt=trnsaction.getString("result");
+                                    item.setChip(trnsaction.getString("chips"));
                                     team1=trnsaction.getString("team_a");
                                     team2=trnsaction.getString("team_b");
-                                        tr_time=trnsaction.getString("transaction_time");
+                                    tr_time=trnsaction.getString("transaction_time");
                                     String per=trnsaction.getString("perticulars");
                                     per=per.replace("_"," ");
                                     if(per.contains("team 1")){
@@ -303,8 +300,8 @@ public class CricketTransaction extends AppCompatActivity {
                                         per=per.replace("team 2",team2);
                                     }
                                     item.setParticular(per);
-                                        item.setOdds(trnsaction.getString("odds"));
-                                        whichBet = trnsaction.getString("game_name");
+                                    item.setOdds(trnsaction.getString("odds"));
+                                    whichBet = trnsaction.getString("game_name");
                                     whichBet = whichBet.replace("_"," ");
                                     if(whichBet.contains("team1")){
                                         whichBet=whichBet.replace("team1",team1);
@@ -367,3 +364,7 @@ public class CricketTransaction extends AppCompatActivity {
         }
     }
 }
+
+
+
+
