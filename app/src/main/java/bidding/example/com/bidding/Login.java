@@ -18,13 +18,16 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -173,9 +176,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 @Override
                 public void onResponse(String response) {
                     pDialog.hide();
+                    Log.i("response", "" + response);
                     try {
 
-                        Log.i("response",""+response);
+
                         JSONObject object = new JSONObject(response);
                         if (object.getString("status").equals("true")) {
 
@@ -255,6 +259,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     if(error instanceof TimeoutError)
                     {
                         Toast.makeText(getApplicationContext(),"Request Timeout!!!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(error instanceof ServerError){
+                        try {
+                            String responseBody = new String( error.networkResponse.data, "utf-8" );
+                            JSONObject jsonObject = new JSONObject( responseBody );
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+                        } catch ( JSONException e ) {
+                            //Handle a malformed json response
+                        } catch (UnsupportedEncodingException err){
+
+                        }
+
                     }
                     else {
                         Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();

@@ -44,6 +44,7 @@ public class CancelledBets extends Fragment {
     ConnectionDetector connectionDetector;
     List<CancelledGetSet> cancelledGetSets;
     CancelledAdapter cancelledAdapter;
+    String teama, teamb;
 
     public CancelledBets() {
         // Required empty public constructor
@@ -104,6 +105,15 @@ public class CancelledBets extends Fragment {
                                             item.setMatch_name(childObject.getString("s_name"));
                                     String game_nm=childObject.getString("game_name");
                                     game_nm=game_nm.replace("_"," ");
+                                            teama =childObject.getString("team_a");
+                                            teamb =childObject.getString("team_b");
+
+                                            if(game_nm.contains("team1")){
+                                                game_nm=game_nm.replace("team1",teama);
+                                            }
+                                             else {
+                                                game_nm=game_nm.replace("team2",teamb);
+                                            }
                                             item.setGame(game_nm);
                                             item.setChips(childObject.getString("chips"));
                                             cancelledGetSets.add(item);

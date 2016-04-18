@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -127,7 +128,10 @@ public class timeService extends Service
                         s1 = Integer.parseInt("0" + s1);
                     }
 
-
+                    SharedPreferences.Editor editor = getApplicationContext().getSharedPreferences(getString(R.string.prefrence),Context.MODE_PRIVATE).edit();
+                    editor.putInt("currentMinute", m1);
+                    editor.putInt("currentSecond",s1);
+                    editor.commit();
                     if (getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentMinute", 0) == 14 &&
                             getApplicationContext().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getInt("currentSecond", 0) == 40) {
                         LuckyNo();

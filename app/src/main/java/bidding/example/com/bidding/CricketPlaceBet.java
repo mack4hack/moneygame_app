@@ -18,13 +18,16 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -150,10 +153,26 @@ public class CricketPlaceBet extends Activity {
 
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
-                                    Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+
                                     error.printStackTrace();
                                     VolleyLog.d(TAG, "Error: " + error.getMessage());
                                     pDialog.hide();
+
+                                   if(error instanceof ServerError){
+                                        try {
+                                            String responseBody = new String( error.networkResponse.data, "utf-8" );
+                                            JSONObject jsonObject = new JSONObject( responseBody );
+                                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+                                        } catch ( JSONException e ) {
+                                            //Handle a malformed json response
+                                        } catch (UnsupportedEncodingException err){
+
+                                        }
+
+                                    }
+                                    else{
+                                       Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                                   }
                                 }
                             }) {
                                 @Override
@@ -272,7 +291,20 @@ public class CricketPlaceBet extends Activity {
                     pDialog1.hide();
                     if (error instanceof TimeoutError) {
                         Toast.makeText(getApplicationContext(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
-                    } else {
+                    }
+                    else if(error instanceof ServerError){
+                        try {
+                            String responseBody = new String( error.networkResponse.data, "utf-8" );
+                            JSONObject jsonObject = new JSONObject( responseBody );
+                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"),Toast.LENGTH_SHORT).show();
+                        } catch ( JSONException e ) {
+                            //Handle a malformed json response
+                        } catch (UnsupportedEncodingException err){
+
+                        }
+
+                    }
+                    else {
                         Toast.makeText(getApplicationContext(), "Present Chips Not Present!!!", Toast.LENGTH_SHORT).show();
                     }
                     error.printStackTrace();
