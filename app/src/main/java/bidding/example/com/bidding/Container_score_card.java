@@ -50,4 +50,8 @@ public class Container_score_card extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
