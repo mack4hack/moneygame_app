@@ -360,19 +360,19 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 
         switch (item.getItemId())
         {
-            case R.id.game_2:
-                try {
-                    Home.toolbar.setTitle("Multiple Bet");
-                    android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    Multiple_Bet fragment = new Multiple_Bet();
-                    fragmentTransaction.replace(R.id.containar, fragment);
-                    fragmentTransaction.commit();
-                }catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-                break;
+//            case R.id.game_2:
+//                try {
+//                    Home.toolbar.setTitle("Multiple Bet");
+//                    android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                    android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                    Multiple_Bet fragment = new Multiple_Bet();
+//                    fragmentTransaction.replace(R.id.containar, fragment);
+//                    fragmentTransaction.commit();
+//                }catch (Exception e)
+//                {
+//                    e.printStackTrace();
+//                }
+//                break;
         }
         return super.onOptionsItemSelected(item);
     }

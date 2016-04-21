@@ -43,7 +43,7 @@ public class CricketTransactionDetails extends AppCompatActivity {
     List<TransactionDetailsGetSet> transList;
     String transaction_id, tr_time, reslt, mtch_nm, team1, team2, win, loss;
     private static int flag=0;
-    String formattedDate, gamenm, matchid;
+    String formattedDate, gamenm, matchid, mid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,9 @@ public class CricketTransactionDetails extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
         matchid = this.getIntent().getStringExtra("match_id");
+        mid = this.getIntent().getStringExtra("mid");
+        team1 = this.getIntent().getStringExtra("teama");
+        team2 = this.getIntent().getStringExtra("teamb");
         gamenm = this.getIntent().getStringExtra("game");
         try {
             if (this.getIntent().hasExtra("date")) {
@@ -70,8 +73,8 @@ public class CricketTransactionDetails extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Log.i("url", "" + getString(R.string.match_wise) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate + "&match_id=" + matchid);
-        getTransactionDetails(getString(R.string.match_wise) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate + "&match_id=" + matchid);
+        Log.i("url", "" + getString(R.string.game_wise) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate + "&match_id=" + matchid + "&m_id=" +mid);
+        getTransactionDetails(getString(R.string.game_wise) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate + "&match_id=" + matchid + "&m_id=" +mid);
 
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -180,8 +183,8 @@ public class CricketTransactionDetails extends AppCompatActivity {
                                     JSONObject trnsaction = jsonArray.getJSONObject(i);
 
 
-                                    team1 = trnsaction.getString("team_a");
-                                    team2 = trnsaction.getString("team_b");
+//                                    team1 = trnsaction.getString("team_a");
+//                                    team2 = trnsaction.getString("team_b");
                                     String game = trnsaction.getString("game_name");
                                     game = game.replace("_", " ");
                                     if (game.contains("team1")) {
@@ -190,7 +193,7 @@ public class CricketTransactionDetails extends AppCompatActivity {
                                         game = game.replace("team2", team2);
                                     }
 
-                                    if (game.equals(gamenm)) {
+//                                    if (game.equals(gamenm)) {
                                         item.setGame(game);
                                         item.setTransactionNo(trnsaction.getString("transaction_id"));
 
@@ -201,7 +204,7 @@ public class CricketTransactionDetails extends AppCompatActivity {
                                             item.setTime(trnsaction.getString("payout"));
                                         }
                                     list.add(item);
-                                }
+//                                }
                                 }
                                 adapter = new TimeSlotAdapter(getApplicationContext(), list);
                                 mList.setAdapter(adapter);

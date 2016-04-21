@@ -175,6 +175,7 @@ THIS GAME WILL CLOSE BEFORE MATCH START.</string>
     <string name="cricket_account">http://46.101.6.171/moneygame/api/cricket/accountsPlayerByWeek?player_id=</string>
     <string name="cricket_daily">http://46.101.6.171/moneygame/api/cricket/accountsPlayerByDate?player_id=</string>
     <string name="match_wise">http://46.101.6.171/moneygame/api/cricket/accountsPlayerBymatch?player_id=</string>
+    <string name="game_wise">http://46.101.6.171/moneygame/api/cricket/accountsPlayerBygame?player_id=</string>
     <string name="cricket_transaction_details">http://46.101.6.171/moneygame/api/cricket/accountsPlayerByTransactionId?transaction_id=</string>
     <string name="score_card">http://46.101.6.171/moneygame/api/cricket/getMatchLiveScoreCard?match_id=</string>
     <string name="match_result">http://46.101.6.171/moneygame/api/cricket/getMatchResults?match_id=</string>
