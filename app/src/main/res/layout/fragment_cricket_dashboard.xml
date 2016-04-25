@@ -147,7 +147,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cancel Bet"
+                    android:text="Terms &amp; Conditions"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textSize="16sp"
@@ -177,7 +177,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cancelled Bets"
+                    android:text="Logout"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:textSize="16sp"

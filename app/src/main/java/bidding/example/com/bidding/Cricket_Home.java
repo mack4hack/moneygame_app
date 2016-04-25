@@ -1,22 +1,19 @@
 package bidding.example.com.bidding;
 
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONObject;
@@ -119,7 +116,13 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
                 fragmentTransaction1.commit();
                 break;
             case R.id.cancel_bet:
-                try
+                MainPage.toolbar.setTitle("Terms & Conditions");
+                android.support.v4.app.FragmentManager fragmentManage = getActivity().getSupportFragmentManager();
+                android.support.v4.app.FragmentTransaction fragmentTransactio = fragmentManage.beginTransaction();
+                CricketTerms fragmen = new CricketTerms();
+                fragmentTransactio.replace(R.id.containar1, fragmen);
+                fragmentTransactio.commit();
+               /* try
                 {
                     String betStatus = getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("latest_bet", "");
                     if(betStatus.equals("not_placed"))
@@ -190,7 +193,7 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
                 catch (Exception e)
                 {
                     e.printStackTrace();
-                }
+                }*/
                 break;
             case R.id.previous_game_rslt:
                 MainPage.toolbar.setTitle("Results");
@@ -217,12 +220,19 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
                 fragmentTransaction.commit();
                 break;
             case R.id.cnclld_bets:
-                MainPage.toolbar.setTitle("Cancelled Bets");
+                SharedPreferences settings = getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.remove("logged");
+                editor.commit();
+//                stopService();
+                getActivity().finish();
+                startActivity(new Intent(getActivity(), Login.class).setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+             /*   MainPage.toolbar.setTitle("Cancelled Bets");
                 android.support.v4.app.FragmentManager cnlldManager = getActivity().getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction cnclldTransaction = cnlldManager.beginTransaction();
                 CancelledBets cnclldfragment = new CancelledBets();
                 cnclldTransaction.replace(R.id.containar1, cnclldfragment);
-                cnclldTransaction.commit();
+                cnclldTransaction.commit();*/
                 break;
         }
     }

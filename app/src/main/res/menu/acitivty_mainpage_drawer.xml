@@ -27,14 +27,14 @@
             android:icon="@android:drawable/ic_menu_manage"
             android:title="Upcoming" />
 
-        <item
+       <!-- <item
             android:id="@+id/cancel_bet"
             android:icon="@android:drawable/ic_menu_manage"
             android:title="Cancel Bet" />
         <item
             android:id="@+id/cancelled_bets"
             android:icon="@android:drawable/ic_menu_manage"
-            android:title="Cancelled Bets" />
+            android:title="Cancelled Bets" />-->
         <item
             android:id="@+id/score_card"
             android:icon="@android:drawable/ic_menu_manage"
