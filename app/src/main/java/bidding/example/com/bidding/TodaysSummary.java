@@ -46,7 +46,7 @@ public class TodaysSummary extends Fragment {
     TextView totAmnt, totRslt;
     private List<HistoryGetSet> todaySummary = new ArrayList<>();
     private TodaysSummaryAdapter todaysHistoryAdapter;
-    String data="";
+    String data="", date1;
     Double ttlAmnt=0.0, ttlResult=0.0;
 
     public TodaysSummary() {
@@ -93,9 +93,11 @@ public class TodaysSummary extends Fragment {
             catch (Exception e){
                 e.printStackTrace();
             }
+            date1=date;
             getDetails(getString(R.string.get_acc_by_date) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id","") + "&date=" +date);
         }
         else{
+            date1=formattedDate;
             String url=getString(R.string.get_acc_by_date) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate;
             getDetails(getString(R.string.get_acc_by_date) + getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate);
             Log.i("url",""+url);
@@ -109,6 +111,7 @@ public class TodaysSummary extends Fragment {
                 //item.getTimeSlotId();
                 Log.i("userid",""+item.getTimeSlotId()+" id "+getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", ""));
                 Intent intent = new Intent(getActivity(),TansactionWiseHistory.class);
+                intent.putExtra("date",date1);
                 intent.putExtra("timeslot",item.getTimeSlotId());
                 startActivity(intent);
             }

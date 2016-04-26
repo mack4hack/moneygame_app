@@ -185,6 +185,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
                             JSONObject innerObject = new JSONObject(object.getString("data"));
                             //System.out.println(" 2. " + sdf.format(dt));
+                            if(innerObject.getString("role").equals("3")) {
                             String[] serverTime = innerObject.getString("date").split(" ");
                             try
                             {
@@ -240,6 +241,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                             startActivity(new Intent(getApplicationContext(), Home.class));
                             finish();
                             Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "Not valid user, please contact admin", Toast.LENGTH_SHORT).show();
+                            }
                         } else if (object.getString("status").equals("false")) {
                             Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
                         }

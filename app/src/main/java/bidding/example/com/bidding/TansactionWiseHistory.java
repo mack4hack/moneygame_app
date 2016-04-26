@@ -43,7 +43,7 @@ public class TansactionWiseHistory extends AppCompatActivity {
     private List<HistoryGetSet> list = new ArrayList<>();
     private TimeSlotAdapter adapter;
     List<TransactionDetailsGetSet> transList;
-    String transaction_id;
+    String transaction_id, formattedDate;
     private static int flag=0;
 
     @Override
@@ -56,7 +56,18 @@ public class TansactionWiseHistory extends AppCompatActivity {
         mList= (ListView) findViewById(R.id.transactionHistory);
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        final String formattedDate = df.format(cal.getTime());
+        try {
+            if (this.getIntent().hasExtra("date")) {
+                String dte = this.getIntent().getStringExtra("date");
+                Date dt=df.parse(dte);
+                formattedDate=df.format(dt);
+            } else {
+                formattedDate = df.format(cal.getTime());
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
         Log.i("url",""+getString(R.string.get_transaction) +getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date="+formattedDate+"&draw_time=" + getIntent().getStringExtra("timeslot"));
         getTransactionDetails(getString(R.string.get_transaction) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "") + "&date=" + formattedDate + "&draw_time=" + getIntent().getStringExtra("timeslot"));
@@ -308,19 +319,25 @@ public class TansactionWiseHistory extends AppCompatActivity {
                                    String currentSplit[]=currentTime.split(" ");
                                     if(!dTime.equals("")){
                                         Calendar cal = Calendar.getInstance();
+                                        SimpleDateFormat dff = new SimpleDateFormat("yyyy-MM-dd");
                                         SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
                                         SimpleDateFormat df1 = new SimpleDateFormat("hh:mm:ss aa");
                                         String t=df.format(cal.getTime());
                                         Date d1=df.parse(dTime);
                                         Date d2=df1.parse(currentSplit[1]+" "+currentSplit[2]);
 
-                                        if(d1.compareTo(d2)<0){
-                                            Log.i("if time",""+d1.compareTo(d2));
+                                        if(currentSplit[0].equals(formattedDate)) {
+                                            if (d1.compareTo(d2) < 0) {
+                                                Log.i("if time", "" + d1.compareTo(d2));
+                                                drawTime = dTime;
+                                                result = trnsaction.getString("lucky_number");
+                                            } else {
+                                                Log.i("else time", "" + dTime);
+                                            }
+                                        }
+                                        else{
                                             drawTime = dTime;
                                             result = trnsaction.getString("lucky_number");
-                                        }
-                                        else {
-                                            Log.i("else time",""+dTime);
                                         }
 
                                     }
