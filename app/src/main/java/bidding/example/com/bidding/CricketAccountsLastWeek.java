@@ -1,11 +1,9 @@
 package bidding.example.com.bidding;
 
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -35,11 +33,10 @@ import bidding.example.com.bidding.Adapter.HistoryAdapter;
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
 import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
 
-
 /**
- * A simple {@link Fragment} subclass.
+ * Created by root on 4/28/16.
  */
-public class CricketAccounts extends AppCompatActivity {
+public class CricketAccountsLastWeek  extends AppCompatActivity {
 
     ListView listView;
     TextView total_bets, winnings, profit_loss;
@@ -57,22 +54,22 @@ public class CricketAccounts extends AppCompatActivity {
         winnings = (TextView) findViewById(R.id.txtwinnings);
         profit_loss = (TextView) findViewById(R.id.txtprftlos);
 
-        getHistory();
+        getHistoryLastWeek();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 HistoryGetSet item = historyList.get(i);
                 //item.getTimeSlotId();
-                startActivity(new Intent(CricketAccounts.this, CricketHistoryActivity.class).putExtra("date", item.getDate()));
+                startActivity(new Intent(CricketAccountsLastWeek.this, CricketHistoryActivity.class).putExtra("date", item.getDate()));
             }
         });
 
     }
 
-    private void getHistory()
+    /*private void getHistory()
     {
-        ConnectionDetector connectionDetector = new ConnectionDetector(CricketAccounts.this);
+        ConnectionDetector connectionDetector = new ConnectionDetector(CricketAccountsLastWeek.this);
         if(connectionDetector.isConnectingToInternet()) {
             String tag_string_req = "string_req";
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -95,7 +92,7 @@ public class CricketAccounts extends AppCompatActivity {
 
                 String url = getString(R.string.cricket_account) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week="+week;
                 Log.i("url", "" + url);
-                final ProgressDialog pDialog = new ProgressDialog(CricketAccounts.this);
+                final ProgressDialog pDialog = new ProgressDialog(CricketAccountsLastWeek.this);
                 pDialog.setMessage("Loading...");
                 pDialog.show();
                 final String TAG = "login";
@@ -125,7 +122,7 @@ public class CricketAccounts extends AppCompatActivity {
                                         rowItem.setTotal_wins(item.getString("total_wins"));
                                         rowItem.setPayout(item.getString("payout"));
                                         if(item.getString("payout").equals("null")) {
-                                           pay="0";
+                                            pay="0";
                                         }
                                         else{
                                             pay=item.getString("payout");
@@ -153,7 +150,7 @@ public class CricketAccounts extends AppCompatActivity {
                                 }
                                 else
                                 {
-                                    Toast.makeText(getApplicationContext(),"something went wrong, please try again!!!",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "something went wrong, please try again!!!", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
@@ -194,10 +191,10 @@ public class CricketAccounts extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"please check internet connetion!!!",Toast.LENGTH_SHORT).show();
         }
     }
-
-   /* private void getHistoryLastWeek()
+*/
+    private void getHistoryLastWeek()
     {
-        ConnectionDetector connectionDetector = new ConnectionDetector(CricketAccounts.this);
+        ConnectionDetector connectionDetector = new ConnectionDetector(CricketAccountsLastWeek.this);
         if(connectionDetector.isConnectingToInternet()) {
             String tag_string_req = "string_req";
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
@@ -224,7 +221,7 @@ public class CricketAccounts extends AppCompatActivity {
 
                 String url = getString(R.string.cricket_account) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week="+week;
                 Log.i("url", "" + url);
-                final ProgressDialog pDialog = new ProgressDialog(getApplicationContext());
+                final ProgressDialog pDialog = new ProgressDialog(CricketAccountsLastWeek.this);
                 pDialog.setMessage("Loading...");
                 pDialog.show();
                 final String TAG = "login";
@@ -317,12 +314,13 @@ public class CricketAccounts extends AppCompatActivity {
             catch (Exception e){
                 e.printStackTrace();
             }
-            getHistory();
+//            getHistory();
         }
         else
         {
             Toast.makeText(getApplicationContext(),"please check internet connetion!!!",Toast.LENGTH_SHORT).show();
         }
-    }*/
+    }
 
 }
+

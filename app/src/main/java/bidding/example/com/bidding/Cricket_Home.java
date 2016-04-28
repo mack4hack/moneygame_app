@@ -111,7 +111,7 @@ public class Cricket_Home extends Fragment implements View.OnClickListener{
                 MainPage.toolbar.setTitle("My Accounts");
                 android.support.v4.app.FragmentManager fragmentManager1 = getActivity().getSupportFragmentManager();
                 android.support.v4.app.FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
-                CricketAccounts fragment1 = new CricketAccounts();
+                Container fragment1 = new Container();
                 fragmentTransaction1.replace(R.id.containar1, fragment1);
                 fragmentTransaction1.commit();
                 break;

@@ -2,7 +2,8 @@
     <string name="app_name">Money Play</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">Lottery</string>
-
+    <string name="title_activity_summary">Summary</string>
+    <string name="title_activity_cricket_summary">Cricket History</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_single__bet">Single Bet</string>

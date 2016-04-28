@@ -6,13 +6,18 @@
     android:orientation="vertical"
     android:background="#dedede"
     android:weightSum="1">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
+        android:layout_height="wrap_content"
         android:weightSum="4"
         android:orientation="horizontal"
-        android:id="@+id/topLayout">
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/topLayout"
+        android:layout_alignParentTop="true">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -53,12 +58,12 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
-        android:background="@color/textColor"/>
+        android:background="@color/textColor"
+        android:layout_below="@+id/topLayout"/>
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.85"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/view"
         android:layout_above="@+id/view2"/>
 
@@ -66,15 +71,16 @@
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
-        android:background="@color/textColor" />
+        android:background="@color/textColor"
+        android:layout_above="@+id/bottomLayout"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
+        android:layout_height="wrap_content"
         android:weightSum="3"
         android:orientation="horizontal"
-        android:id="@+id/bottomLayout">
+        android:id="@+id/bottomLayout"
+        android:layout_above="@+id/view1">
 
         <TextView
             android:layout_width="0dp"
@@ -127,16 +133,17 @@
         android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
-        android:background="@color/textColor"/>
+        android:background="@color/textColor"
+        android:layout_above="@+id/bottomLayout1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.05"
+        android:layout_height="wrap_content"
         android:weightSum="3"
         android:orientation="horizontal"
         android:id="@+id/bottomLayout1"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        >
 
         <TextView
             android:layout_width="0dp"
@@ -190,6 +197,6 @@
         android:layout_height="0.1dp"
         android:background="@color/textColor"/>
 
-
+    </RelativeLayout>
 
 </LinearLayout>

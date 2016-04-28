@@ -172,7 +172,7 @@ public class MainPage extends AppCompatActivity implements NavigationView.OnNavi
             toolbar.setTitle("My Accounts");
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            CricketAccounts fragment = new CricketAccounts();
+            Container fragment = new Container();
             fragmentTransaction.replace(R.id.containar1, fragment);
             fragmentTransaction.commit();
         }

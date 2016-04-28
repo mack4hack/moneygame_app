@@ -217,7 +217,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             Home.toolbar.setTitle("History");
             android.support.v4.app.FragmentManager TodayManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction TodayTransaction = TodayManager.beginTransaction();
-            TodaysHistory Today = new TodaysHistory();
+            Container_lottery Today = new Container_lottery();
             TodayTransaction.replace(R.id.containar, Today);
             TodayTransaction.commit();
         } else if (id == R.id.cancel_bet)
