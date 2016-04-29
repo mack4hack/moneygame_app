@@ -70,6 +70,11 @@ public class CricketAccounts extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     private void getHistory()
     {
         ConnectionDetector connectionDetector = new ConnectionDetector(CricketAccounts.this);

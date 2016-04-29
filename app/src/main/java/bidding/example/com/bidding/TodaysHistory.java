@@ -136,9 +136,15 @@ public class TodaysHistory extends AppCompatActivity {
                                         rowItem.setProftlos(String.valueOf(pl));
                                         String ttlbet =item.getString("bet_amount");
                                         ttlbet = ttlbet.replace(",","");
+                                    if(ttlbet.equals("null")){
+                                        ttlbet="0";
+                                    }
                                         bet+= (int)Math.round(Double.parseDouble(ttlbet));
                                         String ttlwin =wins;
                                         ttlwin = ttlwin.replace(",","");
+                                    if(ttlwin.equals("null")){
+                                        ttlwin="0";
+                                    }
                                         win+= (int)Math.round(Double.parseDouble(ttlwin));
                                         prftlos+= pl;
 
