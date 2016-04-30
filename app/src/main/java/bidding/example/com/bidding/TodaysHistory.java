@@ -1,12 +1,12 @@
 package bidding.example.com.bidding;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,7 +40,7 @@ import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TodaysHistory extends AppCompatActivity {
+public class TodaysHistory extends Activity {
 
     ListView listView;
     TextView total_bets, winnings, profit_loss;
@@ -71,6 +71,13 @@ public class TodaysHistory extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        finish();
+        startActivity(new Intent(getApplicationContext(), Home.class));
+    }
+
     private void getHistory()
     {
         ConnectionDetector connectionDetector = new ConnectionDetector(TodaysHistory.this);
@@ -94,104 +101,104 @@ public class TodaysHistory extends AppCompatActivity {
             String week= days[0]+"%20To%20"+days[6];
             try {
 
-             String url = getString(R.string.get_history_by_week) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week="+week;
+                String url = getString(R.string.get_history_by_week) + getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("player_id", "")+"&week="+week;
                 Log.i("url", "" + url);
-            final ProgressDialog pDialog = new ProgressDialog(TodaysHistory.this);
-            pDialog.setMessage("Loading...");
-            pDialog.show();
-            final String TAG = "login";
-            StringRequest strReq = new StringRequest(Request.Method.GET,
-                    url, new Response.Listener<String>() {
+                final ProgressDialog pDialog = new ProgressDialog(TodaysHistory.this);
+                pDialog.setMessage("Loading...");
+                pDialog.show();
+                final String TAG = "login";
+                StringRequest strReq = new StringRequest(Request.Method.GET,
+                        url, new Response.Listener<String>() {
 
-                @Override
-                public void onResponse(String response) {
-                    pDialog.hide();
-                    try {
-                        Log.i("response", "" + response);
-                        if(response != null)
-                        {
-                            JSONObject jsonObject = new JSONObject(response);
-                            if(jsonObject.getString("status").equals("true"))
+                    @Override
+                    public void onResponse(String response) {
+                        pDialog.hide();
+                        try {
+                            Log.i("response", "" + response);
+                            if(response != null)
                             {
-                                JSONArray jsonArray = jsonObject.getJSONArray("data");
-                                for(int i=0; i < jsonArray.length(); i++)
+                                JSONObject jsonObject = new JSONObject(response);
+                                if(jsonObject.getString("status").equals("true"))
                                 {
-                                    JSONObject item = jsonArray.getJSONObject(i);
-                                    int pl=0;
-                                    HistoryGetSet rowItem = new HistoryGetSet();
-                                    rowItem.setAmount(item.getString("bet_amount"));
-                                    rowItem.setDate(item.getString("date"));
-                                    rowItem.setTotal_bet(item.getString("total_bet"));
-                                    rowItem.setTotal_wins(item.getString("total_wins"));
-                                    rowItem.setPayout(item.getString("payout"));
+                                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+                                    for(int i=0; i < jsonArray.length(); i++)
+                                    {
+                                        JSONObject item = jsonArray.getJSONObject(i);
+                                        int pl=0;
+                                        HistoryGetSet rowItem = new HistoryGetSet();
+                                        rowItem.setAmount(item.getString("bet_amount"));
+                                        rowItem.setDate(item.getString("date"));
+                                        rowItem.setTotal_bet(item.getString("total_bet"));
+                                        rowItem.setTotal_wins(item.getString("total_wins"));
+                                        rowItem.setPayout(item.getString("payout"));
 
-                                    String wins = item.getString("payout");
-                                    wins=wins.replace(",","");
-                                    String bets= item.getString("bet_amount");
-                                    bets=bets.replace(",","");
-                                    if(wins.equals("null")) {
-                                        wins="0";
-                                    }
+                                        String wins = item.getString("payout");
+                                        wins=wins.replace(",","");
+                                        String bets= item.getString("bet_amount");
+                                        bets=bets.replace(",","");
+                                        if(wins.equals("null")) {
+                                            wins="0";
+                                        }
                                         pl = (int) Math.round(Double.parseDouble(wins)) - (int) Math.round(Double.parseDouble(bets));
                                         rowItem.setProftlos(String.valueOf(pl));
                                         String ttlbet =item.getString("bet_amount");
                                         ttlbet = ttlbet.replace(",","");
-                                    if(ttlbet.equals("null")){
-                                        ttlbet="0";
-                                    }
+                                        if(ttlbet.equals("null")){
+                                            ttlbet="0";
+                                        }
                                         bet+= (int)Math.round(Double.parseDouble(ttlbet));
                                         String ttlwin =wins;
                                         ttlwin = ttlwin.replace(",","");
-                                    if(ttlwin.equals("null")){
-                                        ttlwin="0";
-                                    }
+                                        if(ttlwin.equals("null")){
+                                            ttlwin="0";
+                                        }
                                         win+= (int)Math.round(Double.parseDouble(ttlwin));
                                         prftlos+= pl;
 
 
                                         historyList.add(rowItem);
 
+                                    }
+                                    HistoryAdapter adapter = new HistoryAdapter(getApplicationContext(),historyList);
+                                    listView.setAdapter(adapter);
+                                    total_bets.setText(""+bet);
+                                    winnings.setText(""+win);
+                                    profit_loss.setText("" + prftlos);
+
                                 }
-                                HistoryAdapter adapter = new HistoryAdapter(getApplicationContext(),historyList);
-                                listView.setAdapter(adapter);
-                                total_bets.setText(""+bet);
-                                winnings.setText(""+win);
-                                profit_loss.setText("" + prftlos);
+                                else
+                                {
+                                    Toast.makeText(getApplicationContext(),"something went wrong, please try again!!!",Toast.LENGTH_SHORT).show();
+                                }
+                            }
 
-                            }
-                            else
-                            {
-                                Toast.makeText(getApplicationContext(),"something went wrong, please try again!!!",Toast.LENGTH_SHORT).show();
-                            }
+                        } catch (Exception e) {
+                            pDialog.hide();
+                            Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
                         }
+                    }
+                }, new Response.ErrorListener() {
 
-                    } catch (Exception e) {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
                         pDialog.hide();
-                        Toast.makeText(getApplicationContext(), "something went wrong please try again!!!", Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
+                        if (error instanceof TimeoutError) {
+                            Toast.makeText(getApplicationContext(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "History for Current Week Not Present!!!", Toast.LENGTH_SHORT).show();
+                        }
+                        error.printStackTrace();
+                        VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    pDialog.hide();
-                    if (error instanceof TimeoutError) {
-                        Toast.makeText(getApplicationContext(), "Request Timeout!!!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "History for Current Week Not Present!!!", Toast.LENGTH_SHORT).show();
                     }
-                    error.printStackTrace();
-                    VolleyLog.d(TAG, "Error: " + error.getMessage());
-
-                }
-            });
-            strReq.setRetryPolicy(new DefaultRetryPolicy(30000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                });
+                strReq.setRetryPolicy(new DefaultRetryPolicy(30000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
 // Adding request to request queue
-            AppControler.getInstance().addToRequestQueue(strReq, tag_string_req);
+                AppControler.getInstance().addToRequestQueue(strReq, tag_string_req);
             }
             catch (Exception e){
                 e.printStackTrace();

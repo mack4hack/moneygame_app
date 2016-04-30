@@ -76,4 +76,5 @@ public class Container_lottery extends Fragment {
         }
 
     }
+
 }

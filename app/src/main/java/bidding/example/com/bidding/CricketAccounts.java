@@ -1,12 +1,12 @@
 package bidding.example.com.bidding;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,7 +39,7 @@ import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CricketAccounts extends AppCompatActivity {
+public class CricketAccounts extends Activity {
 
     ListView listView;
     TextView total_bets, winnings, profit_loss;
@@ -72,7 +72,9 @@ public class CricketAccounts extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+//        super.onBackPressed();
+        finish();
+        startActivity(new Intent(getApplicationContext(), MainPage.class));
     }
 
     private void getHistory()
@@ -130,7 +132,7 @@ public class CricketAccounts extends AppCompatActivity {
                                         rowItem.setTotal_wins(item.getString("total_wins"));
                                         rowItem.setPayout(item.getString("payout"));
                                         if(item.getString("payout").equals("null")) {
-                                           pay="0";
+                                            pay="0";
                                         }
                                         else{
                                             pay=item.getString("payout");

@@ -1,8 +1,8 @@
 package bidding.example.com.bidding;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,7 +26,7 @@ import bidding.example.com.bidding.Adapter.ScoreCardAdapter;
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
 import bidding.example.com.bidding.GetterSetter.ScoreCardGetSet;
 
-public class MatchScoreCard extends AppCompatActivity {
+public class MatchScoreCard extends Activity {
 
     String match_id, match_name, date, venue, tot, win;
     TextView matchnm, tdate, tvenue, total, winner;
@@ -68,6 +68,7 @@ public class MatchScoreCard extends AppCompatActivity {
 
     }
 
+    @Override
     public void onBackPressed(){
         //Your code here
         super.onBackPressed();

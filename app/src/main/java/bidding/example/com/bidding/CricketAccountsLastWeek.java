@@ -1,10 +1,10 @@
 package bidding.example.com.bidding;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -36,7 +36,7 @@ import bidding.example.com.bidding.GetterSetter.HistoryGetSet;
 /**
  * Created by root on 4/28/16.
  */
-public class CricketAccountsLastWeek  extends AppCompatActivity {
+public class CricketAccountsLastWeek  extends Activity {
 
     ListView listView;
     TextView total_bets, winnings, profit_loss;
@@ -69,7 +69,9 @@ public class CricketAccountsLastWeek  extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+//        super.onBackPressed();
+        finish();
+        startActivity(new Intent(getApplicationContext(), MainPage.class));
     }
 
     /*private void getHistory()
