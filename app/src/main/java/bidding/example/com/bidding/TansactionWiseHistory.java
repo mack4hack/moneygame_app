@@ -45,6 +45,9 @@ public class TansactionWiseHistory extends AppCompatActivity {
     List<TransactionDetailsGetSet> transList;
     String transaction_id, formattedDate;
     private static int flag=0;
+    Calendar cal;
+    SimpleDateFormat df;
+    Date dt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +57,15 @@ public class TansactionWiseHistory extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mList= (ListView) findViewById(R.id.transactionHistory);
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        cal = Calendar.getInstance();
+        df = new SimpleDateFormat("yyyy-MM-dd");
         try {
             if (this.getIntent().hasExtra("date")) {
                 String dte = this.getIntent().getStringExtra("date");
-                Date dt=df.parse(dte);
+                 dt=df.parse(dte);
                 formattedDate=df.format(dt);
             } else {
+                dt=cal.getTime();
                 formattedDate = df.format(cal.getTime());
             }
         }
@@ -77,8 +81,18 @@ public class TansactionWiseHistory extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 HistoryGetSet item = list.get(i);
                 transaction_id = item.getTransactionNo();
-                Log.i("url",""+getString(R.string.get_specific_transaction)+item.getTransactionNo()+ "&date="+formattedDate+"&draw_time=" + getIntent().getStringExtra("timeslot"));
-                getDetails(getString(R.string.get_specific_transaction) + item.getTransactionNo() + "&date=" + formattedDate + "&draw_time=" + getIntent().getStringExtra("timeslot"));
+                String draw_time="";
+                if(getIntent().getStringExtra("timeslot").equals("96")) {
+                    draw_time = "0";
+                    cal.setTime(dt);
+                    cal.add(Calendar.DATE,1);
+                    formattedDate =df.format(cal.getTime());
+                }
+                else {
+                    draw_time = getIntent().getStringExtra("timeslot");
+                }
+                Log.i("url",""+getString(R.string.get_specific_transaction)+item.getTransactionNo()+ "&date="+formattedDate+"&draw_time=" +draw_time);
+                getDetails(getString(R.string.get_specific_transaction) + item.getTransactionNo() + "&date=" + formattedDate + "&draw_time=" +draw_time);
             }
         });
     }

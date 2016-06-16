@@ -124,66 +124,66 @@ THIS GAME WILL CLOSE BEFORE MATCH START.</string>
 
 
     <!--Live URL's   -->
-
+<!--46.101.6.171/moneygame-->
     <!--login api-->
-    <string name="login">http://46.101.6.171/moneygame/api/players/login</string>
+    <string name="login">http://moneygame.sigmasoftsolutions.in/api/players/login</string>
 
     <!-- Get Present Amount-->
-    <string name="url_amount">http://46.101.6.171/moneygame/api/players/player/</string>
+    <string name="url_amount">http://moneygame.sigmasoftsolutions.in/api/players/player/</string>
 
     <!--pacebetseconde url-->
-    <string name="PlaceBetFirst">http://46.101.6.171/moneygame/api/bets/PlaceBetFirst</string>
+    <string name="PlaceBetFirst">http://moneygame.sigmasoftsolutions.in/api/bets/PlaceBetFirst</string>
 
     <!--pacebetseconde url-->
-    <string name="PlaceBetSecond">http://46.101.6.171/moneygame/api/bets/PlaceBetSecond</string>
+    <string name="PlaceBetSecond">http://moneygame.sigmasoftsolutions.in/api/bets/PlaceBetSecond</string>
 
     <!--pacebetseconde url-->
-    <string name="PlaceBetJodi">http://46.101.6.171/moneygame/api/bets/PlaceBetJodi</string>
+    <string name="PlaceBetJodi">http://moneygame.sigmasoftsolutions.in/api/bets/PlaceBetJodi</string>
     <!--cancel bet-->
-    <string name="cancel_bet">http://46.101.6.171/moneygame/api/bets/cancelbet</string>
+    <string name="cancel_bet">http://moneygame.sigmasoftsolutions.in/api/bets/cancelbet</string>
     <!--get profile-->
-    <string name="get_profile">http://46.101.6.171/moneygame/api/players/player/</string>
+    <string name="get_profile">http://moneygame.sigmasoftsolutions.in/api/players/player/</string>
     <!--get result   -->
-    <string name="get_result">http://46.101.6.171/moneygame/api/bets/LuckyNumber</string>
+    <string name="get_result">http://moneygame.sigmasoftsolutions.in/api/bets/LuckyNumber</string>
 
-    <string name="get_today_history">http://46.101.6.171/moneygame/api/players/playerhistory?player_id=</string>
+    <string name="get_today_history">http://moneygame.sigmasoftsolutions.in/api/players/playerhistory?player_id=</string>
 
-    <string name="get_history_by_week">http://46.101.6.171/moneygame/api/players/accountsPlayerByWeek?player_id=</string>
+    <string name="get_history_by_week">http://moneygame.sigmasoftsolutions.in/api/players/accountsPlayerByWeek?player_id=</string>
 
     <!--get chart-->
-    <string name="get_chart">http://46.101.6.171/moneygame/api/bets/LuckyNumberChart?month=</string>
+    <string name="get_chart">http://moneygame.sigmasoftsolutions.in/api/bets/LuckyNumberChart?month=</string>
 
     <!--current result    -->
-    <string name="get_current_result">http://46.101.6.171/moneygame/api/bets/getServerTimings</string>
+    <string name="get_current_result">http://moneygame.sigmasoftsolutions.in/api/bets/getServerTimings</string>
 
     <!--get account detail by date-->
-    <string name="get_acc_by_date">http://46.101.6.171/moneygame/api/players/accountsPlayerByDate?player_id=</string>
+    <string name="get_acc_by_date">http://moneygame.sigmasoftsolutions.in/api/players/accountsPlayerByDate?player_id=</string>
 
     <!--get transaction -->
-    <string name="get_transaction">http://46.101.6.171/moneygame/api/players/accountsPlayerByDrawTime?player_id=</string>
+    <string name="get_transaction">http://moneygame.sigmasoftsolutions.in/api/players/accountsPlayerByDrawTime?player_id=</string>
     <!--get specific transaction-->
-    <string name="get_specific_transaction">http://46.101.6.171/moneygame/api/players/accountsPlayerByTransactionId?transaction_id=</string>
+    <string name="get_specific_transaction">http://moneygame.sigmasoftsolutions.in/api/players/accountsPlayerByTransactionId?transaction_id=</string>
 
     <!-- Cricket URLS-->
     <!-- Get cricket match list-->
-    <string name="get_match_list">http://46.101.6.171/moneygame/api/cricket/getCricketMatchList</string>
-    <string name="get_match_details">http://46.101.6.171/moneygame/api/cricket/getCricketMatchDetails</string>
-    <string name="get_match_odds">http://46.101.6.171/moneygame/api/cricket/getCricketMatchDetailsWithOdds</string>
-    <string name="place_cricket_bet">http://46.101.6.171/moneygame/api/cricket/placeCricketMatchBet</string>
-    <string name="get_cricket_odds_with_id">http://46.101.6.171/moneygame/api/cricket/getCricketOddsWithMatchId</string>
-    <string name="cancel_cricket_bet">http://46.101.6.171/moneygame/api/cricket/cancelCricketBet</string>
-    <string name="live_score">http://46.101.6.171/moneygame/api/cricket/getMatchLiveScore?match_id=</string>
-    <string name="cricket_account">http://46.101.6.171/moneygame/api/cricket/accountsPlayerByWeek?player_id=</string>
-    <string name="cricket_daily">http://46.101.6.171/moneygame/api/cricket/accountsPlayerByDate?player_id=</string>
-    <string name="match_wise">http://46.101.6.171/moneygame/api/cricket/accountsPlayerBymatch?player_id=</string>
-    <string name="game_wise">http://46.101.6.171/moneygame/api/cricket/accountsPlayerBygame?player_id=</string>
-    <string name="cricket_transaction_details">http://46.101.6.171/moneygame/api/cricket/accountsPlayerByTransactionId?transaction_id=</string>
-    <string name="score_card">http://46.101.6.171/moneygame/api/cricket/getMatchLiveScoreCard?match_id=</string>
-    <string name="match_result">http://46.101.6.171/moneygame/api/cricket/getMatchResults?match_id=</string>
-    <string name="cancelled_bets">http://46.101.6.171/moneygame/api/cricket/getUserCancelledBets?player_id=</string>
+    <string name="get_match_list">http://moneygame.sigmasoftsolutions.in/api/cricket/getCricketMatchList</string>
+    <string name="get_match_details">http://moneygame.sigmasoftsolutions.in/api/cricket/getCricketMatchDetails</string>
+    <string name="get_match_odds">http://moneygame.sigmasoftsolutions.in/api/cricket/getCricketMatchDetailsWithOdds</string>
+    <string name="place_cricket_bet">http://moneygame.sigmasoftsolutions.in/api/cricket/placeCricketMatchBet</string>
+    <string name="get_cricket_odds_with_id">http://moneygame.sigmasoftsolutions.in/api/cricket/getCricketOddsWithMatchId</string>
+    <string name="cancel_cricket_bet">http://moneygame.sigmasoftsolutions.in/api/cricket/cancelCricketBet</string>
+    <string name="live_score">http://moneygame.sigmasoftsolutions.in/api/cricket/getMatchLiveScore?match_id=</string>
+    <string name="cricket_account">http://moneygame.sigmasoftsolutions.in/api/cricket/accountsPlayerByWeek?player_id=</string>
+    <string name="cricket_daily">http://moneygame.sigmasoftsolutions.in/api/cricket/accountsPlayerByDate?player_id=</string>
+    <string name="match_wise">http://moneygame.sigmasoftsolutions.in/api/cricket/accountsPlayerBymatch?player_id=</string>
+    <string name="game_wise">http://moneygame.sigmasoftsolutions.in/api/cricket/accountsPlayerBygame?player_id=</string>
+    <string name="cricket_transaction_details">http://moneygame.sigmasoftsolutions.in/api/cricket/accountsPlayerByTransactionId?transaction_id=</string>
+    <string name="score_card">http://moneygame.sigmasoftsolutions.in/api/cricket/getMatchLiveScoreCard?match_id=</string>
+    <string name="match_result">http://moneygame.sigmasoftsolutions.in/api/cricket/getMatchResults?match_id=</string>
+    <string name="cancelled_bets">http://moneygame.sigmasoftsolutions.in/api/cricket/getUserCancelledBets?player_id=</string>
 
     <!--Password change-->
-    <string name="password_chng">http://46.101.6.171/moneygame/api/players/changePassword</string>
+    <string name="password_chng">http://moneygame.sigmasoftsolutions.in/api/players/changePassword</string>
 
     <string name="title_activity_tansaction_wise_history">Transaction History</string>
     <string name="title_activity_transaction_indetail">Transaction Details</string>
@@ -199,5 +199,5 @@ THIS GAME WILL CLOSE BEFORE MATCH START.</string>
     <string name="title_activity_container_score_card">Score Card</string>
     <string name="title_activity_redsult_details">Result Details</string>
     <string name="title_activity_cricket_transaction_details">Transaction List</string>
-    <!--http://46.101.6.171/moneygame/-->
+    <!--http://moneygame.sigmasoftsolutions.in/-->
 </resources>

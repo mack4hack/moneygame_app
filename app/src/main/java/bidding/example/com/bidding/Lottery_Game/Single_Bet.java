@@ -46,7 +46,6 @@ import java.util.concurrent.TimeUnit;
 import bidding.example.com.bidding.APICALL.ApiCall;
 import bidding.example.com.bidding.AppControler;
 import bidding.example.com.bidding.ConnectionDetect.ConnectionDetector;
-import bidding.example.com.bidding.Home;
 import bidding.example.com.bidding.R;
 
 public class Single_Bet extends Fragment implements View.OnClickListener
@@ -180,7 +179,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                 if(!charSequence.toString().equals("")) {
-                    mFirstSingleDigitReturn.setText("" + (Integer.parseInt(charSequence.toString()) * 8.5));
+                            mFirstSingleDigitReturn.setText("" + (Integer.parseInt(charSequence.toString()) * 9.0));
                     FirstBetTotal.setText(charSequence.toString());
                 }
                 else
@@ -207,7 +206,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 
                 Log.i("amt", "" + charSequence);
                 if(!charSequence.toString().equals("")) {
-                    mSecondSingleDigitReturn.setText("" + (Integer.parseInt(charSequence.toString()) * 8.5));
+                    mSecondSingleDigitReturn.setText("" + (Integer.parseInt(charSequence.toString()) * 9.0));
                     SecondBetTotal.setText(charSequence.toString());
                 }
                 else
@@ -233,7 +232,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 Log.i("amt", "" + charSequence);
                 if(!charSequence.toString().equals("")) {
-                    mJodiReturn.setText(""+Integer.parseInt(charSequence.toString()) * 85);
+                    mJodiReturn.setText(""+Integer.parseInt(charSequence.toString()) * 90);
                     JodiBetTotal.setText(charSequence.toString());
                 }
                 else
@@ -469,7 +468,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                                                         flag = 1;
                                                         FirstNo = Integer.parseInt(mEditFirstSingleDigit.getText().toString().trim());
 
-                                                    int res = (int) (Integer.parseInt(mEditFirstSingleDigit.getText().toString().trim()) * 8.5);
+                                                    int res = (int) (Integer.parseInt(mEditFirstSingleDigit.getText().toString().trim()) * 9.0);
 
 //                                                    int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
 //                                                    int amt = bal - res;
@@ -631,7 +630,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
 
 
                                                     flag = 2;
-//                                                int res = (int) (Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim()) * 8.5);
+//                                                int res = (int) (Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim()) * 9.0);
 //
 //                                                int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
 //                                                int amt = bal - res;
@@ -786,7 +785,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                                                     flag = 3;
                                                     JodiNo = Integer.parseInt(mEditJodi.getText().toString().trim());
 
-//                                                int res = (int) (Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim()) * 85);
+//                                                int res = (int) (Integer.parseInt(mEditSecondSingleDigit.getText().toString().trim()) * 90);
 //
 //
 //                                                int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
@@ -1250,7 +1249,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                                     Toast.makeText(getActivity(),"Congratulation, You Won The Bet.",Toast.LENGTH_SHORT).show();
                                     try {
 
-                                        double result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (FirstNo * 8.5);
+                                        double result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (FirstNo * 9.0);
                                         balanceStatus.setProgress((int) result);
                                     }catch (Exception e)
                                     {
@@ -1347,7 +1346,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                                 {
                                     Toast.makeText(getActivity(),"Congratulation, You Won The Bet.",Toast.LENGTH_SHORT).show();
                                     try {
-                                        double result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (SecondNo * 8.5);
+                                        double result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (SecondNo * 9.0);
                                         balanceStatus.setProgress((int) result);
                                     }catch (Exception e)
                                     {
@@ -1445,7 +1444,7 @@ public class Single_Bet extends Fragment implements View.OnClickListener
                                 {
                                     Toast.makeText(getActivity(),"Congratulation, You Won The Bet.",Toast.LENGTH_SHORT).show();
                                     try {
-                                        int result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (JodiNo * 85);
+                                        int result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (JodiNo * 90);
                                         balanceStatus.setProgress(result);
                                     }catch (Exception e)
                                     {

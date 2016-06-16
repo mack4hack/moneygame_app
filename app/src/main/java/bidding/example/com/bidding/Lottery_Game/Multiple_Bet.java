@@ -493,9 +493,9 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                                             amt += Integer.parseInt(amount[j]);
                                                         }
                                                     }
-                                                    //int result = (int) (Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) - (amt * 8.5));
+                                                    //int result = (int) (Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) - (amt * 9.0));
 //                                        text_bet_ttl1.setText("Bets Total: "+amt);
-                                                    int res = (int) (amt * 8.5);
+                                                    int res = (int) (amt * 9.0);
 
 //                                        int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
 //                                        int famt = bal - res;
@@ -731,7 +731,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                                             amt += Integer.parseInt(amount2[j]);
                                                         }
                                                     }
-                                                    int res = (int) (amt * 8.5);
+                                                    int res = (int) (amt * 9.0);
 //                                        text_bet_ttl2.setText("Bets Total: :"+amt);
 
 //                                        int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
@@ -976,7 +976,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                         }
 
 //                                        text_bet_ttl3.setText("Bets Total:"+amt);
-                                        int res = (int) (amt * 85);
+                                        int res = (int) (amt * 90);
 
 //                                        int bal = (int) Math.round(Double.parseDouble(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")));
 //                                        int famt = bal - res;
@@ -1582,7 +1582,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                             status = 1;
                                             Toast.makeText(getActivity(),"Congratulation, You Win The Bet.",Toast.LENGTH_SHORT).show();
                                             try {
-                                                double result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (Integer.parseInt(number[i]) * 8.5);
+                                                double result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (Integer.parseInt(number[i]) * 9.0);
                                                 balanceStatus.setProgress((int) result);
                                             }catch (Exception e)
                                             {
@@ -1684,7 +1684,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                                 status = 1;
                                                 Toast.makeText(getActivity(),"Congratulation, You Win The Bet.",Toast.LENGTH_SHORT).show();
                                                 try {
-                                                    double result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (Integer.parseInt(number2[i]) * 8.5);
+                                                    double result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (Integer.parseInt(number2[i]) * 9.0);
                                                     balanceStatus.setProgress((int) result);
                                                 }catch (Exception e)
                                                 {
@@ -1787,7 +1787,7 @@ public class Multiple_Bet extends Fragment implements View.OnClickListener{
                                             status = 1;
                                             Toast.makeText(getActivity(),"Congratulation, You Win The Bet.",Toast.LENGTH_SHORT).show();
                                             try {
-                                                double result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (Integer.parseInt(number3[i]) * 85);
+                                                double result = Integer.parseInt(getActivity().getSharedPreferences(getString(R.string.prefrence), Context.MODE_PRIVATE).getString("present_amount", "")) + (Integer.parseInt(number3[i]) * 90);
                                                 balanceStatus.setProgress((int) result);
                                             }catch (Exception e)
                                             {
