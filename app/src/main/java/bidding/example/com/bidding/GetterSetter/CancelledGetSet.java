@@ -22,19 +22,19 @@ public class CancelledGetSet {
     public void setMatch_name(String match_name) {
         this.match_name = match_name;
     }
-
+    //get game object
     public String getGame() {
         return game;
     }
-
+    //set game object
     public void setGame(String game) {
         this.game = game;
     }
-
+    //get chips
     public String getChips() {
         return chips;
     }
-
+    //set chips
     public void setChips(String chips) {
         this.chips = chips;
     }
