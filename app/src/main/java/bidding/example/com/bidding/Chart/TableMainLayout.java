@@ -105,7 +105,7 @@ List<SampleObject> sampleObjects;
 		this.resizeHeaderHeight();
 
 		this.getTableRowHeaderCellWidth();
-		
+		//Generate tables
 		this.generateTableC_AndTable_B();
 		
 		this.resizeBodyTableRowHeight();
