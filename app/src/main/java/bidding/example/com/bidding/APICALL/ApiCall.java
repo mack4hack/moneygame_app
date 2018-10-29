@@ -59,7 +59,7 @@ public class ApiCall
                 writer.flush();
                 writer.close();
                 os.close();
-
+                //create the connection
                 conn.connect();
                 Log.i("Result", "" + conn.getResponseCode());
                 int ResponseCode = conn.getResponseCode();
